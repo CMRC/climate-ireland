@@ -16,11 +16,11 @@
   (clone-for [snip (select essential [:.more])]
    [:li]
    (content {:tag :a
-             :attrs {:href (URLEncoder/encode (str "/clad/" (apply str (emit* (:id (:attrs snip))))))}
+             :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
              :content (apply str (emit* (:id (:attrs snip))))}))
 
   [:.CF2]
-  (content (select essential [(keyword (str "#" file))])))
+  (content (select essential [(keyword (str "#" (URLDecoder/decode file)))])))
 
-(defpage "/clad" [] (clad "whatis"))
+(defpage "/clad" [] (clad "What is Climate?"))
 (defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad more))
