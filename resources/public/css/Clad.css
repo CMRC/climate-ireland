@@ -1,0 +1,107 @@
+.wrapper {
+	background-color: #999;
+	width: 1530px;
+	height:753px;
+	overflow: hidden;
+	position: absolute;
+	left: 5%;
+	top: 5%;
+	right: 5%;
+	bottom: 5%;
+	border: thin solid #000;
+	margin-top: auto;
+	margin-right: auto;
+	margin-bottom: auto;
+	margin-left: auto;
+}
+.banner {
+	background-color: #FFF;
+	position: relative;
+	height: 87px;
+	width: 100%;
+}
+.Navigation {
+	background-color: #FFF;
+	height: 3%;
+	width: 100%;
+}
+.navbutton {
+	float: left;
+	height: 100%;
+	width: 12.5%;
+	overflow: hidden;
+	position: relative;
+	padding: 0px;
+	background-color: #06F;
+	text-align: center;
+	border: 1% none #999;
+}
+.Scroll {
+	background-color: #CFC;
+	height: 3%;
+	width: 100%;
+}
+.col1 {
+	background-color: #FFF;
+	height: 624px;
+	width: 15%;
+	float: left;
+	position: relative;
+	border: thin none #000;
+}
+.Content {
+	background-color: #FFF;
+	height: 624px;
+	width: 70%;
+	position: relative;
+	float: left;
+}
+.col2 {
+	background-color: #F96;
+	float: left;
+	height: 624px;
+	width: 15%;
+	position: relative;
+}
+.col2b {
+	position: relative;
+	height: 50%;
+	width: 100%;
+	text-indent: 3%;
+}
+.col1b {
+	background-color: #F96;
+	height: 25%;
+	width: auto;
+	border: thin none #999;
+	position: relative;
+	overflow: hidden;
+	padding: 0%;
+}
+.C1 {
+	position: relative;
+	height: 40px;
+	width: 100px;
+}
+.CF1 {
+	overflow: hidden;
+	position: relative;
+	height: 40%;
+	width: 100%;
+}
+.CF2 {
+	position: relative;
+	height: 60%;
+	width: 100%;
+}
+p, h3 {
+        margin: 10px;
+}
+.CF1_1 {
+	float: left;
+	height: 100%;
+	width: 50%;
+	position: relative;
+	overflow: hidden;
+	text-indent: 3%;
+}
