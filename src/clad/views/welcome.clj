@@ -7,20 +7,23 @@
   (:import (java.net URLEncoder
                      URLDecoder)))
   
-(def essential (html-resource "clad/views/more.html"))
+(def more (html-resource "clad/views/more.html"))
 
 (deftemplate clad "clad/views/CLAD_1.html"
-  [file]
+  [link]
 
-  [:#essential]
-  (clone-for [snip (select essential [:.more])]
-   [:li]
-   (content {:tag :a
-             :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-             :content (apply str (emit* (:id (:attrs snip))))}))
-
+  [(keyword (str "#" "essentials"))]
+  (clone-for [snip (select more [(keyword (str "." "essentials"))])]
+             [:li]
+             (content {:tag :a
+                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
+                       :content (apply str (emit* (:id (:attrs snip))))}))
+  
   [:.CF2]
-  (content (select essential [(keyword (str "#" (URLDecoder/decode file)))])))
+  (content (select more [(keyword (str "#" (URLDecoder/decode link)))])))
 
 (defpage "/clad" [] (clad "What is Climate?"))
 (defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad more))
+
+
+["essentials" "projections" "Impacts" "How to deal with it"]
