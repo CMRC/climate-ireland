@@ -18,6 +18,27 @@
              (content {:tag :a
                        :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
                        :content (apply str (emit* (:id (:attrs snip))))}))
+
+  [(keyword (str "#" "projections"))]
+  (clone-for [snip (select more [(keyword (str "." "projections"))])]
+             [:li]
+             (content {:tag :a
+                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
+                       :content (apply str (emit* (:id (:attrs snip))))}))
+  
+  [(keyword (str "#" "Impacts"))]
+  (clone-for [snip (select more [(keyword (str "." "Impacts"))])]
+             [:li]
+             (content {:tag :a
+                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
+                       :content (apply str (emit* (:id (:attrs snip))))}))
+  
+  [(keyword (str "#" "howto"))]
+  (clone-for [snip (select more [(keyword (str "." "howto"))])]
+             [:li]
+             (content {:tag :a
+                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
+                       :content (apply str (emit* (:id (:attrs snip))))}))
   
   [:.CF2]
   (content (select more [(keyword (str "#" (URLDecoder/decode link)))])))
