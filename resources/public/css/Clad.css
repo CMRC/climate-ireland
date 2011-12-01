@@ -18,8 +18,7 @@
 .Col1_2_b {
 	background-color: #F90;
 	height: 146px;
-	width: 210px;
-	margin: 8px;
+	width: 218px;
 	border-top-width: thin;
 	border-right-width: thin;
 	border-bottom-width: thin;
@@ -28,6 +27,10 @@
 	border-right-style: solid;
 	border-bottom-style: solid;
 	border-left-style: solid;
+	margin-top: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	margin-left: 0px;
 }
 
 .banner {
@@ -118,8 +121,7 @@
 .col2b {
 	position: relative;
 	height: 300px;
-	width: 210px;
-	margin: 8px;
+	width: 218px;
 	border-top-width: thin;
 	border-right-width: thin;
 	border-bottom-width: thin;
@@ -129,15 +131,22 @@
 	border-bottom-style: solid;
 	border-left-style: solid;
 	background-color: #F90;
+	margin-top: 8px;
+	margin-right: 0px;
+	margin-bottom: 8px;
+	margin-left: 8px;
 }
 .col1b {
 	background-color: #F90;
 	height: 146px;
-	width: 210px;
+	width: 218px;
 	border: thin solid #999;
 	position: relative;
 	overflow: hidden;
-	margin: 8px;
+	margin-top: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	margin-left: 0px;
 }
 .C1 {
 	position: relative;
@@ -232,8 +241,7 @@ p, h3 {
 }
 .Col_4_2_B_1 {
 	height: 153px;
-	width: 210px;
-	margin: 8px;
+	width: 218px;
 	border-top-width: thin;
 	border-right-width: thin;
 	border-bottom-width: thin;
@@ -243,11 +251,14 @@ p, h3 {
 	border-bottom-style: solid;
 	border-left-style: solid;
 	background-color: #F90;
+	margin-top: 8px;
+	margin-right: 0px;
+	margin-bottom: 8px;
+	margin-left: 8px;
 }
 .Col_4_2_b_2 {
 	height: 56px;
-	width: 210px;
-	margin: 8px;
+	width: 218px;
 	border-top-width: thin;
 	border-right-width: thin;
 	border-bottom-width: thin;
@@ -257,6 +268,10 @@ p, h3 {
 	border-bottom-style: solid;
 	border-left-style: solid;
 	background-color: #F90;
+	margin-top: 8px;
+	margin-right: 0px;
+	margin-bottom: 8px;
+	margin-left: 8px;
 }
 
 .Col_4_2 {
