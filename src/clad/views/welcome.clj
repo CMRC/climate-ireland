@@ -40,8 +40,14 @@
                        :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
                        :content (apply str (emit* (:id (:attrs snip))))}))
   
-  [:.CF2]
-  (content (select more [(keyword (str "#" (URLDecoder/decode link)))])))
+  [:#Main_Text]
+  (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
+  
+  [:#Key_Text]
+  (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Key_Text]))
+  
+  [:#Picture]
+  (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
 (defpage "/clad" [] (clad "What is Climate?"))
 (defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad more))
