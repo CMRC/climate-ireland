@@ -9,36 +9,27 @@
   
 (def more (html-resource "clad/views/more.html"))
 
+(defn make-links [topic]
+  (clone-for [snip (select more [(keyword (str "." topic))])]
+             [:li]
+             (content {:tag :a
+		      :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
+		      :content (apply str (emit* (:id (:attrs snip))))})))
+
 (deftemplate clad "clad/views/CLAD_1.html"
   [link]
 
   [(keyword (str "#" "essentials"))]
-  (clone-for [snip (select more [(keyword (str "." "essentials"))])]
-             [:li]
-             (content {:tag :a
-                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-                       :content (apply str (emit* (:id (:attrs snip))))}))
+  (make-links "essentials")
 
   [(keyword (str "#" "projections"))]
-  (clone-for [snip (select more [(keyword (str "." "projections"))])]
-             [:li]
-             (content {:tag :a
-                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-                       :content (apply str (emit* (:id (:attrs snip))))}))
+  (make-links "projections")
   
   [(keyword (str "#" "Impacts"))]
-  (clone-for [snip (select more [(keyword (str "." "Impacts"))])]
-             [:li]
-             (content {:tag :a
-                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-                       :content (apply str (emit* (:id (:attrs snip))))}))
-  
+  (make-links "Impacts")
+
   [(keyword (str "#" "howto"))]
-  (clone-for [snip (select more [(keyword (str "." "howto"))])]
-             [:li]
-             (content {:tag :a
-                       :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-                       :content (apply str (emit* (:id (:attrs snip))))}))
+  (make-links "howto")
   
   [:#Main_Text]
   (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
@@ -52,5 +43,3 @@
 (defpage "/clad" [] (clad "What is Climate?"))
 (defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad more))
 
-
-["essentials" "projections" "Impacts" "How to deal with it"]
