@@ -148,6 +148,30 @@
 	margin-bottom: 8px;
 	margin-left: 0px;
 }
+.col1b_2 {
+	background-color: #F90;
+	height: 356px;
+	width: 218px;
+	border: thin solid #999;
+	position: relative;
+	overflow: hidden;
+	margin-top: 8px;
+	margin-right: 8px;
+	margin-bottom: 0px;
+	margin-left: 0px;
+}
+.col1b_3 {
+	background-color: #F90;
+	height: 90px;
+	width: 218px;
+	border: thin solid #999;
+	position: relative;
+	overflow: hidden;
+	margin-top: 8px;
+	margin-right: 8px;
+	margin-bottom: 8px;
+	margin-left: 0px;
+}
 .C1 {
 	position: relative;
 	height: 40px;
@@ -311,7 +335,7 @@ p, h3 {
 .CF_4_2 {
 	margin: 8px;
 	float: left;
-	height: 620px;
+	height: 310px;
 	width: 1051px;
 	border-top-width: thin;
 	border-right-width: thin;
