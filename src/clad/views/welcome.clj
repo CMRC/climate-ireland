@@ -7,15 +7,16 @@
   (:import (java.net URLEncoder
                      URLDecoder)))
   
-(defn format-text []
+(defn format-text [page]
   (let [pre (html-resource "clad/views/more.html")
-       post (select pre [:div])]
-  post))
-
-(def more (format-text))
+       post (transform pre [:a.Glossary] 
+                           (fn [a-selected-node]
+                               (assoc-in a-selected-node [:attrs :href] 
+                                 (str page "glossary/" (:id (:attrs a-selected-node))))))]
+  post)) 
 
 (defn make-links [topic]
-  (clone-for [snip (select more [(keyword (str "." topic))])]
+  (clone-for [snip (select (format-text "") [(keyword (str "." topic))])]
              [:li]
              (content {:tag :a
 		      :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
@@ -37,18 +38,18 @@
   (make-links "howto")
   
   [:#Glossary]
-  (content (select more [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
+  (content (select (format-text link) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
   
   [:#Main_Text]
-  (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
+  (content (select (format-text link) [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
   
   [:#Key_Text]
-  (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Key_Text]))
+  (content (select (format-text link) [(keyword (str "#" (URLDecoder/decode link))) :.Key_Text]))
   
   [:#Picture]
-  (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
+  (content (select (format-text link) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad {:link "What is Climate?" :glossary "Climate"}))
-(defpage [:get ["/clad/:more/glossary/:glossary" :more #".+"]] {:keys [more glossary]} (clad {:link more :glossary glossary}))
-(defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad {:link more :glossary "Climate"}))
+(defpage "/clad" [] (clad {:link "What is Climate?" :glossary "climate"}))
+(defpage [:get ["/clad/:more/glossary/:glossary"]] {:keys [more glossary]} (clad {:link more :glossary glossary}))
+(defpage [:get ["/clad/:more"]] {:keys [more]} (clad {:link more :glossary "Climate"}))
 
