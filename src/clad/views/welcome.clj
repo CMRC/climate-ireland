@@ -19,7 +19,7 @@
              [:li]
              (content {:tag :a
 		      :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-		      :content (apply str (emit* (:id (:attrs snip))))})))
+		      :content (apply str (emit* (:alt (:attrs snip))))})))
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{link :link glossary :glossary}]
@@ -37,7 +37,7 @@
   (make-links "howto")
   
   [:#Glossary]
-  (content (select more [:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]))
+  (content (select more [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
   
   [:#Main_Text]
   (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
