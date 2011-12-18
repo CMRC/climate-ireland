@@ -7,7 +7,12 @@
   (:import (java.net URLEncoder
                      URLDecoder)))
   
-(def more (html-resource "clad/views/more.html"))
+(defn format-text []
+  (let [pre (html-resource "clad/views/more.html")
+       post (select pre [:div])]
+  post))
+
+(def more (format-text))
 
 (defn make-links [topic]
   (clone-for [snip (select more [(keyword (str "." topic))])]
@@ -17,7 +22,7 @@
 		      :content (apply str (emit* (:id (:attrs snip))))})))
 
 (deftemplate clad "clad/views/CLAD_1.html"
-  [link]
+  [{link :link glossary :glossary}]
 
   [(keyword (str "#" "essentials"))]
   (make-links "essentials")
@@ -31,6 +36,9 @@
   [(keyword (str "#" "howto"))]
   (make-links "howto")
   
+  [:#Glossary]
+  (content (select more [:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]))
+  
   [:#Main_Text]
   (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
   
@@ -40,6 +48,7 @@
   [:#Picture]
   (content (select more [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad "What is Climate?"))
-(defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad more))
+(defpage "/clad" [] (clad {:link "What is Climate?" :glossary "Climate"}))
+(defpage [:get ["/clad/:more/glossary/:glossary" :more #".+"]] {:keys [more glossary]} (clad {:link more :glossary glossary}))
+(defpage [:get ["/clad/:more" :more #".+"]] {:keys [more]} (clad {:link more :glossary "Climate"}))
 
