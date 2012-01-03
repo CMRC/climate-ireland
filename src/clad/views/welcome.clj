@@ -26,9 +26,10 @@
   [{link :link glossary :glossary}]
 
   [:.left_links]
-  (clone-for [header {"essentials" "Essentials"
+  (clone-for [header (array-map
+                      "essentials" "Essentials"
                       "projections" "Projections"
-                      "Impacts" "Impacts"}]
+                      "Impacts" "Impacts")]
              [:h3]
              (content (val header))
              [:li]
@@ -46,7 +47,7 @@
   [:#Picture]
   (content (select (format-text link) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad {:link "What is Climate?" :glossary "climate"}))
+(defpage "/clad" [] (clad {:link "whatis" :glossary "climate"}))
 (defpage [:get ["/clad/:more/glossary/:glossary"]] {:keys [more glossary]} (clad {:link more :glossary glossary}))
 (defpage [:get ["/clad/:more"]] {:keys [more]} (clad {:link more :glossary "Climate"}))
 
