@@ -1,6 +1,7 @@
 (ns clad.views.welcome
   (:require [clad.views.common :as common]
-            [noir.content.getting-started])
+            [noir.content.getting-started]
+            clad.models.site)
   (:use [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html])
@@ -26,14 +27,13 @@
   [{link :link glossary :glossary}]
 
   [:.left_links]
-  (clone-for [header (array-map
-                      "essentials" "Essentials"
-                      "projections" "Projections"
-                      "Impacts" "Impacts")]
+  (clone-for [header [{:id "essentials" :title "Essentials"}
+                      {:id "projections" :title "Global Projections"}
+                      {:id "Impacts" :title "Irish Coasts"}]]
              [:h3]
-             (content (val header))
+             (content (:title header))
              [:li]
-             (make-links (key header)))
+             (make-links (:id header)))
 
   [:#Glossary]
   (content (select (format-text link) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
