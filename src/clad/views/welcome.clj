@@ -13,7 +13,7 @@
        post (transform pre [:a.Glossary] 
                            (fn [a-selected-node]
                                (assoc-in a-selected-node [:attrs :href] 
-                                 (str page "glossary/" (:id (:attrs a-selected-node))))))]
+                                 (str "/clad/" page "/glossary/" (:id (:attrs a-selected-node))))))]
   post)) 
 
 (defn make-links [topic]
