@@ -25,6 +25,10 @@
 (deftemplate clad "clad/views/CLAD_1.html"
   [{link :link glossary :glossary}]
 
+  (clone-for [header ["one" "two" "three"]]
+             [:.left_links :h3]
+             header)
+             
   [(keyword (str "#" "essentials"))]
   (make-links "essentials")
 
