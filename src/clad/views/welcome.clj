@@ -25,22 +25,15 @@
 (deftemplate clad "clad/views/CLAD_1.html"
   [{link :link glossary :glossary}]
 
-  (clone-for [header ["one" "two" "three"]]
-             [:.left_links :h3]
-             header)
-             
-  [(keyword (str "#" "essentials"))]
-  (make-links "essentials")
+  [:.left_links]
+  (clone-for [header {"essentials" "Essentials"
+                      "projections" "Projections"
+                      "Impacts" "Impacts"}]
+             [:h3]
+             (content (val header))
+             [:li]
+             (make-links (key header)))
 
-  [(keyword (str "#" "projections"))]
-  (make-links "projections")
-  
-  [(keyword (str "#" "Impacts"))]
-  (make-links "Impacts")
-
-  [(keyword (str "#" "howto"))]
-  (make-links "howto")
-  
   [:#Glossary]
   (content (select (format-text link) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
   
