@@ -27,6 +27,17 @@
 (deftemplate clad "clad/views/CLAD_1.html"
   [{link :link glossary :glossary page :page}]
 
+  [:#buttons]
+  (clone-for [context sitemap/site]
+             [:li :a]
+             (fn [a-selected-node] 
+               (assoc-in a-selected-node [:content]
+                         (:title (val context))))
+             [:li :a]
+             (fn [a-selected-node] 
+               (assoc-in a-selected-node [:attrs :href]
+                         (str "/clad/" (name (key context))))))
+
   [:.left_links]
   (clone-for [header (:sections ((keyword page) sitemap/site))]
              [:h3]
@@ -47,6 +58,7 @@
   (content (select (format-text link) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
 (defpage "/clad" [] (clad {:link "whatis" :glossary "climate" :page "climate_change"}))
+(defpage "/clad/:page" {:keys [page]} (clad {:link "whatis" :glossary "climate" :page page}))
 (defpage [:get ["/clad/:page/:more/glossary/:glossary"]] {:keys [more glossary page]} (clad {:link more :glossary glossary :page page}))
 (defpage [:get ["/clad/:page/:more"]] {:keys [more page]} (clad {:link more :glossary "Climate" :page page}))
 
