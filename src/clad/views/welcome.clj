@@ -1,7 +1,7 @@
 (ns clad.views.welcome
   (:require [clad.views.common :as common]
             [noir.content.getting-started]
-            clad.models.site)
+            [clad.models.site :as sitemap])
   (:use [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html])
@@ -27,9 +27,7 @@
   [{link :link glossary :glossary}]
 
   [:.left_links]
-  (clone-for [header [{:id "essentials" :title "Essentials"}
-                      {:id "projections" :title "Global Projections"}
-                      {:id "Impacts" :title "Irish Coasts"}]]
+  (clone-for [header (:sections (:climate_change sitemap/site))]
              [:h3]
              (content (:title header))
              [:li]
