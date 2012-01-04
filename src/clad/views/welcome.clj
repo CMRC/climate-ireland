@@ -16,22 +16,23 @@
                                  (str "/clad/" page "/glossary/" (:id (:attrs a-selected-node))))))]
   post)) 
 
-(defn make-links [topic]
+(defn make-links [page topic]
   (clone-for [snip (select (format-text "") [(keyword (str "." topic))])]
              [:li]
              (content {:tag :a
-		      :attrs {:href (str "/clad/" (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
+                       :attrs {:href (str "/clad/" page "/"
+                                          (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
 		      :content (apply str (emit* (:alt (:attrs snip))))})))
 
 (deftemplate clad "clad/views/CLAD_1.html"
-  [{link :link glossary :glossary}]
+  [{link :link glossary :glossary page :page}]
 
   [:.left_links]
-  (clone-for [header (:sections (:climate_change sitemap/site))]
+  (clone-for [header (:sections ((keyword page) sitemap/site))]
              [:h3]
              (content (:title header))
              [:li]
-             (make-links (:id header)))
+             (make-links page (:id header)))
 
   [:#Glossary]
   (content (select (format-text link) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
@@ -45,7 +46,7 @@
   [:#Picture]
   (content (select (format-text link) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad {:link "whatis" :glossary "climate"}))
-(defpage [:get ["/clad/:more/glossary/:glossary"]] {:keys [more glossary]} (clad {:link more :glossary glossary}))
-(defpage [:get ["/clad/:more"]] {:keys [more]} (clad {:link more :glossary "Climate"}))
+(defpage "/clad" [] (clad {:link "whatis" :glossary "climate" :page "climate_change"}))
+(defpage [:get ["/clad/:page/:more/glossary/:glossary"]] {:keys [more glossary page]} (clad {:link more :glossary glossary :page page}))
+(defpage [:get ["/clad/:page/:more"]] {:keys [more page]} (clad {:link more :glossary "Climate" :page page}))
 
