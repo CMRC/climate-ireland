@@ -10,7 +10,8 @@
   
   site (array-map
         :home           {:title "Home"
-                         :sections [{:id "main"  :title "Home"}]}
+                         :sections [{:id "main"  :title "Irish Coast and CC"}
+                                    {:id "home_how"  :title "How can I use this site?"}]}
         :climate_change {:title "Climate Change"
                          :sections [{:id "essentials"  :title "Essentials"}
                                     {:id "projections" :title "Global Projections"}

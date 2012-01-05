@@ -1,5 +1,6 @@
 (ns clad.server
-  (:require [noir.server :as server]))
+  (:require [noir.server :as server])
+  (:use ring.middleware.params))
 
 (server/load-views "src/clad/views/")
 
