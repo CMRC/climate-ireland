@@ -97,12 +97,12 @@
 	margin-left: 0px;
 }
 #Left {
-	background-color: #FFF;
+	background-color: #F90;
 	height: 640px;
-	width: 15%;
+	width: 216px;
 	float: left;
 	position: relative;
-	border: thin none #000;
+	border: thin solid;
 }
 .Content {
 	height: 640px;
@@ -136,10 +136,10 @@
 	margin-left: 8px;
 }
 .left_links {
-	background-color: #F90;
-	height: 31%;
-	width: 218px;
-	border: thin solid #999;
+	background-color: inherit;
+	height: auto;
+	width: 216px;
+	border: 0;
 	position: relative;
 	overflow: hidden;
 	margin-top: 8px;

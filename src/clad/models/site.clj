@@ -32,6 +32,19 @@
                                     {:id "issues"      :title "Look for your specific issue"}
                                     {:id "experience"  :title "Tell us about your experience!"}]}
         :resources      {:title "Resources"
-                         :sections [{:id "whyadapt"    :title "Why Climate Adaptation?"}]}
+                         :sections [{:id "res_how"     :title "How I can build capacities for climate adaptation?"}
+                                    {:id "res_data"    :title "Data and Information"}
+                                    {:id "res_guide"   :title "Guidelines"}
+                                    {:id "res_legal"   :title "Legal and Policy Support"}
+                                    {:id "res_fin"     :title "Financial Support"}
+                                    {:id "res_prac"    :title "Practical Measures"}
+                                    {:id "res_comm"    :title "Communication and Presentations"}
+                                    {:id "res_work"    :title "Working with Communities"}]}
         :icrn           {:title "ICRN"
-                         :sections [{:id "whyadapt"    :title "Why Climate Adaptation?"}]}))
+                         :sections [{:id "icrn_about"  :title "About ICRN"}
+                                    {:id "icrn_panel"  :title "National Advisory Panel"}
+                                    {:id "icrn_reg"    :title "Regional Units"}
+                                    {:id "icrn_vuln"   :title "Vulnerability assessment"}
+                                    {:id "icrn_local"  :title "Local Scenarios"}
+                                    {:id "icrn_gis"    :title "GIS Coastal Adaptation"}
+                                    {:id "icrn_get"    :title "Get Involved!"}]}))
