@@ -1,7 +1,5 @@
 (ns clad.views.welcome
-  (:require [clad.views.common :as common]
-            [noir.content.getting-started]
-            [clad.models.site :as sitemap])
+  (:require [clad.models.site :as sitemap])
   (:use [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html])
@@ -17,7 +15,7 @@
   post)) 
 
 (defn make-links [page topic]
-  (clone-for [snip (select (format-text "" page) [(keyword (str "." topic))])]
+  (clone-for [snip (select (format-text "" page) [topic])]
              [:li]
              (content {:tag :a
                        :attrs {:href (str "/clad/" page "/"
@@ -28,7 +26,7 @@
   [{link :link glossary :glossary page :page}]
 
   [:#buttons :li]
-  (clone-for [context sitemap/site]
+  (clone-for [context (sitemap/site)]
              [:a]
              (fn [a-selected-node] 
                (assoc-in a-selected-node [:content]
@@ -39,11 +37,11 @@
                          (str "/clad/" (name (key context))))))
 
   [:.left_links]
-  (clone-for [header (:sections ((keyword page) sitemap/site))]
+  (clone-for [header (:sections ((keyword page) (sitemap/site)))]
              [:h3]
-             (content (:title header))
+             (content (:title (val header)))
              [:li]
-             (make-links page (:id header)))
+             (make-links page (key header)))
 
   [:#Glossary]
   (content (select (format-text link page) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
@@ -57,7 +55,7 @@
   [:#Picture]
   (content (select (format-text link page) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad {:link "whatis" :glossary "climate" :page "climate_change"}))
+(defpage "/clad" [] (clad {:link "whatis" :glossary "climate" :page "Home"}))
 (defpage "/clad/:page" {:keys [page]} (clad {:link "whatis" :glossary "climate" :page page}))
 (defpage [:get ["/clad/:page/:more/glossary/:glossary"]] {:keys [more glossary page]} (clad {:link more :glossary glossary :page page}))
 (defpage [:get ["/clad/:page/:more"]] {:keys [more page]} (clad {:link more :glossary "Climate" :page page}))
