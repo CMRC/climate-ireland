@@ -26,11 +26,11 @@
                                    {:title "Climate Modelling",              :from :#modelling, :to :#Main_Text}
                                    {:title "Adaptation and Mitigation",      :from :#adapt,     :to :#Main_Text}]}
                        {:title "Global Projections"
-                        :headings [{:title "Global and Regional Trends"}
-                                   {:title "Climate change and Coasts"}]}
+                        :headings [{:title "Global and Regional Trends"      :from :#project}
+                                   {:title "Climate change and Coasts"       :from :#impacts}]}
                        {:title "Irish Coasts"
-                        :headings [{:title "Climate change in Ireland"}
-                                   {:title "Impacts on Irish coasts"}
+                        :headings [{:title "Climate change in Ireland"       :from :#ireland}
+                                   {:title "Impacts on Irish coasts"         :from :#irishcoastsimpacts}
                                    {:title "Regions"}
                                    {:title "Sectors"}]}]}
            {:title "Adaptation"
