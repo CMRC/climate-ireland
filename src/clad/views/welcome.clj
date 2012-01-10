@@ -14,16 +14,16 @@
                                  (str "/clad/" page "/" topic "/glossary/" (:id (:attrs a-selected-node))))))]
   post)) 
 
-(defn make-links [page topic]
-  (clone-for [snip (select (format-text "" page) [topic])]
+(defn make-links [page section topics]
+  (clone-for [topic topics]
              [:li]
              (content {:tag :a
-                       :attrs {:href (str "/clad/" page "/"
-                                          (URLEncoder/encode (apply str (emit* (:id (:attrs snip))))))}
-		      :content (apply str (emit* (:alt (:attrs snip))))})))
+                       :attrs {:href (str "/clad/" page "/section/" (name section) "/topic/"
+                                          (apply str (emit* (:title topic))))}
+                       :content (apply str (emit* (:title topic)))})))
 
 (deftemplate clad "clad/views/CLAD_1.html"
-  [{link :link glossary :glossary page :page}]
+  [{link :link glossary :glossary page :page section :section}]
 
   [:#buttons :li]
   (clone-for [context (sitemap/site)]
@@ -37,17 +37,17 @@
                          (str "/clad/" (name (key context))))))
 
   [:.left_links]
-  (clone-for [header (:sections ((keyword page) (sitemap/site)))]
+  (clone-for [section (:sections ((keyword page) (sitemap/site)))]
              [:h3]
-             (content (:title (val header)))
+             (content (:title (val section)))
              [:li]
-             (make-links page (key header)))
+             (make-links page (key section) (:headings (val section))))
 
   [:#Glossary]
   (content (select (format-text link page) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
   
   [:#Main_Text]
-  (content (select (format-text link page) [(keyword (str "#" (URLDecoder/decode link))) :.Main_Text]))
+  (content (select (format-text link page) [((keyword section) ((keyword page)(sitemap/site))) :.Main_Text]))
   
   [:#Key_Text]
   (content (select (format-text link page) [(keyword (str "#" (URLDecoder/decode link))) :.Key_Text]))
@@ -55,8 +55,11 @@
   [:#Picture]
   (content (select (format-text link page) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad {:link "whatis" :glossary "climate" :page "Home"}))
+(defpage "/clad" [] (clad {:link "whatis" :glossary "climate" :page "Climate Change"}))
 (defpage "/clad/:page" {:keys [page]} (clad {:link "whatis" :glossary "climate" :page page}))
-(defpage [:get ["/clad/:page/:more/glossary/:glossary"]] {:keys [more glossary page]} (clad {:link more :glossary glossary :page page}))
-(defpage [:get ["/clad/:page/:more"]] {:keys [more page]} (clad {:link more :glossary "Climate" :page page}))
+(defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
+  {:keys [more glossary page section]}
+  (clad {:link more :glossary glossary :page page :section section}))
+(defpage [:get ["/clad/:page/section/:section/topic/:more"]]
+  {:keys [more page section]} (clad {:link more :glossary "Climate" :page page :section section}))
 

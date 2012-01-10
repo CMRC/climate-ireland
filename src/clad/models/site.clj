@@ -7,16 +7,57 @@
     "Sitemap: Structure
      Page Title
         Sections
-           Section id
-           Section Title"}
+           Section Title
+              Headings
+                 Heading Title
+                 From selector
+                 To selector"}
   
   sitemap [{:title "Home"
-            :sections [{:title "Irish Coast and CC"}
-                       {:title "How can I use this site?"}]}
+            :sections [{:title "Home"
+                        :headings [{:title "Irish Coast and CC"}
+                                   {:title "How can I use this site?"}]}]}
            {:title "Climate Change"
-            :sections [{:title "Essentials"}
+            :sections [{:title "Essentials"
+                        :headings [{:title "What is Climate Change?",
+                                    :from  :#whatis,
+                                    :to    :#Main_Text}]}
                        {:title "Global Projections"}
-                       {:title "Irish Coasts"}]}])
+                       {:title "Irish Coasts"}]}
+            {:title "Adaptation"
+             :sections [{:title "Why Climate Adaptation?"}
+                        {:title "Adaptive Co-Management"}]}
+            {:title "Tools & Methods"
+             :sections [{:title "Tools & Methods"}]}
+            {:title "Policy & Law"
+             :sections [{:title "How Adaptation Governance Works"}
+                        {:title "European Union"}
+                        {:title "Ireland"}
+                        {:title "Regions & Communities"}]}
+            {:title "Case Studies"
+             :sections [{:title "How do they manage?"}
+                        {:title "Ireland"}
+                        {:title "International"}
+                        {:title "Look for your specific issue"}
+                        {:title "Tell us about your experience!"}]}
+            {:title "Resources"
+             :sections [{:title "How I can build capacities for climate adaptation?"}
+                        {:title "Data and Information"}
+                        {:title "Guidelines"}
+                        {:title "Legal and Policy Support"}
+                        {:title "Financial Support"}
+                        {:title "Practical Measures"}
+                        {:title "Communication and Presentations"}
+                        {:title "Working with Communities"}]}
+            {:title "ICRN"
+             :sections [{:title "About ICRN"}
+                        {:title "National Advisory Panel"}
+                        {:title "Regional Units"}
+                        {:title "Vulnerability assessment"}
+                        {:title "Local Scenarios"}
+                        {:title "GIS Coastal Adaptation"}
+                        {:title "Get Involved!"}]}])
+
 (defn site []
   (reduce (fn [new-map v]
             (assoc new-map
@@ -26,56 +67,10 @@
                          (fn [inner-map section]
                            (assoc inner-map
                              (keyword
-                              (str "."
-                                   (str/replace-re
-                                    #"[^a-zA-Z0-9]" ""
-                                    (:title section)))) section))
+                              (:title section)) section))
                          {}
                          (:sections v)))))
           (array-map)
           (reverse sitemap)))
 
-
-(def
-  sitemapx (array-map
-            :home           {:title "Home"
-                             :sections [{:id "main"  :title "Irish Coast and CC"}
-                                        {:id "home_how"  :title "How can I use this site?"}]}
-            :climate_change {:title "Climate Change"
-                             :sections [{:id "essentials"  :title "Essentials"}
-                                        {:id "projections" :title "Global Projections"}
-                                        {:id "Impacts"     :title "Irish Coasts"}]}
-            :adaptation     {:title "Adaptation"
-                             :sections [{:id "whyadapt"    :title "Why Climate Adaptation?"}
-                                        {:id "adaptcom"    :title "Adaptive Co-Management"}]}
-            :tools_methods  {:title "Tools & Methods"
-                             :sections [{:id "tm"          :title "Tools & Methods"}]}
-            :policy_law     {:title "Policy & Law"
-                             :sections [{:id "howag"       :title "How Adaptation Governance Works"}
-                                        {:id "eu"          :title "European Union"}
-                                        {:id "ireland"     :title "Ireland"}
-                                        {:id "regions"     :title "Regions & Communities"}]}
-            :case_studies   {:title "Case Studies"
-                             :sections [{:id "howdotheydo" :title "How do they manage?"}
-                                        {:id "cs_ireland"  :title "Ireland"}
-                                        {:id "cs_int"      :title "International"}
-                                        {:id "issues"      :title "Look for your specific issue"}
-                                        {:id "experience"  :title "Tell us about your experience!"}]}
-            :resources      {:title "Resources"
-                             :sections [{:id "res_how"     :title "How I can build capacities for climate adaptation?"}
-                                        {:id "res_data"    :title "Data and Information"}
-                                        {:id "res_guide"   :title "Guidelines"}
-                                        {:id "res_legal"   :title "Legal and Policy Support"}
-                                        {:id "res_fin"     :title "Financial Support"}
-                                        {:id "res_prac"    :title "Practical Measures"}
-                                        {:id "res_comm"    :title "Communication and Presentations"}
-                                        {:id "res_work"    :title "Working with Communities"}]}
-            :icrn           {:title "ICRN"
-                             :sections [{:id "icrn_about"  :title "About ICRN"}
-                                        {:id "icrn_panel"  :title "National Advisory Panel"}
-                                        {:id "icrn_reg"    :title "Regional Units"}
-                                        {:id "icrn_vuln"   :title "Vulnerability assessment"}
-                                        {:id "icrn_local"  :title "Local Scenarios"}
-                                        {:id "icrn_gis"    :title "GIS Coastal Adaptation"}
-                                        {:id "icrn_get"    :title "Get Involved!"}]}))
-
+(site)
