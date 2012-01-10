@@ -36,12 +36,14 @@
              [:a]
              (fn [a-selected-node] 
                (assoc-in a-selected-node [:attrs :href]
-                         (str "/clad/" (name (key context))
-                              "/section/"
-                              (name (key (first (:sections ((key context) (sitemap/site))))))
-                              "/topic/"
-                              (name (key (first (:headings (val (first (:sections ((key context) (sitemap/site)))))))))))))
-             
+                         (let [level1 (key context)
+                               level2 (first (:sections (level1 (sitemap/site))))]
+                           (str "/clad/" (name level1)
+                                "/section/"
+                                (name (key level2))
+                                "/topic/"
+                                (name (key (first (:headings (val level2))))))))))
+  
   [:.left_links]
   (clone-for [section (:sections ((keyword page) (sitemap/site)))]
              [:h3]

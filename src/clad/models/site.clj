@@ -16,7 +16,8 @@
   sitemap [{:title "Home"
             :sections [{:title "Home"
                         :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                                   {:title "How can I use this site?"}
+                                   {:title "News and Events"}]}]}
            {:title "Climate Change"
             :sections [{:title "Essentials"
                         :headings [{:title "What is Climate Change?",        :from :#whatis,    :to :#Main_Text}
@@ -25,109 +26,107 @@
                                    {:title "Climate Modelling",              :from :#modelling, :to :#Main_Text}
                                    {:title "Adaptation and Mitigation",      :from :#adapt,     :to :#Main_Text}]}
                        {:title "Global Projections"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Global and Regional Trends"}
+                                   {:title "Climate change and Coasts"}]}
                        {:title "Irish Coasts"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                        :headings [{:title "Climate change in Ireland"}
+                                   {:title "Impacts on Irish coasts"}
+                                   {:title "Regions"}
+                                   {:title "Sectors"}]}]}
            {:title "Adaptation"
             :sections [{:title "Why Climate Adaptation?"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "What is climate adaptation?"}
+                                   {:title "Why adapt?"}
+                                   {:title "How to approach it?"}]}
                        {:title "Adaptive Co-Management"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                        :headings [{:title "How can I do it?"}
+                                   {:title "What do I need?"}]}]}
            {:title "Tools & Methods"
             :sections [{:title "Tools & Methods"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                        :headings [{:title "Which Method Works?"}
+                                   {:title "Vulnerability Assessment"}
+                                   {:title "Scenario Development"}
+                                   {:title "Knowledge Integration"}
+                                   {:title "Implementation"}
+                                   {:title "Resources"}]}]}
            {:title "Policy & Law"
             :sections [{:title "How Adaptation Governance Works"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "European Union"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Ireland"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Regions & Communities"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                        :headings [{:title "Challenges"}
+                                   {:title "Policy and legislation"}
+                                   {:title "Implementation"}]}
+                       {:title "European Union"}
+                       {:title "Ireland"}
+                       {:title "Regions & Communities"}]}
            {:title "Case Studies"
             :sections [{:title "How do they manage?"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Tralee Bay Co.Kerry"}
+                                   {:title "Bantry Bay Co. Cork"}
+                                   {:title "Fingal Co. Dublin"}
+                                   {:title "Cork Harbour Co. Cork"}
+                                   {:title "Lough Swilly Co. Donegal"}]}
                        {:title "Ireland"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Tralee Bay Co.Kerry"}
+                                   {:title "Bantry Bay Co. Cork"}
+                                   {:title "Fingal Co. Dublin"}
+                                   {:title "Cork Harbour Co. Cork"}
+                                   {:title "Lough Swilly Co. Donegal"}]}
                        {:title "International"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Look for your specific issue"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Tell us about your experience!"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                        :headings [{:title "CS 1"}
+                                   {:title "CS 2"}
+                                   {:title "CS 3"}]}
+                       {:title "Look for your specific issue"}
+                       {:title "Tell us about your experience!"}]}
            {:title "Resources"
             :sections [{:title "How I can build capacities for climate adaptation?"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Tralee Bay Co.Kerry"}
+                                   {:title "Bantry Bay Co. Cork"}
+                                   {:title "Fingal Co. Dublin"}
+                                   {:title "Cork Harbour Co. Cork"}
+                                   {:title "Lough Swilly Co. Donegal"}]}
                        {:title "Data and Information"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Guidelines"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Legal and Policy Support"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Financial Support"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Practical Measures"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Communication and Presentations"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Working with Communities"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}
+                        :headings [{:title "Climate Change"}
+                                   {:title "Sustainable Development"}
+                                   {:title "Irish Climate"}
+                                   {:title "Irish Coasts and Seas"}]}
+                       {:title "Guidelines"}
+                       {:title "Legal and Policy Support"}
+                       {:title "Financial Support"}
+                       {:title "Practical Measures"}
+                       {:title "Communication and Presentations"}
+                       {:title "Working with Communities"}]}
            {:title "ICRN"
             :sections [{:title "About ICRN"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "National Advisory Panel"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Tralee Bay Co.Kerry"}
+                                   {:title "Bantry Bay Co. Cork"}
+                                   {:title "Fingal Co. Dublin"}
+                                   {:title "Cork Harbour Co. Cork"}
+                                   {:title "Lough Swilly Co. Donegal"}]}
+                       {:title "National Advisory Panel"}
                        {:title "Regional Units"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Tralee"}
+                                   {:title "Bantry"}
+                                   {:title "Fingal"}]}
                        {:title "Vulnerability assessment"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
+                        :headings [{:title "Tralee"}
+                                   {:title "Bantry"}
+                                   {:title "Fingal"}]}
                        {:title "Local Scenarios"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "GIS Coastal Adaptation"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}
-                       {:title "Get Involved!"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}]}]}])
+                        :headings [{:title "Tralee"}
+                                   {:title "Bantry"}
+                                   {:title "Fingal"}]}
+                       {:title "GIS Coastal Adaptation"}
+                       {:title "Get Involved!"}]}])
 
 (defn site []
   (reduce (fn [new-map v]
             (assoc new-map
-              (keyword (:title v))
+              (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title v)))
               (assoc-in v [:sections]
                         (reduce
                          (fn [inner-map section]
                            (assoc inner-map
                              (keyword
-                              (:title section))
+                              (str/replace-re #"[^a-zA-Z0-9]" "-" (:title section)))
                              (assoc-in section [:headings]
                                        (reduce
                                         (fn [section-map topic]
