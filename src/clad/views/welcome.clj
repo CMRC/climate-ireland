@@ -21,7 +21,7 @@
              [:li]
              (content {:tag :a
                        :attrs {:href (str "/clad/" page "/section/" (name section) "/topic/"
-                                          (apply str (emit* (:title (val topic)))))}
+                                          (apply str (emit* (name (key topic)))))}
                        :content (apply str (emit* (:title (val topic))))})))
 
 (deftemplate clad "clad/views/CLAD_1.html"
@@ -36,8 +36,12 @@
              [:a]
              (fn [a-selected-node] 
                (assoc-in a-selected-node [:attrs :href]
-                         (str "/clad/" (name (key context))))))
-
+                         (str "/clad/" (name (key context))
+                              "/section/"
+                              (name (key (first (:sections ((key context) (sitemap/site))))))
+                              "/topic/"
+                              (name (key (first (:headings (val (first (:sections ((key context) (sitemap/site)))))))))))))
+             
   [:.left_links]
   (clone-for [section (:sections ((keyword page) (sitemap/site)))]
              [:h3]
@@ -60,8 +64,11 @@
   [:#Picture]
   (content (select (format-text link page section) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
 
-(defpage "/clad" [] (clad {:link "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
-(defpage "/clad/:page" {:keys [page]} (clad {:link "What is Climate Change?" :glossary "climate" :page page :section "None"}))
+(defpage "/clad" []
+  (clad {:link "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
+(defpage "/clad/:page"
+  {:keys [page section]}
+  (clad {:link "What is Climate Change?" :glossary "climate" :page page :section section}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
   {:keys [more glossary page section]}
   (clad {:link more :glossary glossary :page page :section section}))
