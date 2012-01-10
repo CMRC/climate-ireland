@@ -59,11 +59,7 @@
                        {:title "Regions & Communities"}]}
            {:title "Case Studies"
             :sections [{:title "How do they manage?"
-                        :headings [{:title "Tralee Bay Co.Kerry"}
-                                   {:title "Bantry Bay Co. Cork"}
-                                   {:title "Fingal Co. Dublin"}
-                                   {:title "Cork Harbour Co. Cork"}
-                                   {:title "Lough Swilly Co. Donegal"}]}
+                        :headings [{:title "FIXME!"}]}
                        {:title "Ireland"
                         :headings [{:title "Tralee Bay Co.Kerry"}
                                    {:title "Bantry Bay Co. Cork"}
@@ -78,11 +74,7 @@
                        {:title "Tell us about your experience!"}]}
            {:title "Resources"
             :sections [{:title "How I can build capacities for climate adaptation?"
-                        :headings [{:title "Tralee Bay Co.Kerry"}
-                                   {:title "Bantry Bay Co. Cork"}
-                                   {:title "Fingal Co. Dublin"}
-                                   {:title "Cork Harbour Co. Cork"}
-                                   {:title "Lough Swilly Co. Donegal"}]}
+                        :headings [{:title "FIXME!"}]}
                        {:title "Data and Information"
                         :headings [{:title "Climate Change"}
                                    {:title "Sustainable Development"}
@@ -96,11 +88,7 @@
                        {:title "Working with Communities"}]}
            {:title "ICRN"
             :sections [{:title "About ICRN"
-                        :headings [{:title "Tralee Bay Co.Kerry"}
-                                   {:title "Bantry Bay Co. Cork"}
-                                   {:title "Fingal Co. Dublin"}
-                                   {:title "Cork Harbour Co. Cork"}
-                                   {:title "Lough Swilly Co. Donegal"}]}
+                        :headings [{:title "FIXME!"}]}
                        {:title "National Advisory Panel"}
                        {:title "Regional Units"
                         :headings [{:title "Tralee"}
