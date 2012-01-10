@@ -21,8 +21,12 @@
             :sections [{:title "Essentials"
                         :headings [{:title "What is Climate Change?",
                                     :from  :#whatis,
+                                    :to    :#Main_Text}
+                                   {:title "Evidence for Climate Change",
+                                    :from  :#evidence,
                                     :to    :#Main_Text}]}
-                       {:title "Global Projections"}
+                       {:title "Global Projections"
+                        :headings []}
                        {:title "Irish Coasts"}]}
             {:title "Adaptation"
              :sections [{:title "Why Climate Adaptation?"}
@@ -67,7 +71,16 @@
                          (fn [inner-map section]
                            (assoc inner-map
                              (keyword
-                              (:title section)) section))
+                              (:title section))
+                             (assoc-in section [:headings]
+                                       (reduce
+                                        (fn [section-map topic]
+                                          (assoc section-map
+                                            (keyword
+                                             (:title topic))
+                                            topic))
+                                        {}
+                                        (:headings section)))))
                          {}
                          (:sections v)))))
           (array-map)
