@@ -13,12 +13,11 @@
                  From selector
                  To selector"}
   
-  sitemap [{:title "Home"
-            :sections [{:title "Home"
-                        :headings [{:title "Irish Coast and CC"}
-                                   {:title "How can I use this site?"}
-                                   {:title "News and Events"}]}]}
-           {:title "Climate Change"
+  sitemap [{:title "Home" :file "Home.html"
+            :sections [{:title "Irish Coast and CC"              :from :#home_ic}
+                       {:title "How can I use this site?"        :from :#home_how}
+                       {:title "News and Events"                 :from :#home_news}]}
+           {:title "Climate Change" :file "more.html"
             :sections [{:title "Essentials"                                  :from :#essentials
                         :headings [{:title "What is Climate Change?",        :from :#whatis,    :to :#Main_Text}
                                    {:title "Evidence for Climate Change",    :from :#evidence,  :to :#Main_Text}

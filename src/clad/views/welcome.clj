@@ -7,7 +7,8 @@
                      URLDecoder)))
 
 (defn format-text [topic page section]
-  (let [pre (html-resource "clad/views/more.html")
+  (let [file (str "clad/views/" (:file ((keyword page) (sitemap/site))))
+        pre (html-resource file)
         post (transform pre [:a.Glossary] 
                         (fn [a-selected-node]
                           (assoc-in a-selected-node [:attrs :href] 
@@ -37,12 +38,13 @@
              (fn [a-selected-node] 
                (assoc-in a-selected-node [:attrs :href]
                          (let [level1 (key context)
-                               level2 (first (:sections (level1 (sitemap/site))))]
+                               level2 (first (:sections (level1 (sitemap/site))))
+                               level3 (get (val level2) :headings nil)]
                            (str "/clad/" (name level1)
                                 "/section/"
                                 (name (key level2))
-                                "/topic/"
-                                (name (key (first (:headings (val level2))))))))))
+                                (if (seq level3)
+                                  (str "/topic/" (name (key (first level3))))))))))
   
   [:.left_links]
   (clone-for [section (:sections ((keyword page) (sitemap/site)))]
@@ -88,3 +90,4 @@
   (clad {:link more :glossary glossary :page page :section section}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]} (clad {:link more :glossary "Climate" :page page :section section}))
+
