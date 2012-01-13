@@ -19,20 +19,20 @@
                                    {:title "How can I use this site?"}
                                    {:title "News and Events"}]}]}
            {:title "Climate Change"
-            :sections [{:title "Essentials"
+            :sections [{:title "Essentials"                                  :from :#essentials
                         :headings [{:title "What is Climate Change?",        :from :#whatis,    :to :#Main_Text}
                                    {:title "Evidence for Climate Change",    :from :#evidence,  :to :#Main_Text}
                                    {:title "Why is Climate Change Serious?", :from :#whyis,     :to :#Main_Text}
                                    {:title "Climate Modelling",              :from :#modelling, :to :#Main_Text}
                                    {:title "Adaptation and Mitigation",      :from :#adapt,     :to :#Main_Text}]}
-                       {:title "Global Projections"
+                       {:title "Global Projections"                          :from :#project
                         :headings [{:title "Global and Regional Trends"      :from :#project}
                                    {:title "Climate change and Coasts"       :from :#impacts}]}
-                       {:title "Irish Coasts"
+                       {:title "Irish Coasts"                                :from :#ireland
                         :headings [{:title "Climate change in Ireland"       :from :#ireland}
                                    {:title "Impacts on Irish coasts"         :from :#irishcoastsimpacts}
-                                   {:title "Regions"}
-                                   {:title "Sectors"}]}]}
+                                   {:title "Regions"                         :from :#regions}
+                                   {:title "Sectors"                         :from :#sectors}]}]}
            {:title "Adaptation"
             :sections [{:title "Why Climate Adaptation?"
                         :headings [{:title "What is climate adaptation?"}

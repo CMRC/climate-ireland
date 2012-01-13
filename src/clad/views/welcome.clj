@@ -46,8 +46,14 @@
   
   [:.left_links]
   (clone-for [section (:sections ((keyword page) (sitemap/site)))]
-             [:h3]
-             (content (:title (val section)))
+             [:a]
+             (fn [a-selected-node] 
+               (assoc-in
+                (assoc-in a-selected-node
+                          [:attrs :href]
+                          (str "/clad/" page "/section/" (name (key section))))
+                [:content]
+                (:title (val section))))
              [:li]
              (make-links page (key section) (:headings (val section))))
 
@@ -55,11 +61,14 @@
   (content (select (format-text link page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
   
   [:#Main_Text]
-  (content (select (format-text link page section) [(:from ((keyword link)
-                                                    (:headings ((keyword section)
-                                                                (:sections ((keyword page)
-                                                                            (sitemap/site))))))) :.Main_Text]))
-
+  (content (select (format-text link page section)
+                   [(let [sections (:sections ((keyword page) (sitemap/site)))
+                          target (get (:headings ((keyword section) sections))
+                                      (keyword link)
+                                      ((keyword section) sections))]
+                      (:from target))
+                    :.Main_Text]))
+  
   [:#Key_Text]
   (content (select (format-text link page section) [(keyword (str "#" (URLDecoder/decode link))) :.Key_Text]))
   
@@ -71,6 +80,9 @@
 (defpage "/clad/:page"
   {:keys [page section]}
   (clad {:link "What is Climate Change?" :glossary "climate" :page page :section section}))
+(defpage "/clad/:page/section/:section"
+  {:keys [page section]}
+  (clad {:link section :glossary "climate" :page page :section section}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
   {:keys [more glossary page section]}
   (clad {:link more :glossary glossary :page page :section section}))

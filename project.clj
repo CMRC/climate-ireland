@@ -5,5 +5,6 @@
                            [enlive "1.0.0"]
                            [noir "1.2.0"]]
             :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]]
+            :disable-implicit-clean true
             :main clad.server)
 
