@@ -1,5 +1,5 @@
 (ns clad.views.welcome
-  (:require [clad.models.site :as sitemap])
+  (:require [clad.views.site :as sitemap])
   (:use [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html])

@@ -1,4 +1,4 @@
-(ns clad.models.site
+(ns clad.views.site
   (:require [clojure.contrib.string :as str] ))
            
 
