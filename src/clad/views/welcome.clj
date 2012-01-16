@@ -68,26 +68,7 @@
                           target (get (:headings ((keyword section) sections))
                                       (keyword link)
                                       ((keyword section) sections))]
-                      (:from target))]))
-  
-  [:#Key_Text]
-  (content (select (format-text link page section)
-                   [(let [sections (:sections ((keyword page) (sitemap/site)))
-                          target (get (:headings ((keyword section) sections))
-                                      (keyword link)
-                                      ((keyword section) sections))]
-                      (:from target))
-                    :.Key_Text]))
-  
-  [:#Picture]
-  (content (select (format-text link page section)
-                   [(let [sections (:sections ((keyword page) (sitemap/site)))
-                          target (get (:headings ((keyword section) sections))
-                                      (keyword link)
-                                      ((keyword section) sections))]
-                      (:from target))
-                    :.Picture])))
-
+                      (:from target))])))
 
 (defpage "/clad" []
   (clad {:link "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))

@@ -110,7 +110,7 @@
 	position: relative;
 	float: left;	
 }	
-.Main_Text, .Key_Text, .Picture, .Right, .Upper_Left, .Lower_Left, .Right, .Left{
+.Main_Text, .Header_Left, .Header_Right, .Right, .Upper_Left, .Lower_Left, .Right, .Left{
         margin: 8px;
 	border-top-width: thin;
 	border-right-width: thin;
@@ -187,7 +187,7 @@
 	width: 1053px;
 	background-color: #EAFFFF;
 }
-.Key_Text, .Picture, .Upper_Left, .Lower_Left, .Right {
+.Header_Left, .Header_Right, .Upper_Left, .Lower_Left, .Right {
 	float: left;
 	height: 233px;
 	width: 517px;
