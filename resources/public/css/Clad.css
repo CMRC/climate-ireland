@@ -197,27 +197,29 @@
 	padding: 0px;
 }
 .Left {
-    height: 600px;
-    width: 517px;
+    height: 620px;
+    width: 500px;
     padding: 0;
-    margin: 0;
-    float: left;
-    overflow: visible;
-    border: 0;
+    float: right;
+    overflow: auto;
+    border: 1;
 }
 .Right {
     height: 620px;
-    float: left;
+    float: right;
     width: 530px;
     margin-left: 8px;
+    clear: none;
 }
 .Upper_Left {
     height: 300px;
     width: 500px;
+    float: right;
 }
 .Lower_Left {
     height: 300px;
     width: 500px;
+    float: right;
 }
 p, h3 {
 	margin: 10px;
