@@ -1,5 +1,4 @@
-(ns clad.views.site
-  (:require [clojure.contrib.string :as str] ))
+(ns clad.views.site)
            
 
 (def
@@ -26,7 +25,8 @@
                                    {:title "Adaptation and Mitigation",      :from :#adapt,   }]}
                        {:title "Global Projections"                          :from :#project
                         :headings [{:title "Global and Regional Trends"      :from :#project}
-                                   {:title "Climate change and Coasts"       :from :#impacts}]}
+                                   {:title "Climate change and Coasts"       :from :#impacts
+                                    :subtopics [{:title "Sea level rise"}]}]}
                        {:title "Irish Coasts"                                :from :#ireland
                         :headings [{:title "Climate change in Ireland"       :from :#ireland}
                                    {:title "Impacts on Irish coasts"         :from :#irishcoastsimpacts}
@@ -104,28 +104,3 @@
                        {:title "GIS Coastal Adaptation"}
                        {:title "Get Involved!"}]}])
 
-(defn site []
-  (reduce (fn [new-map v]
-            (assoc new-map
-              (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title v)))
-              (assoc-in v [:sections]
-                        (reduce
-                         (fn [inner-map section]
-                           (assoc inner-map
-                             (keyword
-                              (str/replace-re #"[^a-zA-Z0-9]" "-" (:title section)))
-                             (assoc-in section [:headings]
-                                       (reduce
-                                        (fn [section-map topic]
-                                          (assoc section-map
-                                            (keyword
-                                             (str/replace-re #"[^a-zA-Z0-9]" "-" (:title topic)))
-                                            topic))
-                                        (array-map)
-                                        (reverse (:headings section))))))
-                         (array-map)
-                         (reverse (:sections v))))))
-          (array-map)
-          (reverse sitemap)))
-
-(site)

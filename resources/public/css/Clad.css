@@ -120,7 +120,7 @@
 	border-right-style: solid;
 	border-bottom-style: solid;
 	border-left-style: solid;
-	overflow: scroll;
+	overflow: auto;
 	text-align: justify;
 	text-indent: 0%;
 }

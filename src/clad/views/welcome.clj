@@ -1,13 +1,38 @@
 (ns clad.views.welcome
-  (:require [clad.views.site :as sitemap])
-  (:use [noir.core :only [defpage]]
+  (:require [clojure.contrib.string :as str])
+  (:use [clad.views.site]
+        [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html])
   (:import (java.net URLEncoder
                      URLDecoder)))
 
+(defn site []
+  (reduce (fn [new-map v]
+            (assoc new-map
+              (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title v)))
+              (assoc-in v [:sections]
+                        (reduce
+                         (fn [inner-map section]
+                           (assoc inner-map
+                             (keyword
+                              (str/replace-re #"[^a-zA-Z0-9]" "-" (:title section)))
+                             (assoc-in section [:headings]
+                                       (reduce
+                                        (fn [section-map topic]
+                                          (assoc section-map
+                                            (keyword
+                                             (str/replace-re #"[^a-zA-Z0-9]" "-" (:title topic)))
+                                            topic))
+                                        (array-map)
+                                        (reverse (:headings section))))))
+                         (array-map)
+                         (reverse (:sections v))))))
+          (array-map)
+          (reverse sitemap)))
+
 (defn format-text [topic page section]
-  (let [file (str "clad/views/" (:file ((keyword page) (sitemap/site))))
+  (let [file (str "clad/views/" (:file ((keyword page) (site))))
         pre (html-resource file)
         post (transform pre [:a.Glossary] 
                         (fn [a-selected-node]
@@ -29,7 +54,7 @@
   [{link :link glossary :glossary page :page section :section}]
   
   [:#buttons :li]
-  (clone-for [context (sitemap/site)]
+  (clone-for [context (site)]
              [:a]
              (fn [a-selected-node] 
                (assoc-in a-selected-node [:content]
@@ -38,7 +63,7 @@
              (fn [a-selected-node] 
                (assoc-in a-selected-node [:attrs :href]
                          (let [level1 (key context)
-                               level2 (first (:sections (level1 (sitemap/site))))
+                               level2 (first (:sections (level1 (site))))
                                level3 (get (val level2) :headings nil)]
                            (str "/clad/" (name level1)
                                 "/section/"
@@ -47,7 +72,7 @@
                                   (str "/topic/" (name (key (first level3))))))))))
   
   [:.left_links]
-  (clone-for [section (:sections ((keyword page) (sitemap/site)))]
+  (clone-for [section (:sections ((keyword page) (site)))]
              [:a]
              (fn [a-selected-node] 
                (assoc-in
@@ -64,7 +89,7 @@
               
   [:#Content_frame]
   (content (select (format-text link page section)
-                   [(let [sections (:sections ((keyword page) (sitemap/site)))
+                   [(let [sections (:sections ((keyword page) (site)))
                           target (get (:headings ((keyword section) sections))
                                       (keyword link)
                                       ((keyword section) sections))]
