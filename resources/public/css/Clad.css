@@ -108,7 +108,21 @@
 	height: 640px;
 	width: 70%;
 	position: relative;
-	float: left;
+	float: left;	
+}	
+.Main_Text, .Key_Text, .Picture, .Right, .Upper_Left, .Lower_Left, .Right, .Left{
+        margin: 8px;
+	border-top-width: thin;
+	border-right-width: thin;
+	border-bottom-width: thin;
+	border-left-width: thin;
+	border-top-style: solid;
+	border-right-style: solid;
+	border-bottom-style: solid;
+	border-left-style: solid;
+	overflow: scroll;
+	text-align: justify;
+	text-indent: 0%;
 }
 .col2 {
 	background-color: #FFF;
@@ -161,175 +175,50 @@
 	height: 40px;
 	width: 100px;
 }
-.CF1 {
+.Header {
 	overflow: hidden;
 	position: relative;
 	height: 40%;
 	width: 100%;
 }
-.CF2 {
+.Main_Text {
 	position: relative;
 	height: 360px;
 	width: 1053px;
-	margin: 8px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-	overflow: scroll;
 	background-color: #EAFFFF;
-	text-align: justify;
-	text-indent: 0%;
 }
-.CF1_1 {
+.Key_Text, .Picture, .Upper_Left, .Lower_Left, .Right {
 	float: left;
 	height: 233px;
 	width: 517px;
 	position: relative;
 	overflow: hidden;
 	background-color: #FFF;
-	margin: 8px;
 	padding: 0px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
+}
+.Left {
+    height: 600px;
+    width: 517px;
+    padding: 0;
+    margin: 0;
+    float: left;
+    overflow: visible;
+    border: 0;
+}
+.Right {
+    height: 620px;
+    float: left;
+    width: 517px;
+    margin: 8px;
+}
+.Upper_Left {
+    height: 300px;
+}
+.Lower_Left {
+    height: 300px;
 }
 p, h3 {
 	margin: 10px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: medium;
-}
-.Col1_2 {
-	height: auto;
-	width: 230px;
-	float: left;
-}
-#Col2_2 {
-	float: left;
-	height: auto;
-	width: 535px;
-}
-.Col2_2_B {
-	height: 305px;
-	width: 515px;
-	margin: 8px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-}
-.Col3_2 {
-	float: left;
-	height: 640px;
-	width: 535px;
-}
-
-.Col_3_2_B {
-	height: 620px;
-	width: 515px;
-	margin: 8px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-}
-.Col_4_2_B_1 {
-	height: 153px;
-	width: 218px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-	background-color: #F90;
-	margin-top: 8px;
-	margin-right: 0px;
-	margin-bottom: 8px;
-	margin-left: 8px;
-}
-.Col_4_2_b_2 {
-	height: 56px;
-	width: 218px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-	background-color: #F90;
-	margin-top: 8px;
-	margin-right: 0px;
-	margin-bottom: 8px;
-	margin-left: 8px;
-}
-
-.Col_4_2 {
-	float: left;
-	height: 640px;
-	width: 230px;
-}
-.CF_3{
-	position: relative;
-	float:left;
-	height: 620px;
-	Width: 515px;
-	margin: 8px;
-	border: thin solid #CCC;
-}
-.4_CF{
-	float: left;
-	Height: 620px;
-	Width: 1030px;
-	Margin: 8px;
-	border: thin solid #CCC;
-}
-.CF_3_2 {
-	margin: 8px;
-	float: left;
-	height: 300px;
-	width: 515px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
-}
-.CF_4_2 {
-	margin: 8px;
-	float: left;
-	height: 310px;
-	width: 1051px;
-	border-top-width: thin;
-	border-right-width: thin;
-	border-bottom-width: thin;
-	border-left-width: thin;
-	border-top-style: solid;
-	border-right-style: solid;
-	border-bottom-style: solid;
-	border-left-style: solid;
 }

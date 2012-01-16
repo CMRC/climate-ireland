@@ -61,21 +61,33 @@
 
   [:#Glossary]
   (content (select (format-text link page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
+              
+  [:#Content_frame]
+  (content (select (format-text link page section)
+                   [(let [sections (:sections ((keyword page) (sitemap/site)))
+                          target (get (:headings ((keyword section) sections))
+                                      (keyword link)
+                                      ((keyword section) sections))]
+                      (:from target))]))
   
-  [:#Main_Text]
+  [:#Key_Text]
   (content (select (format-text link page section)
                    [(let [sections (:sections ((keyword page) (sitemap/site)))
                           target (get (:headings ((keyword section) sections))
                                       (keyword link)
                                       ((keyword section) sections))]
                       (:from target))
-                    :.Main_Text]))
-  
-  [:#Key_Text]
-  (content (select (format-text link page section) [(keyword (str "#" (URLDecoder/decode link))) :.Key_Text]))
+                    :.Key_Text]))
   
   [:#Picture]
-  (content (select (format-text link page section) [(keyword (str "#" (URLDecoder/decode link))) :.Picture])))
+  (content (select (format-text link page section)
+                   [(let [sections (:sections ((keyword page) (sitemap/site)))
+                          target (get (:headings ((keyword section) sections))
+                                      (keyword link)
+                                      ((keyword section) sections))]
+                      (:from target))
+                    :.Picture])))
+
 
 (defpage "/clad" []
   (clad {:link "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))

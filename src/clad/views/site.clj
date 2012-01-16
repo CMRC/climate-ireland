@@ -19,11 +19,11 @@
                        {:title "News and Events"                 :from :#home_news}]}
            {:title "Climate Change" :file "more.html"
             :sections [{:title "Essentials"                                  :from :#essentials
-                        :headings [{:title "What is Climate Change?",        :from :#whatis,    :to :#Main_Text}
-                                   {:title "Evidence for Climate Change",    :from :#evidence,  :to :#Main_Text}
-                                   {:title "Why is Climate Change Serious?", :from :#whyis,     :to :#Main_Text}
-                                   {:title "Climate Modelling",              :from :#modelling, :to :#Main_Text}
-                                   {:title "Adaptation and Mitigation",      :from :#adapt,     :to :#Main_Text}]}
+                        :headings [{:title "What is Climate Change?",        :from :#whatis,  }
+                                   {:title "Evidence for Climate Change",    :from :#evidence,}
+                                   {:title "Why is Climate Change Serious?", :from :#whyis,   }
+                                   {:title "Climate Modelling",              :from :#modelling}
+                                   {:title "Adaptation and Mitigation",      :from :#adapt,   }]}
                        {:title "Global Projections"                          :from :#project
                         :headings [{:title "Global and Regional Trends"      :from :#project}
                                    {:title "Climate change and Coasts"       :from :#impacts}]}
