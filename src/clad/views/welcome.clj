@@ -47,8 +47,14 @@
              [:li]
              (content {:tag :a
                        :attrs {:href (str "/clad/" page "/section/" (name section) "/topic/"
-                                          (apply str (emit* (name (key topic)))))}
-                       :content (apply str (emit* (:title (val topic))))})))
+                                          (name (key topic)))}
+                       :content [(:title (val topic))
+                                 {:tag :ul
+                                  :content [ ""
+                                             {:tag :li
+                                              :content
+                                              (apply str (map #(:title %)
+                                                              (:subtopics (val topic))))}]}]})))
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{link :link glossary :glossary page :page section :section}]
@@ -83,7 +89,7 @@
                 (:title (val section))))
              [:li]
              (make-links page (key section) (:headings (val section))))
-
+  
   [:#Glossary]
   (content (select (format-text link page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
               
