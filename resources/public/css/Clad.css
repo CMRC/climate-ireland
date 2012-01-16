@@ -208,14 +208,16 @@
 .Right {
     height: 620px;
     float: left;
-    width: 517px;
-    margin: 8px;
+    width: 530px;
+    margin-left: 8px;
 }
 .Upper_Left {
     height: 300px;
+    width: 500px;
 }
 .Lower_Left {
     height: 300px;
+    width: 500px;
 }
 p, h3 {
 	margin: 10px;
