@@ -13,26 +13,40 @@
                  To selector"}
   
   sitemap [{:title "Home" :file "Home.html"
-            :sections [{:title "Irish Coast and CC"                               :from :#home_ic}
-                       {:title "How can I use this site?"                         :from :#home_how}
-                       {:title "News and Events"                                  :from :#home_news}]}
+            :sections [{:title "Irish Coast and CC"                                :from :#home_ic}
+                       {:title "How can I use this site?"                          :from :#home_how}
+                       {:title "News and Events"                                   :from :#home_news}]}
            {:title "Climate Change" :file "more.html"
-            :sections [{:title "Essentials"                                       :from :#essentials
-                        :topics [{:title "What is Climate Change?",               :from :#whatis,  }
-                                   {:title "Evidence for Climate Change",         :from :#evidence,}
-                                   {:title "Why is Climate Change Serious?",      :from :#whyis,   }
-                                   {:title "Climate Modelling",                   :from :#modelling}
-                                   {:title "Adaptation and Mitigation",           :from :#adapt,   }]}
-                       {:title "Global Projections"                               :from :#project
-                        :topics [{:title "Global and Regional Trends"             :from :#project}
-                                   {:title "Climate change and Coasts"            :from :#impacts
-                                    :subtopics [{:title "Sea level rise"          :from :#sea_level_rise}
-                                                {:title "Sea surface temperature" :from :#seasurfacetemp}]}]}
-                       {:title "Irish Coasts"                                     :from :#ireland
-                        :topics [{:title "Climate change in Ireland"              :from :#ireland}
-                                   {:title "Impacts on Irish coasts"              :from :#irishcoastsimpacts}
-                                   {:title "Regions"                              :from :#regions}
-                                   {:title "Sectors"                              :from :#sectors}]}]}
+            :sections [{:title "Essentials"                                        :from :#essentials
+                        :topics [{:title "What is Climate Change?",                :from :#whatis,  }
+                                   {:title "Evidence for Climate Change",          :from :#evidence,}
+                                   {:title "Why is Climate Change Serious?",       :from :#whyis,   }
+                                   {:title "Climate Modelling",                    :from :#modelling}
+                                   {:title "Adaptation and Mitigation",            :from :#adapt,   }]}
+                       {:title "Global Projections"                                :from :#project
+                        :topics [{:title "Global and Regional Trends"              :from :#project}
+                                   {:title "Climate change and Coasts"             :from :#impacts
+                                    :subtopics [{:title "Sea level rise"           :from :#sea_level_rise}
+                                                {:title "Sea surface temperature"  :from :#seasurfacetemp}
+                                                {:title "Water Salinity"           :from :#salinity}
+                                                {:title "Ocean Acidification"      :from :#acidification}
+                                                {:title "Storminess & Wave Height" :from :#storminess}
+                                                {:title "Coastal Erosion"          :from :#coastalerosion}
+                                                {:title "Coastal Squeeze"          :from :#squeeze}
+                                                {:title "Floods & Extreme Events"  :from :#floods}
+                                                {:title "Ecosystems"               :from :#ecosystems}]}]}
+                       {:title "Irish Coasts"                                      :from :#ireland
+                        :topics [{:title "Climate change in Ireland"               :from :#ireland}
+                                   {:title "Impacts on Irish coasts"               :from :#irishcoastsimpacts
+                                    :subtopics [{:title "Sea level rise"           :from :#impacts_sealevelrise}
+                                                {:title "Sea surface temperature"  :from :#seatemp}
+                                                {:title "Salinity & Acidification" :from :#saltacid}
+                                                {:title "Storminess & Wave Height" :from :#impacts_storminess}
+                                                {:title "Coastal Erosion & Squeeze" :from :#impacts_squeeze}
+                                                {:title "Floods & Extreme Events"  :from :#extremeevents}
+                                                {:title "Ecosystems"               :from :#ecosystems}]}
+                                   {:title "Regions"                               :from :#regions}
+                                   {:title "Sectors"                               :from :#sectors}]}]}
            {:title "Adaptation"
             :sections [{:title "Why Climate Adaptation?"
                         :topics [{:title "What is climate adaptation?"}
