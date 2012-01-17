@@ -8,6 +8,7 @@
                      URLDecoder)))
 
 (defn site []
+  ;;a little recursion might help here
   (reduce (fn [new-map v]
             (assoc new-map
               (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title v)))
@@ -17,7 +18,7 @@
                            (assoc inner-map
                              (keyword
                               (str/replace-re #"[^a-zA-Z0-9]" "-" (:title section)))
-                             (assoc-in section [:headings]
+                             (assoc-in section [:topics]
                                        (reduce
                                         (fn [section-map topic]
                                           (assoc section-map
@@ -25,7 +26,7 @@
                                              (str/replace-re #"[^a-zA-Z0-9]" "-" (:title topic)))
                                             topic))
                                         (array-map)
-                                        (reverse (:headings section))))))
+                                        (reverse (:topics section))))))
                          (array-map)
                          (reverse (:sections v))))))
           (array-map)
@@ -45,16 +46,15 @@
 (defn make-links [page section topics]
   (clone-for [topic topics]
              [:li]
-             (content {:tag :a
+             (content [{:tag :a
                        :attrs {:href (str "/clad/" page "/section/" (name section) "/topic/"
                                           (name (key topic)))}
-                       :content [(:title (val topic))
-                                 {:tag :ul
-                                  :content [ ""
-                                             {:tag :li
-                                              :content
-                                              (apply str (map #(:title %)
-                                                              (:subtopics (val topic))))}]}]})))
+                        :content (:title (val topic))}
+                       {:tag :ul
+                        :content (map #(hash-map :tag :li :content
+                                                 (vector (hash-map :tag :a :content (:title %)
+                                                                   :attrs (hash-map :href (:title %)))))
+                                      (:subtopics (val topic)))}])))
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{link :link glossary :glossary page :page section :section}]
@@ -70,7 +70,7 @@
                (assoc-in a-selected-node [:attrs :href]
                          (let [level1 (key context)
                                level2 (first (:sections (level1 (site))))
-                               level3 (get (val level2) :headings nil)]
+                               level3 (get (val level2) :topics nil)]
                            (str "/clad/" (name level1)
                                 "/section/"
                                 (name (key level2))
@@ -88,17 +88,18 @@
                 [:content]
                 (:title (val section))))
              [:li]
-             (make-links page (key section) (:headings (val section))))
+             (make-links page (key section) (:topics (val section))))
   
   [:#Glossary]
   (content (select (format-text link page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
               
   [:#Content_frame]
   (content (select (format-text link page section)
-                   [(let [sections (:sections ((keyword page) (site)))
-                          target (get (:headings ((keyword section) sections))
+                   [(let [sections (get-in (site) [(keyword page) :sections])
+                          headings (get (:topics ((keyword section) sections))
                                       (keyword link)
-                                      ((keyword section) sections))]
+                                      ((keyword section) sections))
+                          target (get-in headings [:subtopics] headings)]
                       (:from target))])))
 
 (defpage "/clad" []
