@@ -59,13 +59,20 @@
                                           (name (key topic)))}
                         :content (:title (val topic))}
                        {:tag :ul
-                        :content (map #(hash-map :tag :li :content
-                                                 (vector (hash-map :tag :a :content (:title (val %))
-                                                                   :attrs (hash-map :href (name (key %))))))
-                                      (:subtopics (val topic)))}])))
+                        :content (map
+                                  #(hash-map
+                                    :tag :li :content
+                                    (vector
+                                     (hash-map
+                                      :tag :a :content (:title (val %))
+                                      :attrs (hash-map
+                                              :href (str "/clad/" page "/section/" (name section)
+                                                         "/topic/" (name (key topic)) "/subtopic/"
+                                                         (name (key %)))))))
+                                  (:subtopics (val topic)))}])))
 
 (deftemplate clad "clad/views/CLAD_1.html"
-  [{link :link glossary :glossary page :page section :section}]
+  [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
   
   [:#buttons :li]
   (clone-for [context (site)]
@@ -99,28 +106,31 @@
              (make-links page (key section) (:topics (val section))))
   
   [:#Glossary]
-  (content (select (format-text link page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
+  (content (select (format-text topic page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
               
   [:#Content_frame]
-  (content (select (format-text link page section)
+  (content (select (format-text topic page section)
                    [(let [sections (get-in (site) [(keyword page) :sections])
                           topics (get (:topics ((keyword section) sections))
-                                      (keyword link)
+                                      (keyword topic)
                                       ((keyword section) sections))
-                          target (get-in topics [:subtopics (keyword link)] topics)]
+                          target (get-in topics [:subtopics (keyword subtopic)] topics)]
                       (:from target))])))
-(get-in (site) [:Climate-change :sections :Global-Projections :topics :Climate-change-and-coasts :subtopics :Sea-level-rise])
+
 (defpage "/clad" []
-  (clad {:link "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
+  (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"
   {:keys [page section]}
-  (clad {:link "What is Climate Change?" :glossary "climate" :page page :section section}))
+  (clad {:topic "What is Climate Change?" :glossary "climate" :page page :section section}))
 (defpage "/clad/:page/section/:section"
   {:keys [page section]}
-  (clad {:link section :glossary "climate" :page page :section section}))
+  (clad {:topic section :glossary "climate" :page page :section section}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
   {:keys [more glossary page section]}
-  (clad {:link more :glossary glossary :page page :section section}))
+  (clad {:topic more :glossary glossary :page page :section section}))
+(defpage [:get ["/clad/:page/section/:section/topic/:topic/subtopic/:subtopic"]]
+  {:keys [topic page section subtopic]}
+  (clad {:topic topic :subtopic subtopic :page page :section section :glossary "climate"}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
-  {:keys [more page section]} (clad {:link more :glossary "Climate" :page page :section section}))
+  {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
 
