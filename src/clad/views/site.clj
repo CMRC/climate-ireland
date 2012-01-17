@@ -47,9 +47,9 @@
                                                 {:title "Ecosystems"               :from :#ecosystems}]}
                                    {:title "Regions"                               :from :#regions}
                                    {:title "Sectors"                               :from :#sectors}]}]}
-           {:title "Adaptation"
-            :sections [{:title "Why Climate Adaptation?"
-                        :topics [{:title "What is climate adaptation?"}
+           {:title "Adaptation" :file "Adaptation.html"
+            :sections [{:title "Why Climate Adaptation?"                           :from :#whyadapt
+                        :topics [{:title "What is climate adaptation?"             :from :#whatis}
                                    {:title "Why adapt?"}
                                    {:title "How to approach it?"}]}
                        {:title "Adaptive Co-Management"
