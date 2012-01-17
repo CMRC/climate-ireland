@@ -9,10 +9,10 @@
 
 (defn site []
   ;;a little recursion might help here
-  (reduce (fn [new-map v]
+  (reduce (fn [new-map page]
             (assoc new-map
-              (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title v)))
-              (assoc-in v [:sections]
+              (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title page)))
+              (assoc-in page [:sections]
                         (reduce
                          (fn [inner-map section]
                            (assoc inner-map
@@ -24,11 +24,19 @@
                                           (assoc section-map
                                             (keyword
                                              (str/replace-re #"[^a-zA-Z0-9]" "-" (:title topic)))
-                                            topic))
+                                            (assoc-in topic [:subtopics]
+                                                      (reduce
+                                                       (fn [topic-map subtopic]
+                                                         (assoc topic-map
+                                                           (keyword
+                                                            (str/replace-re #"[^a-zA-Z0-9]" "-" (:title subtopic)))
+                                                           subtopic))
+                                                       (array-map)
+                                                       (reverse (:subtopics topic))))))
                                         (array-map)
                                         (reverse (:topics section))))))
                          (array-map)
-                         (reverse (:sections v))))))
+                         (reverse (:sections page))))))
           (array-map)
           (reverse sitemap)))
 
@@ -52,8 +60,8 @@
                         :content (:title (val topic))}
                        {:tag :ul
                         :content (map #(hash-map :tag :li :content
-                                                 (vector (hash-map :tag :a :content (:title %)
-                                                                   :attrs (hash-map :href (:title %)))))
+                                                 (vector (hash-map :tag :a :content (:title (val %))
+                                                                   :attrs (hash-map :href (name (key %))))))
                                       (:subtopics (val topic)))}])))
 
 (deftemplate clad "clad/views/CLAD_1.html"
@@ -96,12 +104,12 @@
   [:#Content_frame]
   (content (select (format-text link page section)
                    [(let [sections (get-in (site) [(keyword page) :sections])
-                          headings (get (:topics ((keyword section) sections))
+                          topics (get (:topics ((keyword section) sections))
                                       (keyword link)
                                       ((keyword section) sections))
-                          target (get-in headings [:subtopics] headings)]
+                          target (get-in topics [:subtopics (keyword link)] topics)]
                       (:from target))])))
-
+(get-in (site) [:Climate-change :sections :Global-Projections :topics :Climate-change-and-coasts :subtopics :Sea-level-rise])
 (defpage "/clad" []
   (clad {:link "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"
