@@ -1,6 +1,7 @@
 (ns clad.views.welcome
   (:require [clojure.contrib.string :as str])
   (:use [clad.views.site]
+        [clad.models.gdal]
         [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html])
@@ -71,6 +72,10 @@
                                                          (name (key %)))))))
                                   (:subtopics (val topic)))}])))
 
+(deftemplate data "clad/views/CLAD_1.html" [filename]
+  [:#Content_frame]
+  (content (adf filename)))
+
 (deftemplate clad "clad/views/CLAD_1.html"
   [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
   
@@ -133,4 +138,5 @@
   (clad {:topic topic :subtopic subtopic :page page :section section :glossary "climate"}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
+(defpage "/adf" [] (adf "/media/barry/ICARUS DATA_1/Baseline1961-90/djf_mean6190"))
 
