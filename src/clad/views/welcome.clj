@@ -80,9 +80,9 @@
   {:status 200
    :headers {"Content-Type" "text/csv"
              "Content-Disposition" "attachment;filename=counties.csv"}
-   :body (str (map
-               (fn [run] (apply str "," (reduce #(str %1 "," %2) counties) "\n" run "," (all-counties run)))
-               icarus-runs))})
+   :body (apply str (map
+                     (fn [run] (apply str "," (reduce #(str %1 "," %2) counties) "\n" run "," (all-counties run)))
+                     icarus-runs))})
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]

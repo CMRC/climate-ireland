@@ -59,8 +59,10 @@
 
 (defn data-by-county [county run]
   (first (r-eval
-          (str "bycounty('" county "','"run "')"))))
+          (str "bycounty('" county "','" run "')"))))
 
 (defn all-counties [run]
+  (r-eval (str "populatecounties('" run "')"))
+  (println (r-eval "ls(countiesarray)"))
   (map #(str (data-by-county % run) ",")
        counties))

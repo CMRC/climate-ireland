@@ -7,6 +7,7 @@
                            [org.clojars.sritchie09/gdal-java "1.8.0"]
                            [incanter "1.2.3"]]
             :native-dependencies [[jriengine "0.8.4"]]
-            :dev-dependencies [[native-deps "1.0.5"]]
+            :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]
+                               [native-deps "1.0.5"]]
             :main clad.server)
 
