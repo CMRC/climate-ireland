@@ -4,8 +4,9 @@
                            [org.clojure/clojure "1.3.0"]
                            [enlive "1.0.0"]
                            [noir "1.2.0"]
-                           [org.clojars.sritchie09/gdal-java "1.8.0"]]
-            :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]]
-            :native-path "/usr/lib/i386-linux-gnu/jni"
+                           [org.clojars.sritchie09/gdal-java "1.8.0"]
+                           [incanter "1.2.3"]]
+            :native-dependencies [[jriengine "0.8.4"]]
+            :dev-dependencies [[native-deps "1.0.5"]]
             :main clad.server)
 

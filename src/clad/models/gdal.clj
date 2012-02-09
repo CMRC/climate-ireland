@@ -1,11 +1,52 @@
 (ns clad.models.gdal
-  (:import (org.gdal.gdal gdal
-                          Dataset)
-           (org.gdal.gdalconst gdalconstConstants)
-           (java.io ByteArrayOutputStream
-                    ByteArrayInputStream)))
+  (:use incanter.core)
+  (:import(java.io ByteArrayOutputStream
+                   ByteArrayInputStream)))
 
-(. gdal (AllRegister))
+(use '(com.evocomputing rincanter))
+
+(def icarus-runs
+  ["precip2020djf"
+  "precip2020mam"
+  "precip2020jja"
+  "precip2020son"
+  "precip2050djf"
+  "precip2050mam"
+  "precip2050jja"
+  "precip2050son"
+  "precip2080djf"
+  "precip2080mam"
+  "precip2080jja"
+  "precip2080son"])
+
+(def counties
+       ["Carlow"
+        "Cavan"
+        "Clare"
+        "Cork"
+        "Donegal"
+        "Dublin"
+        "Galway"
+        "Kerry"
+        "Kildare"
+        "Kilkenny"
+        "Laois"
+        "Leitrim"
+        "Limerick"
+        "Longford"
+        "Louth"
+        "Mayo"
+        "Meath"
+        "Monaghan"
+        "North Tipperary"
+        "Offaly"
+        "Roscommon"
+        "Sligo"
+        "South Tipperary"
+        "Waterford"
+        "Westmeath"
+        "Wexford"
+        "Wicklow"])
 
 (defn fb-as-floats [floatbuffer]
     (loop [i 1 floats []]
@@ -14,14 +55,12 @@
                (conj floats (.get floatbuffer i)))
         floats)))
 
-(defn adf [filename]
-  (let [ds (. gdal Open filename gdalconstConstants/GA_ReadOnly)
-        md (.GetMetadata_List ds)
-        desc (.GetDescription ds)
-        proj (.GetProjection ds)
-        band (.GetRasterBand ds 1)
-        bb (.ReadRaster_Direct band 0 0 (.GetXSize band) (.GetYSize band))
-        fb (.asFloatBuffer bb)
-        ba (byte-array (* (.GetXSize band) (.GetYSize band)))]
-    (apply str (fb-as-floats fb))))
-             
+(r-eval "source(\"src/clad/models/maps.R\")")
+
+(defn data-by-county [county run]
+  (first (r-eval
+          (str "bycounty('" county "','"run "')"))))
+
+(defn all-counties [run]
+  (map #(str (data-by-county % run) ",")
+       counties))
