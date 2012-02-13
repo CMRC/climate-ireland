@@ -7,7 +7,7 @@ counties <- readOGR(dsn="/home/anthony/Desktop/County/LandAreaAdmin_ROIandUKNI",
 countiesarray = new.env()
 
 populatecounties <- function(run) {
-  countiesarray[[run]] = sgdf <- as(GDAL.open(paste ("/home/anthony/Desktop/ICARUS DATA_1/Coverages/Precipitation/",run,sep="")),"SpatialGridDataFrame")
+  countiesarray[[run]] = sgdf <- as(GDAL.open(paste ("/home/anthony/Desktop/ICARUS DATA_1/Coverages/PrecipA2int/",run,sep="")),"SpatialGridDataFrame")
 }
 
 bycounty <- function(county, run) {

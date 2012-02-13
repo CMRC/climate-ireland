@@ -81,7 +81,7 @@
    :headers {"Content-Type" "text/csv"
              "Content-Disposition" "attachment;filename=counties.csv"}
    :body (apply str (map
-                     (fn [run] (apply str "," (reduce #(str %1 "," %2) counties) "\n" run "," (all-counties run)))
+                     (fn [run] (apply str "," (reduce #(str %1 "," %2) counties) "\n" run "," (allcounties-memo run)))
                      icarus-runs))})
 
 (deftemplate clad "clad/views/CLAD_1.html"
