@@ -2,7 +2,7 @@
   (:require [clojure.contrib.string :as str])
   (:use [clad.views.site]
         [clad.views.charts]
-        [clad.views.svg2]
+        [clad.views.svg]
         [clad.models.gdal]
         [noir.core :only [defpage]]
         [hiccup.core :only [html]]

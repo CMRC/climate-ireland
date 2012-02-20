@@ -58,6 +58,7 @@
 (r-eval "source(\"src/clad/models/maps.R\")")
 
 (defn data-by-county [county run]
+  (r-eval (str "populatecounties('" run "')"))
   (first (r-eval
           (str "bycounty('" county "','" run "')"))))
 
