@@ -5,6 +5,7 @@
                            [enlive "1.0.0"]
                            [noir "1.2.0"]
                            [org.clojars.sritchie09/gdal-java "1.8.0"]
+                           [org.clojars.pallix/analemma "1.0.0-SNAPSHOT"]
                            [incanter "1.2.3"]]
             :native-dependencies [[jriengine "0.8.4"]]
             :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]

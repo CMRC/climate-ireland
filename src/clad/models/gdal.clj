@@ -6,18 +6,18 @@
 (use '(com.evocomputing rincanter))
 
 (def icarus-runs
-  ["a2prec2020djf"
-  "a2prec2020mam"
-  "a2prec2020jja"
-  "a2prec2020son"
-  "a2prec2050djf"
-  "a2prec2050mam"
-  "a2prec2050jja"
-  "a2prec2050son"
-  "a2prec2080djf"
-  "a2prec2080mam"
-  "a2prec2080jja"
-  "a2prec2080son"])
+  ["2020djf"
+   "2020mam"
+   "2020jja"
+   "2020son"
+   "2050djf"
+   "2050mam"
+   "2050jja"
+   "2050son"
+   "2080djf"
+   "2080mam"
+   "2080jja"
+   "2080son"])
 
 (def counties
        ["Carlow"
@@ -66,7 +66,6 @@
 (defn all-counties [run]
   (r-eval (str "populatecounties('" run "')"))
   (println (r-eval "ls(countiesarray)"))
-  (map #(str (bycounty-memo % run) ",")
-       counties))
+  (map #(str (bycounty-memo % run) ",") counties))
 
 (def allcounties-memo (memoize all-counties))

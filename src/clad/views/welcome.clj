@@ -2,6 +2,7 @@
   (:require [clojure.contrib.string :as str])
   (:use [clad.views.site]
         [clad.views.charts]
+        [clad.views.svg2]
         [clad.models.gdal]
         [noir.core :only [defpage]]
         [hiccup.core :only [html]]
@@ -76,13 +77,13 @@
                                                          (name (key %)))))))
                                   (:subtopics (val topic)))}])))
 
-(defn by-county [county]
+(defn by-county [folder run]
   {:status 200
    :headers {"Content-Type" "text/csv"
              "Content-Disposition" "attachment;filename=counties.csv"}
    :body (apply str (map
                      (fn [run] (apply str "," (reduce #(str %1 "," %2) counties) "\n" run "," (allcounties-memo run)))
-                     icarus-runs))})
+                     (map #(str folder "/" run %) icarus-runs)))})
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
@@ -146,6 +147,6 @@
   (clad {:topic topic :subtopic subtopic :page page :section section :glossary "climate"}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
-(defpage "/csv/:county" {:keys [county]} (by-county county))
-(defpage "/csv" [] (by-county "all"))
+(defpage "/csv/:folder/:run" {:keys [folder run]} (by-county folder run))
+(defpage "/svg" [] (counties-map))
 
