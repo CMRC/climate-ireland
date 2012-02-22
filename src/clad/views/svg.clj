@@ -2,28 +2,50 @@
   (:use [analemma.xml :only [emit add-content add-attrs
 			     parse-xml transform-xml filter-xml]]
 	analemma.svg
+	analemma.xml
         clad.models.gdal
         incanter.stats
         clojure.contrib.math
 	[clojure.java.io :only [file]]))
 
-(def run "temp2020djf")
-
 (def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
 
-(def quartiles (map #(/ (round (* % 1000)) 1000)
-                    (quantile (map #(bycounty-memo % run) counties))))
+(defn counties-data [run] (map #(bycounty-memo % run) counties))
 
-(defn counties-map []
+(defn quartiles [run] (map #(/ (round (* % 1000)) 1000)
+                           (quantile (counties-data run))))
+
+(defn colour-on-quartiles [elem county run]
+  (add-style elem :fill (cond (< (bycounty-memo county run) (nth (quartiles run) 1)) "#56b"
+                              (< (bycounty-memo county run) (nth (quartiles run) 2)) "#769"
+                              (< (bycounty-memo county run) (nth (quartiles run) 3)) "#967"
+                              :else "#b65")))
+
+(defn colour-on-linear [elem county run]
+  (let [cd (counties-data run)
+        min (apply min cd)
+        max (apply max cd)
+        step (/ 100 (- max min))
+        val (bycounty-memo county run)
+        red (+ 100 (round (* step (- val min))))
+        green 96
+        blue (- 200 (round (* step (- val min))))]
+    (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue)))))
+
+(defn counties-map [run]
   {:status 200
    :headers {"Content-Type" "image/svg+xml"}
    :body
-   (emit (reduce #(transform-xml %1
-                                 [{:id %2}]
-                                 (fn [elem] (add-style elem :fill (cond (< (bycounty-memo %2 run) (nth quartiles 1)) "#56b"
-                                                                        (< (bycounty-memo %2 run) (nth quartiles 2)) "#769"
-                                                                        (< (bycounty-memo %2 run) (nth quartiles 3)) "#967"
-                                                                        :else "#b65"))))
-                 counties-svg
-                 counties))})
-                  
+   (emit (-> (reduce #(transform-xml %1
+                                     [{:id %2}]
+                                     (fn [elem] (colour-on-linear elem %2 run)))
+                     counties-svg
+                     counties)
+             (transform-xml
+              [{:id "q1"}]
+              #(set-content % (str (float (/ (round (* 10 (apply min (counties-data run)))) 10)))))
+             (transform-xml
+              [{:id "q3"}]
+              #(set-content % (str (float (/ (round (* 10 (apply max (counties-data run)))) 10)))))))})
+
+                 
