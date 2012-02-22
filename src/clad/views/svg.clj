@@ -32,20 +32,22 @@
         blue (- 200 (round (* step (- val min))))]
     (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue)))))
 
-(defn counties-map [run]
-  {:status 200
-   :headers {"Content-Type" "image/svg+xml"}
-   :body
-   (emit (-> (reduce #(transform-xml %1
-                                     [{:id %2}]
-                                     (fn [elem] (colour-on-linear elem %2 run)))
-                     counties-svg
-                     counties)
-             (transform-xml
-              [{:id "q1"}]
-              #(set-content % (str (float (/ (round (* 10 (apply min (counties-data run)))) 10)))))
-             (transform-xml
-              [{:id "q3"}]
-              #(set-content % (str (float (/ (round (* 10 (apply max (counties-data run)))) 10)))))))})
+(defn counties-map [run fill]
+  (let [fill-fns {"linear" colour-on-linear,
+                  "quartiles" colour-on-quartiles}]
+    {:status 200
+     :headers {"Content-Type" "image/svg+xml"}
+     :body
+     (emit (-> (reduce #(transform-xml %1
+                                       [{:id %2}]
+                                       (fn [elem] ((fill-fns fill) elem %2 run)))
+                       counties-svg
+                       counties)
+               (transform-xml
+                [{:id "q1"}]
+                #(set-content % (str (float (/ (round (* 10 (apply min (counties-data run)))) 10)))))
+               (transform-xml
+                [{:id "q3"}]
+                #(set-content % (str (float (/ (round (* 10 (apply max (counties-data run)))) 10)))))))}))
 
                  
