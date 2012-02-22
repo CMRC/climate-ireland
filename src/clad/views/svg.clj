@@ -12,7 +12,7 @@
 
 (defn counties-data [run] (map #(bycounty-memo % run) counties))
 
-(defn quartiles [run] (map #(/ (round (* % 1000)) 1000)
+(defn quartiles [run] (map #(/ (round (* % 100)) 100)
                            (quantile (counties-data run))))
 
 (defn colour-on-quartiles [elem county run]
@@ -34,7 +34,10 @@
 
 (defn counties-map [run fill]
   (let [fill-fns {"linear" colour-on-linear,
-                  "quartiles" colour-on-quartiles}]
+                  "quartiles" colour-on-quartiles}
+        q1 (if (= fill "quartiles") (str (float (nth (quartiles run) 1))) "")
+        q2 (if (= fill "quartiles") (str (float (nth (quartiles run) 2))) "")
+        q3 (if (= fill "quartiles") (str (float (nth (quartiles run) 3))) "")]
     {:status 200
      :headers {"Content-Type" "image/svg+xml"}
      :body
@@ -44,10 +47,17 @@
                        counties-svg
                        counties)
                (transform-xml
-                [{:id "q1"}]
+                [{:id "q0"}]
                 #(set-content % (str (float (/ (round (* 10 (apply min (counties-data run)))) 10)))))
                (transform-xml
+                [{:id "q1"}]
+                #(set-content % q1))
+               (transform-xml
+                [{:id "q2"}]
+                #(set-content % q2))
+               (transform-xml
+                [{:id "q4"}]
+                #(set-content % (str (float (/ (round (* 10 (apply max (counties-data run)))) 10)))))
+               (transform-xml
                 [{:id "q3"}]
-                #(set-content % (str (float (/ (round (* 10 (apply max (counties-data run)))) 10)))))))}))
-
-                 
+                #(set-content % q3))))}))
