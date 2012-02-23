@@ -14,7 +14,6 @@
 
 (defn quartiles [run] (map #(/ (round (* % 100)) 100)
                            (quantile (counties-data run))))
-
 (defn colour-on-quartiles [elem county run]
   (add-style elem :fill (cond (< (bycounty-memo county run) (nth (quartiles run) 1)) "#56b"
                               (< (bycounty-memo county run) (nth (quartiles run) 2)) "#769"
@@ -43,7 +42,13 @@
      :body
      (emit (-> (reduce #(transform-xml %1
                                        [{:id %2}]
-                                       (fn [elem] ((fill-fns fill) elem %2 run)))
+                                       (fn [elem]
+                                         (-> (add-attrs elem :onmouseover (str "value(evt,'"
+                                                                               (float (/ (round (* 100 (bycounty-memo %2 run))) 100))
+                                                                               " : "
+                                                                               %2
+                                                                               "')"))
+                                             ((fill-fns fill) %2 run))))
                        counties-svg
                        counties)
                (transform-xml
