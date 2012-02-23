@@ -18,7 +18,6 @@
    sodipodi:docname="counties.svg">
   <script
      type="text/ecmascript"
-     a3:scriptImplementation="Adobe"
      id="script3">
     function value(evt,val) {
       document.getElementById(&quot;value&quot;).textContent = val;
