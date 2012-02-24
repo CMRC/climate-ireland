@@ -147,6 +147,6 @@
   (clad {:topic topic :subtopic subtopic :page page :section section :glossary "climate"}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
-(defpage "/csv/:folder/:run" {:keys [folder run]} (by-county folder run))
+(defpage "/csv/:run" {:keys [folder run]} (by-county folder run))
 (defpage "/svg/:run/:fill" {:keys [run fill]} (counties-map run fill))
 

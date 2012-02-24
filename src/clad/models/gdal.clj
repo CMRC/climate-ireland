@@ -57,15 +57,22 @@
 
 (r-eval "source(\"src/clad/models/maps.R\")")
 
+(def data-root "resources/Temperature/")
+(println data-root)
+
+(defn populate-counties [run]
+  (r-eval (str "populatecounties('" data-root run "')")))
+
+(def populate-counties-memo (memoize populate-counties))
+
 (defn data-by-county [county run]
-  (r-eval (str "populatecounties('" run "')"))
+  (populate-counties-memo run)
   (first (r-eval
-          (str "bycounty('" county "','" run "')"))))
+          (str "bycounty('" county "','" data-root run "')"))))
 
 (def bycounty-memo (memoize data-by-county))
 
 (defn all-counties [run]
-  (r-eval (str "populatecounties('" run "')"))
   (println (r-eval "ls(countiesarray)"))
   (map #(str (bycounty-memo % run) ",") counties))
 
