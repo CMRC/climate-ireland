@@ -10,5 +10,7 @@
             :native-dependencies [[jriengine "0.8.4"]]
             :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]
                                [native-deps "1.0.5"]]
+            :git-dependencies [["https://github.com/jolby/rincanter.git"]]
+            :extra-classpath-dirs [".lein-git-deps/rincanter/src/"]
             :main clad.server)
 
