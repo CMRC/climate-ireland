@@ -4,6 +4,7 @@
         [clad.views.charts]
         [clad.views.svg]
         [clad.models.gdal]
+        [clad.models.couch]
         [noir.core :only [defpage]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
@@ -149,4 +150,5 @@
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
 (defpage "/csv/:run" {:keys [folder run]} (by-county folder run))
 (defpage "/svg/:run/:fill" {:keys [run fill]} (counties-map run fill))
+(defpage "/html/:year/:month" {:keys [year month] } (get-run-data year month))
 

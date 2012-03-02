@@ -5,9 +5,12 @@
 (clutch/configure-view-server "icip" (view-server-exec-string))
 
 (defn get-run-data [year months]
-  (clutch/save-view "icip" "test2"
-   (clutch/view-server-fns
-    :clojure
-    {:test2
-     {:map "(fn [doc] (when (= year (:year doc)) [[nil,(:year doc)]]))"}}))
-  (clutch/get-view "icip" "test2" :test2))
+  (clutch/with-db "icip"
+    (clutch/save-view "vals"
+                      (clutch/view-server-fns
+                       :clojure
+                       {:by-ym
+                        {:map (fn [doc] (when (:year doc)
+                                          [[(:year doc)
+                                            doc]]))}}))
+    (map #(:year (:value %)) (clutch/get-view "vals" :by-ym {:key year}))))
