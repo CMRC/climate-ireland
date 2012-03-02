@@ -10,7 +10,6 @@
                       (clutch/view-server-fns
                        :clojure
                        {:by-ym
-                        {:map (fn [doc] (when (:year doc)
-                                          [[(:year doc)
-                                            doc]]))}}))
-    (map #(:year (:value %)) (clutch/get-view "vals" :by-ym {:key year}))))
+                        {:map (fn [doc] [[[(:year doc) (:months doc)]
+                                            doc]])}}))
+    (map #(:value %) (clutch/get-view "vals" :by-ym {:key [year months]}))))
