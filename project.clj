@@ -7,6 +7,7 @@
                            [org.clojars.sritchie09/gdal-java "1.8.0"]
                            [org.clojars.pallix/analemma "1.0.0-SNAPSHOT"]
                            [incanter "1.2.3"]
+                           [clj-time "0.3.7"]
                            [com.ashafa/clutch "0.3.1-SNAPSHOT"]]
             :native-dependencies [[jriengine "0.8.4"]]
             :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]
