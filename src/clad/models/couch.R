@@ -6,10 +6,10 @@ library(RJSONIO)
 
 Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/Desktop/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 countiesarray = new.env()
 
-base.path <- "/home/anthony/Desktop/ICARUS DATA_1/Coverages/Temperature/"
+base.path <- "/home/anthony/CLAD/resources/Temperature/"
 
 populatecounties <- function(run) {
   countiesarray[[run]] = sgdf <- as(GDAL.open(paste(base.path,run,sep="")),"SpatialGridDataFrame")

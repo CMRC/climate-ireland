@@ -2,7 +2,7 @@ library(maptools)
 library(maps)
 library(rgdal)
 
-counties <- readOGR(dsn="/home/anthony/Desktop/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+counties <- readOGR(dsn="resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 
 countiesarray = new.env()
 
