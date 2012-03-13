@@ -11,7 +11,7 @@ counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIan
 base.path <- "./"
 
 year <- function(run, year) {
-  system(paste("cd " ,base.path, ";cdo -s seasmean ", run, " seas.nc;cdo -s selyear,", year, " seas.nc year.nc"))
+  system(paste("cd " ,base.path, ";cdo -s seasmean ", run, " seas.nc;cdo -s selyear,", year, " seas.nc year.nc",sep=""))
 }
 seas <- function(run, season, variable) {
   system(paste("cd " ,base.path, ";cdo -s selseas,", season, " year.nc sy.nc;gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:sy.nc:", variable, "\" temp.tif",sep=""))
@@ -62,7 +62,7 @@ byrun <-function(run) {
                    "Wexford", "Wicklow")
   for(year in 2021:2060) {
     year(run,year)
-    for(season in c("djf","mama","jja","son")) {
+    for(season in c("djf","mam","jja","son")) {
       sgdf <- seas(run,toupper(season), "PS")
       for(county in countynames) {
         bycounty(sgdf, county, run, year, season, "PS", "surface pressure","Pa")
@@ -71,7 +71,7 @@ byrun <-function(run) {
   }
 }
     
-runs <- c("MM_caCLM4_A1B_4km.nc")
+runs <- list.files(base.path, pattern="MM.*\\.nc")
 
 lapply(runs, byrun)
 
