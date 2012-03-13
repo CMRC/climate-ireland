@@ -78,6 +78,16 @@
                                                          (name (key %)))))))
                                   (:subtopics (val topic)))}])))
 
+(deftemplate table-output
+  "clad/views/table.html"
+  [year month]
+  [:thead :tr]
+  (content (map #(hash-map :tag :td :content (str %)) (keys (first (get-run-data year month)))))
+  [:tbody :tr]
+  (clone-for [data (get-run-data year month)]
+             [:tr]
+             (content (map #(hash-map :tag :td :content (str %)) (vals data)))))
+
 (defn by-county [folder run]
   {:status 200
    :headers {"Content-Type" "text/csv"
@@ -150,6 +160,6 @@
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
 (defpage "/csv/:run" {:keys [folder run]} (by-county folder run))
 (defpage "/svg/:run/:fill" {:keys [run fill]} (counties-map run fill))
-(defpage "/html/:year/:month" {:keys [year month] } (get-run-data year month))
+(defpage "/html/:year/:month" {:keys [year month] } (table-output year month))
 (defpage "/plot" [] (plot-models))
 
