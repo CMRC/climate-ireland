@@ -151,4 +151,5 @@
 (defpage "/csv/:run" {:keys [folder run]} (by-county folder run))
 (defpage "/svg/:run/:fill" {:keys [run fill]} (counties-map run fill))
 (defpage "/html/:year/:month" {:keys [year month] } (get-run-data year month))
+(defpage "/plot" [] (plot-models))
 

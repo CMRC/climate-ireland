@@ -14,6 +14,16 @@
                                             doc]])}}))
     (map #(:value %) (clutch/get-view "vals" :by-ym {:key [(Integer/parseInt year) months]}))))
 
+(defn get-county-data [county months]
+  (clutch/with-db "icip"
+    (clutch/save-view "vals"
+                      (clutch/view-server-fns
+                       :clojure
+                       {:by-county
+                        {:map (fn [doc] [[[(:county doc) (:months doc)]
+                                          doc]])}}))
+    (clutch/get-view "vals" :by-county {:key [county months]})))
+
 (defn get-models []
   (clutch/with-db "icip"
     (clutch/save-view "models"
