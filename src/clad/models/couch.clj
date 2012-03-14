@@ -12,7 +12,7 @@
                          {:by-ym
                           {:map (fn [doc] [[[(:year doc) (:months doc)]
                                             doc]])}}))
-    (map #(:value %) (clutch/get-view "vals" :by-ym {:key [year months]}))))
+    (map #(:value %) (clutch/get-view "vals" :by-ym {:key [(Integer/parseInt year) months]}))))
 
 (defn get-county-data [county months]
   (clutch/with-db "icip"
