@@ -14,19 +14,20 @@
                                             doc]])}}))
     (map #(:value %) (clutch/get-view "vals" :by-ym {:key [(Integer/parseInt year) months]}))))
 
-(defn get-county-data [county months]
+(defn get-county-data [county months model scenario variable]
   (clutch/with-db "icip"
-    (clutch/save-view "vals"
+    (clutch/save-view "counties"
                       (clutch/view-server-fns
                        :clojure
                        {:by-county
-                        {:map (fn [doc] [[[(:county doc) (:months doc)]
+                        {:map (fn [doc] [[[(:county doc) (:months doc) (:model doc) 
+			(:scenario doc) (:datum.variable doc)]
                                           doc]])}}))
-    (clutch/get-view "vals" :by-county {:key [county months]})))
+    (clutch/get-view "counties" :by-county {:key [county months model scenario variable]})))
 
 (defn get-models []
   (clutch/with-db "icip"
-    (clutch/save-view "models"
+    #_(clutch/save-view "models"
                       (clutch/view-server-fns
                        :clojure
                        {:by-model

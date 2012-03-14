@@ -160,5 +160,6 @@
 (defpage "/csv/:run" {:keys [folder run]} (by-county folder run))
 (defpage "/svg/:run/:fill" {:keys [run fill]} (counties-map run fill))
 (defpage "/html/:year/:month" {:keys [year month] } (table-output year month))
-(defpage "/plot" [] (plot-models))
+(defpage "/plot/:county/:months/:variable" {:keys [county months variable]} 
+	 (plot-models county months variable))
 

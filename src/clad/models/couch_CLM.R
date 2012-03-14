@@ -13,8 +13,11 @@ base.path <- "./"
 year <- function(run, year) {
   system(paste("cd " ,base.path, ";cdo -s seasmean ", run, " seas.nc;cdo -s selyear,", year, " seas.nc year.nc",sep=""))
 }
-seas <- function(run, season, variable) {
-  system(paste("cd " ,base.path, ";cdo -s selseas,", season, " year.nc sy.nc;gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:sy.nc:", variable, "\" temp.tif",sep=""))
+seas <- function(run, season) {
+  system(paste("cd " ,base.path, ";cdo -s selseas,", season, " year.nc sy.nc",sep=""))
+}
+variable <- function(run, variable) {
+  system(paste("cd ",base.path, ";gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:sy.nc:", variable, "\" temp.tif",sep=""))
   as(GDAL.open(paste(base.path,"temp.tif",sep="")),"SpatialGridDataFrame")
 }
 
@@ -24,7 +27,7 @@ makeurl <- function(run,county,year,season,variable) {
   paste("http://localhost:5984/icip/",run, strip, year, season, variable, sep="")
 }
 
-bycounty <- function(sgdf, county, run, year, season, variable, description, units) {
+bycounty <- function(sgdf, county, run, year, season, variable) {
   countydata <- counties[counties@data$COUNTY==county,] 
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
@@ -43,14 +46,14 @@ bycounty <- function(sgdf, county, run, year, season, variable, description, uni
                httpheader=c('Content-Type'='application/json'),
                postfields=toJSON(list(county=county, year=year, months=season,
                  model=model, scenario=scenario,
-                 datum.value=val, datum.units=units, datum.description=description)))
+                 datum.value=val,datum.variable=variable)))
       } else {
         getURL(makeurl(run,county,year,season,variable),
                customrequest="PUT",
                httpheader=c('Content-Type'='application/json'),
                postfields=toJSON(list(county=county, year=year, months=season,
                  model=model,scenario=scenario,
-                 datum.value=val, datum.units=units, datum.description=description,
+                 datum.value=val,datum.variable=variable,
                  '_rev'=toString(rev))))
       },silent=T)
 }
@@ -63,15 +66,18 @@ byrun <-function(run) {
   for(year in 2021:2060) {
     year(run,year)
     for(season in c("djf","mam","jja","son")) {
-      sgdf <- seas(run,toupper(season), "PS")
-      for(county in countynames) {
-        bycounty(sgdf, county, run, year, season, "PS", "surface pressure","Pa")
+      seas(run,toupper(season))
+      for(var in c("PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
+        sgdf <- variable(run,var)
+        for(county in countynames) {
+          bycounty(sgdf, county, run, year, season, var)
+        }
       }
     }
   }
 }
     
-runs <- list.files(base.path, pattern="MM.*\\.nc")
+runs <- list.files(base.path, pattern="MM_.*\\.nc")
 
 lapply(runs, byrun)
 
