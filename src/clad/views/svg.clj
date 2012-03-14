@@ -3,7 +3,7 @@
 			     parse-xml transform-xml filter-xml]]
 	analemma.svg
 	analemma.xml
-        clad.models.gdal
+        clad.models.couch
         incanter.stats
         clojure.contrib.math
 	[clojure.java.io :only [file]]))

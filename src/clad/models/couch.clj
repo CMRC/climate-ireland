@@ -32,3 +32,22 @@
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))
     (clutch/get-view "models" :by-model)))
+
+
+(defn data-by-county [county run]
+  10.0)
+
+(def bycounty-memo (memoize data-by-county))
+
+(def counties
+       ["Carlow" "Cavan" "Clare" "Cork"
+        "Donegal" "Dublin" "Galway" "Kerry"
+        "Kildare" "Kilkenny" "Laois" "Leitrim"
+        "Limerick" "Longford" "Louth" "Mayo"
+        "Meath" "Monaghan" "North Tipperary"
+        "Offaly" "Roscommon" "Sligo"
+        "South Tipperary" "Waterford" "Westmeath"
+        "Wexford" "Wicklow"])
+
+(defn all-counties [run]
+  (map #(str (bycounty-memo % run) ",") counties))
