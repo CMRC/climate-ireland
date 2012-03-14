@@ -87,13 +87,11 @@
              [:tr]
              (content (map #(hash-map :tag :td :content (str %)) (vals data)))))
 
-(defn by-county [folder run]
+(defn by-county [year months model scenario variable]
   {:status 200
    :headers {"Content-Type" "text/csv"
              "Content-Disposition" "attachment;filename=counties.csv"}
-   :body (apply str (map
-                     (fn [run] (apply str "," (reduce #(str %1 "," %2) counties) "\n" run "," (all-counties run)))
-                     (map #(str folder "/" run %) icarus-runs)))})
+   :body (apply str (all-counties year months model scenario variable))})
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
@@ -157,9 +155,12 @@
   (clad {:topic topic :subtopic subtopic :page page :section section :glossary "climate"}))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
-(defpage "/csv/:run" {:keys [folder run]} (by-county folder run))
-(defpage "/svg/:run/:fill" {:keys [run fill]} (counties-map run fill))
-(defpage "/html/:year/:month" {:keys [year month] } (table-output year month))
+(defpage "/csv/:year/:months/:model/:scenario/:variable"
+  {:keys [year months model scenario variable]} (by-county year months  model scenario variable))
+(defpage "/svg/:year/:months/:model/:scenario/:variable/:fill"
+  {:keys [year months model scenario variable fill]}
+  (counties-map year months model scenario variable fill))
+(defpage "/html/:year/:months" {:keys [year months] } (table-output year months))
 (defpage "/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))
 

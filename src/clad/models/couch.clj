@@ -35,7 +35,7 @@
     (clutch/get-view "models" :by-model)))
 
 
-(defn data-by-county [county run]
+(defn data-by-county [county year months model scenario variable]
   10.0)
 
 (def bycounty-memo (memoize data-by-county))
@@ -50,5 +50,5 @@
         "South Tipperary" "Waterford" "Westmeath"
         "Wexford" "Wicklow"])
 
-(defn all-counties [run]
-  (map #(str (bycounty-memo % run) ",") counties))
+(defn all-counties [year months model scenario variable]
+  (map #(str (bycounty-memo % year months model scenario variable) ",") counties))
