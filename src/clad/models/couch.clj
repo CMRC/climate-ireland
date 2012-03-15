@@ -16,7 +16,7 @@
 
 (defn get-county-data [county months model scenario variable]
   (clutch/with-db "icip"
-    (clutch/save-view "counties"
+    #_(clutch/save-view "counties"
                       (clutch/view-server-fns
                        :clojure
                        {:by-county
@@ -24,6 +24,17 @@
 			(:scenario doc) (:datum.variable doc)]
                                           doc]])}}))
     (clutch/get-view "counties" :by-county {:key [county months model scenario variable]})))
+
+(defn get-county-by-year [county year months model scenario variable]
+  (clutch/with-db "icip"
+    #_(clutch/save-view "counties-year"
+                      (clutch/view-server-fns
+                       :clojure
+                       {:by-county-year
+                        {:map (fn [doc] [[[(:county doc) (:year doc) (:months doc)
+                                           (:model doc) (:scenario doc) (:datum.variable doc)]
+                                          doc]])}}))
+    (clutch/get-view "counties-year" :by-county-year {:key [county year months model scenario variable]})))
 
 (defn get-models []
   (clutch/with-db "icip"
@@ -36,7 +47,11 @@
 
 
 (defn data-by-county [county year months model scenario variable]
-  10.0)
+  (->> (get-county-by-year county year months model scenario variable)
+       first
+       :value
+       :datum.value))
+      
 
 (def bycounty-memo (memoize data-by-county))
 
