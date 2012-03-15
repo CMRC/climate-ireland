@@ -91,7 +91,8 @@
   {:status 200
    :headers {"Content-Type" "text/csv"
              "Content-Disposition" "attachment;filename=counties.csv"}
-   :body (apply str (all-counties year months model scenario variable))})
+   :body (str (apply str (interpose "," counties)) "\n"
+              (apply str (all-counties year months model scenario variable)))})
 
 (deftemplate clad "clad/views/CLAD_1.html"
   [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
@@ -156,7 +157,8 @@
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
 (defpage "/csv/:year/:months/:model/:scenario/:variable"
-  {:keys [year months model scenario variable]} (by-county year months  model scenario variable))
+  {:keys [year months model scenario variable]}
+  (by-county (Integer/parseInt year) months  model scenario variable))
 (defpage "/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map (Integer/parseInt year) months model scenario variable fill))
