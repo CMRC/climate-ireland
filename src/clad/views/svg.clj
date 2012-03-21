@@ -14,6 +14,7 @@
 
 (defn quartiles [year months variable] (map #(/ (round (* % 100)) 100)
                            (quantile (counties-data year months variable))))
+
 (defn colour-on-quartiles [elem county year months variable]
   (add-style elem :fill (cond (< (data-by-county county year months variable) (nth (quartiles year months variable) 1)) "#56b"
                               (< (data-by-county county year months variable) (nth (quartiles year months variable) 2)) "#769"
@@ -22,16 +23,27 @@
 
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
-        min (apply min cd)
-        max (apply max cd)
-        step (/ 100 (+ 1 (- max min)))
-        val (data-by-county county year months model scenario variable)
+        min 8.5
+        max 13.5
+        step 30
+        val (if (= model "ensemble")
+                (- (/ (reduce #(+ %1
+                               (data-by-county (get counties-by-province county) year months (first %2) (second %2) variable))
+                           0
+                           ensemble) (count ensemble)) 273.15)
+                (- (data-by-county (get counties-by-province county) year months model scenario variable)
+	       273.15))
         red (+ 100 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
-    (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue)))))
-
-(defn counties-map [year months model scenario variable fill]
+    (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))
+               :fill-opacity 1
+	       :stroke-width 2)))
+                                     
+(defn counties-map 
+  ([year months variable]
+  (counties-map year months "ensemble" "ensemble" variable "linear"))
+  ([year months model scenario variable fill]
   (let [fill-fns {"linear" colour-on-linear,
                   "quartiles" colour-on-quartiles}
         q1 (if (= fill "quartiles") (str (float (nth (quartiles year months variable) 1))) "")
@@ -45,24 +57,13 @@
                                        (fn [elem]
                                          (when-let [datum (data-by-county %2 year months model scenario variable)]
                                            (-> (add-attrs elem :onmouseover
-                                                          (str "value(evt,'"
-                                                               (float (/ (round (* 100 datum)) 100))
-                                                             " : "
-                                                             %2
-                                                             "')"))
+                                                          (str "value(evt,'""')"))
                                              ((fill-fns fill) %2 year months model scenario variable)))))
                        counties-svg
                        counties)
                (transform-xml
                 [{:id "q0"}]
-                #(set-content % (when-let [data (counties-data year months model scenario variable)]
-                                  (->
-                                   (apply min data)
-                                   (* 10)
-                                   round
-                                   (/ 10)
-                                   float
-                                   str))))
+                #(set-content % "8.5°C"))
                (transform-xml
                 [{:id "q1"}]
                 #(set-content % q1))
@@ -71,7 +72,7 @@
                 #(set-content % q2))
                (transform-xml
                 [{:id "q4"}]
-                #(set-content % (str (float (/ (round (* 10 (apply max (counties-data year months model scenario variable)))) 10)))))
+                #(set-content % "13.5°C"))
                (transform-xml
                 [{:id "q3"}]
-                #(set-content % q3))))}))
+                #(set-content % q3))))})))

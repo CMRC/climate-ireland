@@ -6,25 +6,29 @@ library(RJSONIO)
 
 #Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="counties")
+counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="provinces")
 
-base.path <- "./"
+base.path <- "./temp/"
 
-year <- function(run, year) {
-  system(paste("cd " ,base.path, ";cdo -s seasmean ", run, " seas.nc;cdo -s selyear,", year, " seas.nc year.nc",sep=""))
+openyear <- function(run) {
+  system(paste("cd " ,base.path, ";cdo -s yearmean ", run, " ym.nc;cdo -s splityear ym.nc year", sep=""))
 }
-seas <- function(run, season) {
-  system(paste("cd " ,base.path, ";cdo -s selseas,", season, " year.nc sy.nc",sep=""))
+seas <- function(run, year) {
+  system(paste("cd " ,base.path, ";cdo -seasmean year", year, ".nc m", year, ".nc;cdo -s splitseas m", year, ".nc seas",sep=""))
 }
-variable <- function(run, variable) {
-  system(paste("cd ",base.path, ";gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:sy.nc:", variable, "\" temp.tif",sep=""))
-  as(GDAL.open(paste(base.path,"temp.tif",sep="")),"SpatialGridDataFrame")
+yearly <- function(run, yr, var) {
+  system(paste("cd ",base.path, ";gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:m", yr, ".nc:", var, "\" year.tif",sep=""))
+  as(GDAL.open(paste(base.path,"year.tif",sep="")),"SpatialGridDataFrame")
+}
+seasonal <- function(run, season, variable) {
+  system(paste("cd ",base.path, ";gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:seas", season, ".nc:", variable, "\" seas.tif",sep=""))
+  as(GDAL.open(paste(base.path,"seas.tif",sep="")),"SpatialGridDataFrame")
 }
 
 
 makeurl <- function(run,county,year,season,variable) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/icip/",run, strip, year, season, variable, sep="")
+  paste("http://localhost:5984/climate/",run, strip, year, season, variable, sep="")
 }
 
 bycounty <- function(sgdf, county, run, year, season, variable) {
@@ -36,7 +40,7 @@ bycounty <- function(sgdf, county, run, year, season, variable) {
   model <- if(any (grep ("MM_ha", run)))
     "HadGEM"
   else if(any (grep ("MM_ca",run)))
-    "CGCM3.1"
+    "CGCM31"
   
   rev <- fromJSON(getURL(makeurl(run,county,year,season,variable)))["_rev"]
   try(
@@ -58,23 +62,61 @@ bycounty <- function(sgdf, county, run, year, season, variable) {
       },silent=T)
 }
 
+byprovince <- function(sgdf, province, run, year, season, variable) {
+  countydata <- counties[counties@data$Province==province,] 
+  ckk=!is.na(overlay(sgdf, countydata))
+  kkclipped= sgdf[ckk,]
+  val <- mean(as(kkclipped, "data.frame")$band1)
+  scenario <- gsub(".*CLM4_(.*)_4km.*","\\1",run)
+  model <- if(any (grep ("MM_ha", run)))
+    "HadGEM"
+  else if(any (grep ("MM_ca",run)))
+    "CGCM31"
+  
+  rev <- fromJSON(getURL(makeurl(run,province,year,season,variable)))["_rev"]
+  try(
+      if(is.na(rev)){
+        getURL(makeurl(run,province,year,season,variable),
+               customrequest="PUT",
+               httpheader=c('Content-Type'='application/json'),
+               postfields=toJSON(list(province=province, year=year, months=season,
+                 model=model, scenario=scenario,
+                 datum.value=val,datum.variable=variable)))
+      } else {
+        getURL(makeurl(run,province,year,season,variable),
+               customrequest="PUT",
+               httpheader=c('Content-Type'='application/json'),
+               postfields=toJSON(list(province=province, year=year, months=season,
+                 model=model,scenario=scenario,
+                 datum.value=val,datum.variable=variable,
+                 '_rev'=toString(rev))))
+      },silent=T)
+}
+
 byrun <-function(run) { 
   countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
                    "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
                    "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
                    "Wexford", "Wicklow")
+  openyear(run)
   for(year in 2021:2060) {
-    year(run,year)
-    for(season in c("djf","mam","jja","son")) {
-      seas(run,toupper(season))
-      for(var in c("PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
-        sgdf <- variable(run,var)
+    seas(run,year)
+    for(var in c("PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
+      sgdfy <- yearly(run,year,var)
+      for(season in c("djf","mam","jja","son")) {
+        sgdfs <- seasonal(run,toupper(season),var)
         for(county in countynames) {
-          bycounty(sgdf, county, run, year, season, var)
+          bycounty(sgdfy, county, run, year, "j2d", var)
+          bycounty(sgdfs, county, run, year, season, var)
+        }
+        for(province in c("Leinster","Munster","Connaught","Ulster")) {
+          byprovince(sgdfy, province, run, year, "j2d", var)
+          byprovince(sgdfs, province, run, year, season, var)
         }
       }
     }
-  }
+   }
+  gc()
 }
     
 runs <- list.files(base.path, pattern="MM_.*\\.nc")
