@@ -8,7 +8,7 @@
         clojure.contrib.math
 	[clojure.java.io :only [file]]))
 
-(def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
+(def counties-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
 
 (defn counties-data [year months model scenario variable] (map #(data-by-county % year months model scenario variable) counties))
 
@@ -28,17 +28,16 @@
         step 30
         val (if (= model "ensemble")
                 (- (/ (reduce #(+ %1
-                               (data-by-county (get counties-by-province county) year months (first %2) (second %2) variable))
+                               (data-by-county county year months (first %2) (second %2) variable))
                            0
                            ensemble) (count ensemble)) 273.15)
-                (- (data-by-county (get counties-by-province county) year months model scenario variable)
+                (- (data-by-county county year months model scenario variable)
 	       273.15))
         red (+ 100 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
     (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))
-               :fill-opacity 1
-	       :stroke-width 2)))
+               :fill-opacity 1)))
                                      
 (defn counties-map 
   ([year months variable]
@@ -60,7 +59,7 @@
                                                           (str "value(evt,'""')"))
                                              ((fill-fns fill) %2 year months model scenario variable)))))
                        counties-svg
-                       counties)
+                       provinces)
                (transform-xml
                 [{:id "q0"}]
                 #(set-content % "8.5°C"))
