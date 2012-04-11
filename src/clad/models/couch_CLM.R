@@ -11,17 +11,18 @@ counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIan
 base.path <- "./temp/"
 
 openyear <- function(run) {
-  system(paste("cd " ,base.path, ";cdo -s yearmean ", run, " ym.nc;cdo -s splityear ym.nc year", sep=""))
+  system(paste("cd " ,base.path, ";cdo yearmean ", run, " ym.nc;cdo -s splityear ym.nc year", sep=""))
+  system(paste("cd " ,base.path, ";cdo seasmean ", run, " sm.nc;cdo -s splitseas sm.nc seas", sep=""))
 }
-seas <- function(run, year) {
-  system(paste("cd " ,base.path, ";cdo -seasmean year", year, ".nc m", year, ".nc;cdo -s splitseas m", year, ".nc seas",sep=""))
+seas <- function(run, seas) {
+  system(paste("cd " ,base.path, ";cdo -s splityear seas", seas, ".nc ",seas,sep=""))
 }
 yearly <- function(run, yr, var) {
-  system(paste("cd ",base.path, ";gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:m", yr, ".nc:", var, "\" year.tif",sep=""))
+  system(paste("cd ",base.path, ";/usr/local/bin/gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:year", yr, ".nc:", var, "\" year.tif",sep=""))
   as(GDAL.open(paste(base.path,"year.tif",sep="")),"SpatialGridDataFrame")
 }
-seasonal <- function(run, season, variable) {
-  system(paste("cd ",base.path, ";gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:seas", season, ".nc:", variable, "\" seas.tif",sep=""))
+seasonal <- function(run, season, year, variable) {
+  system(paste("cd ",base.path, ";/usr/local/bin/gdal_translate -a_ullr -13.3893 56.3125 -3.39428 50.4016 \"NETCDF:", season, year, ".nc:", variable, "\" seas.tif",sep=""))
   as(GDAL.open(paste(base.path,"seas.tif",sep="")),"SpatialGridDataFrame")
 }
 
@@ -100,22 +101,18 @@ byrun <-function(run) {
                    "Wexford", "Wicklow")
   openyear(run)
   for(year in 2021:2060) {
-    seas(run,year)
-    for(var in c("PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
-      sgdfy <- yearly(run,year,var)
-      for(season in c("djf","mam","jja","son")) {
-        sgdfs <- seasonal(run,toupper(season),var)
-        for(county in countynames) {
-          bycounty(sgdfy, county, run, year, "j2d", var)
-          bycounty(sgdfs, county, run, year, season, var)
-        }
+    for (season in c("DJF","MAM","JJA","SON")) {
+      seas(run, season)
+      for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
+        ygdfy <- yearly(run,year,var)
+        sgdfy <- seasonal(run,season,year,var)
         for(province in c("Leinster","Munster","Connaught","Ulster")) {
-          byprovince(sgdfy, province, run, year, "j2d", var)
-          byprovince(sgdfs, province, run, year, season, var)
+          byprovince(ygdfy, province, run, year, "j2d", var)
+          byprovince(sgdfy, province, run, year, season, var)
         }
       }
     }
-   }
+  }
   gc()
 }
     

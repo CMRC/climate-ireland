@@ -2,9 +2,9 @@
   (:require [com.ashafa.clutch :as clutch])
   (:use [com.ashafa.clutch.view-server]))
 
-(clutch/configure-view-server "icip" (view-server-exec-string))
-
 (def db "climate")
+;;(clutch/configure-view-server db (view-server-exec-string))
+
 (def provinces ["Leinster" "Munster" "Connaught" "Ulster"])
 
 
@@ -56,10 +56,10 @@
 
 (defn data-by-county [county year months model scenario variable]
   (if-let [d (->> (get-county-by-year county year months model scenario variable)
-       first 
-       :value
-       :datum.value)] d -1))
-      
+                  first 
+                  :value
+                  :datum.value)] d -1))
+
 
 (def bycounty-memo (memoize data-by-county))
 

@@ -9,7 +9,7 @@ Sys.setenv("http_proxy" = "")
 counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 countiesarray = new.env()
 
-base.path <- "/home/anthony/CLAD/resources/Temperature/"
+base.path <- "/var/data/coverages/Temperature/"
 
 populatecounties <- function(run) {
   countiesarray[[run]] = sgdf <- as(GDAL.open(paste(base.path,run,sep="")),"SpatialGridDataFrame")
@@ -17,7 +17,7 @@ populatecounties <- function(run) {
 
 makeurl <- function(run,county) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/icip/",run, strip, sep="")
+  paste("http://localhost:5984/climate/",run, strip, sep="")
 }
 
 bycounty <- function(county, run) {
@@ -41,7 +41,7 @@ bycounty <- function(county, run) {
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(county=county, year=year, months=months,
-             datum.value=val, datum.units="%", datum.description="temperature",
+             datum.value=val, datum.variable="temperature",
              '_rev'=toString(rev))))
   }
 }

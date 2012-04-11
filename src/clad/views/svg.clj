@@ -23,9 +23,9 @@
 
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
-        min 8.5
+        min 2.5
         max 13.5
-        step 30
+        step 10
         val (if (= model "ensemble")
                 (- (/ (reduce #(+ %1
                                (data-by-county county year months (first %2) (second %2) variable))
@@ -62,7 +62,7 @@
                        provinces)
                (transform-xml
                 [{:id "q0"}]
-                #(set-content % "8.5°C"))
+                #(set-content % "2.5°C"))
                (transform-xml
                 [{:id "q1"}]
                 #(set-content % q1))
