@@ -23,9 +23,9 @@
 
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
-        min 2.5
-        max 13.5
-        step 10
+        min 8.5
+        max 12.5
+        step (/ 200 (- max min))
         val (if (= model "ensemble")
                 (- (/ (reduce #(+ %1
                                (data-by-county county year months (first %2) (second %2) variable))
@@ -51,27 +51,21 @@
     {:status 200
      :headers {"Content-Type" "image/svg+xml"}
      :body
-     (emit (-> (reduce #(transform-xml %1
-                                       [{:id %2}]
-                                       (fn [elem]
-                                         (when-let [datum (data-by-county %2 year months model scenario variable)]
-                                           (-> (add-attrs elem :onmouseover
-                                                          (str "value(evt,'""')"))
-                                             ((fill-fns fill) %2 year months model scenario variable)))))
-                       counties-svg
-                       provinces)
-               (transform-xml
-                [{:id "q0"}]
-                #(set-content % "2.5°C"))
-               (transform-xml
-                [{:id "q1"}]
-                #(set-content % q1))
-               (transform-xml
-                [{:id "q2"}]
-                #(set-content % q2))
-               (transform-xml
-                [{:id "q4"}]
-                #(set-content % "13.5°C"))
-               (transform-xml
-                [{:id "q3"}]
-                #(set-content % q3))))})))
+     (emit (reduce #(transform-xml
+                     %1
+                     [{:id %2}]
+                     (fn [prov]
+                       (-> (transform-xml
+                            prov
+                            [{:class "val"}]
+                            (fn [elem]
+                              (println "\n val " %2)
+                              (set-content elem (str (float (/ (round (* 100 (- (data-by-county %2 year months model scenario variable)
+                                                                                273.15))) 100))))))
+                           (transform-xml
+                            [{:class "shape"}]
+                            (fn [elem]
+                              (println "\n shape " %2)
+                              ((fill-fns fill) elem %2 year months model scenario variable))))))
+                   counties-svg
+                   provinces))})))
