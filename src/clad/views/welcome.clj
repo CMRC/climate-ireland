@@ -140,6 +140,16 @@
                           target (get-in topics [:subtopics (keyword subtopic)] topics)]
                       (:from target))])))
 
+(deftemplate welcome "clad/views/welcome.html"
+  [map]
+  [:#map]
+  (content map))
+
+(defpage "/welcome/compare/:year1/:year2/:months/:variable"
+  {:keys [year1 year2 months variable]}
+  (welcome {:tag :img
+            :attrs {:src (str "/svg/compare/" year1 "/" year2 "/" months "/" variable)
+                    :height "100%"}}))
 (defpage "/clad" []
   (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"

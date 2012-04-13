@@ -4,9 +4,9 @@ library(rgdal)
 library(RCurl)
 library(RJSONIO)
 
-#Sys.setenv("http_proxy" = "")
+Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="provinces")
+counties <- readOGR(dsn="/home/anthony/Desktop/County/LandAreaAdmin_ROIandUKNI", layer="provinces")
 
 base.path <- "./temp/"
 
