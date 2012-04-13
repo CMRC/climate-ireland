@@ -32,38 +32,7 @@ makeurl <- function(run,county,year,season,variable) {
   paste("http://localhost:5984/climate/",run, strip, year, season, variable, sep="")
 }
 
-bycounty <- function(sgdf, county, run, year, season, variable) {
-  countydata <- counties[counties@data$COUNTY==county,] 
-  ckk=!is.na(overlay(sgdf, countydata))
-  kkclipped= sgdf[ckk,]
-  val <- mean(as(kkclipped, "data.frame")$band1)
-  scenario <- gsub(".*CLM4_(.*)_4km.*","\\1",run)
-  model <- if(any (grep ("MM_ha", run)))
-    "HadGEM"
-  else if(any (grep ("MM_ca",run)))
-    "CGCM31"
-  
-  rev <- fromJSON(getURL(makeurl(run,county,year,season,variable)))["_rev"]
-  try(
-      if(is.na(rev)){
-        getURL(makeurl(run,county,year,season,variable),
-               customrequest="PUT",
-               httpheader=c('Content-Type'='application/json'),
-               postfields=toJSON(list(county=county, year=year, months=season,
-                 model=model, scenario=scenario,
-                 datum.value=val,datum.variable=variable)))
-      } else {
-        getURL(makeurl(run,county,year,season,variable),
-               customrequest="PUT",
-               httpheader=c('Content-Type'='application/json'),
-               postfields=toJSON(list(county=county, year=year, months=season,
-                 model=model,scenario=scenario,
-                 datum.value=val,datum.variable=variable,
-                 '_rev'=toString(rev))))
-      },silent=T)
-}
-
-byprovince <- function(sgdf, province, run, year, season, variable) {
+byregion <- function(sgdf, region, run, year, season, variable) {
   countydata <- counties[counties@data$Province==province,] 
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
@@ -77,17 +46,17 @@ byprovince <- function(sgdf, province, run, year, season, variable) {
   rev <- fromJSON(getURL(makeurl(run,province,year,season,variable)))["_rev"]
   try(
       if(is.na(rev)){
-        getURL(makeurl(run,province,year,season,variable),
+        getURL(makeurl(run,region,year,season,variable),
                customrequest="PUT",
                httpheader=c('Content-Type'='application/json'),
-               postfields=toJSON(list(province=province, year=year, months=season,
+               postfields=toJSON(list(region=region, year=year, months=season,
                  model=model, scenario=scenario,
                  datum.value=val,datum.variable=variable)))
       } else {
-        getURL(makeurl(run,province,year,season,variable),
+        getURL(makeurl(run,region,year,season,variable),
                customrequest="PUT",
                httpheader=c('Content-Type'='application/json'),
-               postfields=toJSON(list(province=province, year=year, months=season,
+               postfields=toJSON(list(region=region, year=year, months=season,
                  model=model,scenario=scenario,
                  datum.value=val,datum.variable=variable,
                  '_rev'=toString(rev))))
@@ -107,8 +76,12 @@ byrun <-function(run) {
         ygdfy <- yearly(run,year,var)
         sgdfy <- seasonal(run,season,year,var)
         for(province in c("Leinster","Munster","Connaught","Ulster")) {
-          byprovince(ygdfy, province, run, year, "j2d", var)
+          byprovince(ygdfy, province, run, year, "J2D", var)
           byprovince(sgdfy, province, run, year, season, var)
+        }
+        for(county in countynames) {
+          byprovince(ygdfy, county, run, year, "J2D", var)
+          byprovince(sgdfy, county, run, year, season, var)
         }
       }
     }
