@@ -165,6 +165,9 @@
 (defpage "/svg/:year/:months/ensemble/:variable"
   {:keys [year months variable]}
   (counties-map (Integer/parseInt year) months variable))
+(defpage "/svg/compare/:year1/:year2/:months/:variable"
+  {:keys [year1 year2 months variable]}
+  (compare-map (Integer/parseInt year1) (Integer/parseInt year2) months variable))
 (defpage "/html/:year/:months" {:keys [year months] } (table-output year months))
 (defpage "/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))
