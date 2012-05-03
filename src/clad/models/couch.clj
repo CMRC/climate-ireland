@@ -20,7 +20,7 @@
                       (clutch/view-server-fns
                        :clojure
                        {:by-county
-                        {:map (fn [doc] [[[(if-let [c (:county doc)] c (:province doc))
+                        {:map (fn [doc] [[[(:region doc)
                                            (:months doc) (:model doc) 
                                            (:scenario doc) (:datum.variable doc)]
                                           doc]])}}))
@@ -28,7 +28,7 @@
                       (clutch/view-server-fns
                        :clojure
                        {:by-county-year
-                        {:map (fn [doc] [[[(if-let [c (:county doc)] c (:province doc))
+                        {:map (fn [doc] [[[(:region doc)
                                            (:year doc) (:months doc)
                                            (:model doc) (:scenario doc) (:datum.variable doc)]
                                           doc]])}}))
