@@ -13,7 +13,7 @@ body {
 	font-family: "GentiumRegular", Georgia, "Times New Roman", serif;
 	line-height: 130%;
 	color: #252525;
-	background-color: #ffffff;
+	background-color: white;
 }
 #wrapper {	
     width: 1530px;
@@ -22,14 +22,15 @@ body {
     margin-right: auto;
     display: block;
     margin-bottom: 20px;
-    background-color: #999;
 }
 #banner {
     width: 100%;
     font-size: 72px;
-    background-color: #499;
     height: 80px;
-    text-align: center;
+    text-align: left;
+}
+#banner img {
+    height: 80px;
 }
 #buttons {
     width: 100%;
@@ -59,7 +60,6 @@ body {
 #scroll {
 	width:100%;
 	height:30px;
-	background-color: #B99;
 }
 .hbutton {
 	width: 20%;
@@ -68,40 +68,33 @@ body {
 	text-align: center;
 }
 #col1 {
-	background-color: #F99;
 	float: right;
 	height: 600px;
 	width: 20%;
 	position: relative;
 }
 #blurb {
-	background-color: #D99;
 	float: right;
 	height: 600px;
 	width: 40%;	
 }
 #map {
-	background-color: #A99;
 	float: right;
 	height: 600px;
 	width: 40%;
 }
 .col1b {
-	background-color: #E99;
 	height: 200px;
 	width: 100%;
 }
 .colb2 {
 	height: 200px;
 	width: 100%;
-	background-color: #999;
 }
 #main {
 	width:100%;
-	background-color: #C99;
 }
 .colb3 {
-	background-color: #899;
 	height: 200px;
 	width: 100%;
 }
@@ -110,7 +103,6 @@ body {
 	height:200px;
 }
 .brow {
-	background-color: #799;
 	height: 100px;
 	width: 510px;
 	float: right;

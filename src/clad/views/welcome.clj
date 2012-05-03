@@ -150,6 +150,17 @@
   (welcome {:tag :img
             :attrs {:src (str "/svg/compare/" year1 "/" year2 "/" months "/" variable)
                     :height "100%"}}))
+(defpage "/welcome/plot/:region/:months/:variable/decadal"
+  {:keys [region months variable]}
+  (welcome {:tag :img
+            :attrs {:src (str "/plot/" region "/" months "/" variable "/decadal")
+                    :height "100%"}}))
+(defpage "/welcome/plot/:region/:months/:variable"
+  {:keys [region months variable]}
+  (welcome {:tag :img
+            :attrs {:src (str "/plot/" region "/" months "/" variable)
+                    :height "100%"}}))
+
 (defpage "/clad" []
   (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"
