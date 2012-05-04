@@ -155,10 +155,18 @@
   (welcome {:tag :img
             :attrs {:src (str "/plot/" region "/" months "/" variable "/decadal")
                     :height "100%"}}))
+
 (defpage "/welcome/plot/:region/:months/:variable"
   {:keys [region months variable]}
   (welcome {:tag :img
             :attrs {:src (str "/plot/" region "/" months "/" variable)
+                    :height "100%"}}))
+
+(defpage "/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
+  {:keys [year months model scenario variable shading]}
+  (welcome {:tag :img
+            :attrs {:src (str "/svg/" year "/" months "/" model "/"
+	    scenario "/" variable "/" shading)
                     :height "100%"}}))
 
 (defpage "/clad" []

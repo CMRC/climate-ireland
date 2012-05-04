@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml">
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-<title>Untitled Document</title>
+<title>Climate Ireland</title>
 <style type="text/css">
   @import "/css/style.css";
 </style>
@@ -29,17 +29,43 @@
     </div>
     <div id="blurb">
       <h3>Examples</h3>
+      N.B. Tested in Chrome and Firefox. Working on a port to IE.
       <ul>
-	<li><a href="/welcome/compare/2021/2060/J2D/T_2M">
-	  Compare ensemble temperatures for years 
-	  2021 and 2060</a></li>
-	<li><<a href="/welcome/plot/Munster/J2D/PS">
-	  Compare ensembles for Munster Pressure </a></li>
-	<li><<a href="/welcome/plot/Munster/J2D/PS/decadal">
-	  Compare ensembles for Munster Pressure 
-	  averaged over decades</a></li>
-      
+	<li><a href="/welcome/compare/2021/2035/J2D/T_2M">
+	    Map of % difference in 2 metre temperatures from 2021 to 2035
+	    per province
+	<li><a href="/welcome/plot/Munster/J2D/T_2M">
+	    Plot projected annual average temperatures for Munster</a></li>
+	<li><a href="/welcome/plot/Kilkenny/MAM/T_2M/decadal">
+	    Plot projected spring temperatures for Kilkenny
+	    averaged over decades</a></li>
+	<li><a href="/csv/2021/DJF/HadGEM/RCP45/TOT_PREC">CSV download of
+	       2021 pecipitation values by county based on Hadley Centre Global Environmental Model
+	       using emissions scenario RCP45</a></li>
+	<li><a href="/welcome/svg/2040/J2D/CGCM31/A1B/T_2M/linear">
+	    Map of 2040 yearly temperature data per county - linear shading</a></li>
+	<li><a href="/welcome/svg/2040/J2D/CGCM31/A1B/T_2M/quartiles">
+	    Map of 2040 yearly temperature data per county - quartile shading</a></li>
       </ul>
+      <h3>See Also</h3>
+      <ul>
+	<li><a href="http://www.climateireland.ie:8000/resilience/adbfb7a9c1d78b08fb4ab73ecc0025fb/mode/edit">Coastal Resilience FCM</a></li>
+	<li><a href="http://www.climateireland.ie:8080/clad/Climate-Change/section/Global-Projections/topic/Climate-change-and-Coasts">CLAD</a></li>
+	<li><a href="/html/2027/DJF">Table output for all Winter 2027 data</a></li>
+      </ul>
+      <h3>Credits</h3>
+      <ul>
+	<li><a href="https://github.com/CMRC/CLAD">The Code</a></li>
+	<li><a href="http://clojure.org/">Clojure</a></li>
+	<li><a href="https://github.com/cgrand/enlive">Enlive</a></li>
+	<li><a href="http://incanter.org/">Incanter</a></li>
+	<li><a href="http://liebke.github.com/analemma/">Analemma</a></li>
+	<li><a href="http://www.r-project.org/">R</a></li>
+	<li><a href="http://webnoir.org/">Noir</a></li>
+	<li><a href="http://couchdb.apache.org/">CouchDB</a></li>
+      </ul>
+      <h3>Reporting an issue</h3>
+      You can use the <a href="https://github.com/CMRC/CLAD/issues">GitHub issue tracker</a> if something is obviously wrong. You'll need to send me your id once you've registered.
     </div>
     <div id="col1">
       <div class="col1b" id="news">News</div>

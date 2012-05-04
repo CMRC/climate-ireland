@@ -8,7 +8,8 @@
         clojure.contrib.math
 	[clojure.java.io :only [file]]))
 
-(def counties-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
+(def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
+(def provinces-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
 
 (defn counties-data [year months model scenario variable]
   (map #(data-by-county % year months model scenario variable) counties))
@@ -56,18 +57,10 @@
         :body
         (emit (reduce #(transform-xml
                         %1                        [{:id %2}]
-                        (fn [prov]
-                          (-> (transform-xml
-                               prov
-                               [{:class "val"}]
-                               (fn [elem]
-                                 (set-content elem (str (float (/ (round (* 100 (temperature %2 year months model scenario variable))) 100))))))
-                              (transform-xml
-                               [{:class "shape"}]
-                               (fn [elem]
-                                 ((fill-fns fill) elem %2 year months model scenario variable))))))
-                      counties-svg
-                      provinces))})))
+			                               (fn [elem]
+                        			                ((fill-fns fill) elem %2 year months model scenario variable)))
+                      counties-svg			
+                      counties))})))
 
 (defn compare-map 
   [year1 year2 months variable]
@@ -97,11 +90,11 @@
                                (fn [elem]
                                  (let [diff (- y2 y1)
                                        base 0x40
-                                       mult 50
+                                       mult 100
                                        r (if (neg? diff) (+ base (round (abs (* diff mult)))) base)
                                        g (if (pos? diff) (+ base (round (* diff mult))) base)
                                        b base
                                        fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
                                    (add-style elem :fill fill))))))))
-                    counties-svg
+                    provinces-svg
                     provinces))})
