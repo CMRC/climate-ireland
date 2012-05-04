@@ -169,6 +169,13 @@
 	    scenario "/" variable "/" shading)
                     :height "100%"}}))
 
+(defpage "/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
+  {:keys [year months model scenario variable shading]}
+  (welcome {:tag :img
+            :attrs {:src (str "/png/" year "/" months "/" model "/"
+	    scenario "/" variable "/" shading)
+                    :height "100%"}}))
+
 (defpage "/clad" []
   (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"
@@ -191,6 +198,9 @@
 (defpage "/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map (Integer/parseInt year) months model scenario variable fill))
+(defpage "/png/:year/:months/:model/:scenario/:variable/:fill"
+  {:keys [year months model scenario variable fill]}
+  (counties-map-png (Integer/parseInt year) months model scenario variable fill))
 (defpage "/svg/:year/:months/ensemble/:variable"
   {:keys [year months variable]}
   (counties-map (Integer/parseInt year) months variable))

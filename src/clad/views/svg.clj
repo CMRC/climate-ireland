@@ -6,7 +6,12 @@
         clad.models.couch
         incanter.stats
         clojure.contrib.math
-	[clojure.java.io :only [file]]))
+	[clojure.java.io :only [file]])
+	(:import (org.apache.batik.transcoder.image PNGTranscoder)
+		 (org.apache.batik.transcoder TranscoderInput
+		 			      TranscoderOutput)
+                 (java.io ByteArrayOutputStream
+                          ByteArrayInputStream)))
 
 (def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
 (def provinces-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
@@ -60,7 +65,22 @@
 			                               (fn [elem]
                         			                ((fill-fns fill) elem %2 year months model scenario variable)))
                       counties-svg			
-                      counties))})))
+                      counties))})))    
+                                 
+(defn counties-map-png 
+  ([year months model scenario variable fill]
+    (let [input (TranscoderInput. (str "http://www.climateireland.ie:8080/svg/" year "/" months "/" model
+                                       "/" scenario "/" variable "/" fill))
+          ostream (ByteArrayOutputStream.)
+	  output (TranscoderOutput. ostream)
+          t (PNGTranscoder.)
+          n (. t transcode input output)
+          istream (ByteArrayInputStream. 
+                       (.toByteArray ostream))]
+       {:status 200
+        :headers {"Content-Type" "image/png"}
+        :body
+        istream})))
 
 (defn compare-map 
   [year1 year2 months variable]

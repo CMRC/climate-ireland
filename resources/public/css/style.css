@@ -75,7 +75,8 @@ body {
 }
 #blurb {
 	float: right;
-	height: 600px;
+	height: 800px;
+	overflow: auto;
 	width: 40%;	
 }
 #map {
