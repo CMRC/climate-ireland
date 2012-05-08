@@ -7,10 +7,10 @@
         incanter.stats
         clojure.contrib.math
 	[clojure.java.io :only [file]])
-	(:import (org.apache.batik.transcoder.image PNGTranscoder)
-		 (org.apache.batik.transcoder TranscoderInput
-		 			      TranscoderOutput)
-                 (java.io ByteArrayOutputStream
+  (:import (org.apache.batik.transcoder.image PNGTranscoder)
+           (org.apache.batik.transcoder TranscoderInput
+                                        TranscoderOutput)
+           (java.io ByteArrayOutputStream
                           ByteArrayInputStream)))
 
 (def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
@@ -20,7 +20,7 @@
   (map #(data-by-county % year months model scenario variable) counties))
 
 (defn quartiles [year months model scenario variable] (map #(/ (round (* % 100)) 100)
-                           (quantile (counties-data year months model scenario variable))))
+                                                           (quantile (counties-data year months model scenario variable))))
 
 (defn colour-on-quartiles [elem county year months model scenario variable]
   (add-style elem :fill (cond (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 1)) "#56b"
@@ -38,7 +38,7 @@
     (- (ensemble-data county year months variable) 273.15)
     (- (data-by-county county year months model scenario variable)
        273.15)))
-  
+
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
         min 7.5
@@ -62,11 +62,11 @@
         :body
         (emit (reduce #(transform-xml
                         %1                        [{:id %2}]
-			                               (fn [elem]
+                        (fn [elem]
                         			                ((fill-fns fill) elem %2 year months model scenario variable)))
                       counties-svg			
                       counties))})))    
-                                 
+
 (defn counties-map-png 
   ([year months model scenario variable fill]
     (let [input (TranscoderInput. (str "http://www.climateireland.ie:8080/svg/" year "/" months "/" model
@@ -76,45 +76,45 @@
           t (PNGTranscoder.)
           n (. t transcode input output)
           istream (ByteArrayInputStream. 
-                       (.toByteArray ostream))]
-       {:status 200
-        :headers {"Content-Type" "image/png"}
+                   (.toByteArray ostream))]
+      {:status 200
+       :headers {"Content-Type" "image/png"}
         :body
-        istream})))
+       istream})))
 
 (defn compare-map 
   [year1 year2 months variable]
-     {:status 200
-      :headers {"Content-Type" "image/svg+xml"}
+  {:status 200
+   :headers {"Content-Type" "image/svg+xml"}
       :title (str variable " " year1 " v " year2)
-      :body
-      (emit (reduce #(transform-xml
-                      %1
-                      [{:id %2}]
-                      (fn [prov]
-                        (let [y1 (ensemble-data %2 year1 months variable)
-                              y2 (ensemble-data %2 year2 months variable)]
-                          (-> (transform-xml
-                               prov
-                               [{:class "val"}]
-                               (fn [elem]
-                                 (set-content elem (-> (- y2 y1)
-                                                       (/ y1)
-                                                       (* 10000)
-                                                       round
-                                                       (/ 100)
-                                                       float
-                                                       (str "%")))))
-                              (transform-xml
-                               [{:class "shape"}]
-                               (fn [elem]
-                                 (let [diff (- y2 y1)
-                                       base 0x40
-                                       mult 100
-                                       r (if (neg? diff) (+ base (round (abs (* diff mult)))) base)
-                                       g (if (pos? diff) (+ base (round (* diff mult))) base)
-                                       b base
-                                       fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
-                                   (add-style elem :fill fill))))))))
-                    provinces-svg
-                    provinces))})
+   :body
+   (emit (reduce #(transform-xml
+                   %1
+                   [{:id %2}]
+                   (fn [prov]
+                     (let [y1 (ensemble-data %2 year1 months variable)
+                           y2 (ensemble-data %2 year2 months variable)]
+                       (-> (transform-xml
+                            prov
+                            [{:class "val"}]
+                            (fn [elem]
+                              (set-content elem (-> (- y2 y1)
+                                                    (/ y1)
+                                                    (* 10000)
+                                                    round
+                                                    (/ 100)
+                                                    float
+                                                    (str "%")))))
+                           (transform-xml
+                            [{:class "shape"}]
+                            (fn [elem]
+                              (let [diff (- y2 y1)
+                                    base 0x40
+                                    mult 100
+                                    r (if (neg? diff) (+ base (round (abs (* diff mult)))) base)
+                                    g (if (pos? diff) (+ base (round (* diff mult))) base)
+                                    b base
+                                    fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
+                                (add-style elem :fill fill))))))))
+                 provinces-svg
+                 provinces))})

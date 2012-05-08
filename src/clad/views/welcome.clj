@@ -176,6 +176,13 @@
 	    scenario "/" variable "/" shading)
                     :height "100%"}}))
 
+(defpage "/welcome/bar/:year/:county/:months/:variable"
+  {:keys [year county months variable]}
+  (welcome {:tag :img
+            :attrs {:src (str "/bar/" year "/" county
+                              "/" months "/" variable)
+                    :height "100%"}}))
+
 (defpage "/clad" []
   (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"
@@ -211,7 +218,7 @@
 (defpage "/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))
 (defpage "/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
-	 (plot-models-decadal county months variable))
+  (plot-models-decadal county months variable))
 (defpage "/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
   (barchart county (Integer/parseInt year) months variable))
 
