@@ -127,10 +127,23 @@
                 (:title (val section))))
              [:li]
              (make-links page (key section) (:topics (val section))))
-  
+
   [:#Glossary]
   (content (select (format-text topic page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
-              
+
+  [:#References :ul]
+  (clone-for [ref
+              (let [sections (get-in (site) [(keyword page) :sections])
+                    topics (get (:topics ((keyword section) sections))
+                                (keyword topic)
+                                ((keyword section) sections))
+                    target (get-in topics [:subtopics (keyword subtopic)])]
+                (:refs target))]
+             [:li]
+             (fn [a-selected-node] 
+               (assoc-in a-selected-node [:content]
+                         (:title (ref references)))))
+  
   [:#Content_frame]
   (content (select (format-text topic page section)
                    [(let [sections (get-in (site) [(keyword page) :sections])

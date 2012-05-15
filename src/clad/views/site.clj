@@ -26,7 +26,8 @@
                        {:title "Global Projections"                                :from :#project
                         :topics [{:title "Global and Regional Trends"              :from :#project}
                                    {:title "Climate change and Coasts"             :from :#impacts
-                                    :subtopics [{:title "Sea level rise"           :from :#sea_level_rise}
+                                    :subtopics [{:title "Sea level rise"           :from :#sea_level_rise
+                                                 :refs [:nic07 :nic11]}
                                                 {:title "Sea surface temperature"  :from :#seasurfacetemp}
                                                 {:title "Water Salinity"           :from :#salinity}
                                                 {:title "Ocean Acidification"      :from :#acidification}
@@ -119,3 +120,7 @@
                        {:title "GIS Coastal Adaptation"}
                        {:title "Get Involved!"}]}])
 
+
+(def references
+  {:nic07 {:title "Coastal systems and low-lying areas. Climate Change 2007: Impacts, Adaptation and Vulnerability" :authors ["Nicholls, R.J" "P.P. Wong"]}
+   :nic11 {:title "Planning for the impacts of sea level rise" :authors ["Nicholls, R.J"]}})
