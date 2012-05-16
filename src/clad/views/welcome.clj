@@ -139,10 +139,13 @@
                                 ((keyword section) sections))
                     target (get-in topics [:subtopics (keyword subtopic)])]
                 (:refs target))]
-             [:li]
-             (fn [a-selected-node] 
-               (assoc-in a-selected-node [:content]
-                         (:title (ref references)))))
+             [:li :a]
+             (fn [a-selected-node]
+               (->
+                (assoc-in a-selected-node [:content]
+                          (:title (ref references)))
+                (assoc-in [:attrs :href]
+                          (str "/clad/Resources/section/References/" (name ref))))))
   
   [:#Content_frame]
   (content (select (format-text topic page section)
@@ -152,6 +155,10 @@
                                       ((keyword section) sections))
                           target (get-in topics [:subtopics (keyword subtopic)] topics)]
                       (:from target))])))
+
+(deftemplate make-refs "clad/views/CLAD_1.html" [ref]
+  [:#Content_frame]
+  (content (:title ((keyword ref) references))))
 
 (deftemplate welcome "clad/views/welcome.html"
   [map]
@@ -196,6 +203,9 @@
                               "/" months "/" variable)
                     :height "100%"}}))
 
+(defpage "/clad/Resources/section/References/:ref"
+  {:keys [ref]}
+  (make-refs ref))
 (defpage "/clad" []
   (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
 (defpage "/clad/:page"
