@@ -181,7 +181,11 @@
       [:.Title]
       (content (:title cite))
       [:.Authors]
-      (content (apply str (interpose \, (:authors cite))))))
+      (content (apply str (interpose \, (:authors cite))))
+      [:.Published :a]
+      (content (:published cite))
+      [:.Published :a]
+      (set-attr :href (:link cite))))
     emit*))
 
 (deftemplate welcome "clad/views/welcome.html"

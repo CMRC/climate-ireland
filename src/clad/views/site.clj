@@ -125,7 +125,10 @@
 (def references
   {:nic07
    {:title "Coastal systems and low-lying areas. Climate Change 2007: Impacts, Adaptation and Vulnerability"
-    :authors ["Nicholls, R.J" "P.P. Wong"]}
+    :authors ["Nicholls, R.J" "P.P. Wong" "V.R. Burkett", "J.O. Codignotto", "J.E. Hay", "R.F. McLean",
+              "S. Ragoonaden" "C.D. Woodroffe"]
+    :published "Cambridge University Press, Cambridge, UK, 315-356"
+    :link "http://www.ipcc.ch/pdf/assessment-report/ar4/wg2/ar4-wg2-chapter6.pdf"}
    :nic11
    {:title "Planning for the impacts of sea level rise"
     :authors ["Nicholls, R.J"]}})
