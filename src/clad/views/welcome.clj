@@ -94,7 +94,7 @@
    :body (str (apply str (interpose "," counties)) "\n"
               (apply str (all-counties year months model scenario variable)))})
 
-(deftemplate clad "clad/views/CLAD_1.html"
+(defsnippet content-nodes "clad/views/CLAD_1.html" [:html]
   [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
   
   [:#buttons :li]
@@ -129,7 +129,8 @@
              (make-links page (key section) (:topics (val section))))
 
   [:#Glossary]
-  (content (select (format-text topic page section) [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
+  (content (select (format-text topic page section)
+                   [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
 
   [:#References :ul]
   (clone-for [ref
@@ -155,10 +156,20 @@
                                       ((keyword section) sections))
                           target (get-in topics [:subtopics (keyword subtopic)] topics)]
                       (:from target))])))
-
-(deftemplate make-refs "clad/views/CLAD_1.html" [ref]
-  [:#Content_frame]
-  (content (:title ((keyword ref) references))))
+(defn clad
+  [& args]
+  (emit* (content-nodes args)))
+  
+(defn make-refs [ref]
+   (->
+    (content-nodes {:topic "References" :glossary "climate" :page "Resources" :section "References"})
+    (transform
+     [:#refs :.Title]
+     #(assoc-in % [:content] (:title ((keyword ref) references))))
+    (transform
+     [:#refs :.Authors]
+     #(assoc-in % [:content] (apply str (interpose \, (:authors ((keyword ref) references))))))
+    emit*))
 
 (deftemplate welcome "clad/views/welcome.html"
   [map]
@@ -213,15 +224,16 @@
   (clad {:topic "What is Climate Change?" :glossary "climate" :page page :section section}))
 (defpage "/clad/:page/section/:section"
   {:keys [page section]}
-  (clad {:topic section :glossary "climate" :page page :section section}))
+  (clad :topic section :glossary "climate" :page page :section section))
 (defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
   {:keys [more glossary page section]}
   (clad {:topic more :glossary glossary :page page :section section}))
 (defpage [:get ["/clad/:page/section/:section/topic/:topic/subtopic/:subtopic"]]
   {:keys [topic page section subtopic]}
-  (clad {:topic topic :subtopic subtopic :page page :section section :glossary "climate"}))
+  (clad :topic topic :subtopic subtopic :page page :section section :glossary "climate"))
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
-  {:keys [more page section]} (clad {:topic more :glossary "Climate" :page page :section section}))
+  {:keys [more page section]}
+  (clad :topic more :glossary "Climate" :page page :section section))
 (defpage "/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
   (by-county (Integer/parseInt year) months  model scenario variable))

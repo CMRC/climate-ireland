@@ -100,7 +100,8 @@
                        {:title "Financial Support"}
                        {:title "Practical Measures"}
                        {:title "Communication and Presentations"}
-                       {:title "Working with Communities"}]}
+                       {:title "Working with Communities"}
+                       {:title "References" :from :#refs}]}
            {:title "ICRN"
             :sections [{:title "About ICRN"
                         :topics [{:title "FIXME!"}]}
