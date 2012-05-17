@@ -3,7 +3,7 @@
             :dependencies [[clj-stacktrace "0.2.4"]
                            [org.clojure/clojure "1.3.0"]
                            [enlive "1.0.0"]
-                           [noir "1.2.0"]
+                           [noir "1.2.1"]
                            [org.clojars.sritchie09/gdal-java "1.8.0"]
                            [org.clojars.pallix/analemma "1.0.0-SNAPSHOT"]
                            [incanter "1.2.3"]

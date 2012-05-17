@@ -171,6 +171,19 @@
      #(assoc-in % [:content] (apply str (interpose \, (:authors ((keyword ref) references))))))
     emit*))
 
+(defn all-refs []
+   (->
+    (content-nodes {:topic "References" :glossary "climate" :page "Resources" :section "References"})
+    (transform
+     [:.Cite]
+     (clone-for
+      [cite (vals references)]
+      [:.Title]
+      (content (:title cite))
+      [:.Authors]
+      (content (apply str (interpose \, (:authors cite))))))
+    emit*))
+
 (deftemplate welcome "clad/views/welcome.html"
   [map]
   [:#map]
@@ -218,13 +231,15 @@
   {:keys [ref]}
   (make-refs ref))
 (defpage "/clad" []
-  (clad {:topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"}))
+  (clad :topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"))
 (defpage "/clad/:page"
   {:keys [page section]}
   (clad {:topic "What is Climate Change?" :glossary "climate" :page page :section section}))
 (defpage "/clad/:page/section/:section"
   {:keys [page section]}
-  (clad :topic section :glossary "climate" :page page :section section))
+  (if (= section "References")
+    (all-refs)
+    (clad :topic section :glossary "climate" :page page :section section)))
 (defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
   {:keys [more glossary page section]}
   (clad {:topic more :glossary glossary :page page :section section}))
