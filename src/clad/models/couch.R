@@ -4,9 +4,9 @@ library(rgdal)
 library(RCurl)
 library(RJSONIO)
 
-Sys.setenv("http_proxy" = "")
+#Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="provinces")
+counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 countiesarray = new.env()
 
 base.path <- "/var/data/coverages/Temperature/"
@@ -26,22 +26,25 @@ bycounty <- function(county, run) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)
+  temp <- val + 273.15
 
-  year <- gsub("temp(\\d{4})\\w+","\\1",run)
-  months <- gsub("temp\\d{4}(\\w+)","\\1",run)
+  year <- as.numeric(gsub("temp(\\d{4})\\w+","\\1",run))
+  months <- toupper(gsub("temp\\d{4}(\\w+)","\\1",run))
   rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
   if(is.na(rev)){
     getURL(makeurl(run,county),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
-           postfields=toJSON(list(county=county, year=year, months=months,
-             datum.value=val, datum.units="%", datum.description="temperature")))
+           postfields=toJSON(list(region=county, year=year, months=months,
+             model="ICARUS", scenario="ICARUS",
+             datum.value=temp, datum.variable="T_2M",)))
   } else {
     getURL(makeurl(run,county),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
-           postfields=toJSON(list(county=county, year=year, months=months,
-             datum.value=val, datum.variable="temperature",
+           postfields=toJSON(list(region=county, year=year, months=months,
+             model="ICARUS", scenario="ICARUS",
+             datum.value=temp, datum.variable="T_2M",
              '_rev'=toString(rev))))
   }
 }
