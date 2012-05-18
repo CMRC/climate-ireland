@@ -169,6 +169,12 @@
     (transform
      [:#refs :.Authors]
      #(assoc-in % [:content] (apply str (interpose \, (:authors ((keyword ref) references))))))
+    (transform
+     [:#refs :.Published :a]
+     #(assoc-in % [:content] (:published ((keyword ref) references))))
+    (transform
+     [:#refs :.Published :a]
+     (set-attr :href (:link ((keyword ref) references))))
     emit*))
 
 (defn all-refs []
