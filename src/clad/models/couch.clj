@@ -105,4 +105,8 @@
 (defn all-counties [year months model scenario variable]
   (map #(str (bycounty-memo % year months model scenario variable) ",") counties))
 
-(def ensemble [["CGCM31" "A1B"] ["HadGEM" "RCP45"] ["HadGEM" "RCP85"]])
+(def ensemble [["CGCM31" "A1B"]
+               ["CGCM31" "A2"]
+               ["HadGEM" "RCP45"]
+               ["HadGEM" "RCP85"]
+               #_["ICARUS" "ICARUS"]])

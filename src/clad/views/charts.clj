@@ -31,7 +31,7 @@
                 (add-lines x ha85y :series-label "HadGEM RCP85"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream)
+                    (save chart out-stream :width 600 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -39,18 +39,24 @@
      :body in-stream}))
 
 (defn plot-models-decadal [county months variable]
-  (let [r (range 2026 2065 10)
+  (let [r (range 2025 2065 10)
        	decadal (fn [run] (map (fn [mid] (/ (reduce (fn [acc yr] (+ acc (- (:datum.value (:value (first (get-county-by-year county yr months (first run) (second run) variable)))) 273.15)))   
 	    	     	      	      0 
-			      	      (range (- mid 5) (+ mid 5))) 
+			      	      (range (- mid 4) (+ mid 6))) 
 			    10)) r))
         a1b (decadal ["CGCM31" "A1B"])
         x (map #(coerce/to-long (time/date-time %)) r)
-        chart (doto (time-series-plot x a1b :y-label "°C" :x-label "" :series-label "CGCM3.1 A1B" :legend true :title (str county " " variable " " months))
-	      	    (add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")	      	       	      	     (add-lines x (decadal ["HadGEM" "RCP85"]) :series-label "HadGEM RCP85"))
+        chart (doto (time-series-plot x a1b :y-label "°C"
+                                      :x-label ""
+                                      :series-label "CGCM3.1 A1B"
+                                      :legend true
+                                      :title (str county " " variable " " months))
+                (add-lines x (decadal ["CGCM31" "A2"]) :series-label "CGCM3.1 A2")
+                (add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")
+                (add-lines x (decadal ["HadGEM" "RCP85"]) :series-label "HadGEM RCP85"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream)
+                    (save chart out-stream :width 600 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -66,7 +72,7 @@
 			     :group-by x)
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream)
+                    (save chart out-stream :width 600 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
