@@ -235,12 +235,16 @@
     width: 1053px;
 }
 .Lower {
-    height: 300px;
+    height: 500px;
     float: right;
     width: 1053px;
+    overflow: visible;
 }
 p, h3 {
 	margin: 10px;
 	font-family: Arial, Helvetica, sans-serif;
 	font-size: medium;
+}
+span.Authors {
+    font-style: italic
 }

@@ -26,7 +26,8 @@
                        {:title "Global Projections"                                :from :#project
                         :topics [{:title "Global and Regional Trends"              :from :#project}
                                    {:title "Climate change and Coasts"             :from :#impacts
-                                    :subtopics [{:title "Sea level rise"           :from :#sea_level_rise}
+                                    :subtopics [{:title "Sea level rise"           :from :#sea_level_rise
+                                                 :refs [:nic07 :nic11]}
                                                 {:title "Sea surface temperature"  :from :#seasurfacetemp}
                                                 {:title "Water Salinity"           :from :#salinity}
                                                 {:title "Ocean Acidification"      :from :#acidification}
@@ -86,9 +87,9 @@
                                    {:title "CS 3"}]}
                        {:title "Look for your specific issue"}
                        {:title "Tell us about your experience!"}]}
-           {:title "Resources"
+           {:title "Resources" :file "resources.html"
             :sections [{:title "How I can build capacities for climate adaptation?"
-                        :topics [{:title "FIXME!"}]}
+                        :from :#res_cap}
                        {:title "Data and Information"
                         :topics [{:title "Climate Change"}
                                    {:title "Sustainable Development"}
@@ -99,7 +100,8 @@
                        {:title "Financial Support"}
                        {:title "Practical Measures"}
                        {:title "Communication and Presentations"}
-                       {:title "Working with Communities"}]}
+                       {:title "Working with Communities"}
+                       {:title "References" :from :#refs}]}
            {:title "ICRN"
             :sections [{:title "About ICRN"
                         :topics [{:title "FIXME!"}]}
@@ -119,3 +121,14 @@
                        {:title "GIS Coastal Adaptation"}
                        {:title "Get Involved!"}]}])
 
+
+(def references
+  {:nic07
+   {:title "Coastal systems and low-lying areas. Climate Change 2007: Impacts, Adaptation and Vulnerability"
+    :authors ["Nicholls, R.J" "P.P. Wong" "V.R. Burkett", "J.O. Codignotto", "J.E. Hay", "R.F. McLean",
+              "S. Ragoonaden" "C.D. Woodroffe"]
+    :published "Cambridge University Press, Cambridge, UK, 315-356"
+    :link "http://www.ipcc.ch/pdf/assessment-report/ar4/wg2/ar4-wg2-chapter6.pdf"}
+   :nic11
+   {:title "Planning for the impacts of sea level rise"
+    :authors ["Nicholls, R.J"]}})
