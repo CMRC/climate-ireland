@@ -9,9 +9,7 @@ library(RJSONIO)
 counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 countiesarray = new.env()
 
-base.path <- "/var/data/coverages/Temperature/"
-
-populatecounties <- function(run) {
+populatecounties <- function(run, base.path) {
   countiesarray[[run]] = sgdf <- as(GDAL.open(paste(base.path,run,sep="")),"SpatialGridDataFrame")
 }
 
@@ -26,10 +24,9 @@ bycounty <- function(county, run) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)
-  temp <- val + 273.15
 
-  year <- as.numeric(gsub("temp(\\d{4})\\w+","\\1",run))
-  months <- toupper(gsub("temp\\d{4}(\\w+)","\\1",run))
+  year <- as.numeric(gsub(".*(\\d{4})\\w+","\\1",run))
+  months <- toupper(gsub(".*\\d{4}(\\w+)","\\1",run))
   rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
   if(is.na(rev)){
     getURL(makeurl(run,county),
@@ -37,20 +34,20 @@ bycounty <- function(county, run) {
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
              model="ICARUS", scenario="ICARUS",
-             datum.value=temp, datum.variable="T_2M",)))
+             datum.value=val, datum.variable="T_2M",datum.units="%")))
   } else {
     getURL(makeurl(run,county),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
              model="ICARUS", scenario="ICARUS",
-             datum.value=temp, datum.variable="T_2M",
+             datum.value=val, datum.variable="T_2M",datum.units="%",
              '_rev'=toString(rev))))
   }
 }
 
-byrun <-function(run) { 
-  populatecounties(run)
+byrun <-function(run, base.path) { 
+  populatecounties(run, base.path)
 
   countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
                    "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
@@ -64,4 +61,4 @@ byrun <-function(run) {
 runs <- c("temp2020jja", "temp2020son", "temp2020djf", "temp2020mam", "temp2050jja", "temp2050son",
           "temp2050djf", "temp2050mam", "temp2080jja", "temp2080son", "temp2080djf", "temp2080mam")
 
-lapply(runs, byrun)
+lapply(runs, byrun, base.path <- "/var/data/coverages/Temperature/")

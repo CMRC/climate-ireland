@@ -33,18 +33,26 @@
              0
              ensemble) (count ensemble)))
 
-(defn temperature [county year months model scenario variable]
+(defn diff-data [county year months model scenario variable]
   (if (= model "ensemble")
     (- (ensemble-data county year months variable) 273.15)
-    (- (data-by-county county year months model scenario variable)
-       273.15)))
+    (let [ref (ref-data county months model variable)
+          comp (data-by-county county year months model scenario variable)
+          res (->
+               (- comp ref)
+               (/ ref)
+               (* 10000)
+               round
+               (/ 100)
+               float)]
+      res)))
 
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
-        min 7.5
-        max 14.5
+        min 0
+        max 0.5
         step (/ 200 (- max min))
-        val (temperature county year months model scenario variable)
+        val (diff-data county year months model scenario variable)
         red (+ 100 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
@@ -61,9 +69,10 @@
         :headers {"Content-Type" "image/svg+xml"}
         :body
         (emit (reduce #(transform-xml
-                        %1                        [{:id %2}]
+                        %1
+                        [{:id %2}]
                         (fn [elem]
-                        			                ((fill-fns fill) elem %2 year months model scenario variable)))
+                          ((fill-fns fill) elem %2 year months model scenario variable)))
                       counties-svg			
                       counties))})))    
 

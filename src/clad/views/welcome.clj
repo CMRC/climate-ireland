@@ -264,7 +264,7 @@
   (by-county (Integer/parseInt year) months  model scenario variable))
 (defpage "/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
-  (counties-map (Integer/parseInt year) months model scenario variable fill))
+    (counties-map (Integer/parseInt year) months model scenario variable fill))
 (defpage "/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map-png (Integer/parseInt year) months model scenario variable fill))

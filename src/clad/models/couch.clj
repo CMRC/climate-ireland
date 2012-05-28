@@ -60,6 +60,15 @@
                   :value
                   :datum.value)] d -1))
 
+(defn ref-data-slow [county months model variable]
+  (clutch/with-db db
+    (/ (reduce
+        #(+ %1 (data-by-county county %2 months model "C20" variable))
+        0
+        (range 1961 1990))
+       (- 1990 1961))))
+
+(def ref-data (memoize ref-data-slow))
 
 (def bycounty-memo (memoize data-by-county))
 
