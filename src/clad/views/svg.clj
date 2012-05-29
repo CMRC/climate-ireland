@@ -50,7 +50,7 @@
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
         min 0
-        max 0.5
+        max 1.0
         step (/ 200 (- max min))
         val (diff-data county year months model scenario variable)
         red (+ 100 (round (* step (- val min))))
@@ -72,7 +72,13 @@
                         %1
                         [{:id %2}]
                         (fn [elem]
-                          ((fill-fns fill) elem %2 year months model scenario variable)))
+                          (-> (add-attrs elem :onmouseover
+                                         (str "value(evt,'"
+                                              (diff-data %2 year months model scenario variable)
+                                              "% : "
+                                              %2
+                                              "')"))
+                              ((fill-fns fill) %2 year months model scenario variable))))
                       counties-svg			
                       counties))})))    
 

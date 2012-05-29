@@ -218,10 +218,10 @@
 
 (defpage "/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
-  (welcome {:tag :img
+  (welcome {:tag :embed
             :attrs {:src (str "/svg/" year "/" months "/" model "/"
-	    scenario "/" variable "/" shading)
-                    :height "100%"}}))
+                              scenario "/" variable "/" shading)
+                    :type "image/svg+xml"}}))
 
 (defpage "/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
