@@ -1,9 +1,10 @@
 (ns clad.models.couch
   (:require [com.ashafa.clutch :as clutch])
-  (:use [com.ashafa.clutch.view-server]))
+  (:use [com.ashafa.clutch.view-server]
+        clojure.contrib.math))
 
 (def db "climate")
-;;(clutch/configure-view-server db (view-server-exec-string))
+(clutch/configure-view-server db (view-server-exec-string))
 
 (def provinces ["Leinster" "Munster" "Connaught" "Ulster"])
 
@@ -70,6 +71,31 @@
 
 (def ref-data (memoize ref-data-slow))
 
+(def ensemble [["CGCM31" "A1B"]
+               ["CGCM31" "A2"]
+               ["HadGEM" "RCP45"]
+               ["HadGEM" "RCP85"]
+               #_["ICARUS" "ICARUS"]])
+
+(defn ensemble-data [county year months variable]
+  (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
+             0
+             ensemble) (count ensemble)))
+
+(defn diff-data [county year months model scenario variable]
+  (if (= model "ensemble")
+    (- (ensemble-data county year months variable) 273.15)
+    (let [ref (ref-data county months model variable)
+          comp (data-by-county county year months model scenario variable)
+          res (->
+               (- comp ref)
+               (/ ref)
+               (* 10000)
+               round
+               (/ 100)
+               float)]
+      res)))
+
 (def bycounty-memo (memoize data-by-county))
 
 (def counties
@@ -114,8 +140,3 @@
 (defn all-counties [year months model scenario variable]
   (map #(str (bycounty-memo % year months model scenario variable) ",") counties))
 
-(def ensemble [["CGCM31" "A1B"]
-               ["CGCM31" "A2"]
-               ["HadGEM" "RCP45"]
-               ["HadGEM" "RCP85"]
-               #_["ICARUS" "ICARUS"]])

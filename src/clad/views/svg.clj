@@ -28,32 +28,13 @@
                               (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 3)) "#967"
                               :else "#b65")))
 
-(defn ensemble-data [county year months variable]
-  (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
-             0
-             ensemble) (count ensemble)))
-
-(defn diff-data [county year months model scenario variable]
-  (if (= model "ensemble")
-    (- (ensemble-data county year months variable) 273.15)
-    (let [ref (ref-data county months model variable)
-          comp (data-by-county county year months model scenario variable)
-          res (->
-               (- comp ref)
-               (/ ref)
-               (* 10000)
-               round
-               (/ 100)
-               float)]
-      res)))
-
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [cd (counties-data year months model scenario variable)
-        min 0
-        max 1.0
+        min -0.2
+        max 0.6
         step (/ 200 (- max min))
         val (diff-data county year months model scenario variable)
-        red (+ 100 (round (* step (- val min))))
+        red (+ 50 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
     (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))
