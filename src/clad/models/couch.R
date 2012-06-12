@@ -6,7 +6,7 @@ library(RJSONIO)
 
 #Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+counties <- readOGR(dsn="/home/anthony/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 countiesarray = new.env()
 
 populatecounties <- function(run, base.path) {
