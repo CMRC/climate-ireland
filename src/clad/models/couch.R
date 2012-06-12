@@ -6,7 +6,7 @@ library(RJSONIO)
 
 #Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/CLAD/resources/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+counties <- readOGR(dsn="/home/anthony/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 countiesarray = new.env()
 
 populatecounties <- function(run, base.path) {
@@ -23,10 +23,10 @@ bycounty <- function(county, run) {
   countydata <- counties[counties@data$COUNTY==county,] 
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
-  val <- mean(as(kkclipped, "data.frame")$band1)
+  val <- mean(as(kkclipped, "data.frame")$band1) / 10
 
-  year <- as.numeric(gsub(".*(\\d{4})\\w+","\\1",run))
-  months <- toupper(gsub(".*\\d{4}(\\w+)","\\1",run))
+  year <- as.numeric(gsub("temp(\\d{4})\\w+","\\1",run))
+  months <- toupper(gsub("temp\\d{4}(\\w+)","\\1",run))
   rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
   if(is.na(rev)){
     getURL(makeurl(run,county),
@@ -34,14 +34,14 @@ bycounty <- function(county, run) {
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
              model="ICARUS", scenario="ICARUS",
-             datum.value=val, datum.variable="T_2M",datum.units="%")))
+             datum.value=val, datum.variable="T_2M",datum.units="K")))
   } else {
     getURL(makeurl(run,county),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
              model="ICARUS", scenario="ICARUS",
-             datum.value=val, datum.variable="T_2M",datum.units="%",
+             datum.value=val, datum.variable="T_2M",datum.units="K",
              '_rev'=toString(rev))))
   }
 }
