@@ -48,8 +48,8 @@
 (defn get-county-data [county months model scenario variable]
   (try
     (clutch/with-db db
-      (clutch/get-view "counties" :by-county {:key [county months model scenario variable]})))
-  (catch java.net.ConnectException e [{:region "Kilkenny"}]))
+      (clutch/get-view "counties" :by-county {:key [county months model scenario variable]}))
+    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (defn get-county-by-year [county year months model scenario variable]
   (try
