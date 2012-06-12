@@ -40,20 +40,29 @@
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
 
 (defn get-run-data [year months]
-  (clutch/with-db db
-    (map #(:value %) (clutch/get-view "vals" :by-ym {:key [(Integer/parseInt year) months]}))))
+  (try
+    (clutch/with-db db
+      (map #(:value %) (clutch/get-view "vals" :by-ym {:key [(Integer/parseInt year) months]})))
+    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (defn get-county-data [county months model scenario variable]
-  (clutch/with-db db
-    (clutch/get-view "counties" :by-county {:key [county months model scenario variable]})))
+  (try
+    (clutch/with-db db
+      (clutch/get-view "counties" :by-county {:key [county months model scenario variable]}))
+    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (defn get-county-by-year [county year months model scenario variable]
-  (clutch/with-db db
-    (clutch/get-view "counties-year" :by-county-year {:key [county year months model scenario variable]})))
-
+  (try
+    (clutch/with-db db
+      (clutch/get-view "counties-year" :by-county-year {:key [county year months model scenario variable]})
+      (catch java.net.ConnectException e [{:region county :year year :months months :model model
+                                           :scenario scenario :varibale variable :datum.value 1}]))))
+  
 (defn get-models []
-  (clutch/with-db db
-    (clutch/get-view "models" :by-model)))
+  (try
+    (clutch/with-db db
+      (clutch/get-view "models" :by-model))
+    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (defn data-by-county [county year months model scenario variable]
   (if-let [d (->> (get-county-by-year county year months model scenario variable)
@@ -62,12 +71,14 @@
                   :datum.value)] d -1))
 
 (defn ref-data-slow [county months model variable]
-  (clutch/with-db db
-    (/ (reduce
-        #(+ %1 (data-by-county county %2 months model "C20" variable))
-        0
-        (range 1961 1990))
-       (- 1990 1961))))
+  (try
+    (clutch/with-db db
+      (/ (reduce
+          #(+ %1 (data-by-county county %2 months model "C20" variable))
+          0
+          (range 1961 1990))
+         (- 1990 1961)))
+    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (def ref-data (memoize ref-data-slow))
 
@@ -138,5 +149,5 @@
    "Wicklow" "Leinster"})
 
 (defn all-counties [year months model scenario variable]
-  (map #(str (bycounty-memo % year months model scenario variable) ",") counties))
+  (map #(str (data-by-county % year months model scenario variable) ",") counties))
 
