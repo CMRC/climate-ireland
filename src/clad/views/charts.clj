@@ -15,8 +15,8 @@
                       (ref-data county months "CGCM31" variable)) a1b)
 	a2 (get-county-data county months "CGCM31" "A2" variable)
         a2y (map #(- (:datum.value (:value %))
-                     (ref-data county months "CGCM31" variable)) a2)		
-	cc20 (get-county-data county months "CGCM31" "C20" variable)
+                     (ref-data county months "CGCM31" variable)) a2)
+        cc20 (get-county-data county months "CGCM31" "C20" variable)
         cc20y (map #(- (:datum.value (:value %))
                        (ref-data county months "CGCM31" variable)) cc20)		
         cc20x (map #(coerce/to-long (time/date-time (:year (:value %)))) cc20)
@@ -28,7 +28,7 @@
                        (ref-data county months "HadGEM" variable)) hc20)		
         ha85 (get-county-data county months "HadGEM" "RCP85" variable)
         ha85y (map #(- (:datum.value (:value %))
-                       (ref-data county months "HadGEM" variable)) ha85)
+                      (ref-data county months "HadGEM" variable)) ha85)
         ica [2025 2055 2085]
         icax (map #(coerce/to-long (time/date-time %)) ica)
         icay (map #(data-by-county county (- % 5) months "ICARUS" "ICARUS" variable) ica)
@@ -51,20 +51,30 @@
 
 (defn plot-models-decadal [county months variable]
   (let [r (range 2025 2065 10)
-       	decadal (fn [run] (map (fn [mid] (/ (reduce (fn [acc yr] (+ acc (- (:datum.value (:value (first (get-county-by-year county yr months (first run) (second run) variable)))) 273.15)))   
-	    	     	      	      0 
-			      	      (range (- mid 4) (+ mid 6))) 
-			    10)) r))
+       	decadal (fn [run]
+                  (map
+                   (fn [mid]
+                     (/ (reduce
+                         (fn [acc yr]
+                           (+ acc
+                              (diff-data county yr months (first run)
+                                         (second run) variable)))
+                         0 
+                         (range (- mid 4) (+ mid 5))) 
+                        10)) r))
         a1b (decadal ["CGCM31" "A1B"])
         x (map #(coerce/to-long (time/date-time %)) r)
+        ica [2025 2055 2085]
+        icax (map #(coerce/to-long (time/date-time %)) ica)
+        icay (map #(data-by-county county (- % 5) months "ICARUS" "ICARUS" variable) ica)   
         chart (doto (time-series-plot x a1b :y-label "°C"
                                       :x-label ""
                                       :series-label "CGCM3.1 A1B"
                                       :legend true
                                       :title (str county " " variable " " months))
                 (add-lines x (decadal ["CGCM31" "A2"]) :series-label "CGCM3.1 A2")
-                (add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")
-                (add-lines x (decadal ["HadGEM" "RCP85"]) :series-label "HadGEM RCP85"))
+                #_(add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")
+                (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save chart out-stream :width 600 :height 600)
