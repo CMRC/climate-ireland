@@ -73,7 +73,8 @@
                                       :legend true
                                       :title (str county " " variable " " months))
                 (add-lines x (decadal ["CGCM31" "A2"]) :series-label "CGCM3.1 A2")
-                #_(add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")
+                (add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")
+                (add-lines x (decadal ["HadGEM" "RCP85"]) :series-label "HadGEM RCP85")
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
