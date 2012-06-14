@@ -50,31 +50,38 @@
      :body in-stream}))
 
 (defn plot-models-decadal [county months variable]
-  (let [r (range 2025 2065 10)
-       	decadal (fn [run]
+  (let [decadal (fn [run r]
                   (map
                    (fn [mid]
                      (/ (reduce
                          (fn [acc yr]
                            (+ acc
-                              (diff-data county yr months (first run)
-                                         (second run) variable)))
+                              (temp-diff-data county yr months (first run)
+                                              (second run) variable)))
                          0 
                          (range (- mid 4) (+ mid 5))) 
                         10)) r))
-        a1b (decadal ["CGCM31" "A1B"])
-        x (map #(coerce/to-long (time/date-time %)) r)
+        a1b (decadal ["CGCM31" "A1B"] (range 2025 2065 10))
+        x (map #(coerce/to-long (time/date-time %)) (range 2025 2065 10))
+        refx (map #(coerce/to-long (time/date-time %)) (range 1965 1995 10))
         ica [2025 2055 2085]
         icax (map #(coerce/to-long (time/date-time %)) ica)
         icay (map #(data-by-county county (- % 5) months "ICARUS" "ICARUS" variable) ica)   
-        chart (doto (time-series-plot x a1b :y-label "°C"
+        chart (doto (time-series-plot x a1b :y-label "ΔK"
                                       :x-label ""
                                       :series-label "CGCM3.1 A1B"
                                       :legend true
                                       :title (str county " " variable " " months))
-                (add-lines x (decadal ["CGCM31" "A2"]) :series-label "CGCM3.1 A2")
-                (add-lines x (decadal ["HadGEM" "RCP45"]) :series-label "HadGEM RCP45")
-                (add-lines x (decadal ["HadGEM" "RCP85"]) :series-label "HadGEM RCP85")
+                (add-lines x (decadal ["CGCM31" "A2"] (range 2025 2065 10))
+                           :series-label "CGCM3.1 A2")
+                (add-lines x (decadal ["HadGEM" "RCP45"] (range 2025 2065 10))
+                           :series-label "HadGEM RCP45")
+                (add-lines x (decadal ["HadGEM" "RCP85"] (range 2025 2065 10))
+                           :series-label "HadGEM RCP85")
+                (add-lines refx (decadal ["HadGEM" "C20"] (range 1965 1995 10))
+                           :series-label "HadGEM C20")
+                (add-lines refx (decadal ["CGCM31" "C20"] (range 1965 1995 10))
+                           :series-label "CGCM31 C20")
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do

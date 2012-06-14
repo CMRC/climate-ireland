@@ -53,7 +53,10 @@
                         %1
                         [{:id %2}]
                         (fn [elem]
-                          (let [link (str "/welcome/bar/" (apply str (interpose "/" [%2 year months variable])))]
+                          (let [link (str "/welcome/svgbar/"
+                                          (apply str
+                                                 (interpose "/" [%2 year months model scenario
+                                                                 variable fill])))]
                             [:a {:xlink:href link :target "_top"}
                              (-> (add-attrs elem :onmouseover
                                             (str "value(evt,'"
