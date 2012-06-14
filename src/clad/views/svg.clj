@@ -19,21 +19,26 @@
 (defn counties-data [year months model scenario variable]
   (map #(data-by-county % year months model scenario variable) counties))
 
-(defn quartiles [year months model scenario variable] (map #(/ (round (* % 100)) 100)
-                                                           (quantile (counties-data year months model scenario variable))))
+(defn quartiles [year months model scenario variable]
+  (map #(/ (round (* % 100)) 100)
+       (quantile (map (fn [county] (temp-diff-data county year months model scenario variable))
+                      counties))))
 
 (defn colour-on-quartiles [elem county year months model scenario variable]
-  (add-style elem :fill (cond (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 1)) "#56b"
-                              (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 2)) "#769"
-                              (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 3)) "#967"
-                              :else "#b65")))
+  (let [val (temp-diff-data county year months model scenario variable)]
+    (add-style elem :fill (cond (< val (nth (quartiles year months model scenario variable) 1))
+                                "#56b"
+                                (< val (nth (quartiles year months model scenario variable) 2))
+                                "#769"
+                                (< val (nth (quartiles year months model scenario variable) 3))
+                                "#967"
+                                :else "#b65"))))
 
 (defn colour-on-linear [elem county year months model scenario variable]
-  (let [cd (counties-data year months model scenario variable)
-        min -0.2
-        max 0.6
-        step (/ 200 (- max min))
-        val (diff-data county year months model scenario variable)
+  (let [min -0.2
+        max 3.0
+        step (/ 100 (- max min))
+        val (temp-diff-data county year months model scenario variable)
         red (+ 50 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
@@ -60,8 +65,13 @@
                             [:a {:xlink:href link :target "_top"}
                              (-> (add-attrs elem :onmouseover
                                             (str "value(evt,'"
-                                                 (diff-data %2 year months model scenario variable)
-                                                 "% : "
+                                                 (->
+                                                  (temp-diff-data %2 year months model scenario variable)
+                                                  (* 100)
+                                                  round
+                                                  (/ 100)
+                                                  float)
+                                                 "K : "
                                                  %2
                                                  "')"))
                                  ((fill-fns fill) %2 year months model scenario variable))])))

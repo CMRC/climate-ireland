@@ -42,7 +42,7 @@
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 600 :height 600)
+                    (save chart out-stream :width 600 :height 800)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -85,7 +85,7 @@
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 600 :height 600)
+                    (save chart out-stream :width 600 :height 800)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -98,13 +98,14 @@
                          (ref-data county months (first %) variable))
                      ensemble))
         x (cons "ICARUS" (map #(str (first %) " " (second %)) ensemble))
-        chart (bar-chart x y :title "Model runs"
-	      		     :x-label ""			     
-			     :y-label "ΔK"
-			     :group-by x)
+        chart (bar-chart x y :title (str county " " year " " months " " variable)
+                         :x-label ""			     
+                         :y-label "ΔK"
+                         :legend true
+                         :group-by x)
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 600 :height 600)
+                    (save chart out-stream :width 600 :height 800)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
