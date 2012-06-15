@@ -16,7 +16,7 @@ body {
 	background-color: white;
 }
 #wrapper {	
-    width: 1530px;
+    width: 1024px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -24,7 +24,7 @@ body {
     margin-bottom: 20px;
 }
 #banner {
-	width: 1524px;
+	width: 1018px;
 	height: 80px;
 	text-align: left;
 	border: 3px solid #396538;
@@ -37,7 +37,8 @@ body {
 }
 #buttons {
 	position: relative;
-	top: 50px;	
+	top: 50px;
+	width: 1000px;	
 }
 #buttons ul { 
     margin: 0;
@@ -50,10 +51,10 @@ body {
 }
 #buttons ul li a {
 	text-decoration: none;
-	padding: .2em 1em;
+	padding: .2em 0.5em;
 	color: #fff;
 	background-color: #436756;
-	width: 200em;
+	width: 60em;
 }
 #buttons ul li a:hover
 {
@@ -74,7 +75,7 @@ body {
 #col1 {
 	float: left;
 	height: 600px;
-	width: 280px;
+	width: 170px;
 	position: relative;
 	border: 3px solid; 
 	border-color: #396538;
@@ -88,13 +89,13 @@ body {
 	float: right;
 	height: 800px;
 	overflow: visible;
-	width: 592px;
+	width: 396px;
 	padding: 10px;
 }
 #map {
 	float: right;
 	height: 600px;
-	width: 592px;
+	width: 397px;
 	padding: 10px;
 }
 #map img {
