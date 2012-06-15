@@ -14,6 +14,8 @@ body {
 	line-height: 130%;
 	color: #252525;
 	background-color: white;
+	font-size: small;
+	
 }
 #wrapper {	
     width: 1024px;
@@ -37,7 +39,7 @@ body {
 }
 #buttons {
 	position: relative;
-	top: 50px;
+	top: 60px;
 	width: 1000px;	
 }
 #buttons ul { 
@@ -87,8 +89,9 @@ body {
 }
 #blurb {
 	float: right;
-	height: 800px;
-	overflow: visible;
+	height: 600px;
+	overflow-x: hidden;
+	overflow-y: auto;
 	width: 396px;
 	padding: 10px;
 }
@@ -117,3 +120,12 @@ body {
 	height: 200px;
 	width: 100%;
 }
+#footer {
+	width: 1018px;
+	height: 60px;
+	text-align: left;
+	border: 3px solid #396538;
+	border-radius: 5px;
+	float:right;
+	background-color: rgba(39,65,38, 0.05);
+	}
