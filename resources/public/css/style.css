@@ -16,7 +16,7 @@ body {
 	background-color: white;
 }
 #wrapper {	
-    width: 1530px;
+    width: 1330px;
     margin-top: 20px;
     margin-left: auto;
     margin-right: auto;
@@ -70,19 +70,19 @@ body {
 #col1 {
 	float: right;
 	height: 600px;
-	width: 20%;
+	width: 100px;
 	position: relative;
 }
 #blurb {
 	float: right;
 	height: 800px;
 	overflow: auto;
-	width: 40%;	
+	width: 600px;	
 }
 #map {
 	float: right;
 	height: 800px;
-	width: 40%;
+	width: 600px;
 }
 #map img {
     max-height: 100%;

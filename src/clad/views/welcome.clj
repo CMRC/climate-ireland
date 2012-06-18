@@ -255,6 +255,10 @@
                               "/" months "/" variable)
                     :height "100%"}}))
 
+(defpage "/" []
+  {:status 303
+   :headers {"Location" "/welcome/plot/Cork/DJF/T_2M"}})
+
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
   (make-refs ref))
