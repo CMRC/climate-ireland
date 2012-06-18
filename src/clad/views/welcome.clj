@@ -199,6 +199,13 @@
   [:#map]
   (content map))
 
+(deftemplate svgmap "clad/views/welcome.html"
+  [map blurb]
+  [:#map]
+  (content map)
+  [:#blurb]
+  (content blurb))
+
 (defpage "/welcome/compare/:year1/:year2/:months/:variable"
   {:keys [year1 year2 months variable]}
   (welcome {:tag :img
@@ -222,6 +229,17 @@
             :attrs {:src (str "/svg/" year "/" months "/" model "/"
                               scenario "/" variable "/" shading)
                     :type "image/svg+xml"}}))
+
+(defpage "/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
+  {:keys [county year months model scenario variable shading]}
+  (svgmap {:tag :embed
+           :attrs {:src (str "/svg/" year "/" months "/" model "/"
+                             scenario "/" variable "/" shading)
+                   :type "image/svg+xml"}}
+          {:tag :img
+           :attrs {:src (str "/bar/" county "/" year
+                             "/" months "/" variable)
+                   :max-width "100%"}}))
 
 (defpage "/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}

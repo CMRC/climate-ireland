@@ -19,21 +19,26 @@
 (defn counties-data [year months model scenario variable]
   (map #(data-by-county % year months model scenario variable) counties))
 
-(defn quartiles [year months model scenario variable] (map #(/ (round (* % 100)) 100)
-                                                           (quantile (counties-data year months model scenario variable))))
+(defn quartiles [year months model scenario variable]
+  (map #(/ (round (* % 100)) 100)
+       (quantile (map (fn [county] (temp-diff-data county year months model scenario variable))
+                      counties))))
 
 (defn colour-on-quartiles [elem county year months model scenario variable]
-  (add-style elem :fill (cond (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 1)) "#56b"
-                              (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 2)) "#769"
-                              (< (data-by-county county year months model scenario variable) (nth (quartiles year months model scenario variable) 3)) "#967"
-                              :else "#b65")))
+  (let [val (temp-diff-data county year months model scenario variable)]
+    (add-style elem :fill (cond (< val (nth (quartiles year months model scenario variable) 1))
+                                "#56b"
+                                (< val (nth (quartiles year months model scenario variable) 2))
+                                "#769"
+                                (< val (nth (quartiles year months model scenario variable) 3))
+                                "#967"
+                                :else "#b65"))))
 
 (defn colour-on-linear [elem county year months model scenario variable]
-  (let [cd (counties-data year months model scenario variable)
-        min -0.2
-        max 0.6
-        step (/ 200 (- max min))
-        val (diff-data county year months model scenario variable)
+  (let [min -0.2
+        max 3.0
+        step (/ 100 (- max min))
+        val (temp-diff-data county year months model scenario variable)
         red (+ 50 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
@@ -53,15 +58,25 @@
                         %1
                         [{:id %2}]
                         (fn [elem]
-                          (-> (add-attrs elem :onmouseover
-                                         (str "value(evt,'"
-                                              (diff-data %2 year months model scenario variable)
-                                              "% : "
-                                              %2
-                                              "')"))
-                              ((fill-fns fill) %2 year months model scenario variable))))
+                          (let [link (str "/welcome/svgbar/"
+                                          (apply str
+                                                 (interpose "/" [%2 year months model scenario
+                                                                 variable fill])))]
+                            [:a {:xlink:href link :target "_top"}
+                             (-> (add-attrs elem :onmouseover
+                                            (str "value(evt,'"
+                                                 (->
+                                                  (temp-diff-data %2 year months model scenario variable)
+                                                  (* 100)
+                                                  round
+                                                  (/ 100)
+                                                  float)
+                                                 "K : "
+                                                 %2
+                                                 "')"))
+                                 ((fill-fns fill) %2 year months model scenario variable))])))
                       counties-svg			
-                      counties))})))    
+                      counties))})))
 
 (defn counties-map-png 
   ([year months model scenario variable fill]
@@ -89,28 +104,30 @@
                    [{:id %2}]
                    (fn [prov]
                      (let [y1 (ensemble-data %2 year1 months variable)
-                           y2 (ensemble-data %2 year2 months variable)]
-                       (-> (transform-xml
-                            prov
-                            [{:class "val"}]
-                            (fn [elem]
-                              (set-content elem (-> (- y2 y1)
-                                                    (/ y1)
-                                                    (* 10000)
-                                                    round
-                                                    (/ 100)
-                                                    float
-                                                    (str "%")))))
-                           (transform-xml
-                            [{:class "shape"}]
-                            (fn [elem]
-                              (let [diff (- y2 y1)
-                                    base 0x40
-                                    mult 100
-                                    r (if (neg? diff) (+ base (round (abs (* diff mult)))) base)
-                                    g (if (pos? diff) (+ base (round (* diff mult))) base)
-                                    b base
-                                    fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
-                                (add-style elem :fill fill))))))))
+                           y2 (ensemble-data %2 year2 months variable)
+                           g (-> (transform-xml
+                                  prov
+                                  [{:class "val"}]
+                                  (fn [elem]
+                                    (set-content elem (-> (- y2 y1)
+                                                          (/ y1)
+                                                          (* 10000)
+                                                          round
+                                                          (/ 100)
+                                                          float
+                                                          (str "%")))))
+                                 (transform-xml
+                                  [{:class "shape"}]
+                                  (fn [elem]
+                                    (let [diff (- y2 y1)
+                                          base 0x40
+                                          mult 100
+                                          r (if (neg? diff) (+ base (round (abs (* diff mult)))) base)
+                                          g (if (pos? diff) (+ base (round (* diff mult))) base)
+                                          b base
+                                          fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
+                                      (add-style elem :fill fill)))))
+                           link "/welcome"]
+                       [:a {:xlink:href link} g])))
                  provinces-svg
                  provinces))})

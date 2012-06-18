@@ -95,7 +95,7 @@
 
 (defn diff-data [county year months model scenario variable]
   (if (= model "ensemble")
-    (- (ensemble-data county year months variable) 273.15)
+    (throw (Throwable. "Not implemented"))
     (let [ref (ref-data county months model variable)
           comp (data-by-county county year months model scenario variable)
           res (->
@@ -105,6 +105,14 @@
                round
                (/ 100)
                float)]
+      res)))
+
+(defn temp-diff-data [county year months model scenario variable]
+  (if (= model "ensemble")
+    (throw (Throwable. "Not implemented"))
+    (let [ref (ref-data county months model variable)
+          comp (data-by-county county year months model scenario variable)
+          res (- comp ref)]
       res)))
 
 (def bycounty-memo (memoize data-by-county))
