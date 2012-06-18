@@ -35,10 +35,10 @@
                                 :else "#b65"))))
 
 (defn colour-on-linear [elem county year months model scenario variable]
-  (let [min 2.0
-        max 3.0
-        step (/ 200 (- max min))
-        val (temp-diff-data county year months model scenario variable)
+  (let [val (temp-diff-data county year months model scenario variable)
+        min (nth (quartiles year months model scenario variable) 0)
+        max (nth (quartiles year months model scenario variable) 4)
+        step (/ 100 (- max min))
         red (+ 50 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
