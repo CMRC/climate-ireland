@@ -35,16 +35,16 @@
                                 :else "#b65"))))
 
 (defn colour-on-linear [elem county year months model scenario variable]
-  (let [min -0.2
-        max 3.0
+  (let [val (temp-diff-data county year months model scenario variable)
+        min (nth (quartiles year months model scenario variable) 0)
+        max (nth (quartiles year months model scenario variable) 4)
         step (/ 100 (- max min))
-        val (temp-diff-data county year months model scenario variable)
         red (+ 50 (round (* step (- val min))))
         green 96
         blue (- 200 (round (* step (- val min))))]
     (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))
                :fill-opacity 1)))
-                                     
+
 (defn counties-map 
   ([year months variable]
      (counties-map year months "ensemble" "ensemble" variable "linear"))

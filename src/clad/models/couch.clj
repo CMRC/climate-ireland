@@ -86,7 +86,7 @@
                ["CGCM31" "A2"]
                ["HadGEM" "RCP45"]
                ["HadGEM" "RCP85"]
-               #_["ICARUS" "ICARUS"]])
+               ["ICARUS" "ICARUS"]])
 
 (defn ensemble-data [county year months variable]
   (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
@@ -109,7 +109,13 @@
 
 (defn temp-diff-data [county year months model scenario variable]
   (if (= model "ensemble")
-    (throw (Throwable. "Not implemented"))
+    (let [ref (/ (reduce #(+ %1 (ref-data county months (first %2) variable)) 0 ensemble)
+                 (count ensemble))
+          comp (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
+                          0 ensemble)
+                  (count ensemble))
+          res (- comp ref)]
+      res)
     (let [ref (ref-data county months model variable)
           comp (data-by-county county year months model scenario variable)
           res (- comp ref)]
