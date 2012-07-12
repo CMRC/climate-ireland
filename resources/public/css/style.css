@@ -17,13 +17,13 @@ body {
 	font-size: small;
 	
 }
-#wrapper {	
-    width: 1024px;
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    display: block;
-    margin-bottom: 20px;
+#wrapper {
+	width: 1024px;
+	margin-top: 20px;
+	margin-left: auto;
+	margin-right: auto;
+	display: block;
+	margin-bottom: 20px;
 }
 #banner {
 	width: 1018px;
@@ -126,16 +126,26 @@ body {
 	text-align: right;
 	border: 3px solid #396538;
 	border-radius: 5px;
-	float: right;
+	float: left;
 	background-color: rgba(39,65,38, 0.05);
 	}
 #view-2 {
-	width: 1005px;
+	width: 1015px;
 	height: 600px;
-	border: 3px solid #396538;
 	padding: 5px;
-	border-radius: 5px;
 	float: right;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	}
+}
+#view-2-map {
+	width: 500px;
+	height: 525px;
+	float: left;
+	border: 3px solid #396538;
+}
+#view-2-map-tool{
+	width: 500px;
+	height: 75px;
+	border: 3px solid #396538;
+	float: right;
+}
+
+	
