@@ -133,19 +133,45 @@ body {
 	width: 1015px;
 	height: 600px;
 	padding: 5px;
-	float: right;
+	float: left;
+}
+#view-2-1 {
+	width: 500px;
+	height: 595px;
+	float: left;
+	border: 3px solid #396538;
+}
+#view-2-2 {
+	width: 500px;
+	height: 595px;
+	float: left;
+	border: 3px solid #396538;
 }
 #view-2-map {
 	width: 500px;
 	height: 525px;
 	float: left;
-	border: 3px solid #396538;
 }
 #view-2-map-tool{
 	width: 500px;
-	height: 75px;
-	border: 3px solid #396538;
+	height: 70px;
+	float: left;	
+}
+#view-2-2-chart {
+	width: 500px;
+	height: 425px;
+	float: left;
+}
+#view-2-2-expl {
+	width: 500px;
+	height: 170px;
+	float: left;
+}
+#text{
+	width: 820px;
+	height: 610px;
 	float: right;
+	padding: 5px;
 }
 
 	
