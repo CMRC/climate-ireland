@@ -11,7 +11,7 @@
            (org.apache.batik.transcoder TranscoderInput
                                         TranscoderOutput)
            (java.io ByteArrayOutputStream
-                          ByteArrayInputStream)))
+                    ByteArrayInputStream)))
 
 (def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
 (def provinces-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
@@ -19,11 +19,13 @@
 (defn counties-data [year months model scenario variable]
   (map #(data-by-county % year months model scenario variable) counties))
 
-(defn quartiles [year months model scenario variable]
+(defn quartiles-slow [year months model scenario variable]
   (map #(/ (round (* % 100)) 100)
        (quantile (map (fn [county] (temp-diff-data county year months model scenario variable))
                       counties))))
 
+(def quartiles (memoize quartiles-slow))
+  
 (defn colour-on-quartiles [elem county year months model scenario variable]
   (let [val (temp-diff-data county year months model scenario variable)]
     (add-style elem :fill (cond (< val (nth (quartiles year months model scenario variable) 1))

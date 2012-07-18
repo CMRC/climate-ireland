@@ -4,7 +4,7 @@
         clojure.contrib.math))
 
 (def db "climate")
-(clutch/configure-view-server db (view-server-exec-string))
+;;(clutch/configure-view-server db (view-server-exec-string))
 
 (def provinces ["Leinster" "Munster" "Connaught" "Ulster"])
 
