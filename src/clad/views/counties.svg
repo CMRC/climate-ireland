@@ -84,7 +84,7 @@
      id="namedview3167"
      showgrid="false"
      inkscape:zoom="1.778571"
-     inkscape:cx="127.15363"
+     inkscape:cx="126.59139"
      inkscape:cy="520.00012"
      inkscape:window-x="65"
      inkscape:window-y="24"
@@ -319,30 +319,14 @@
            sodipodi:role="line"
            id="tspan3039"
            x="5211.1812"
-           y="9201.3486"></tspan></text>
+           y="9201.3486" /></text>
       <rect
          style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="min"
          width="450.18149"
          height="189.88635"
          x="4852.3638"
-         y="9357.2021"
-         inkscape:label="#rect3032" />
-      <rect
-         style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="min-3"
-         width="450.18149"
-         height="189.88635"
-         x="5290.3413"
-         y="9357.2021"
-         inkscape:label="#rect3032" />
-      <rect
-         style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="min-2"
-         width="450.18149"
-         height="189.88635"
-         x="5728.3193"
-         y="9357.2021"
+         y="9363.2148"
          inkscape:label="#rect3032" />
       <text
          xml:space="preserve"
@@ -370,6 +354,22 @@
            id="tspan3043"
            x="6066.6348"
            y="9718.0703">0.00</tspan></text>
+      <rect
+         style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="max"
+         width="450.18146"
+         height="189.88634"
+         x="5759.6216"
+         y="9363.2148"
+         inkscape:label="#rect3032" />
+      <rect
+         style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
+         id="min-6"
+         width="450.18146"
+         height="189.88634"
+         x="5305.9927"
+         y="9363.2148"
+         inkscape:label="#rect3032" />
     </g>
   </g>
 </svg>
