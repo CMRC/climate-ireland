@@ -42,7 +42,7 @@
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 600 :height 800)
+                    (save chart out-stream :width 400 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -58,7 +58,8 @@
                    (fn [start]
                      (/ (reduce
                          (fn [acc yr]
-                           (+ acc
+
+                          (+ acc
                               (temp-diff-data county yr months (first run)
                                               (second run) variable)))
                          0 
@@ -88,7 +89,7 @@
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 600 :height 800)
+                    (save chart out-stream :width 400 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -108,7 +109,7 @@
                          :group-by x)
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 600 :height 800)
+                    (save chart out-stream :width 450 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200

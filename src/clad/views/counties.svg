@@ -327,7 +327,7 @@
          inkscape:label="#rect3032" />
       <rect
          style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="min-3"
+         id="mid"
          width="231.90511"
          height="202.54549"
          x="5125.8066"
@@ -335,7 +335,7 @@
          inkscape:label="#rect3032" />
       <rect
          style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
-         id="min-2"
+         id="max"
          width="231.90511"
          height="202.54549"
          x="5351.4253"

@@ -31,7 +31,7 @@ body {
 	text-align: left;
 	border: 3px solid #396538;
 	border-radius: 5px;
-	background-image:url(file:///C|/src/CLAD/resources/public/img/Banner%20clouds_2.jpg);
+	background-image:url(/img/Banner.jpg);
 }
 #banner img {
     height: 80px;

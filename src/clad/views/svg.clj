@@ -35,51 +35,72 @@
                                 (< val (nth (quartiles year months model scenario variable) 3))
                                 "#967"
                                 :else "#b65"))))
-
+(defn linear-rgb [val min max]
+  (let [step (/ 100 (- max min))
+        red (+ 50 (round (* step (float (- val min)))))
+        green 96
+        blue (- 200 (round (* step (float (- val min)))))]
+    (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))))
+  
 (defn colour-on-linear [elem county year months model scenario variable]
   (let [val (temp-diff-data county year months model scenario variable)
         min (nth (quartiles year months model scenario variable) 0)
-        max (nth (quartiles year months model scenario variable) 4)
-        step (/ 100 (- max min))
-        red (+ 50 (round (* step (- val min))))
-        green 96
-        blue (- 200 (round (* step (- val min))))]
-    (add-style elem :fill (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))
-               :fill-opacity 1)))
+        max (nth (quartiles year months model scenario variable) 4)]
+    (add-style elem :fill (linear-rgb val min max))))
 
 (defn counties-map 
   ([year months variable]
      (counties-map year months "ensemble" "ensemble" variable "linear"))
   ([year months model scenario variable fill]
      (let [fill-fns {"linear" colour-on-linear,
-                     "quartiles" colour-on-quartiles}]
+                     "quartiles" colour-on-quartiles}
+           min (nth (quartiles year months model scenario variable) 0)
+           max (nth (quartiles year months model scenario variable) 4)
+           mid (/ (+ max min) 2)]
        {:status 200
         :headers {"Content-Type" "image/svg+xml"}
         :body
-        (emit (reduce #(transform-xml
-                        %1
-                        [{:id %2}]
-                        (fn [elem]
-                          (let [link (str "/welcome/svgbar/"
-                                          (apply str
-                                                 (interpose "/" [%2 year months model scenario
-                                                                 variable fill])))]
-                            [:a {:xlink:href link :target "_top"}
-                             (-> (add-attrs elem :onmouseover
-                                            (str "value(evt,'"
-                                                 (->
-                                                  (temp-diff-data %2 year months model scenario variable)
-                                                  (* 100)
-                                                  round
-                                                  (/ 100)
-                                                  float)
-                                                 "K : "
-                                                 %2
+        (emit (->
+               (reduce #(transform-xml
+                         %1
+                         [{:id %2}]
+                         (fn [elem]
+                           (let [link (str "/welcome/svgbar/"
+                                           (apply str
+                                                  (interpose "/" [%2 year months model scenario
+                                                                  variable fill])))]
+                             [:a {:xlink:href link :target "_top"}
+                              (-> (add-attrs elem :onmouseover
+                                             (str "value(evt,'"
+                                                  (->
+                                                   (temp-diff-data %2 year months model scenario variable)
+                                                   (* 100)
+                                                   round
+                                                   (/ 100)
+                                                   float)
+                                                  "K : "
+                                                  %2
                                                  "')"))
-                                 ((fill-fns fill) %2 year months model scenario variable))])))
-                      counties-svg			
-                      counties))})))
+                                  ((fill-fns fill) %2 year months model scenario variable))])))
+                       counties-svg			
+                       counties)
+               (transform-xml
+                [{:id "min-text"}]
+                #(set-content % (str (float min))))
+               (transform-xml
+                [{:id "max-text"}]
+                #(set-content % (str (float max))))
+               (transform-xml
+                [{:id "min"}]
+                #(add-style % :fill (linear-rgb min min max)))
+               (transform-xml
+                [{:id "mid"}]
+                #(add-style % :fill (linear-rgb mid min max)))
+               (transform-xml
+                [{:id "max"}]
+                #(add-style % :fill (linear-rgb max min max)))))})))
 
+  
 (defn counties-map-png 
   ([year months model scenario variable fill]
     (let [input (TranscoderInput. (str "http://www.climateireland.ie:8080/svg/" year "/" months "/" model
