@@ -8,12 +8,13 @@
                            [org.clojars.pallix/analemma "1.0.0-SNAPSHOT"]
                            [incanter "1.2.3"]
                            [clj-time "0.3.7"]
-                           [com.ashafa/clutch "0.3.1-SNAPSHOT"]
+                           [com.ashafa/clutch "0.4.0-SNAPSHOT"]
 			   [org.clojars.pallix/batik "1.7.0"]]
             :native-dependencies [[jriengine "0.8.4"]]
             :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]
                                [native-deps "1.0.5"]]
             :git-dependencies [["https://github.com/jolby/rincanter.git"]]
             :extra-classpath-dirs [".lein-git-deps/rincanter/src/"]
+            :plugins [[lein-ring "0.7.1"]]
             :main clad.server)
 
