@@ -115,6 +115,7 @@ body {
 }
 #main {
 	width:100%;
+	
 }
 .colb3 {
 	height: 200px;
@@ -130,22 +131,27 @@ body {
 	background-color: rgba(39,65,38, 0.05);
 	}
 #view-2 {
-	width: 1015px;
+	width: 1024px;
 	height: 600px;
-	padding: 5px;
+	padding-top: 5px;
+	padding-bottom: 5px;
 	float: left;
 }
 #view-2-1 {
-	width: 500px;
+	width: 505px;
 	height: 595px;
 	float: left;
 	border: 3px solid #396538;
+	border-radius: 5px;
+	
 }
 #view-2-2 {
-	width: 500px;
+	width: 505px;
 	height: 595px;
 	float: left;
 	border: 3px solid #396538;
+	border-radius: 5px;
+	float: right;
 }
 #view-2-map {
 	width: 500px;
@@ -167,11 +173,15 @@ body {
 	height: 170px;
 	float: left;
 }
-#text{
-	width: 820px;
-	height: 610px;
+#view-3-text{
+	width: 810px;
+	height: 600px;
 	float: right;
 	padding: 5px;
+	border: 3px solid #396538;
+	border-radius: 5px;
+	margin-top: 5px;
+	margin-bottom: 5px;
 }
 
 	
