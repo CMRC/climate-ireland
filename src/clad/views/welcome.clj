@@ -194,16 +194,35 @@
       (set-attr :href (:link cite))))
     emit*))
 
+(deftemplate climate-change "clad/views/View_3.html"
+  [text tab]
+  [:#content]
+  (content (select (html-resource text)[(keyword (str "#" tab))]))
+  [:#tabs]
+  (content (select (html-resource text)[:.buttons])))
+
+(deftemplate one-pane "clad/views/View_3.html"
+  [text]
+  [:#view-3-text]
+  (content (html-resource text)))
+
+(deftemplate two-pane "clad/views/welcome.html"
+  [text img]
+  [:#blurb]
+  (content (html-resource text))
+  [:#map]
+  (content {:tag :img :attrs {:src img}}))
+
 (deftemplate welcome "clad/views/welcome.html"
   [map]
   [:#map]
   (content map))
 
-(deftemplate svgmap "clad/views/welcome.html"
+(deftemplate svgmap "clad/views/View_2.html"
   [map blurb]
-  [:#map]
+  [:#view-2-map]
   (content map)
-  [:#blurb]
+  [:#view-2-2-chart]
   (content blurb))
 
 (defpage "/welcome/compare/:year1/:year2/:months/:variable"
@@ -259,7 +278,17 @@
   {:status 303
    :headers {"Location" "/welcome/plot/Cork/DJF/T_2M"}})
 
-(defpage "/clad/Resources/section/References/:ref"
+(defpage "/about" []
+  (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
+
+(defpage "/climate-change/:tab" {:keys [tab]}
+  (climate-change "clad/views/CI_ClimateChange.html" tab))
+
+(defpage "/adaptation" []
+  (one-pane "clad/views/CI_adaptation.html"))
+
+
+  (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
   (make-refs ref))
 (defpage "/clad" []

@@ -109,7 +109,7 @@
                          :group-by x)
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 450 :height 600)
+                    (save chart out-stream :width 500 :height 425)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
