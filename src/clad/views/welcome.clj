@@ -1,10 +1,14 @@
 (ns clad.views.welcome
-  (:require [clojure.contrib.string :as str])
+  (:require [clojure.contrib.string :as str]
+            [clojure.tools.logging :as log]
+            [cemerick.friend :as friend]
+            (cemerick.friend [workflows :as workflows]
+                             [credentials :as creds]))
   (:use [clad.views.site]
         [clad.views.charts]
         [clad.views.svg]
         [clad.models.couch]
-        [noir.core :only [defpage]]
+        [noir.core :only [defpage pre-route]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
@@ -196,6 +200,8 @@
 
 (deftemplate climate-change "clad/views/View_3.html"
   [text tab]
+  [:#user]
+  (content "")
   [:#content]
   (content (select (html-resource text)[(keyword (str "#" tab))]))
   [:#tabs]
@@ -224,6 +230,8 @@
   (content map)
   [:#view-2-2-chart]
   (content blurb))
+
+(deftemplate login "clad/views/Login.html" [])
 
 (defpage "/welcome/compare/:year1/:year2/:months/:variable"
   {:keys [year1 year2 months variable]}
@@ -275,8 +283,8 @@
                     :height "100%"}}))
 
 (defpage "/" []
-  {:status 303
-   :headers {"Location" "/welcome/plot/Cork/DJF/T_2M"}})
+   {:status 303
+    :headers {"Location" "/welcome/plot/Cork/DJF/T_2M"}})
 
 (defpage "/about" []
   (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
@@ -333,3 +341,11 @@
 (defpage "/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
   (barchart county (Integer/parseInt year) months variable))
 
+(defpage "/login" []
+  (login))
+
+(pre-route [:get ["/:path" :path #"(about)"]] {:as req}
+           (friend/authenticated 
+                                        ; We don't need to do anything, we just want to make sure we're 
+                                        ; authenticated. 
+            (log/info "access: " req)))
