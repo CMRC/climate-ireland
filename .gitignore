@@ -31,3 +31,4 @@ ehthumbs.db
 Icon?
 Thumbs.db
 .lein-deps-sum
+src/clad/pw.clj
