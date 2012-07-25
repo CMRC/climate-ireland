@@ -22,11 +22,11 @@
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
         port (Integer. (get (System/getenv) "PORT" "8080"))]
-    (log-config/set-logger! :level :debug
+    #_(log-config/set-logger! :level :debug
                             :out (org.apache.log4j.FileAppender.
                                   (org.apache.log4j.EnhancedPatternLayout. org.apache.log4j.EnhancedPatternLayout/TTCC_CONVERSION_PATTERN)
                                   "logs/foo.log"
                                   true))
     (server/start port {:mode mode
                         :ns 'clad}))
-  (log/info "Server started"))
+  #_(log/info "Server started"))
