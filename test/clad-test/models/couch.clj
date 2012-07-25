@@ -1,4 +1,4 @@
-(ns clad.test-models.couch
+(ns clad-test.models.couch
   (:use clojure.test))
 
 (deftest fail
