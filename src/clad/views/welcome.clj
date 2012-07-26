@@ -211,19 +211,31 @@
   [:#blurb]
   (content (html-resource text))
   [:#map]
-  (content {:tag :img :attrs {:src img}}))
+  (content {:tag :img :attrs {:src img}})
+  [:#banner]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
+  [:#footer]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
 
 (deftemplate welcome "clad/views/welcome.html"
   [map]
   [:#map]
-  (content map))
+  (content map)
+  [:#banner]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
+  [:#footer]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
 
 (deftemplate svgmap "clad/views/View_2.html"
   [map blurb]
   [:#view-2-map]
   (content map)
   [:#view-2-2-chart]
-  (content blurb))
+  (content blurb)
+  [:#banner]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
+  [:#footer]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
 
 (deftemplate login "clad/views/Login.html" [])
 
