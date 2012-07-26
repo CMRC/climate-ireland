@@ -282,7 +282,7 @@
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" tab))
 
-(defpage "/ci/adaptation" {:keys [tab]}
+(defpage "/ci/adaptation/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_adaptation.html" tab))
 
 
