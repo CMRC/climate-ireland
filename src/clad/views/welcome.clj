@@ -8,7 +8,8 @@
         [clad.views.charts]
         [clad.views.svg]
         [clad.models.couch]
-        [noir.core :only [defpage pre-route redirect]]
+        [noir.core :only [defpage pre-route]]
+        [noir.response :only [redirect]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
@@ -285,9 +286,6 @@
 (defpage "/ci/about" []
   (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
 
-(defpage "/" []
-   redirect "/ci/about")
-
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (climate-change "clad/views/CI_ClimateChange.html" tab))
 
@@ -295,7 +293,7 @@
   (one-pane "clad/views/CI_adaptation.html"))
 
 
-  (defpage "/clad/Resources/section/References/:ref"
+(defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
   (make-refs ref))
 (defpage "/clad" []
