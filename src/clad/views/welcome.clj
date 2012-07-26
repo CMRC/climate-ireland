@@ -199,19 +199,12 @@
       (set-attr :href (:link cite))))
     emit*))
 
-(deftemplate climate-change "clad/views/View_3.html"
+(deftemplate one-pane "clad/views/View_3.html"
   [text tab]
-  [:#user]
-  (content "")
   [:#content]
   (content (select (html-resource text)[(keyword (str "#" tab))]))
   [:#tabs]
   (content (select (html-resource text)[:.buttons])))
-
-(deftemplate one-pane "clad/views/View_3.html"
-  [text]
-  [:#view-3-text]
-  (content (html-resource text)))
 
 (deftemplate two-pane "clad/views/welcome.html"
   [text img]
@@ -287,10 +280,10 @@
   (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
-  (climate-change "clad/views/CI_ClimateChange.html" tab))
+  (one-pane "clad/views/CI_ClimateChange.html" tab))
 
-(defpage "/ci/adaptation" []
-  (one-pane "clad/views/CI_adaptation.html"))
+(defpage "/ci/adaptation" {:keys [tab]}
+  (one-pane "clad/views/CI_adaptation.html" tab))
 
 
 (defpage "/clad/Resources/section/References/:ref"
