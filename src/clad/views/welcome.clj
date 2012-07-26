@@ -8,7 +8,7 @@
         [clad.views.charts]
         [clad.views.svg]
         [clad.models.couch]
-        [noir.core :only [defpage pre-route]]
+        [noir.core :only [defpage pre-route redirect]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
@@ -233,31 +233,31 @@
 
 (deftemplate login "clad/views/Login.html" [])
 
-(defpage "/welcome/compare/:year1/:year2/:months/:variable"
+(defpage "/ci/welcome/compare/:year1/:year2/:months/:variable"
   {:keys [year1 year2 months variable]}
   (welcome {:tag :img
             :attrs {:src (str "/svg/compare/" year1 "/" year2 "/" months "/" variable)
                     :height "100%"}}))
-(defpage "/welcome/plot/:region/:months/:variable/decadal"
+(defpage "/ci/welcome/plot/:region/:months/:variable/decadal"
   {:keys [region months variable]}
   (welcome {:tag :img
             :attrs {:src (str "/plot/" region "/" months "/" variable "/decadal")
                     :height "100%"}}))
 
-(defpage "/welcome/plot/:region/:months/:variable"
+(defpage "/ci/welcome/plot/:region/:months/:variable"
   {:keys [region months variable]}
   (welcome {:tag :img
             :attrs {:src (str "/plot/" region "/" months "/" variable)
                     :height "100%"}}))
 
-(defpage "/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
+(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :embed
             :attrs {:src (str "/svg/" year "/" months "/" model "/"
                               scenario "/" variable "/" shading)
                     :type "image/svg+xml"}}))
 
-(defpage "/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
+(defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
   (svgmap {:tag :embed
            :attrs {:src (str "/svg/" year "/" months "/" model "/"
@@ -268,31 +268,30 @@
                              "/" months "/" variable)
                    :max-width "100%"}}))
 
-(defpage "/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
+(defpage "/ci/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :img
             :attrs {:src (str "/png/" year "/" months "/" model "/"
 	    scenario "/" variable "/" shading)
                     :height "100%"}}))
 
-(defpage "/welcome/bar/:year/:county/:months/:variable"
+(defpage "/ci/welcome/bar/:year/:county/:months/:variable"
   {:keys [year county months variable]}
   (welcome {:tag :img
             :attrs {:src (str "/bar/" year "/" county
                               "/" months "/" variable)
                     :height "100%"}}))
 
-(defpage "/" []
-   {:status 303
-    :headers {"Location" "/welcome/plot/Cork/DJF/T_2M"}})
-
-(defpage "/about" []
+(defpage "/ci/about" []
   (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
 
-(defpage "/climate-change/:tab" {:keys [tab]}
+(defpage "/" []
+   redirect "/ci/about")
+
+(defpage "/ci/climate-change/:tab" {:keys [tab]}
   (climate-change "clad/views/CI_ClimateChange.html" tab))
 
-(defpage "/adaptation" []
+(defpage "/ci/adaptation" []
   (one-pane "clad/views/CI_adaptation.html"))
 
 
@@ -344,8 +343,8 @@
 (defpage "/login" []
   (login))
 
-(pre-route [:get ["/:path" :path #"(about)"]] {:as req}
+(pre-route "/ci/*" {:as req}
            (friend/authenticated 
                                         ; We don't need to do anything, we just want to make sure we're 
                                         ; authenticated. 
-            (log/info "access: " req)))
+            nil))
