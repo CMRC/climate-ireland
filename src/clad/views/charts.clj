@@ -42,7 +42,7 @@
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 400 :height 600)
+                    (save chart out-stream :width 397 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -89,7 +89,7 @@
                 (add-lines icax icay :series-label "ICARUS"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 400 :height 600)
+                    (save chart out-stream :width 397 :height 600)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
@@ -109,7 +109,7 @@
                          :group-by x)
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 500 :height 425)
+                    (save chart out-stream :width 397 :height 580)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200

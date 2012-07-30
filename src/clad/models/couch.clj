@@ -86,7 +86,7 @@
                ["CGCM31" "A2"]
                ["HadGEM" "RCP45"]
                ["HadGEM" "RCP85"]
-               ["ICARUS" "ICARUS"]])
+               #_["ICARUS" "ICARUS"]])
 
 (defn ensemble-data [county year months variable]
   (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))

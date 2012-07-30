@@ -320,27 +320,27 @@
 (defpage [:get ["/clad/:page/section/:section/topic/:more"]]
   {:keys [more page section]}
   (clad :topic more :glossary "Climate" :page page :section section))
-(defpage "/csv/:year/:months/:model/:scenario/:variable"
+(defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
   (by-county (Integer/parseInt year) months  model scenario variable))
-(defpage "/svg/:year/:months/:model/:scenario/:variable/:fill"
+(defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
     (counties-map (Integer/parseInt year) months model scenario variable fill))
-(defpage "/png/:year/:months/:model/:scenario/:variable/:fill"
+(defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map-png (Integer/parseInt year) months model scenario variable fill))
-(defpage "/svg/:year/:months/ensemble/:variable"
+(defpage "/ci/svg/:year/:months/ensemble/:variable"
   {:keys [year months variable]}
   (counties-map (Integer/parseInt year) months variable))
-(defpage "/svg/compare/:year1/:year2/:months/:variable"
+(defpage "/ci/svg/compare/:year1/:year2/:months/:variable"
   {:keys [year1 year2 months variable]}
   (compare-map (Integer/parseInt year1) (Integer/parseInt year2) months variable))
-(defpage "/html/:year/:months" {:keys [year months] } (table-output year months))
-(defpage "/plot/:county/:months/:variable" {:keys [county months variable]} 
+(defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
+(defpage "/ci/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))
-(defpage "/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
+(defpage "/ci/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
   (plot-models-decadal county months variable))
-(defpage "/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
+(defpage "/ci/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
   (barchart county (Integer/parseInt year) months variable))
 
 (defpage "/login" []
