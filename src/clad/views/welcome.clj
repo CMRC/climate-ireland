@@ -297,6 +297,11 @@
 (defpage "/ci/adaptation/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_adaptation.html" tab))
 
+(defpage "/ci/sectors/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_sectors.html" tab))
+
+(defpage "/ci/resources/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_Resources.html" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
