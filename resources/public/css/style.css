@@ -15,6 +15,7 @@ body {
 	color: #252525;
 	background-color: white;
 	font-size: small;
+	text-align: justify;
 	
 }
 #wrapper {
@@ -182,6 +183,7 @@ body {
 	border-radius: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	overflow:scroll;
 }
 
 	
