@@ -9,30 +9,33 @@
 
 
 (defn plot-models [county months variable]
-  (let [a1b (get-county-data county months "CGCM31" "A1B" variable)
+  (let [temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"]
+        ylab (if (some #(= variable %) temp-vars) "ΔK" "%")
+        diff-fn (if (some #(= variable %) temp-vars) - #(* (/ (- %1 %2) %2) 100))
+        a1b (get-county-data county months "CGCM31" "A1B" variable)
         x (map #(coerce/to-long (time/date-time (:year (:value %)))) a1b)
-	a1by (map #(- (:datum.value (:value %))
+	a1by (map #(diff-fn (:datum.value (:value %))
                       (ref-data county months "CGCM31" variable)) a1b)
 	a2 (get-county-data county months "CGCM31" "A2" variable)
-        a2y (map #(- (:datum.value (:value %))
+        a2y (map #(diff-fn (:datum.value (:value %))
                      (ref-data county months "CGCM31" variable)) a2)
         cc20 (get-county-data county months "CGCM31" "C20" variable)
-        cc20y (map #(- (:datum.value (:value %))
+        cc20y (map #(diff-fn (:datum.value (:value %))
                        (ref-data county months "CGCM31" variable)) cc20)		
         cc20x (map #(coerce/to-long (time/date-time (:year (:value %)))) cc20)
 	ha45 (get-county-data county months "HadGEM" "RCP45" variable)
-        ha45y (map #(- (:datum.value (:value %))
+        ha45y (map #(diff-fn (:datum.value (:value %))
                        (ref-data county months "HadGEM" variable)) ha45)			
 	hc20 (get-county-data county months "HadGEM" "C20" variable)
-        hc20y (map #(- (:datum.value (:value %))
+        hc20y (map #(diff-fn (:datum.value (:value %))
                        (ref-data county months "HadGEM" variable)) hc20)		
         ha85 (get-county-data county months "HadGEM" "RCP85" variable)
-        ha85y (map #(- (:datum.value (:value %))
+        ha85y (map #(diff-fn (:datum.value (:value %))
                       (ref-data county months "HadGEM" variable)) ha85)
         ica [2025 2055 2085]
         icax (map #(coerce/to-long (time/date-time %)) ica)
         icay (map #(data-by-county county (- % 5) months "ICARUS" "ICARUS" variable) ica)
-        chart (doto (time-series-plot x a1by :y-label "ΔK" :x-label "" :series-label "CGCM3.1 A1B"
+        chart (doto (time-series-plot x a1by :y-label ylab :x-label "" :series-label "CGCM3.1 A1B"
                                       :legend true :title (str county " " variable " " months))
                 (add-lines x a2y :series-label "CGCM3.1 A2")                
                 (add-lines cc20x cc20y :series-label "CGCM3.1 C20")                
