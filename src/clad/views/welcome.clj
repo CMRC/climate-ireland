@@ -242,49 +242,49 @@
 (defpage "/ci/welcome/compare/:year1/:year2/:months/:variable"
   {:keys [year1 year2 months variable]}
   (welcome {:tag :img
-            :attrs {:src (str "/svg/compare/" year1 "/" year2 "/" months "/" variable)
+            :attrs {:src (str "/ci/svg/compare/" year1 "/" year2 "/" months "/" variable)
                     :height "100%"}}))
 (defpage "/ci/welcome/plot/:region/:months/:variable/decadal"
   {:keys [region months variable]}
   (welcome {:tag :img
-            :attrs {:src (str "/plot/" region "/" months "/" variable "/decadal")
+            :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal")
                     :height "100%"}}))
 
 (defpage "/ci/welcome/plot/:region/:months/:variable"
   {:keys [region months variable]}
   (welcome {:tag :img
-            :attrs {:src (str "/plot/" region "/" months "/" variable)
+            :attrs {:src (str "/ci/plot/" region "/" months "/" variable)
                     :height "100%"}}))
 
 (defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :embed
-            :attrs {:src (str "/svg/" year "/" months "/" model "/"
+            :attrs {:src (str "/ci/svg/" year "/" months "/" model "/"
                               scenario "/" variable "/" shading)
                     :type "image/svg+xml"}}))
 
 (defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
   (svgmap {:tag :embed
-           :attrs {:src (str "/svg/" year "/" months "/" model "/"
+           :attrs {:src (str "/ci/svg/" year "/" months "/" model "/"
                              scenario "/" variable "/" shading)
                    :type "image/svg+xml"}}
           {:tag :img
-           :attrs {:src (str "/bar/" county "/" year
+           :attrs {:src (str "/ci/bar/" county "/" year
                              "/" months "/" variable)
                    :max-width "100%"}}))
 
 (defpage "/ci/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :img
-            :attrs {:src (str "/png/" year "/" months "/" model "/"
+            :attrs {:src (str "/ci/png/" year "/" months "/" model "/"
 	    scenario "/" variable "/" shading)
                     :height "100%"}}))
 
 (defpage "/ci/welcome/bar/:year/:county/:months/:variable"
   {:keys [year county months variable]}
   (welcome {:tag :img
-            :attrs {:src (str "/bar/" year "/" county
+            :attrs {:src (str "/ci/bar/" year "/" county
                               "/" months "/" variable)
                     :height "100%"}}))
 
@@ -345,6 +345,8 @@
 	 (plot-models county months variable))
 (defpage "/ci/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
   (plot-models-decadal county months variable))
+(defpage "/ci/plot/:county/:months/:variable/decadal-bar" {:keys [county months variable]} 
+  (decadal-bar county months variable))
 (defpage "/ci/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
   (barchart county (Integer/parseInt year) months variable))
 
