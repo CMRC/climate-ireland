@@ -65,7 +65,7 @@
                          %1
                          [{:id %2}]
                          (fn [elem]
-                           (let [link (str "/welcome/svgbar/"
+                           (let [link (str "/ci/welcome/svgbar/"
                                            (apply str
                                                   (interpose "/" [%2 year months model scenario
                                                                   variable fill])))]
@@ -150,7 +150,7 @@
                                           b base
                                           fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
                                       (add-style elem :fill fill)))))
-                           link "/welcome"]
+                           link "/ci/welcome"]
                        [:a {:xlink:href link} g])))
                  provinces-svg
                  provinces))})
