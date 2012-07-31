@@ -65,10 +65,10 @@
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (defn data-by-county [county year months model scenario variable]
-  (if-let [d (->> (get-county-by-year county year months model scenario variable)
+  (when-let [d (->> (get-county-by-year county year months model scenario variable)
                   first 
                   :value
-                  :datum.value)] d -1))
+                  :datum.value)] d))
 
 (defn ref-data-slow [county months model variable]
   (try
