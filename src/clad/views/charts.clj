@@ -72,7 +72,7 @@
         diff-fn (if (temp-var? variable) temp-diff-data diff-data)
         step 10
         base-range (range 1961 1991 10)
-        projected-range (range 2021 2061 10)
+        projected-range (range 2021 2031 10)
         a1b (decadal ["CGCM31" "A1B"] projected-range step diff-fn county months variable)
         x (map #(coerce/to-long (time/date-time (+ 5 %))) projected-range)
         refx (map #(coerce/to-long (time/date-time (+ 5 %))) base-range)
@@ -114,25 +114,51 @@
                    (decadal ["CGCM31" "A2"] projected-range step diff-fn county months variable))          
            (reduce conj (decadal ["HadGEM" "RCP45"] projected-range step diff-fn county months variable))       
            (reduce conj (decadal ["HadGEM" "RCP85"] projected-range step diff-fn county months variable))
-           (reduce conj (map #(data-by-county county % months "ICARUS" "ICARUS" variable) [2020 2050 2080])))
+           #_(reduce conj (map #(data-by-county county % months "ICARUS" "ICARUS" variable) [2020 2050 2080])))
         decades ["2020s" "2030s" "2040s" "2050s"]
         x (->>
            (reduce conj decades decades)
            (reduce conj decades)
            (reduce conj decades)
-           (reduce conj ["2020s" "2050s" "2080s"]))
+           #_(reduce conj ["2020s" "2050s" "2080s"]))
         z (->>
            (reduce conj (repeat 4 "CGCM31 A1B")
                    (repeat 4 "CGCM31 A2"))
            (reduce conj (repeat 4 "HadGEM RCP45"))
            (reduce conj (repeat 4 "HadGEM RCP85"))
-           (reduce conj (repeat 3 "ICARUS")))
+           #_(reduce conj (repeat 3 "ICARUS")))
         p (println x y z)
         chart (bar-chart x y :title (str variable " " county " " months)
                          :x-label ""			     
                          :y-label (if (temp-var? variable) "ΔK" "%")
                          :legend true
                          :group-by z)
+        out-stream (ByteArrayOutputStream.)
+        in-stream (do
+                    (save chart out-stream :width 397 :height 580)
+                    (ByteArrayInputStream. 
+                     (.toByteArray out-stream)))]
+    {:status 200
+     :headers {"Content-Type" "image/png"}
+     :body in-stream}))
+
+(defn decadal-box [county months variable]
+  (let [diff-fn (if (temp-var? variable) temp-diff-data diff-data)
+        step 10
+        base-range (range 1961 1991 10)
+        projected-range (range 2021 2061 10)
+        chart (doto (box-plot (map #(first (decadal % [2021] 10 diff-fn county months variable)) ensemble)
+                              :legend true :y-label (if (temp-var? variable) "ΔK" "%")
+                              :series-label "2020s")
+                (add-box-plot (map #(first (decadal % [2031] 10 diff-fn county months variable)) ensemble)
+                              :legend true
+                              :series-label "2030s")
+                (add-box-plot (map #(first (decadal % [2041] 10 diff-fn county months variable)) ensemble)
+                              :legend true
+                              :series-label "2040s")
+                (add-box-plot (map #(first (decadal % [2051] 10 diff-fn county months variable)) ensemble)
+                              :legend true
+                              :series-label "2050s"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save chart out-stream :width 397 :height 580)

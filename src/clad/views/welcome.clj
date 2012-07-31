@@ -249,6 +249,10 @@
   (welcome {:tag :img
             :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal")
                     :height "100%"}}))
+(defpage "/ci/welcome/plot/:region/:months/:variable/decadal-box"
+  {:keys [region months variable]}
+  (welcome {:tag :img
+            :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal-box")}}))
 
 (defpage "/ci/welcome/plot/:region/:months/:variable"
   {:keys [region months variable]}
@@ -347,6 +351,8 @@
   (plot-models-decadal county months variable))
 (defpage "/ci/plot/:county/:months/:variable/decadal-bar" {:keys [county months variable]} 
   (decadal-bar county months variable))
+(defpage "/ci/plot/:county/:months/:variable/decadal-box" {:keys [county months variable]} 
+  (decadal-box county months variable))
 (defpage "/ci/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
   (barchart county (Integer/parseInt year) months variable))
 
