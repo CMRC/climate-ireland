@@ -186,4 +186,24 @@ body {
 	overflow:scroll;
 }
 
+.text-pic-right{
+	width: 200px;
+	height: 600px;
+	float: right;
+	padding: 5px;
+	position:relative;
+	margin: 5px;
+	margin-top: 20px;
+	}
+	
+.text-pic-bottom{
+	width: 790px;
+	height: 150px;
+	position: relative;
+
+	
+	
+	}
+	
+
 	
