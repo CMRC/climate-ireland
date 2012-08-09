@@ -16,7 +16,7 @@
        :workflows [(workflows/interactive-form)] 
        :login-uri "/login" 
        :unauthorized-redirect-uri "/login" 
-       :default-landing-uri "/"}) 
+       :default-landing-uri "/ci/about"}) 
 
 
 (defn -main [& m]

@@ -292,6 +292,12 @@
                               "/" months "/" variable)
                     :height "100%"}}))
 
+(defpage "/" []
+  (redirect "/ci/about"))
+
+(defpage "/ci" []
+  (redirect "/ci/about"))
+
 (defpage "/ci/about" []
   (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
 
@@ -357,7 +363,7 @@
   (barchart county (Integer/parseInt year) months variable))
 
 (defpage "/login" []
-  (login))
+  (two-pane "clad/views/Login.html" ""))
 
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
