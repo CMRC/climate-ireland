@@ -184,7 +184,10 @@ body {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	overflow:scroll;
-}
+	}
+	#view-3-text img{
+	margin: 5px;
+	}
 
 .text-pic-right{
 	width: 200px;
