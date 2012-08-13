@@ -1,6 +1,6 @@
 # CLAD
 
-Coastal Resilience & Climate Adaptation Ireland website.
+Climate Adaptation Ireland website.
 
 [![Build Status](https://secure.travis-ci.org/CMRC/CLAD.png)](http://travis-ci.org/CMRC/CLAD)
 
