@@ -13,7 +13,7 @@ lein run
 
 ## License
 
-Copyright (C) 2011 Coastal & Marine Research Centre
+Copyright (C) 2011-2012 Coastal & Marine Research Centre
 
 Distributed under the Eclipse Public License, the same as Clojure.
 
