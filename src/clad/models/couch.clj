@@ -1,10 +1,28 @@
 (ns clad.models.couch
-  (:require [com.ashafa.clutch :as clutch])
+  (:require [com.ashafa.clutch :as clutch]
+            [cemerick.friend [credentials :as creds]])
   (:use [com.ashafa.clutch.view-server]
         clojure.contrib.math))
 
+;; (clutch/with-db db
+;;   (clutch/save-view "users"
+;;                     (clutch/view-server-fns
+;;                      :clojure
+;;                      {:users
+;;                       {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
+
+;; (clutch/with-db db
+;;   (clutch/put-document {:username ""
+;;                         :password (creds/hash-bcrypt "")
+;;                         :roles #{::user}}))
+
 (def db "climate")
 ;;(clutch/configure-view-server db (view-server-exec-string))
+
+(defn get-users []
+  (clutch/with-db db
+    (reduce #(assoc %1 (:key %2) (:value %2)) {} (clutch/get-view "users" :users))))
+
 
 (def provinces ["Leinster" "Munster" "Connaught" "Ulster"])
 

@@ -1,7 +1,7 @@
 (ns clad.pw
-  (:require (cemerick.friend [credentials :as creds])))
+  (:require (cemerick.friend [credentials :as creds]))
+  (:use [clad.models.couch]))
   
-(def users {"guest" {:username "guest"
-                     :password (creds/hash-bcrypt "climate")
-                     :roles #{::user}}})
+(def users (get-users))
+
 

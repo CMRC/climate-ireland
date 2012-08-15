@@ -1,5 +1,5 @@
 (defproject clad "0.1.0-SNAPSHOT"
-            :description "CLAD: Coastal Adapatation and Climate Resilence for Ireland"
+            :description "Irish Climate Information Platform"
             :dependencies [[clj-stacktrace "0.2.4"]
                            [org.clojure/clojure "1.3.0"]
                            [enlive "1.0.0"]
@@ -12,10 +12,7 @@
 			   [org.clojars.pallix/batik "1.7.0"]
                            [clj-logging-config "1.9.7"]
                            [com.cemerick/friend "0.0.9"]]
-            :native-dependencies [[jriengine "0.8.4"]]
-            :dev-dependencies [[swank-clojure "1.4.0-SNAPSHOT"]
-                               [native-deps "1.0.5"]]
-            :git-dependencies [["https://github.com/jolby/rincanter.git"]]
+            :dev-dependencies [swank-clojure "1.4.0-SNAPSHOT"]
             :extra-classpath-dirs [".lein-git-deps/rincanter/src/"]
             :plugins [[lein-ring "0.7.1"]]
             :main clad.server)
