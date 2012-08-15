@@ -20,8 +20,12 @@
 ;;(clutch/configure-view-server db (view-server-exec-string))
 
 (defn get-users []
-  (clutch/with-db db
-    (reduce #(assoc %1 (:key %2) (:value %2)) {} (clutch/get-view "users" :users))))
+  (try
+    (clutch/with-db db
+      (reduce #(assoc %1 (:key %2) (:value %2)) {} (clutch/get-view "users" :users)))
+    (catch java.net.ConnectException e {"local" {:username "local"
+                                                 :password "local"
+                                                 :roles #{::user}}})))
 
 
 (def provinces ["Leinster" "Munster" "Connaught" "Ulster"])
