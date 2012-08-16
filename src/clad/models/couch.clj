@@ -23,8 +23,9 @@
   (try
     (clutch/with-db db
       (reduce #(assoc %1 (:key %2) (:value %2)) {} (clutch/get-view "users" :users)))
-    (catch java.net.ConnectException e {"local" {:username "local"
-                                                 :password "local"
+    ;;for testing locally without the database we supply a default password
+    (catch java.io.IOException e {"local" {:username "local"
+                                                 :password (creds/hash-bcrypt "local")
                                                  :roles #{::user}}})))
 
 
