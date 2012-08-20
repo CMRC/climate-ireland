@@ -80,7 +80,6 @@
       (clutch/get-view "counties-year" :by-county-year {:key [county year months model scenario variable]})
       (catch java.net.ConnectException e [{:region county :year year :months months :model model
                                            :scenario scenario :variable variable :datum.value 1}]))))
-(get-county-by-year "Leinster" 2021 "JJA" "CGCM31" "A1B" "T_2M")  
 (defn get-models []
   (try
     (clutch/with-db db
