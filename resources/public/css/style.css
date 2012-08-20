@@ -206,8 +206,12 @@ body {
 	width: 790px;
 	height: 150px;
 	position: relative;
-
+	}
 	
+#text-box{
+	padding: 5px;
+	border: 3px #396538 solid;
+	background-color: #BDD2B7;
 	
 	}
 	

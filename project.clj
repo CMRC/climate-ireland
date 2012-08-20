@@ -12,7 +12,6 @@
 			   [org.clojars.pallix/batik "1.7.0"]
                            [clj-logging-config "1.9.7"]
                            [com.cemerick/friend "0.0.9"]]
-            :dev-dependencies [swank-clojure "1.4.0-SNAPSHOT"]
             :extra-classpath-dirs [".lein-git-deps/rincanter/src/"]
             :plugins [[lein-ring "0.7.1"]]
             :main clad.server)
