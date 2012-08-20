@@ -340,13 +340,10 @@
   (by-county (Integer/parseInt year) months  model scenario variable))
 (defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
-    (provinces-map (Integer/parseInt year) months model scenario variable fill))
+  (provinces-map (Integer/parseInt year) months model scenario variable fill))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map-png (Integer/parseInt year) months model scenario variable fill))
-(defpage "/ci/svg/compare/:year1/:year2/:months/:variable"
-  {:keys [year1 year2 months variable]}
-  (compare-map (Integer/parseInt year1) (Integer/parseInt year2) months variable))
 (defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
 (defpage "/ci/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))

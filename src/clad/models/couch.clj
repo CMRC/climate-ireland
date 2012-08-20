@@ -11,7 +11,7 @@
 ;;                      {:users
 ;;                       {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
 
-;; (clutch/with-db db
+;;(clutch/with-db db
 ;;   (clutch/put-document {:username ""
 ;;                         :password (creds/hash-bcrypt "")
 ;;                         :roles #{::user}}))
@@ -79,8 +79,8 @@
     (clutch/with-db db
       (clutch/get-view "counties-year" :by-county-year {:key [county year months model scenario variable]})
       (catch java.net.ConnectException e [{:region county :year year :months months :model model
-                                           :scenario scenario :varibale variable :datum.value 1}]))))
-  
+                                           :scenario scenario :variable variable :datum.value 1}]))))
+(get-county-by-year "Leinster" 2021 "JJA" "CGCM31" "A1B" "T_2M")  
 (defn get-models []
   (try
     (clutch/with-db db
@@ -188,3 +188,7 @@
 (defn all-counties [year months model scenario variable]
   (map #(str (data-by-county % year months model scenario variable) ",") counties))
 
+
+(def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
+
+(defn temp-var? [variable] (some #(= variable %) temp-vars))

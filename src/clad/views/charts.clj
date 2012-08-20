@@ -7,12 +7,9 @@
                     ByteArrayInputStream)
            (java.lang Integer)))
 
-(def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
-
-(defn temp-var? [variable] (some #(= variable %) temp-vars))
 
 (defn plot-models [county months variable]
-  (let [ylab (if (temp-var? variable) "ΔK" "%")
+  (let [ylab (if (temp-var? variable) "°C" "%")
         diff-fn (if (some #(= variable %) temp-vars) - #(* (/ (- %1 %2) %2) 100))
         a1b (get-county-data county months "CGCM31" "A1B" variable)
         x (map #(coerce/to-long (time/date-time (:year (:value %)))) a1b)
@@ -68,7 +65,7 @@
         step)) r))
   
 (defn plot-models-decadal [county months variable]
-  (let [ylab (if (temp-var? variable) "ΔK" "%")
+  (let [ylab (if (temp-var? variable) "Δ°C" "%")
         diff-fn (if (temp-var? variable) temp-diff-data diff-data)
         step 10
         base-range (range 1961 1991 10)
@@ -130,7 +127,7 @@
         p (println x y z)
         chart (bar-chart x y :title (str variable " " county " " months)
                          :x-label ""			     
-                         :y-label (if (temp-var? variable) "ΔK" "%")
+                         :y-label (if (temp-var? variable) "Δ°C" "%")
                          :legend true
                          :group-by z)
         out-stream (ByteArrayOutputStream.)
@@ -177,7 +174,7 @@
         x (cons "ICARUS" (map #(str (first %) " " (second %)) ensemble))
         chart (bar-chart x y :title (str county " " year " " months " " variable)
                          :x-label ""			     
-                         :y-label (if (temp-var? variable) "ΔK" "%")
+                         :y-label (if (temp-var? variable) "Δ°C" "%")
                          :legend true
                          :group-by x)
         out-stream (ByteArrayOutputStream.)
