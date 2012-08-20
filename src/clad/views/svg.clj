@@ -35,6 +35,7 @@
                                 (< val (nth (quartiles year months model scenario variable) 3))
                                 "#967"
                                 :else "#b65"))))
+
 (defn linear-rgb [val min max]
   (let [step (/ 100 (- max min))
         red (+ 50 (round (* step (float (- val min)))))
@@ -48,11 +49,17 @@
         max (nth (quartiles year months model scenario variable) 4)]
     (add-style elem :fill (linear-rgb val min max))))
 
-(defn counties-map 
+(defn regions-map 
   ([year months variable]
-     (counties-map year months "ensemble" "ensemble" variable "linear"))
-  ([year months model scenario variable fill]
-     (let [fill-fns {"linear" colour-on-linear,
+     (regions-map year months "ensemble" "ensemble" variable "linear"))
+  ([year months model scenario variable fill region]
+     (let [regions-svg (case region
+                         :county counties-svg
+                         :province provinces-svg)
+           regions (case region
+                     :county counties
+                     :province provinces)
+           fill-fns {"linear" colour-on-linear,
                      "quartiles" colour-on-quartiles}
            min (nth (quartiles year months model scenario variable) 0)
            max (nth (quartiles year months model scenario variable) 4)
@@ -82,8 +89,8 @@
                                                   %2
                                                  "')"))
                                   ((fill-fns fill) %2 year months model scenario variable))])))
-                       counties-svg			
-                       counties)
+                       regions-svg			
+                       regions)
                (transform-xml
                 [{:id "min-text"}]
                 #(set-content % (str (float min))))
@@ -101,6 +108,18 @@
                 #(add-style % :fill (linear-rgb max min max)))))})))
 
   
+(defn counties-map 
+  ([year months variable]
+     (regions-map year months "ensemble" "ensemble" variable "linear" :county))
+  ([year months model scenario variable fill]
+     (regions-map year months model scenario variable fill :county)))
+
+(defn provinces-map 
+  ([year months variable]
+     (regions-map year months "ensemble" "ensemble" variable "linear" :province))
+  ([year months model scenario variable fill]
+     (regions-map year months model scenario variable fill :province)))
+
 (defn counties-map-png 
   ([year months model scenario variable fill]
     (let [input (TranscoderInput. (str "http://www.climateireland.ie:8080/ci/svg/" year "/" months "/" model
