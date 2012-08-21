@@ -21,7 +21,7 @@
 
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
-        port (Integer. (get (System/getenv) "PORT" "8080"))]
+        port (Integer. (get (System/getenv) "PORT" "8888"))]
     #_(log-config/set-logger! :level :debug
                             :out (org.apache.log4j.FileAppender.
                                   (org.apache.log4j.EnhancedPatternLayout. org.apache.log4j.EnhancedPatternLayout/TTCC_CONVERSION_PATTERN)
