@@ -269,6 +269,15 @@
                     :height "550px"
                     :width "440px"}}))
 
+(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading/counties"
+  {:keys [year months model scenario variable shading]}
+  (welcome {:tag :object
+            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
+                              scenario "/" variable "/" shading "/counties")
+                    :type "image/svg+xml"
+                    :height "550px"
+                    :width "440px"}}))
+
 (defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
   (svgmap {:tag :object
@@ -345,6 +354,9 @@
 (defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (provinces-map (Integer/parseInt year) months model scenario variable fill))
+(defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill/counties"
+  {:keys [year months model scenario variable fill]}
+  (counties-map (Integer/parseInt year) months model scenario variable fill))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map-png (Integer/parseInt year) months model scenario variable fill))
