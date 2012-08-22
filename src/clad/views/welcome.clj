@@ -271,10 +271,12 @@
 
 (defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
-  (svgmap {:tag :embed
-           :attrs {:src (str "/ci/svg/" year "/" months "/" model "/"
+  (svgmap {:tag :object
+           :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
                              scenario "/" variable "/" shading)
-                   :type "image/svg+xml"}}
+                   :type "image/svg+xml"
+                   :height "550px"
+                   :width "440px"}}
           {:tag :img
            :attrs {:src (str "/ci/bar/" county "/" year
                              "/" months "/" variable)
