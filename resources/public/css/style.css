@@ -45,7 +45,7 @@ body {
 }
 .buttons ul { 
     margin: 0;
-    padding: 0;
+    padding: 3px;
     list-style-type: none; 
     text-align: center;
 }
