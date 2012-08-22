@@ -2,6 +2,8 @@
 
 Climate Adaptation Ireland website.
 
+Funded by the Enivironmental protection Agency, Ireland
+
 [![Build Status](https://secure.travis-ci.org/CMRC/CLAD.png)](http://travis-ci.org/CMRC/CLAD)
 
 ## Usage
