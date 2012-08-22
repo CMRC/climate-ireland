@@ -45,7 +45,7 @@ body {
 }
 .buttons ul { 
     margin: 0;
-    padding: 0;
+    padding: 3px;
     list-style-type: none; 
     text-align: center;
 }
@@ -184,10 +184,10 @@ body {
 	margin-top: 5px;
 	margin-bottom: 5px;
 	overflow:scroll;
-	}
-	#view-3-text img{
-	margin: 5px;
-	}
+}
+#view-3-text img{
+    margin: 5px;
+}
 
 .text-pic-right{
 	width: 200px;
@@ -248,14 +248,4 @@ body {
 	border: 1px solid #CCCCCC;
 	vertical-align:middle; margin-bottom: 3px; 
 	max-width:565px;
-
-
-		
-
-	
-	
-	
-	
-	
-
-	
+}

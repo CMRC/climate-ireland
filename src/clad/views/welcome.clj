@@ -262,17 +262,30 @@
 
 (defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
-  (welcome {:tag :embed
-            :attrs {:src (str "/ci/svg/" year "/" months "/" model "/"
+  (welcome {:tag :object
+            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
                               scenario "/" variable "/" shading)
-                    :type "image/svg+xml"}}))
+                    :type "image/svg+xml"
+                    :height "550px"
+                    :width "440px"}}))
+
+(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading/counties"
+  {:keys [year months model scenario variable shading]}
+  (welcome {:tag :object
+            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
+                              scenario "/" variable "/" shading "/counties")
+                    :type "image/svg+xml"
+                    :height "550px"
+                    :width "440px"}}))
 
 (defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
-  (svgmap {:tag :embed
-           :attrs {:src (str "/ci/svg/" year "/" months "/" model "/"
+  (svgmap {:tag :object
+           :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
                              scenario "/" variable "/" shading)
-                   :type "image/svg+xml"}}
+                   :type "image/svg+xml"
+                   :height "550px"
+                   :width "440px"}}
           {:tag :img
            :attrs {:src (str "/ci/bar/" county "/" year
                              "/" months "/" variable)
@@ -341,6 +354,9 @@
 (defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (provinces-map (Integer/parseInt year) months model scenario variable fill))
+(defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill/counties"
+  {:keys [year months model scenario variable fill]}
+  (counties-map (Integer/parseInt year) months model scenario variable fill))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map-png (Integer/parseInt year) months model scenario variable fill))
