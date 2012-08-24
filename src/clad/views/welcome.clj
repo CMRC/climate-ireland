@@ -215,7 +215,14 @@
   [:#content]
   (content (select (html-resource text)[(keyword (str "#" tab))]))
   [:#tabs]
-  (content (select (html-resource text)[:.buttons])))
+  (content (select (transform (html-resource text)
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (= (get-in a-node [:attrs :href]) tab)
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons])))
 
 (deftemplate two-pane "clad/views/welcome.html"
   [text img]

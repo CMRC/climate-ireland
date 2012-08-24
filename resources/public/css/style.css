@@ -59,7 +59,9 @@ body {
 	background-color: #436756;
 	width: 60em;
 }
-.buttons ul li a:hover
+.buttons ul li a:hover,
+.buttons ul li a:link#current,
+.buttons ul li a:visited#current
 {
     color: #fff;
     background-color: #369;
