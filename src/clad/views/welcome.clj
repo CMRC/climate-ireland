@@ -211,7 +211,7 @@
     emit*))
 
 (deftemplate one-pane "clad/views/View_3.html"
-  [text tab]
+  [text page tab]
   [:#content]
   (content (select (html-resource text)[(keyword (str "#" tab))]))
   [:#tabs]
@@ -219,6 +219,18 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (= (get-in a-node [:attrs :href]) tab)
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons]))
+  [:#banner]
+  (content (select (transform (html-resource "clad/views/View_3.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{page}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
                                   a-node)))
@@ -333,16 +345,16 @@
   (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_ClimateChange.html" tab))
+  (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
 
 (defpage "/ci/adaptation/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_adaptation.html" tab))
+  (one-pane "clad/views/CI_adaptation.html" "adaptation" tab))
 
 (defpage "/ci/sectors/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_sectors.html" tab))
+  (one-pane "clad/views/CI_sectors.html" "sectors" tab))
 
 (defpage "/ci/resources/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_Resources.html" tab))
+  (one-pane "clad/views/CI_Resources.html" "resources" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
