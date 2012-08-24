@@ -9,7 +9,8 @@
         [clad.views.svg]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
-        [noir.response :only [redirect]]
+        [noir.response :only [redirect json]]
+        [noir.request :only [ring-request]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
@@ -17,6 +18,16 @@
                      URLDecoder)
            (java.io ByteArrayOutputStream
                     ByteArrayInputStream)))
+
+(defn good-browser? []
+  (->
+   (->>
+   (get (:headers (ring-request)) "user-agent")
+   (re-matches #".*MSIE (\d)\..*")
+   second)
+   (or "100")
+   Integer/parseInt
+   (> 8)))
 
 (defn site []
   ;;a little recursion might help here
@@ -263,8 +274,8 @@
 (defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :object
-            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
-                              scenario "/" variable "/" shading)
+            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
+                               scenario "/" variable "/" shading)
                     :type "image/svg+xml"
                     :height "550px"
                     :width "440px"}}))
@@ -272,7 +283,7 @@
 (defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading/counties"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :object
-            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
+            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
                               scenario "/" variable "/" shading "/counties")
                     :type "image/svg+xml"
                     :height "550px"
@@ -281,7 +292,7 @@
 (defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
   (svgmap {:tag :object
-           :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
+           :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
                              scenario "/" variable "/" shading)
                    :type "image/svg+xml"
                    :height "550px"

@@ -122,7 +122,7 @@
 
 (defn counties-map-png 
   ([year months model scenario variable fill]
-    (let [input (TranscoderInput. (str "http://www.climateireland.ie:8080/ci/svg/" year "/" months "/" model
+    (let [input (TranscoderInput. (str "http://www.climateireland.ie:8888/svg/" year "/" months "/" model
                                        "/" scenario "/" variable "/" fill))
           ostream (ByteArrayOutputStream.)
 	  output (TranscoderOutput. ostream)
