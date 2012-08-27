@@ -44,27 +44,26 @@ body {
 	width: 1000px;	
 }
 .buttons ul { 
-    margin: 0;
-    padding: 3px;
     list-style-type: none; 
     text-align: center;
 }
 .buttons ul li { 
-    display: inline;
+	display: inline-block;
 }
 .buttons ul li a {
 	text-decoration: none;
 	padding: 0.1em 0.5em;
 	color: #fff;
+	border: 0.1em #436756 solid;
 	background-color: #436756;
-	width: 60em;
+	border-bottom-style: none;
 }
 .buttons ul li a:hover,
 .buttons ul li a:link#current,
 .buttons ul li a:visited#current
 {
-    color: #fff;
-    background-color: #369;
+    color: #436756;
+    background-color: white;
 }
 #scroll {
 	width:100%;
@@ -178,14 +177,16 @@ body {
 }
 #view-3-text{
 	width: 810px;
-	height: 600px;
 	float: right;
 	padding: 5px;
 	border: 3px solid #396538;
 	border-radius: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
-	overflow:scroll;
+}
+#content {
+	height: 575px;
+	overflow: scroll;
 }
 #view-3-text img{
     margin: 5px;
