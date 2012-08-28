@@ -428,7 +428,7 @@
   (barchart county (Integer/parseInt year) months variable))
 
 (defpage "/login" []
-  (two-pane "clad/views/Login.html" ""))
+  (two-pane "clad/views/Login.html" "login" ""))
 
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
