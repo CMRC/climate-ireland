@@ -223,7 +223,8 @@
                                             "current")
                                   a-node)))
                    [:.buttons]))
-  [:#banner]
+
+  [:#buttons]
   (content (select (transform (html-resource "clad/views/View_3.html")
                               [:.buttons :a]
                               (fn [a-node]
@@ -234,7 +235,7 @@
                                   (assoc-in a-node [:attrs :id]
                                             "current")
                                   a-node)))
-                   [:.buttons])))
+                   [:.buttons :ul])))
 
 (deftemplate two-pane "clad/views/welcome.html"
   [text img]

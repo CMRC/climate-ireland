@@ -36,11 +36,11 @@ body {
 }
 #banner img {
     height: 80px;
-	float: left;
+    float: left;
 }
 #buttons {
 	position: relative;
-	top: 60px;
+	top: 52px;
 	width: 1000px;	
 }
 .buttons ul { 
@@ -48,11 +48,12 @@ body {
     text-align: center;
 }
 .buttons ul li { 
+	margin-bottom: 3px;
 	display: inline-block;
 }
 .buttons ul li a {
 	text-decoration: none;
-	padding: 0.1em 0.5em;
+	padding: 0em 0.5em 0.1em 0;
 	color: #fff;
 	border: 0.1em #436756 solid;
 	background-color: #436756;
@@ -63,6 +64,23 @@ body {
 .buttons ul li a:visited#current
 {
     color: #436756;
+    background-color: white;
+    text-align: center;
+}
+#tabs {
+    position: relative;
+    top: 7.5px;
+    margin-left: -250px;
+    width: 1524px;
+    float: none;
+    clear: both;
+}
+#tabs .buttons ul li a {
+    background-color: #356a46;
+}
+#tabs .buttons ul li a:hover,
+#tabs .buttons ul li a:visited#current {
+    color: #356a46;
     background-color: white;
 }
 #scroll {
@@ -117,7 +135,7 @@ body {
 }
 #main {
 	width:100%;
-	
+	margin-top: 15px;
 }
 .colb3 {
 	height: 200px;
@@ -185,8 +203,8 @@ body {
 	margin-bottom: 5px;
 }
 #content {
-	height: 575px;
-	overflow: scroll;
+	height: 600px;
+	overflow-y: auto;
 }
 #view-3-text img{
     margin: 5px;
@@ -201,9 +219,9 @@ body {
 	margin: 5px;
 	margin-top: 20px;
 	}
-	.text-pic-right img{
-	margin: 5px;
-	}
+.text-pic-right img{
+    margin: 5px;
+}
 	
 .text-pic-bottom{
 	width: 790px;
