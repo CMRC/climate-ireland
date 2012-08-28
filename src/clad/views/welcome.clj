@@ -238,7 +238,7 @@
                    [:.buttons :ul])))
 
 (deftemplate two-pane "clad/views/welcome.html"
-  [text img]
+  [text page img]
   [:#blurb]
   (content (html-resource text))
   [:#map]
@@ -246,7 +246,19 @@
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
+  [:#buttons]
+  (content (select (transform (html-resource "clad/views/View_3.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{page}))
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons :ul])))
 
 (deftemplate welcome "clad/views/welcome.html"
   [map]
@@ -255,7 +267,19 @@
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
+  [:#buttons]
+  (content (select (transform (html-resource "clad/views/View_3.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{"welcome"}))
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons :ul])))
 
 (deftemplate svgmap "clad/views/View_2.html"
   [map blurb]
@@ -343,7 +367,7 @@
   (redirect "/ci/about"))
 
 (defpage "/ci/about" []
-  (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
+  (two-pane "clad/views/CI_About.html" "about" "/img/Provinces_2.png"))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
