@@ -9,7 +9,8 @@
         [clad.views.svg]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
-        [noir.response :only [redirect]]
+        [noir.response :only [redirect json]]
+        [noir.request :only [ring-request]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
@@ -17,6 +18,16 @@
                      URLDecoder)
            (java.io ByteArrayOutputStream
                     ByteArrayInputStream)))
+
+(defn good-browser? []
+  (->
+   (->>
+   (get (:headers (ring-request)) "user-agent")
+   (re-matches #".*MSIE (\d)\..*")
+   second)
+   (or "100")
+   Integer/parseInt
+   (> 8)))
 
 (defn site []
   ;;a little recursion might help here
@@ -200,14 +211,34 @@
     emit*))
 
 (deftemplate one-pane "clad/views/View_3.html"
-  [text tab]
+  [text page tab]
   [:#content]
   (content (select (html-resource text)[(keyword (str "#" tab))]))
   [:#tabs]
-  (content (select (html-resource text)[:.buttons])))
+  (content (select (transform (html-resource text)
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (= (get-in a-node [:attrs :href]) tab)
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons]))
+
+  [:#buttons]
+  (content (select (transform (html-resource "clad/views/View_3.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{page}))
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons :ul])))
 
 (deftemplate two-pane "clad/views/welcome.html"
-  [text img]
+  [text page img]
   [:#blurb]
   (content (html-resource text))
   [:#map]
@@ -215,7 +246,19 @@
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
+  [:#buttons]
+  (content (select (transform (html-resource "clad/views/View_3.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{page}))
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons :ul])))
 
 (deftemplate welcome "clad/views/welcome.html"
   [map]
@@ -224,7 +267,19 @@
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
+  (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
+  [:#buttons]
+  (content (select (transform (html-resource "clad/views/View_3.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{"welcome"}))
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons :ul])))
 
 (deftemplate svgmap "clad/views/View_2.html"
   [map blurb]
@@ -263,8 +318,8 @@
 (defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :object
-            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
-                              scenario "/" variable "/" shading)
+            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
+                               scenario "/" variable "/" shading)
                     :type "image/svg+xml"
                     :height "550px"
                     :width "440px"}}))
@@ -272,7 +327,7 @@
 (defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading/counties"
   {:keys [year months model scenario variable shading]}
   (welcome {:tag :object
-            :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
+            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
                               scenario "/" variable "/" shading "/counties")
                     :type "image/svg+xml"
                     :height "550px"
@@ -281,7 +336,7 @@
 (defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [county year months model scenario variable shading]}
   (svgmap {:tag :object
-           :attrs {:data (str "/ci/svg/" year "/" months "/" model "/"
+           :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
                              scenario "/" variable "/" shading)
                    :type "image/svg+xml"
                    :height "550px"
@@ -312,19 +367,19 @@
   (redirect "/ci/about"))
 
 (defpage "/ci/about" []
-  (two-pane "clad/views/CI_About.html" "/img/Provinces_2.png"))
+  (two-pane "clad/views/CI_About.html" "about" "/img/Provinces_2.png"))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_ClimateChange.html" tab))
+  (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
 
 (defpage "/ci/adaptation/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_adaptation.html" tab))
+  (one-pane "clad/views/CI_adaptation.html" "adaptation" tab))
 
 (defpage "/ci/sectors/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_sectors.html" tab))
+  (one-pane "clad/views/CI_sectors.html" "sectors" tab))
 
 (defpage "/ci/resources/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_Resources.html" tab))
+  (one-pane "clad/views/CI_Resources.html" "resources" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
