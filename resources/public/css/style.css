@@ -49,7 +49,7 @@ body {
 }
 .buttons ul li { 
 	margin-bottom: 3px;
-	display: inline-block;
+	display: inline;
 }
 .buttons ul li a {
 	text-decoration: none;
@@ -116,7 +116,7 @@ body {
 	padding: 10px;
 }
 #map {
-	float: right;
+	clear: both;
 	height: 600px;
 	width: 397px;
 	padding: 10px;
@@ -269,4 +269,7 @@ body {
 	border: 1px solid #CCCCCC;
 	vertical-align:middle; margin-bottom: 3px; 
 	max-width:565px;
+}
+#decades {
+    width: 100%;
 }

@@ -290,12 +290,15 @@
   [req map]
   [:#map]
   (content map)
-  [:#decades]
-  (clone-for [decade ["2021-30" "2031-40"]]
+  [:#decades :ul :li]
+  (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
              [:li :a]
              (fn [a-node]
                (->
-                (assoc-in a-node [:content] decade)
+                (if (= (:years req) (clojure.string/replace decade "-" ""))
+                  (assoc-in a-node [:attrs :id] "current")
+                  a-node)
+                (assoc-in [:content] decade)
                 (assoc-in [:attrs :href] (make-url "welcome/svgbar"
                                                    (assoc-in req [:years]
                                                              (clojure.string/replace decade "-" ""))))))))
