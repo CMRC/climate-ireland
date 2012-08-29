@@ -281,10 +281,29 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(deftemplate svgmap "clad/views/View_2.html"
-  [map blurb]
-  [:#view-2-map]
+(defn make-url [view req]
+  (str "/ci/"
+       view "/"
+       (apply str (interpose "/" (vals req)))))
+  
+(defsnippet maptools "clad/views/maptools.html" [:body]
+  [req map]
+  [:#map]
   (content map)
+  [:#decades]
+  (clone-for [decade ["2021-30" "2031-40"]]
+             [:li :a]
+             (fn [a-node]
+               (->
+                (assoc-in a-node [:content] decade)
+                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
+                                                   (assoc-in req [:years]
+                                                             (clojure.string/replace decade "-" ""))))))))
+
+(deftemplate svgmap "clad/views/View_2.html"
+  [req map blurb]
+  [:#view-2-map]
+  (content (maptools req map))
   [:#view-2-2-chart]
   (content blurb)
   [:#banner]
@@ -333,18 +352,17 @@
                     :height "550px"
                     :width "440px"}}))
 
-(defpage "/ci/welcome/svgbar/:county/:year/:months/:model/:scenario/:variable/:shading"
-  {:keys [county year months model scenario variable shading]}
-  (svgmap {:tag :object
-           :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
-                             scenario "/" variable "/" shading)
-                   :type "image/svg+xml"
-                   :height "550px"
-                   :width "440px"}}
-          {:tag :img
-           :attrs {:src (str "/ci/bar/" county "/" year
-                             "/" months "/" variable)
-                   :max-width "100%"}}))
+(defpage "/ci/welcome/svgbar/:county/:years/:months/:model/:scenario/:variable/:shading"
+ {:as req}
+ (svgmap req
+         {:tag :object
+          :attrs {(if (good-browser?) :data :src) (make-url "svg" req)
+                  :type "image/svg+xml"
+                  :height "550px"
+                  :width "440px"}}
+         {:tag :img
+          :attrs {:src (make-url "bar" req)
+                  :max-width "100%"}}))
 
 (defpage "/ci/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
@@ -406,10 +424,10 @@
 (defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
   (by-county (Integer/parseInt year) months  model scenario variable))
-(defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill"
+(defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (provinces-map (Integer/parseInt year) months model scenario variable fill))
-(defpage "/ci/svg/:year/:months/:model/:scenario/:variable/:fill/counties"
+(defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill/counties"
   {:keys [year months model scenario variable fill]}
   (counties-map (Integer/parseInt year) months model scenario variable fill))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
@@ -424,8 +442,8 @@
   (decadal-bar county months variable))
 (defpage "/ci/plot/:county/:months/:variable/decadal-box" {:keys [county months variable]} 
   (decadal-box county months variable))
-(defpage "/ci/bar/:county/:year/:months/:variable" {:keys [county year months variable]}
-  (barchart county (Integer/parseInt year) months variable))
+(defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
+  (barchart region (Integer/parseInt year) months variable))
 
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
