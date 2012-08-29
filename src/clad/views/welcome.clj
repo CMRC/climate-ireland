@@ -286,9 +286,9 @@
        view "/"
        (apply str (interpose "/" (vals req)))))
   
-(defsnippet maptools "clad/views/maptools.html" [:body]
+(defsnippet maptools "clad/views/maptools.html" [:#mapouter]
   [req map]
-  [:#map]
+  [:#mapsvg]
   (content map)
   [:#decades :ul :li]
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]

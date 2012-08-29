@@ -115,8 +115,11 @@ body {
 	width: 396px;
 	padding: 10px;
 }
-#map {
+#mapsvg {
 	clear: both;
+}
+#map {
+    float: right;
 	height: 600px;
 	width: 397px;
 	padding: 10px;
@@ -235,6 +238,15 @@ body {
 	background-color: #BDD2B7;	
 	}
 	
+#text-box-center{
+	padding: 5px;
+	border: 3px #396538 solid;
+	background-color: #BDD2B7;	
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 500px;
+	}
+	
 .picture { 
 	background-color: #F9F9F9;
 	border: 1px solid #CCCCCC; padding: 5px;
@@ -273,3 +285,27 @@ body {
 #decades {
     width: 100%;
 }
+.picture-small { 
+	background-color: #F9F9F9;
+	border: 1px solid #CCCCCC; padding: 5px;
+	font: 11px/1.4em Arial, sans-serif;
+	max-width: 200px;	
+	}
+
+.picture-small img { 
+	border: 1px solid #CCCCCC;
+	vertical-align:middle; margin-bottom: 3px; 
+	max-width:190px;
+	}
+	
+.picture-extra-large {
+	border: 1px solid #CCCCCC;
+	vertical-align:middle; margin-bottom: 3px; 
+	max-width:600px;
+	}
+	
+.picture-extra-large img { 
+	border: 1px solid #CCCCCC;
+	vertical-align:middle; margin-bottom: 3px; 
+	max-width:580px;
+	}
