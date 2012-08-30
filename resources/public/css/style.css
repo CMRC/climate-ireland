@@ -283,7 +283,13 @@ body {
 	max-width:565px;
 }
 #decades {
-    width: 100%;
+    width: 60%;
+    float: left;
+}
+
+#regions {
+    width: 30%;
+    float: left;
 }
 .picture-small { 
 	background-color: #F9F9F9;

@@ -191,3 +191,10 @@
 (def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
 
 (defn temp-var? [variable] (some #(= variable %) temp-vars))
+
+(defn make-url [view req & {:keys [counties?] :or {counties? false}}]
+  (str "/ci/"
+       view "/"
+       (apply str (interpose "/" (vals req)))
+       (when counties? "/counties")))
+  

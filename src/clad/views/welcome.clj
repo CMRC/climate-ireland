@@ -281,13 +281,8 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(defn make-url [view req]
-  (str "/ci/"
-       view "/"
-       (apply str (interpose "/" (vals req)))))
-  
 (defsnippet maptools "clad/views/maptools.html" [:#mapouter]
-  [req map]
+  [req map & {:keys [counties?] :or {counties? false}}]
   [:#mapsvg]
   (content map)
   [:#decades :ul :li]
@@ -301,12 +296,30 @@
                 (assoc-in [:content] decade)
                 (assoc-in [:attrs :href] (make-url "welcome/svgbar"
                                                    (assoc-in req [:years]
-                                                             (clojure.string/replace decade "-" ""))))))))
+                                                             (clojure.string/replace decade "-" ""))
+                                                   :counties? counties?)))))
+  [:#regions :ul :li]
+  (clone-for [region ["Counties" "Provinces"]]
+             [:li :a]
+             (fn [a-node]
+               (->
+                (if (or
+                     (and (= region "Counties") counties?)
+                     (and (not= region "Counties") (not counties?)))
+                  (assoc-in a-node [:attrs :id] "current")
+                  a-node)
+                (assoc-in [:content] region)
+                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
+                                                   (assoc-in req [:region]
+                                                             (case region
+                                                               "Counties" "Kilkenny"
+                                                               "Provinces" "Munster"))
+                                                   :counties? (= region "Counties")))))))
 
 (deftemplate svgmap "clad/views/View_2.html"
-  [req map blurb]
+  [req map blurb & {:keys [counties?] :or {counties? false}}]
   [:#view-2-map]
-  (content (maptools req map))
+  (content (maptools req map :counties? counties?))
   [:#view-2-2-chart]
   (content blurb)
   [:#banner]
@@ -355,7 +368,7 @@
                     :height "550px"
                     :width "440px"}}))
 
-(defpage "/ci/welcome/svgbar/:county/:years/:months/:model/:scenario/:variable/:shading"
+(defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading"
  {:as req}
  (svgmap req
          {:tag :object
@@ -366,6 +379,19 @@
          {:tag :img
           :attrs {:src (make-url "bar" req)
                   :max-width "100%"}}))
+
+(defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
+ {:as req}
+ (svgmap req
+         {:tag :object
+          :attrs {(if (good-browser?) :data :src) (make-url "svg" req :counties? true)
+                  :type "image/svg+xml"
+                  :height "550px"
+                  :width "440px"}}
+         {:tag :img
+          :attrs {:src (make-url "bar" req)
+                  :max-width "100%"}}
+         :counties? true))
 
 (defpage "/ci/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
   {:keys [year months model scenario variable shading]}
@@ -428,11 +454,11 @@
   {:keys [year months model scenario variable]}
   (by-county (Integer/parseInt year) months  model scenario variable))
 (defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill"
-  {:keys [year months model scenario variable fill]}
-  (provinces-map (Integer/parseInt year) months model scenario variable fill))
+  {:as req}
+  (provinces-map req))
 (defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill/counties"
-  {:keys [year months model scenario variable fill]}
-  (counties-map (Integer/parseInt year) months model scenario variable fill))
+  {:as req}
+  (counties-map req))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
   (counties-map-png (Integer/parseInt year) months model scenario variable fill))
