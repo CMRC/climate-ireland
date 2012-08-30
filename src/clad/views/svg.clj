@@ -37,7 +37,7 @@
                                 :else "#b65"))))
 
 (defn linear-rgb [val min max]
-  (let [step (/ 100 (- max min))
+  (let [step (/ 150 (- max min))
         red (+ 50 (round (* step (float (- val min)))))
         green 96
         blue (- 200 (round (* step (float (- val min)))))]
@@ -45,8 +45,8 @@
   
 (defn colour-on-linear [elem county year months model scenario variable region]
   (let [val (temp-diff-data county year months model scenario variable)
-        min (nth (quartiles year months model scenario variable region) 0)
-        max (nth (quartiles year months model scenario variable region) 4)]
+        min 0.5 #_(nth (quartiles year months model scenario variable region) 0)
+        max 3.5 #_(nth (quartiles year months model scenario variable region) 4)]
     (add-style elem :fill (linear-rgb val min max))))
 
 (defn regions-map 
@@ -61,8 +61,8 @@
                      :province provinces)
            fill-fns {"linear" colour-on-linear,
                      "quartiles" colour-on-quartiles}
-           min (nth (quartiles year months model scenario variable region) 0)
-           max (nth (quartiles year months model scenario variable region) 4)
+           min 0.5 #_(nth (quartiles year months model scenario variable region) 0)
+           max 3.5 #_(nth (quartiles year months model scenario variable region) 4)
            mid (/ (+ max min) 2)]
        {:status 200
         :headers {"Content-Type" "image/svg+xml"}
