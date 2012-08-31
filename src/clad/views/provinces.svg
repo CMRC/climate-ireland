@@ -1,6 +1,3 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<!-- Created with Inkscape (http://www.inkscape.org/) -->
-
 <svg
    xmlns:dc="http://purl.org/dc/elements/1.1/"
    xmlns:cc="http://creativecommons.org/ns#"
@@ -14,29 +11,29 @@
    height="508.88321"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.3.1 r9886"
+   inkscape:version="0.48.2 r9819"
    version="1.0"
    sodipodi:docname="provinces.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <script
-     type="text/ecmascript"
-     id="script3">
+    type="text/javascript"
+    id="script3">
     function value(evt,val) {
-      document.getElementById(&quot;value&quot;).textContent = val;
+    document.getElementById(&quot;value&quot;).textContent = val;
     }
-  
-    </script>
+    
+  </script>
   <defs
-     id="defs4">
+      id="defs4">
     <inkscape:perspective
-       sodipodi:type="inkscape:persp3d"
-       inkscape:vp_x="0 : 500 : 1"
-       inkscape:vp_y="0 : 1000 : 0"
-       inkscape:vp_z="800 : 500 : 1"
-       inkscape:persp3d-origin="400 : 333.33333 : 1"
-       id="perspective144" />
+	sodipodi:type="inkscape:persp3d"
+	inkscape:vp_x="0 : 500 : 1"
+	inkscape:vp_y="0 : 1000 : 0"
+	inkscape:vp_z="800 : 500 : 1"
+	inkscape:persp3d-origin="400 : 333.33333 : 1"
+	id="perspective144" />
     <linearGradient
-       id="linearGradient19471">
+	id="linearGradient19471">
       <stop
          style="stop-color:#9ec7f3;stop-opacity:1;"
          offset="0"
@@ -106,17 +103,17 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="0.59104428"
-     inkscape:cx="-106.54631"
-     inkscape:cy="247.37346"
+     inkscape:zoom="1.8059727"
+     inkscape:cx="197.99956"
+     inkscape:cy="406.3865"
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
      width="800px"
      height="1000px"
-     inkscape:window-width="1855"
-     inkscape:window-height="1175"
-     inkscape:window-x="65"
-     inkscape:window-y="24"
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="-8"
+     inkscape:window-y="-8"
      showgrid="false"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -225,57 +222,57 @@
        id="rect3026"
        width="81.564331"
        height="17.903719"
-       x="484.77109"
-       y="705.93085" />
+       x="238.36647"
+       y="264.06369" />
     <rect
        style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="min"
        width="28.031351"
        height="11.853367"
-       x="471.26382"
-       y="706.61407"
+       x="224.85921"
+       y="264.74692"
        inkscape:label="#rect3032" />
     <text
        xml:space="preserve"
        style="font-size:9.1843729px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="463.92041"
-       y="728.00421"
+       x="217.43187"
+       y="286.28751"
        id="min-text"
        sodipodi:linespacing="125%"
        transform="scale(0.99965952,1.0003406)"
        inkscape:label="#text3855"><tspan
          sodipodi:role="line"
          id="tspan3041"
-         x="463.92041"
-         y="728.00421">0.00</tspan></text>
+         x="217.43187"
+         y="286.28751">0.00</tspan></text>
     <text
        xml:space="preserve"
        style="font-size:9.1843729px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-       x="547.40515"
-       y="727.96198"
+       x="300.91663"
+       y="286.24527"
        id="max-text"
        sodipodi:linespacing="125%"
        transform="scale(0.99965952,1.0003406)"
        inkscape:label="#text3855-8"><tspan
          sodipodi:role="line"
          id="tspan3043"
-         x="547.40515"
-         y="727.96198">0.00</tspan></text>
+         x="300.91663"
+         y="286.24527">0.00</tspan></text>
     <rect
        style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="max"
        width="28.031349"
        height="11.853366"
-       x="527.7558"
-       y="706.61407"
+       x="281.3512"
+       y="264.74692"
        inkscape:label="#rect3032" />
     <rect
        style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none"
        id="min-6"
        width="28.031349"
        height="11.853366"
-       x="499.5098"
-       y="706.61407"
+       x="253.10518"
+       y="264.74692"
        inkscape:label="#rect3032" />
     <text
        xml:space="preserve"
