@@ -237,7 +237,7 @@ body {
 	border: 3px #396538 solid;
 	background-color: #BDD2B7;	
 	}
-	
+		
 #text-box-center{
 	padding: 5px;
 	border: 3px #396538 solid;
@@ -245,6 +245,11 @@ body {
 	margin-left: auto;
 	margin-right: auto;
 	max-width: 500px;
+	}
+	
+.resize{
+	height: auto;
+	width: auto;
 	}
 	
 .picture { 
@@ -279,7 +284,8 @@ body {
 	
 .picture-large img { 
 	border: 1px solid #CCCCCC;
-	vertical-align:middle; margin-bottom: 3px; 
+	vertical-align:middle; 
+	margin-bottom: 3px; 
 	max-width:565px;
 }
 #decades {

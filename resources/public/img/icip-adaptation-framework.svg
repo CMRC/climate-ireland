@@ -10,12 +10,12 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="744.09448819"
-   height="1052.3622047"
+   width="745.15997"
+   height="665.17999"
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="ICIP_Adapt_Frame.svg">
+   sodipodi:docname="icip-adaptation-framework.png">
   <defs
      id="defs4">
     <inkscape:path-effect
@@ -43,28 +43,30 @@
     <marker
        inkscape:stockid="Arrow1Mend"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Mend"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path3825"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
-         transform="scale(0.4) rotate(180) translate(10,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.4,0,0,-0.4,-4,0)"
+         inkscape:connector-curvature="0" />
     </marker>
     <marker
        inkscape:stockid="Arrow1Lend"
        orient="auto"
-       refY="0.0"
-       refX="0.0"
+       refY="0"
+       refX="0"
        id="Arrow1Lend"
-       style="overflow:visible;">
+       style="overflow:visible">
       <path
          id="path3819"
-         d="M 0.0,0.0 L 5.0,-5.0 L -12.5,0.0 L 5.0,5.0 L 0.0,0.0 z "
-         style="fill-rule:evenodd;stroke:#000000;stroke-width:1.0pt;marker-start:none;"
-         transform="scale(0.8) rotate(180) translate(12.5,0)" />
+         d="M 0,0 5,-5 -12.5,0 5,5 0,0 z"
+         style="fill-rule:evenodd;stroke:#000000;stroke-width:1pt;marker-start:none"
+         transform="matrix(-0.8,0,0,-0.8,-10,0)"
+         inkscape:connector-curvature="0" />
     </marker>
   </defs>
   <sodipodi:namedview
@@ -75,8 +77,8 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="0.69041976"
-     inkscape:cx="-58.988842"
-     inkscape:cy="503.05006"
+     inkscape:cx="35.277566"
+     inkscape:cy="199.82979"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -84,7 +86,12 @@
      inkscape:window-height="1138"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-maximized="1"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     showborder="false" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -93,21 +100,22 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
   <g
      inkscape:label="Layer 1"
      inkscape:groupmode="layer"
-     id="layer1">
+     id="layer1"
+     transform="translate(94.266408,-83.961887)">
     <g
        id="g4872-3"
        style="fill:#5eb6bb;fill-opacity:1"
        transform="matrix(0.89321493,0,0,0.9868663,-1190.9085,180.60589)" />
     <g
        id="g3027"
-       transform="matrix(0.44785715,0,0,0.51200731,421.78331,223.93239)">
+       transform="matrix(0.63149118,0,0,0.70783609,331.12126,23.054119)">
       <text
          sodipodi:linespacing="125%"
          id="text2985"
@@ -223,7 +231,7 @@
            inkscape:connector-curvature="0"
            id="path4878"
            d="M 212.56609,285.74698 190.1,283.04983 l 47.17728,34.1512 -22.01404,-53.92015 -2.69715,22.4661 z"
-           style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.88970289pt;marker-start:none" />
+           style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.63723974pt;marker-start:none" />
       </g>
       <g
          style="fill:#5eb6bb;fill-opacity:1"
@@ -238,7 +246,7 @@
            inkscape:connector-curvature="0"
            id="path4878-8"
            d="M 212.56609,285.74698 190.1,283.04983 l 47.17728,34.1512 -22.01404,-53.92015 -2.69715,22.4661 z"
-           style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.93003426pt;marker-start:none" />
+           style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.66612663pt;marker-start:none" />
       </g>
       <g
          style="fill:#5eb6bb;fill-opacity:1"
@@ -255,7 +263,7 @@
            inkscape:connector-curvature="0"
            id="path4878-7"
            d="m 1645.9316,1217.9365 7.8545,-21.2205 -44.1981,37.928 57.5641,-8.8531 -21.2205,-7.8544 z"
-           style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.83531866pt;marker-start:none" />
+           style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.59828763pt;marker-start:none" />
         <g
            style="fill:#5eb6bb;fill-opacity:1"
            id="g4872-1"
@@ -269,7 +277,7 @@
              inkscape:connector-curvature="0"
              id="path4878-6"
              d="m 92.79308,122.15667 22.58024,1.41516 -48.997211,-31.414131 24.970302,52.583011 1.446669,-22.58404 z"
-             style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.9304533pt;marker-start:none" />
+             style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.66642675pt;marker-start:none" />
           <g
              style="fill:#5eb6bb;fill-opacity:1"
              id="g4872-0"
@@ -283,7 +291,7 @@
                inkscape:connector-curvature="0"
                id="path4878-9"
                d="M 212.56609,285.74698 190.1,283.04983 l 47.17728,34.1512 -22.01404,-53.92015 -2.69715,22.4661 z"
-               style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.94192448pt;marker-start:none" />
+               style="fill:#5eb6bb;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.67464285pt;marker-start:none" />
           </g>
           <g
              style="fill:#5eb6bb;fill-opacity:1"
