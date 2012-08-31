@@ -11,7 +11,8 @@
                            [com.ashafa/clutch "0.4.0-SNAPSHOT"]
 			   [org.clojars.pallix/batik "1.7.0"]
                            [clj-logging-config "1.9.7"]
-                           [com.cemerick/friend "0.0.9"]]
+                           [com.cemerick/friend "0.0.9"]
+                           [org.clojure/clojurescript "0.0-1011"]]
             :extra-classpath-dirs [".lein-git-deps/rincanter/src/"]
             :plugins [[lein-ring "0.7.1"]]
             :main clad.server)

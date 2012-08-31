@@ -52,15 +52,17 @@
                       (clutch/view-server-fns
                        :clojure
                        {:by-county-year
-                        {:map (fn [doc] [[[(:region doc)
-                                           (:year doc) (:months doc)
-                                           (:model doc) (:scenario doc) (:datum.variable doc)]
-                                          doc]])}}))
+                        {:map (fn [doc] (if (= (class (:year doc)) java.lang.Integer)
+                                          [[[(:region doc)
+                                             (:year doc) (:months doc)
+                                             (:model doc) (:scenario doc) (:datum.variable doc)]
+                                            doc]]))}}))
     (clutch/save-view "models"
                       (clutch/view-server-fns
                        :clojure
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
+#_(save-views)
 
 (defn get-run-data [year months]
   (try
