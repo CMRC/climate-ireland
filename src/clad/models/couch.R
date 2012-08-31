@@ -25,7 +25,7 @@ bycounty <- function(county, run) {
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1) / 10
 
-  year <- as.numeric(gsub("temp(\\d{4})\\w+","\\1",run))
+  year <- as.integer(gsub("temp(\\d{2})(\\d)\\d\\w+","\\1\\21\\20",run)) + 10L
   months <- toupper(gsub("temp\\d{4}(\\w+)","\\1",run))
   rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
   if(is.na(rev)){
