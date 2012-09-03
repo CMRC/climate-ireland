@@ -21,22 +21,15 @@
 (defn counties-data [year months model scenario variable]
   (map #(data-by-county % year months model scenario variable) counties))
 
-(defn quartiles-slow [year months model scenario variable cp]
+(defn quartiles-slow [year months model scenario variable cp diff-fn]
   (map #(/ (round (* % 100)) 100)
-       (quantile (map (fn [county] (temp-diff-data county year months model scenario variable))
+       (quantile (map (fn [county] (diff-fn county year months model scenario variable))
                       (case cp :county counties :province provinces)))))
 
 (def quartiles (memoize quartiles-slow))
   
 (defn colour-on-quartiles [elem county year months model scenario variable]
-  (let [val (temp-diff-data county year months model scenario variable)]
-    (add-style elem :fill (cond (< val (nth (quartiles year months model scenario variable) 1))
-                                "#56b"
-                                (< val (nth (quartiles year months model scenario variable) 2))
-                                "#769"
-                                (< val (nth (quartiles year months model scenario variable) 3))
-                                "#967"
-                                :else "#b65"))))
+  )
 
 (defn linear-rgb [val min max]
   (let [colour-scheme color-brewer/RdYlBu-11
@@ -46,16 +39,9 @@
                        (fn [d] (nth colour-scheme (floor (s d)))))]
     (colour-scale val)))
   
-(defn colour-on-linear [elem county year months model scenario variable region]
-  (let [val (temp-diff-data county year months model scenario variable)
-        min 1.0 #_(nth (quartiles year months model scenario variable region) 0)
-        max 2.5 #_(nth (quartiles year months model scenario variable region) 4)
-        colour-scheme color-brewer/RdYlBu-11
-        colour-scale (let [s (scale/linear :domain [max min]
-                                           :range [0 (dec (count colour-scheme))])]
-                      ;;todo: build interpolators so scales handle non-numeric ranges
-                      (fn [d] (nth colour-scheme (floor (s d)))))]
-    (add-style elem :fill (colour-scale val))))
+(defn colour-on-linear [elem county year months model scenario variable region min max diff-fn]
+  (let [val (diff-fn county year months model scenario variable)]
+    (add-style elem :fill (linear-rgb val min max))))
 
 (defn regions-map 
   [cp req]
@@ -67,12 +53,11 @@
         regions (case cp
                   :county counties
                   :province provinces)
-        fill-fns {"linear" colour-on-linear,
-                  "quartiles" colour-on-quartiles}
-        min 1.0
-        max 2.5
+        diff-fn (if (temp-var? variable) temp-diff-data diff-data)
+        min (decadal-min-temp months model scenario variable regions diff-fn)
+        max (decadal-max-temp months model scenario variable regions diff-fn)
         intyear (Integer/parseInt year)
-        local-min (nth (quartiles intyear months model scenario variable cp) 0)]
+        local-min (nth (quartiles intyear months model scenario variable cp diff-fn) 0)]
     {:status 200
      :headers {"Content-Type" "image/svg+xml"}
      :body
@@ -88,7 +73,7 @@
                            (-> (add-attrs elem :onmouseover
                                           (str "value(evt,'"
                                                (->
-                                                (temp-diff-data %2 intyear months model scenario variable)
+                                                (diff-fn %2 intyear months model scenario variable)
                                                 (* 100)
                                                 round
                                                 (/ 100)
@@ -96,7 +81,7 @@
                                                (if (temp-var? variable) "°C " "% ")
                                                %2
                                                "')"))
-                               ((fill-fns fill) %2 intyear months model scenario variable region))])))
+                               (colour-on-linear %2 intyear months model scenario variable region min max diff-fn))])))
                     regions-svg			
                     regions)
             (transform-xml
