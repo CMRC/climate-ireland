@@ -467,8 +467,6 @@
 	 (plot-models county months variable))
 (defpage "/ci/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
   (plot-models-decadal county months variable))
-(defpage "/ci/plot/:county/:months/:variable/decadal-bar" {:keys [county months variable]} 
-  (decadal-bar county months variable))
 (defpage "/ci/plot/:county/:months/:variable/decadal-box" {:keys [county months variable]} 
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
