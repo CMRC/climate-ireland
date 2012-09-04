@@ -157,7 +157,7 @@
           res (- comp ref)]
       res)))
 
-(defn decadal-min-temp [months model scenario variable regions diff-fn]
+(defn decadal-min [months model scenario variable regions diff-fn]
   (apply min
          (map (fn [decade]
                 (apply min
@@ -165,7 +165,7 @@
                             regions)))
               [202130 203140 204150 205160])))
 
-(defn decadal-max-temp [months model scenario variable regions diff-fn]
+(defn decadal-max [months model scenario variable regions diff-fn]
   (apply max
          (map (fn [decade]
                 (apply max

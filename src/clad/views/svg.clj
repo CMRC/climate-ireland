@@ -31,17 +31,20 @@
 (defn colour-on-quartiles [elem county year months model scenario variable]
   )
 
-(defn linear-rgb [val min max]
+(defn linear-rgb [val domain]
   (let [colour-scheme color-brewer/RdYlBu-11
-        colour-scale (let [s (scale/linear :domain [max min]
+        colour-scale (let [s (scale/linear :domain domain
                                            :range [0 (dec (count colour-scheme))])]
                        ;;todo: build interpolators so scales handle non-numeric ranges
                        (fn [d] (nth colour-scheme (floor (s d)))))]
     (colour-scale val)))
   
-(defn colour-on-linear [elem county year months model scenario variable region min max diff-fn]
-  (let [val (diff-fn county year months model scenario variable)]
-    (add-style elem :fill (linear-rgb val min max))))
+(defn colour-on-linear [elem county year months model scenario variable region lmin lmax diff-fn]
+  (let [absmax (max (abs lmin) (abs lmax))
+        domain [absmax (* -1.0 absmax)] ;;symmetrical scale
+        p (println domain)
+        val (diff-fn county year months model scenario variable)]
+    (add-style elem :fill (linear-rgb val domain))))
 
 (defn regions-map 
   [cp req]
@@ -54,8 +57,8 @@
                   :county counties
                   :province provinces)
         diff-fn (if (temp-var? variable) temp-diff-data diff-data)
-        min (decadal-min-temp months model scenario variable regions diff-fn)
-        max (decadal-max-temp months model scenario variable regions diff-fn)
+        min (decadal-min months model scenario variable regions diff-fn)
+        max (decadal-max months model scenario variable regions diff-fn)
         intyear (Integer/parseInt year)
         local-min (nth (quartiles intyear months model scenario variable cp diff-fn) 0)]
     {:status 200
@@ -92,13 +95,13 @@
              #(set-content % (str (float (+ local-min 0.3)))))
             (transform-xml
              [{:id "min"}]
-             #(add-style % :fill (linear-rgb local-min min max)))
+             #(add-style % :fill (linear-rgb local-min [max min])))
             (transform-xml
              [{:id "min-6"}]
-             #(add-style % :fill (linear-rgb (+ local-min 0.15) min max)))
+             #(add-style % :fill (linear-rgb (+ local-min 0.15) [max min])))
             (transform-xml
              [{:id "max"}]
-             #(add-style % :fill (linear-rgb (+ local-min 0.3) min max)))))}))
+             #(add-style % :fill (linear-rgb (+ local-min 0.3) [max min])))))}))
 
   
 (defn counties-map 
