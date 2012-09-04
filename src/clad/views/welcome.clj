@@ -335,8 +335,40 @@
                 (assoc-in [:content] variable)
                 (assoc-in [:attrs :href] (make-url "welcome/svgbar"
                                                    (assoc-in req [:variable] variable)
-                                                   :counties? counties?))))))
+                                                   :counties? counties?)))))
+  [:#months :ul :li]
+  (clone-for [months ["DJF"
+                        "MAM"
+                        "JJA"
+                        "SON"
+                        #_"J2D"]]
+             [:li :a]
+             (fn [a-node]
+               (->
+                (if (= (:months req) months)
+                  (assoc-in a-node [:attrs :id] "current")
+                  a-node)
+                (assoc-in [:content] months)
+                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
+                                                   (assoc-in req [:months] months)
+                                                   :counties? counties?)))))
 
+ [:#runs :ul :li]
+  (clone-for [runs (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
+             [:li :a]
+             (fn [a-node]
+               (->
+                (if (and (= (:model req) (first runs))
+                         (= (:scenario req) (second runs)))
+                  (assoc-in a-node [:attrs :id] "current")
+                  a-node)
+                (assoc-in [:content] (str (first runs) " " (second runs)))
+                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
+                                                   (->
+                                                    (assoc-in req [:model] (first runs))
+                                                    (assoc-in [:scenario] (second runs)))
+                                                   :counties? counties?))))))
+             
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
   [:#view-2-map]
