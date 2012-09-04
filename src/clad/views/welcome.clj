@@ -314,7 +314,28 @@
                                                              (case region
                                                                "Counties" "Kilkenny"
                                                                "Provinces" "Munster"))
-                                                   :counties? (= region "Counties")))))))
+                                                   :counties? (= region "Counties"))))))
+  [:#variables :ul :li]
+  (clone-for [variable ["T_2M"
+                        "TOT_PREC"
+                        "PMSL"
+                        "PS"
+                        "QV_2M"
+                        "RUNOFF_G"
+                        "RUNOFF_S"
+                        "TMAX_2M"
+                        "TMIN_2M"
+                        "VGUST_DYN"]]
+             [:li :a]
+             (fn [a-node]
+               (->
+                (if (= (:variable req) variable)
+                  (assoc-in a-node [:attrs :id] "current")
+                  a-node)
+                (assoc-in [:content] variable)
+                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
+                                                   (assoc-in req [:variable] variable)
+                                                   :counties? counties?))))))
 
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
@@ -471,7 +492,6 @@
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
   (barchart region (Integer/parseInt year) months variable))
-
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
 
