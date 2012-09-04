@@ -72,7 +72,7 @@ body {
 }
 #buttons {
 	position: relative;
-	top: 52px;
+	top: 64px;
 	width: 1000px;	
 }
 .buttons ul { 
@@ -323,9 +323,11 @@ body {
 #decades {
     float: left;
 }
-
 #regions {
     float: left;
+}
+#mapouter {
+    text-align: center;
 }
 .picture-small { 
 	background-color: #F9F9F9;
