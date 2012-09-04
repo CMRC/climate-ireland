@@ -133,13 +133,14 @@
         y (cons (data-by-county county year months "ICARUS" "ICARUS" variable)
                 (map #(diff-fn county year months (first %) (second %) variable)
                      ensemble))
-        x (cons "ICARUS" (map #(str (first %) " " (second %)) ensemble))
+        runs (cons "ICARUS" (map #(str (first %) " " (second %)) ensemble))
+        x (repeat (count runs) "")
         chart (bar-chart x y :title (str county " " year " " months " " variable)
-                         :x-label ""			     
+                         :x-label "Model runs"			     
                          :y-label (if (temp-var? variable) "Difference in °C from baseline"
                                       "% difference from baseline")
                          :legend true
-                         :group-by x)
+                         :group-by runs)
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save chart out-stream :width 397 :height 580)
