@@ -81,15 +81,25 @@
                                                (if (temp-var? variable) "°C " "% ")
                                                %2
                                                "')"))
-                               (colour-on-linear %2 intyear months model scenario variable region min max diff-fn))])))
+                               (colour-on-linear %2 intyear months model scenario variable region min max diff-fn)
+                               (add-style :stroke-width (if (= region (:id (second elem))) 36 6)))])))
                     regions-svg			
                     regions)
             (transform-xml
              [{:id "min-text"}]
-             #(set-content % (str (float min))))
+             #(set-content % (str (->
+                                   min
+                                   (* 100)
+                                   round
+                                   (/ 100)
+                                   float))))
             (transform-xml
              [{:id "max-text"}]
-             #(set-content % (str (float max))))
+             #(set-content % (str (-> max
+                                   (* 100)
+                                   round
+                                   (/ 100)
+                                   float))))
             (transform-xml
              [{:id "min"}]
              #(add-style % :fill (linear-rgb min [max min])))
