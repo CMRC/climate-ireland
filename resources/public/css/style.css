@@ -247,9 +247,24 @@ body {
 	max-width: 500px;
 	}
 	
+#text-box-2{
+	padding: 5px;
+	border: 3px #396538 solid;
+	background-color: #BDD2B7;
+	clear:both;
+	}
+	
 .resize{
 	height: auto;
 	width: auto;
+	}
+
+.picture clear { 
+	background-color: #F9F9F9;
+	border: 1px solid #CCCCCC; padding: 5px;
+	font: 11px/1.4em Arial, sans-serif;
+	max-width: 680px;	
+	float:clear;
 	}
 	
 .picture { 
@@ -264,6 +279,7 @@ body {
 	vertical-align:middle; margin-bottom: 3px; 
 	max-width:330px;
 	}
+	
 
 .right { 
 	margin: 0.5em 0pt 0.5em 0.8em; float:right; 
