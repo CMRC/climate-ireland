@@ -41,7 +41,6 @@
 (defn colour-on-linear [elem county year months model scenario variable region lmin lmax diff-fn]
   (let [;;absmax (max (abs lmin) (abs lmax))
         domain [lmax lmin];;[absmax (* -1.0 absmax)] ;;symmetrical scale
-        p (println domain)
         val (diff-fn county year months model scenario variable)]
     (add-style elem :fill (linear-rgb val domain))))
 

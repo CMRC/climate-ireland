@@ -3,8 +3,7 @@
         clad.views.svg))
 
 (deftest test-linear-rgb
-  (let [mid (linear-rgb 0 50 100)]
+  (let [mid (linear-rgb 75 [50 100])]
     ;;check valid colour string
-    (println mid)
-    (is (re-find #"#(\p{XDigit}{2}){3}" mid))))
+    (is (re-find #"rgb\(\d{3},\d{3},\d{3}\)" mid))))
 
