@@ -318,14 +318,14 @@
   [:#variables :ul :li]
   (clone-for [variable ["T_2M"
                         "TOT_PREC"
-                        "PMSL"
-                        "PS"
-                        "QV_2M"
-                        "RUNOFF_G"
-                        "RUNOFF_S"
-                        "TMAX_2M"
-                        "TMIN_2M"
-                        "VGUST_DYN"]]
+                        #_"PMSL"
+                        #_"PS"
+                        #_"QV_2M"
+                        #_"RUNOFF_G"
+                        #_"RUNOFF_S"
+                        #_"TMAX_2M"
+                        #_"TMIN_2M"
+                        #_"VGUST_DYN"]]
              [:li :a]
              (fn [a-node]
                (->
