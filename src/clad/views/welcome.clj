@@ -291,7 +291,11 @@
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
              [:option]
              (fn [a-node] (->
-                           (assoc-in a-node [:content] decade)
+                           (assoc-in (if (= (:years req)
+                                            (clojure.string/replace
+                                             decade "-" ""))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] decade)
                            (assoc-in [:attrs :value]
                                      (clojure.string/replace decade "-" "")))))
   
@@ -299,7 +303,13 @@
   (clone-for [region ["Counties" "Provinces"]]
              [:option]
              (fn [a-node] (->
-                           (assoc-in a-node [:content] region)
+                           (assoc-in (if (or
+                                          (and counties?
+                                               (= region "Counties"))
+                                          (and (not counties?)
+                                               (= region "Provinces")))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] region)
                            (assoc-in [:attrs :value] region))))
 
   [:#region]
@@ -333,14 +343,19 @@
                         #_"J2D"]]
              [:option]
              (fn [a-node] (->
-                           (assoc-in a-node [:content] month)
+                           (assoc-in (if (= month (:months req))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] month)
                            (assoc-in [:attrs :value] month))))
 
   [:#runs :option]
   (clone-for [run (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
              [:option]
              (fn [a-node] (->
-                           (assoc-in a-node [:content] (str (first run)
+                           (assoc-in (if (and (= (:model req) (first run))
+                                              (= (:scenario req) (second run)))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] (str (first run)
                                                           " " (second run)))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
