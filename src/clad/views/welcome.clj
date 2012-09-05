@@ -286,48 +286,26 @@
   
   [:#mapsvg]
   (content map)
-
-  [:#decades :> :a]
-  (content (:years req))
   
-  [:#decades :ul :li]
+  [:#decades :option]
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (= (:years req) (clojure.string/replace decade "-" ""))
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] decade)
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (assoc-in req [:years]
-                                                             (clojure.string/replace decade "-" ""))
-                                                   :counties? counties?)))))
-  [:#regions :> :a]
-  (content (if counties? "Counties" "Provinces"))
-   
-  [:#regions :ul :li]
-  (clone-for [region ["Counties" "Provinces"]]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (or
-                     (and (= region "Counties") counties?)
-                     (and (not= region "Counties") (not counties?)))
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] region)
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (assoc-in req [:region]
-                                                             (case region
-                                                               "Counties" "Kilkenny"
-                                                               "Provinces" "Munster"))
-                                                   :counties? (= region "Counties"))))))
-
-  [:#variables :> :a]
-  (content (:variable req))
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in a-node [:content] decade)
+                           (assoc-in [:attrs :value]
+                                     (clojure.string/replace decade "-" "")))))
   
-  [:#variables :ul :li]
+  [:#regions :option]
+  (clone-for [region ["Counties" "Provinces"]]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in a-node [:content] region)
+                           (assoc-in [:attrs :value] region))))
+
+  [:#region]
+  (set-attr :value (:region req))
+  
+  [:#variables :option]
   (clone-for [variable ["T_2M"
                         "TOT_PREC"
                         #_"PMSL"
@@ -338,55 +316,34 @@
                         #_"TMAX_2M"
                         #_"TMIN_2M"
                         #_"VGUST_DYN"]]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (= (:variable req) variable)
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] variable)
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (assoc-in req [:variable] variable)
-                                                   :counties? counties?)))))
-
-  [:#months :> :a]
-  (content (:months req))
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in
+                            (if (= variable (:variable req))
+                              (assoc-in a-node [:attrs :selected] nil)
+                              a-node)
+                            [:content] variable)
+                           (assoc-in [:attrs :value] variable))))
   
-  [:#months :ul :li]
-  (clone-for [months ["DJF"
+  [:#months :option]
+  (clone-for [month ["DJF"
                         "MAM"
                         "JJA"
                         "SON"
                         #_"J2D"]]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (= (:months req) months)
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] months)
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (assoc-in req [:months] months)
-                                                   :counties? counties?)))))
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in a-node [:content] month)
+                           (assoc-in [:attrs :value] month))))
 
-  [:#runs :> :a]
-  (content (str (:model req) " " (:scenario req)))
-
-  [:#runs :ul :li]
-  (clone-for [runs (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (and (= (:model req) (first runs))
-                         (= (:scenario req) (second runs)))
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] (str (first runs) " " (second runs)))
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (->
-                                                    (assoc-in req [:model] (first runs))
-                                                    (assoc-in [:scenario] (second runs)))
-                                                   :counties? counties?))))))
+  [:#runs :option]
+  (clone-for [run (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in a-node [:content] (str (first run)
+                                                          " " (second run)))
+                           (assoc-in [:attrs :value] (str (first run)
+                                                          "/" (second run)))))))
              
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
@@ -545,7 +502,14 @@
   (barchart region (Integer/parseInt year) months variable))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
-
+(defpage "/ci/maptools" {:as req}
+  (redirect (str "/ci/welcome/svgbar/" (:region req)
+                 "/" (:years req)
+                 "/" (:months req)
+                 "/" (:runs req)
+                 "/" (:variable req)
+                 "/linear"
+                 (when (= (:regions req) "Counties") "/counties"))))
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
                                         ; We don't need to do anything, we just want to make sure we're 
