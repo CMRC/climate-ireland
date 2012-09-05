@@ -82,7 +82,7 @@
                                                %2
                                                "')"))
                                (colour-on-linear %2 intyear months model scenario variable region min max diff-fn)
-                               (add-style :stroke-width (if (= region (:id (second elem))) 36 6)))])))
+                               (add-style :stroke (if (= region (:id (second elem))) "white" "black")))])))
                     regions-svg			
                     regions)
             (transform-xml

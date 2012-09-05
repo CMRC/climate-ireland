@@ -283,8 +283,13 @@
 
 (defsnippet maptools "clad/views/maptools.html" [:#mapouter]
   [req map & {:keys [counties?] :or {counties? false}}]
+  
   [:#mapsvg]
   (content map)
+
+  [:#decades :> :a]
+  (content (:years req))
+  
   [:#decades :ul :li]
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
              [:li :a]
@@ -298,6 +303,9 @@
                                                    (assoc-in req [:years]
                                                              (clojure.string/replace decade "-" ""))
                                                    :counties? counties?)))))
+  [:#regions :> :a]
+  (content (if counties? "Counties" "Provinces"))
+   
   [:#regions :ul :li]
   (clone-for [region ["Counties" "Provinces"]]
              [:li :a]
@@ -315,6 +323,10 @@
                                                                "Counties" "Kilkenny"
                                                                "Provinces" "Munster"))
                                                    :counties? (= region "Counties"))))))
+
+  [:#variables :> :a]
+  (content (:variable req))
+  
   [:#variables :ul :li]
   (clone-for [variable ["T_2M"
                         "TOT_PREC"
@@ -336,6 +348,10 @@
                 (assoc-in [:attrs :href] (make-url "welcome/svgbar"
                                                    (assoc-in req [:variable] variable)
                                                    :counties? counties?)))))
+
+  [:#months :> :a]
+  (content (:months req))
+  
   [:#months :ul :li]
   (clone-for [months ["DJF"
                         "MAM"
@@ -353,7 +369,10 @@
                                                    (assoc-in req [:months] months)
                                                    :counties? counties?)))))
 
- [:#runs :ul :li]
+  [:#runs :> :a]
+  (content (str (:model req) " " (:scenario req)))
+
+  [:#runs :ul :li]
   (clone-for [runs (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
              [:li :a]
              (fn [a-node]
