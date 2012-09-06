@@ -103,19 +103,24 @@
 
 (defn decadal-box [county months variable]
   (let [diff-fn (if (temp-var? variable) temp-diff-data diff-data)
-        step 10
-        base-range (range 1961 1991 10)
-        projected-range (range 2021 2061 10)
-        chart (doto (box-plot (map #(first (decadal % [2021] 10 diff-fn county months variable)) ensemble)
+        chart (doto (box-plot (cons (data-by-county county 202130 months "ICARUS" "ICARUS" variable)
+                                    (map #(diff-fn county 202130 months (first %) (second %) variable)
+                                         ensemble))
                               :legend true :y-label (if (temp-var? variable) "ΔK" "%")
                               :series-label "2020s")
-                (add-box-plot (map #(first (decadal % [2031] 10 diff-fn county months variable)) ensemble)
+                (add-box-plot (cons (data-by-county county 203140 months "ICARUS" "ICARUS" variable)
+                                    (map #(diff-fn county 203140 months (first %) (second %) variable)
+                                         ensemble))
                               :legend true
                               :series-label "2030s")
-                (add-box-plot (map #(first (decadal % [2041] 10 diff-fn county months variable)) ensemble)
+                (add-box-plot (cons (data-by-county county 204150 months "ICARUS" "ICARUS" variable)
+                                    (map #(diff-fn county 204150 months (first %) (second %) variable)
+                                         ensemble))
                               :legend true
                               :series-label "2040s")
-                (add-box-plot (map #(first (decadal % [2051] 10 diff-fn county months variable)) ensemble)
+                (add-box-plot (cons (data-by-county county 205160 months "ICARUS" "ICARUS" variable)
+                                    (map #(diff-fn county 205160 months (first %) (second %) variable)
+                                         ensemble))
                               :legend true
                               :series-label "2050s"))
         out-stream (ByteArrayOutputStream.)
