@@ -86,7 +86,7 @@
                     regions-svg			
                     regions)
             (transform-xml
-             [{:id "min-text"}]
+             [{:id "val-11"}]
              #(set-content % (str (->
                                    min
                                    (* 100)
@@ -94,20 +94,20 @@
                                    (/ 100)
                                    float))))
             (transform-xml
-             [{:id "max-text"}]
+             [{:id "val-0"}]
              #(set-content % (str (-> max
                                    (* 100)
                                    round
                                    (/ 100)
                                    float))))
             (transform-xml
-             [{:id "min"}]
+             [{:id "col-10"}]
              #(add-style % :fill (linear-rgb min [max min])))
             (transform-xml
-             [{:id "min-6"}]
+             [{:id "col-5"}]
              #(add-style % :fill (linear-rgb (/ (+ max min) 2) [max min])))
             (transform-xml
-             [{:id "max"}]
+             [{:id "col-0"}]
              #(add-style % :fill (linear-rgb max [max min])))))}))
   
 (def regions-map (memoize regions-map-slow))

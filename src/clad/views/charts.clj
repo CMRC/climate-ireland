@@ -107,22 +107,22 @@
                                     (map #(diff-fn county 202130 months (first %) (second %) variable)
                                          ensemble))
                               :legend true :y-label (if (temp-var? variable) "ΔK" "%")
-                              :series-label "2020s")
+                              :series-label "2021-30")
                 (add-box-plot (cons (data-by-county county 203140 months "ICARUS" "ICARUS" variable)
                                     (map #(diff-fn county 203140 months (first %) (second %) variable)
                                          ensemble))
                               :legend true
-                              :series-label "2030s")
+                              :series-label "2031-40")
                 (add-box-plot (cons (data-by-county county 204150 months "ICARUS" "ICARUS" variable)
                                     (map #(diff-fn county 204150 months (first %) (second %) variable)
                                          ensemble))
                               :legend true
-                              :series-label "2040s")
+                              :series-label "2041-50")
                 (add-box-plot (cons (data-by-county county 205160 months "ICARUS" "ICARUS" variable)
                                     (map #(diff-fn county 205160 months (first %) (second %) variable)
                                          ensemble))
                               :legend true
-                              :series-label "2050s"))
+                              :series-label "2051-60"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save chart out-stream :width 397 :height 580)
@@ -131,7 +131,7 @@
     {:status 200
      :headers {"Content-Type" "image/png"}
      :body in-stream}))
-
+(data-by-county "Kilkenny" 208190 "JJA" "ICARUS" "ICARUS" "T_2M")
 
 (defn barchart [county year months variable]
   (let [diff-fn (if (temp-var? variable) temp-diff-data diff-data)
