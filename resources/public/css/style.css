@@ -1,6 +1,5 @@
 /*------------------------------------*\
 	RESET
-\*------------------------------------*/
 body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{
 	margin:0;
 	padding:0;
@@ -29,6 +28,7 @@ q:before,q:after{
 abbr,acronym{
 	border:0;
 }
+\*------------------------------------*/
 
 html {
 	width: 100%;
@@ -72,7 +72,7 @@ body {
 }
 #buttons {
 	position: relative;
-	top: 64px;
+	top: 52px;
 	width: 1000px;	
 }
 .buttons ul { 
@@ -210,7 +210,7 @@ body {
 }
 #view-2-map {
 	width: 500px;
-	height: 525px;
+	height: 595px;
 	float: left;
 }
 #view-2-map-tool{
@@ -336,12 +336,6 @@ body {
 	margin-bottom: 3px; 
 	max-width:565px;
 }
-#decades {
-    float: left;
-}
-#regions {
-    float: left;
-}
 #mapouter {
     text-align: center;
 }
@@ -395,14 +389,17 @@ body {
 #nav a{
 	display:block;
 	padding: 0em 0.5em 0.1em 0;
-	color:#white;
-	background:#436756;
+	color: black;
+	background: grey;
 	text-decoration:none;
+	border: 3px solid grey;
+	border-style: outset;
 }
 #nav a:hover{
-	color:white;
-	background: white;
+	color:black;
+	background: grey;
 	text-decoration:none;
+	border-style: outset;
 }
 
 /*--- DROPDOWN ---*/
@@ -416,21 +413,32 @@ body {
 #nav ul li{
 	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
 	float:none;
+	margin: 0;
 }
 #nav ul a{
 	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
 }
 #nav li:hover ul{ /* Display the dropdown on hover */
-	left:0; /* Bring back on-screen when needed */
+	left:-40px; /* Bring back on-screen when needed */
 }
 #nav li:hover a{ /* These create persistent hover states, meaning the top-most link stays 'hovered' even when your cursor has moved down the list. */
-	background: #436756;
+	background: #666666;
 	text-decoration:none;
 }
 #nav li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
 	text-decoration:none;
 }
-#nav li:hover ul li a:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
-	background: white;
-	color: #436756;
+#nav li:hover ul li a:hover, 
+#nav li:hover ul li a:active,
+#nav li:hover ul li a#current{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+	background: #999999;
+	color: black;
+	border-style: inset;
+}
+#maptools{
+    border: 1px solid #666666;
+    background: #aaaaaa;
+    width: 100%;
+    height: 40px;
+    float: none;
 }

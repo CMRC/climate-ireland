@@ -2,27 +2,29 @@
 <body>
   <div id="mapouter">
     <div id="mapsvg"/>
-    <div class="buttons" id="maptools">
-      <ul id="nav">
-	<li id="decades">
-	  <a href="#">Decades</a>
-	  <ul>
-	    <li><a href="#">link</a></li>
-	  </ul>
-	</li>
-	<li id="regions">
-	  <a href="#">Regions</a>
-	  <ul>
-	    <li><a href="#">region</li>
-	  </ul>
-	</li>
-	<li id="variables">
-	  <a href="#">Variables</a>
-	  <ul>
-	    <li><a href="#">region</li>
-	  </ul>
-	</li>
-      </ul>
+    <div class="maptools" id="maptools">
+      <form name="maptools" action="/ci/maptools" method="get">
+	Regions: <select name="regions" id="regions">
+	  <option value="JJA"/>
+	</select>
+	Variables: <select name="variable" id="variables">
+	  <option value="JJA"/>
+	</select>
+	Years: <select name="years" id="decades">
+	  <option value="JJA"/>
+	</select>
+	<br/>
+	Months:
+	<select name="months" id="months">
+	  <option value="JJA"/>
+	</select>
+	Model Runs:
+	<select name="runs" id="runs">
+	  <option value="JJA"/>
+	</select>
+	<input type="hidden" name="region" id="region"/>
+	<input type="submit" value="Change" />
+      </form>
     </div>
   </div>
 </body>
