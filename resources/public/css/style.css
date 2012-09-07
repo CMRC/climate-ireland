@@ -1,35 +1,6 @@
-/*------------------------------------*\
-	RESET
-body,div,dl,dt,dd,ul,ol,li,h1,h2,h3,h4,h5,h6,pre,form,fieldset,input,textarea,p,blockquote,th,td{
-	margin:0;
-	padding:0;
+.do-not-display {
+    display: none;
 }
-table{
-	border-collapse:collapse;
-	border-spacing:0;
-}
-fieldset,img{
-	border:0;
-}
-address,caption,cite,code,dfn,th,var{
-	font-style:normal;
-	font-weight:normal;
-}
-caption,th{
-	text-align:left;
-}
-h1,h2,h3,h4,h5,h6{
-	font-size:100%;
-	font-weight:normal;
-}
-q:before,q:after{
-	content:'';
-}
-abbr,acronym{
-	border:0;
-}
-\*------------------------------------*/
-
 html {
 	width: 100%;
 	height: 100%;
@@ -209,18 +180,19 @@ body {
 	float: right;
 }
 #view-2-map {
-	width: 500px;
-	height: 595px;
-	float: left;
+	width: 320px;
+	height: 400px;
+	text-align: center;
 }
 #view-2-map-tool{
 	width: 500px;
 	height: 70px;
-	float: left;	
+	float: left;
+	background: #aaaaaa;	
 }
 #view-2-2-chart {
-	width: 500px;
-	height: 425px;
+	width: 450px;
+	height: 400px;
 	float: left;
 }
 #view-2-2-expl {
@@ -442,3 +414,4 @@ body {
     height: 40px;
     float: none;
 }
+

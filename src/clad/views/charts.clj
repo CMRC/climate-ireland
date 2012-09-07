@@ -106,7 +106,8 @@
         chart (doto (box-plot (cons (data-by-county county 202130 months "ICARUS" "ICARUS" variable)
                                     (map #(diff-fn county 202130 months (first %) (second %) variable)
                                          ensemble))
-                              :legend true :y-label (if (temp-var? variable) "ΔK" "%")
+                              :legend true :y-label (if (temp-var? variable) "Difference in °C from baseline"
+                                                        "% difference from baseline")
                               :series-label "2021-30")
                 (add-box-plot (cons (data-by-county county 203140 months "ICARUS" "ICARUS" variable)
                                     (map #(diff-fn county 203140 months (first %) (second %) variable)
@@ -125,7 +126,7 @@
                               :series-label "2051-60"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 397 :height 580)
+                    (save chart out-stream :width 450 :height 400)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200

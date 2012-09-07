@@ -107,8 +107,10 @@
                                                                              (/ 100)
                                                                              float)))))
                           legend
-                          (range 11 -1 -1))]
-       (emit values))}))
+                          (range 11 -1 -1))
+           selected (transform-xml values [{:id "selected"}]
+                                   (fn [node] (set-content node (str "Selected: " (:region req)))))]
+       (emit selected))}))
 
   
 (def regions-map (memoize regions-map-slow))

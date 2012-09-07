@@ -281,11 +281,26 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(defsnippet maptools "clad/views/maptools.html" [:#mapouter]
-  [req map & {:keys [counties?] :or {counties? false}}]
+(defsnippet chart-help
+  "clad/views/chart-help.html"
+  [:#view-2-2-expl]
+
+  [{:keys [months variable]}]
   
-  [:#mapsvg]
-  (content map)
+  [:.season]
+  (content ({"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"} months))
+
+  [:.variable]
+  (content ({"T_2M" "Temperature", "TOT_PREC" "Precipitation"} variable))
+
+  [:.if-temperature]
+  (set-attr :class (when (not= variable "T_2M") "do-not-display"))
+  
+  [:.if-precipitation]
+  (set-attr :class (when (not= variable "TOT_PREC") "do-not-display")))
+
+(defsnippet maptools "clad/views/maptools.html" [:#view-2-map-tool]
+  [req map & {:keys [counties?] :or {counties? false}}]
   
   [:#decades :option]
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
@@ -363,9 +378,13 @@
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
   [:#view-2-map]
+  (content map)
+  [:#view-2-map-tool]
   (content (maptools req map :counties? counties?))
   [:#view-2-2-chart]
   (content blurb)
+  [:#view-2-2-expl]
+  (content (chart-help req))
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
@@ -417,9 +436,7 @@
  (svgmap req
          {:tag :object
           :attrs {(if (good-browser?) :data :src) (make-url "svg" req)
-                  :type "image/svg+xml"
-                  :height "550px"
-                  :width "440px"}}
+                  :type "image/svg+xml"}}
          {:tag :img
           :attrs {:src (make-url "box" req)
                   :max-width "100%"}}))
@@ -429,9 +446,7 @@
  (svgmap req
          {:tag :object
           :attrs {(if (good-browser?) :data :src) (make-url "svg" req :counties? true)
-                  :type "image/svg+xml"
-                  :height "550px"
-                  :width "440px"}}
+                  :type "image/svg+xml"}}
          {:tag :img
           :attrs {:src (make-url "box" req)
                   :max-width "100%"}}
