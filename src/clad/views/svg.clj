@@ -31,23 +31,28 @@
 (defn colour-on-quartiles [elem county year months model scenario variable]
   )
 
+(def colour-scheme color-brewer/RdYlBu-11)
+
 (defn linear-rgb [val domain]
-  (let [colour-scheme color-brewer/RdYlBu-11
-        colour-scale (let [s (scale/linear :domain domain
+  "Returns a colour string based on the value"
+  (let [colour-scale (let [s (scale/linear :domain domain
                                            :range [0 (dec (count colour-scheme))])]
                        (fn [d] (nth colour-scheme (floor (s d)))))]
     (colour-scale val)))
   
-(defn colour-on-linear [elem county year months model scenario variable region lmin lmax diff-fn]
-  (let [;;absmax (max (abs lmin) (abs lmax))
-        domain [lmax lmin];;[absmax (* -1.0 absmax)] ;;symmetrical scale
+(defn colour-on-linear
+  "Calls CouchDB and returns a colour string based on the query parameters"
+  [elem county year months model scenario variable region lmin lmax diff-fn]
+  (let [domain [lmax lmin]
         val (diff-fn county year months model scenario variable)]
     (add-style elem :fill (linear-rgb val domain))))
 
 (defn regions-map-slow
+  "Takes an svg file representing a map of Ireland divdided into regions
+   and generates a choropleth map where the colours represent the value
+   of the given variable"
   [cp req]
-  (let [{:keys [year months model scenario variable fill region]
-         :or {model "ensemble" scenario "ensemble"}} req
+  (let [{:keys [year months model scenario variable fill region]} req
         regions-svg (case cp
                       :county counties-svg
                       :province provinces-svg)
@@ -61,54 +66,50 @@
     {:status 200
      :headers {"Content-Type" "image/svg+xml"}
      :body
-     (emit (->
-            (reduce #(transform-xml
-                      %1
-                      [{:id %2}]
-                      (fn [elem]
-                        (let [link (make-url "welcome/svgbar"
-                                             (assoc-in req [:region] %2)
-                                             :counties? (= cp :county))]
-                          [:a {:xlink:href link :target "_top"}
-                           (-> (add-attrs elem :onmouseover
-                                          (str "value(evt,'"
-                                               (->
-                                                (diff-fn %2 intyear months model scenario variable)
-                                                (* 100)
-                                                round
-                                                (/ 100)
-                                                float)
-                                               (if (temp-var? variable) "°C " "% ")
-                                               %2
-                                               "')"))
-                               (colour-on-linear %2 intyear months model scenario variable region min max diff-fn)
-                               (add-style :stroke (if (= region (:id (second elem))) "white" "black")))])))
-                    regions-svg			
-                    regions)
-            (transform-xml
-             [{:id "val-11"}]
-             #(set-content % (str (->
-                                   min
-                                   (* 100)
-                                   round
-                                   (/ 100)
-                                   float))))
-            (transform-xml
-             [{:id "val-0"}]
-             #(set-content % (str (-> max
-                                   (* 100)
-                                   round
-                                   (/ 100)
-                                   float))))
-            (transform-xml
-             [{:id "col-10"}]
-             #(add-style % :fill (linear-rgb min [max min])))
-            (transform-xml
-             [{:id "col-5"}]
-             #(add-style % :fill (linear-rgb (/ (+ max min) 2) [max min])))
-            (transform-xml
-             [{:id "col-0"}]
-             #(add-style % :fill (linear-rgb max [max min])))))}))
+     (let [choropleth
+           (reduce
+            #(transform-xml
+              %1
+              [{:id %2}]
+              (fn [elem]
+                (let [link (make-url "welcome/svgbar"
+                                     (assoc-in req [:region] %2)
+                                     :counties? (= cp :county))]
+                  [:a {:xlink:href link :target "_top"}
+                   (-> (add-attrs elem :onmouseover
+                                  (str "value(evt,'"
+                                       (->
+                                        (diff-fn %2 intyear months model scenario variable)
+                                        (* 100)
+                                        round
+                                        (/ 100)
+                                        float)
+                                       (if (temp-var? variable) "°C " "% ")
+                                       %2
+                                       "')"))
+                       (colour-on-linear %2 intyear months model scenario variable region min max diff-fn)
+                       (add-style :stroke (if (= region (:id (second elem))) "white" "black")))])))
+            regions-svg			
+            regions)
+           legend (reduce #(transform-xml %1
+                                          [{:id (str "col-" %2)}]
+                                          (fn [node] (add-style node :fill (nth colour-scheme %2))))
+                          choropleth
+                          (range 0 11))
+           values (reduce #(transform-xml %1
+                                          [{:id (str "val-" %2)}]
+                                          (fn [node] (set-content node (str (->
+                                                                             ((scale/linear :domain [0 11]
+                                                                                            :range [max min])
+                                                                              %2)
+                                                                             (* 100)
+                                                                             round
+                                                                             (/ 100)
+                                                                             float)))))
+                          legend
+                          (range 11 -1 -1))]
+       (emit values))}))
+
   
 (def regions-map (memoize regions-map-slow))
 

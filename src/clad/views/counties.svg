@@ -316,17 +316,16 @@
       <text
          xml:space="preserve"
          style="font-size:299.40881348px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-         x="7962.2666"
-         y="9784.7852"
+         x="6470.6191"
+         y="9711.4727"
          id="value"
          sodipodi:linespacing="125%"
          transform="scale(1.0009166,0.99908423)"
          inkscape:label="#text3049"><tspan
            sodipodi:role="line"
-           id="tspan3039"
-           x="7962.2666"
-           y="9784.7852"
-           gn="">sd\grsg</tspan></text>
+           id="tspan3798"
+           x="6470.6191"
+           y="9711.4727">Mouseover for value</tspan></text>
       <rect
          style="fill:#ffffbf;fill-opacity:1;fill-rule:nonzero;stroke:none"
          id="col-5"
@@ -422,7 +421,7 @@
          style="font-size:195.53491211px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
          x="11939.292"
          y="5687.6143"
-         id="min-text-2"
+         id="val-8"
          sodipodi:linespacing="125%"
          transform="scale(0.754086,1.3261087)"
          inkscape:label="#text3855"><tspan
@@ -575,13 +574,12 @@
      inkscape:label="#rect3032" />
   <text
      xml:space="preserve"
-     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
-     x="183.27647"
+     style="font-size:14px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+     x="165.27647"
      y="367.1911"
-     id="text3878"
-     sodipodi:linespacing="125%"><tspan
+     id="selected"
+     sodipodi:linespacing="125%"
+     inkscape:label="#text3878"><tspan
        sodipodi:role="line"
-       id="tspan3880"
-       x="183.27647"
-       y="367.1911">Selected County:</tspan></text>
+       id="tspan3802">Selected County: South Tipperary</tspan></text>
 </svg>
