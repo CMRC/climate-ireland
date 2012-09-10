@@ -132,7 +132,6 @@
     {:status 200
      :headers {"Content-Type" "image/png"}
      :body in-stream}))
-(data-by-county "Kilkenny" 208190 "JJA" "ICARUS" "ICARUS" "T_2M")
 
 (defn barchart [county year months variable]
   (let [diff-fn (if (temp-var? variable) temp-diff-data diff-data)
