@@ -281,6 +281,12 @@
                                   a-node)))
                    [:.buttons :ul])))
 
+(defsnippet map-help "clad/views/chart-help.html"
+  [:#map-help]
+  
+  []
+  )
+  
 (defsnippet chart-help
   "clad/views/chart-help.html"
   [:#view-2-2-expl]
@@ -385,6 +391,8 @@
   (content blurb)
   [:#view-2-2-expl]
   (content (chart-help req))
+  [:#map-help]
+  (content (map-help))
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
