@@ -260,6 +260,9 @@
                                   a-node)))
                    [:.buttons :ul])))
 
+(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
+
 (deftemplate welcome "clad/views/welcome.html"
   [map]
   [:#map]
@@ -281,47 +284,105 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(defsnippet maptools "clad/views/maptools.html" [:#mapouter]
-  [req map & {:keys [counties?] :or {counties? false}}]
-  [:#mapsvg]
-  (content map)
-  [:#decades :ul :li]
-  (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (= (:years req) (clojure.string/replace decade "-" ""))
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] decade)
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (assoc-in req [:years]
-                                                             (clojure.string/replace decade "-" ""))
-                                                   :counties? counties?)))))
-  [:#regions :ul :li]
-  (clone-for [region ["Counties" "Provinces"]]
-             [:li :a]
-             (fn [a-node]
-               (->
-                (if (or
-                     (and (= region "Counties") counties?)
-                     (and (not= region "Counties") (not counties?)))
-                  (assoc-in a-node [:attrs :id] "current")
-                  a-node)
-                (assoc-in [:content] region)
-                (assoc-in [:attrs :href] (make-url "welcome/svgbar"
-                                                   (assoc-in req [:region]
-                                                             (case region
-                                                               "Counties" "Kilkenny"
-                                                               "Provinces" "Munster"))
-                                                   :counties? (= region "Counties")))))))
+(defsnippet map-help "clad/views/chart-help.html"
+  [:#map-help]
+  
+  []
+  )
+  
+(defsnippet chart-help
+  "clad/views/chart-help.html"
+  [:#view-2-2-expl]
 
+  [{:keys [months variable]}]
+  
+  [:.season]
+  (content (seasons months))
+
+  [:.variable]
+  (content (variables variable))
+
+  [:.if-temperature]
+  (set-attr :class (when (not= variable "T_2M") "do-not-display"))
+  
+  [:.if-precipitation]
+  (set-attr :class (when (not= variable "TOT_PREC") "do-not-display")))
+
+(defsnippet maptools "clad/views/maptools.html" [:#view-2-map-tool]
+  [req map & {:keys [counties?] :or {counties? false}}]
+  
+  [:#decades :option]
+  (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in (if (= (:years req)
+                                            (clojure.string/replace
+                                             decade "-" ""))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] decade)
+                           (assoc-in [:attrs :value]
+                                     (clojure.string/replace decade "-" "")))))
+  
+  [:#regions :option]
+  (clone-for [region ["Counties" "Provinces"]]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in (if (or
+                                          (and counties?
+                                               (= region "Counties"))
+                                          (and (not counties?)
+                                               (= region "Provinces")))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] region)
+                           (assoc-in [:attrs :value] region))))
+
+  [:#region]
+  (set-attr :value (:region req))
+  
+  [:#variables :option]
+  (clone-for [variable (keys variables)]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in
+                            (if (= variable (:variable req))
+                              (assoc-in a-node [:attrs :selected] nil)
+                              a-node)
+                            [:content] (variables variable))
+                           (assoc-in [:attrs :value] variable))))
+  
+  [:#months :option]
+  (clone-for [month (keys seasons)]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in (if (= month (:months req))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] (seasons month))
+                           (assoc-in [:attrs :value] month))))
+
+  [:#runs :option]
+  (clone-for [run (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in (if (and (= (:model req) (first run))
+                                              (= (:scenario req) (second run)))
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] (str (second run)
+                                                          " (" (first run) ")"))
+                           (assoc-in [:attrs :value] (str (first run)
+                                                          "/" (second run)))))))
+             
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
   [:#view-2-map]
+  (content map)
+  [:#view-2-map-tool]
   (content (maptools req map :counties? counties?))
   [:#view-2-2-chart]
   (content blurb)
+  [:#view-2-2-expl]
+  (content (chart-help req))
+  [:#map-help]
+  (content (map-help))
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
@@ -373,11 +434,9 @@
  (svgmap req
          {:tag :object
           :attrs {(if (good-browser?) :data :src) (make-url "svg" req)
-                  :type "image/svg+xml"
-                  :height "550px"
-                  :width "440px"}}
+                  :type "image/svg+xml"}}
          {:tag :img
-          :attrs {:src (make-url "bar" req)
+          :attrs {:src (make-url "box" req)
                   :max-width "100%"}}))
 
 (defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
@@ -385,11 +444,9 @@
  (svgmap req
          {:tag :object
           :attrs {(if (good-browser?) :data :src) (make-url "svg" req :counties? true)
-                  :type "image/svg+xml"
-                  :height "550px"
-                  :width "440px"}}
+                  :type "image/svg+xml"}}
          {:tag :img
-          :attrs {:src (make-url "bar" req)
+          :attrs {:src (make-url "box" req)
                   :max-width "100%"}}
          :counties? true))
 
@@ -467,16 +524,20 @@
 	 (plot-models county months variable))
 (defpage "/ci/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
   (plot-models-decadal county months variable))
-(defpage "/ci/plot/:county/:months/:variable/decadal-bar" {:keys [county months variable]} 
-  (decadal-bar county months variable))
-(defpage "/ci/plot/:county/:months/:variable/decadal-box" {:keys [county months variable]} 
+(defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/linear" {:keys [county months variable]} 
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
   (barchart region (Integer/parseInt year) months variable))
-
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
-
+(defpage "/ci/maptools" {:as req}
+  (redirect (str "/ci/welcome/svgbar/" (:region req)
+                 "/" (:years req)
+                 "/" (:months req)
+                 "/" (:runs req)
+                 "/" (:variable req)
+                 "/linear"
+                 (when (= (:regions req) "Counties") "/counties"))))
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
                                         ; We don't need to do anything, we just want to make sure we're 

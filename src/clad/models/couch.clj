@@ -119,7 +119,19 @@
 
 (defn diff-data [county year months model scenario variable]
   (if (= model "ensemble")
-    (throw (Throwable. "Not implemented"))
+    (let [ref (/ (reduce #(+ %1 (ref-data county months (first %2) variable)) 0 ensemble)
+                 (count ensemble))
+          comp (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
+                          0 ensemble)
+                  (count ensemble))
+          res (->
+               (- comp ref)
+               (/ ref)
+               (* 10000)
+               round
+               (/ 100)
+               float)]
+      res)
     (let [ref (ref-data county months model variable)
           comp (data-by-county county year months model scenario variable)
           res (->
@@ -144,6 +156,22 @@
           comp (data-by-county county year months model scenario variable)
           res (- comp ref)]
       res)))
+
+(defn decadal-min [months model scenario variable regions diff-fn]
+  (apply min
+         (map (fn [decade]
+                (apply min
+                       (map (fn [region] (diff-fn region decade months model scenario variable))
+                            regions)))
+              [202130 203140 204150 205160])))
+
+(defn decadal-max [months model scenario variable regions diff-fn]
+  (apply max
+         (map (fn [decade]
+                (apply max
+                       (map (fn [region] (diff-fn region decade months model scenario variable))
+                            regions)))
+              [202130 203140 204150 205160])))
 
 (def bycounty-memo (memoize data-by-county))
 
