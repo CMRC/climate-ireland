@@ -24,6 +24,7 @@ for(start in c(2021L,2031L,2041L,2051L)) {
         for(county in countynames) {
           bycounty(sd20s, county, run, as.integer(seasstr), season, var)
         }
+        NI(sd20s, "NI", run, as.integer(seasstr), season, var)
       }
     }
   }

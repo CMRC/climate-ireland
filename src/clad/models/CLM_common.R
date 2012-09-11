@@ -88,6 +88,10 @@ bycounty <- function(sgdf, region, run, year, season, variable) {
   countydata <- counties[counties@data$COUNTY==region,] 
   clip(countydata, sgdf, region, run, year, season, variable)
 }
+NI <- function(sgdf, region, run, year, season, variable) {
+  data <- counties[counties@data$Country==region,] 
+  clip(data, sgdf, region, run, year, season, variable)
+}
 countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
                  "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
                  "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
@@ -109,6 +113,8 @@ byrun <-function(run, years, base.path) {
           bycounty(ygdfy, county, run, year, "J2D", var)
           bycounty(sgdfy, county, run, year, season, var)
         }
+        NI(ygdfy, "NI", run, year, "J2D", var)
+        NI(sgdfy, "NI", run, year, season, var)
       }
     }
   }
