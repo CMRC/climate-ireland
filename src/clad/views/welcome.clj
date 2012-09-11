@@ -260,6 +260,9 @@
                                   a-node)))
                    [:.buttons :ul])))
 
+(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
+
 (deftemplate welcome "clad/views/welcome.html"
   [map]
   [:#map]
@@ -294,10 +297,10 @@
   [{:keys [months variable]}]
   
   [:.season]
-  (content ({"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"} months))
+  (content (seasons months))
 
   [:.variable]
-  (content ({"T_2M" "Temperature", "TOT_PREC" "Precipitation"} variable))
+  (content (variables variable))
 
   [:.if-temperature]
   (set-attr :class (when (not= variable "T_2M") "do-not-display"))
@@ -337,36 +340,23 @@
   (set-attr :value (:region req))
   
   [:#variables :option]
-  (clone-for [variable ["T_2M"
-                        "TOT_PREC"
-                        #_"PMSL"
-                        #_"PS"
-                        #_"QV_2M"
-                        #_"RUNOFF_G"
-                        #_"RUNOFF_S"
-                        #_"TMAX_2M"
-                        #_"TMIN_2M"
-                        #_"VGUST_DYN"]]
+  (clone-for [variable (keys variables)]
              [:option]
              (fn [a-node] (->
                            (assoc-in
                             (if (= variable (:variable req))
                               (assoc-in a-node [:attrs :selected] nil)
                               a-node)
-                            [:content] variable)
+                            [:content] (variables variable))
                            (assoc-in [:attrs :value] variable))))
   
   [:#months :option]
-  (clone-for [month ["DJF"
-                        "MAM"
-                        "JJA"
-                        "SON"
-                        #_"J2D"]]
+  (clone-for [month (keys seasons)]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (= month (:months req))
                                        (assoc-in a-node [:attrs :selected] nil)
-                                       a-node) [:content] month)
+                                       a-node) [:content] (seasons month))
                            (assoc-in [:attrs :value] month))))
 
   [:#runs :option]
@@ -376,8 +366,8 @@
                            (assoc-in (if (and (= (:model req) (first run))
                                               (= (:scenario req) (second run)))
                                        (assoc-in a-node [:attrs :selected] nil)
-                                       a-node) [:content] (str (first run)
-                                                          " " (second run)))
+                                       a-node) [:content] (str (second run)
+                                                          " (" (first run) ")"))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
              
