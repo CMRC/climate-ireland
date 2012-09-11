@@ -240,12 +240,14 @@ body {
 #text-box{
 	padding: 5px;
 	border: 3px #396538 solid;
+	border-radius: 5px;
 	background-color: #BDD2B7;	
 	}
 		
 #text-box-center{
 	padding: 5px;
 	border: 3px #396538 solid;
+	border-radius: 5px;
 	background-color: #BDD2B7;	
 	margin-left: auto;
 	margin-right: auto;
@@ -255,6 +257,7 @@ body {
 #text-box-2{
 	padding: 5px;
 	border: 3px #396538 solid;
+	border-radius: 5px;
 	background-color: #BDD2B7;
 	clear:both;
 	}
@@ -335,6 +338,10 @@ body {
 	border: 1px solid #CCCCCC;
 	vertical-align:middle; margin-bottom: 3px; 
 	max-width:580px;
+	}
+	
+#map-help{
+	padding: 5px;
 	}
 
 
