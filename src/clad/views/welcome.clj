@@ -242,7 +242,7 @@
   [:#blurb]
   (content (html-resource text))
   [:#map]
-  (content {:tag :img :attrs {:src img}})
+  (content {:tag :object :attrs {:data img}})
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
@@ -471,7 +471,7 @@
   (redirect "/ci/about"))
 
 (defpage "/ci/about" []
-  (two-pane "clad/views/CI_About.html" "about" "/img/Provinces_2.png"))
+  (two-pane "clad/views/CI_About.html" "about" "/img/impact-tool.svg"))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
