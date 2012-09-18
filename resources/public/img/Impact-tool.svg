@@ -104,11 +104,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1"
+     inkscape:zoom="1.2968228"
      inkscape:cx="125.91309"
      inkscape:cy="268.49882"
      inkscape:document-units="px"
-     inkscape:current-layer="coastal-flooding"
+     inkscape:current-layer="layer4"
      width="800px"
      height="600px"
      inkscape:window-width="1920"
@@ -302,7 +302,7 @@
        sodipodi:cy="125.32334"
        sodipodi:rx="17.28443"
        sodipodi:ry="18.117414"
-       d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+       d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
        transform="matrix(1.9721933,0,0,1.7270637,570.77968,41.045646)"
        onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
        onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;" />
@@ -528,52 +528,53 @@
     <g
        id="coastal-flooding"
        inkscape:label="#g3263"
-       transform="matrix(0.98031931,0,0,1,86.150827,617.31769)">
+       transform="matrix(0.98031931,0,0,1,86.150827,617.31769)"
+       style="display:none">
       <rect
          y="58.208973"
          x="121.85986"
          height="115.04295"
-         width="405.91794"
+         width="408.198"
          id="rect3247"
-         style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.14286542;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
+         style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.14607072;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
       <text
          sodipodi:linespacing="140%"
          id="text3249"
          y="65.535881"
-         x="137.59731"
+         x="135.38492"
          style="font-size:11.73588276px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
          xml:space="preserve"
-         transform="scale(0.922152,1.0844199)"><tspan
+         transform="scale(0.92215201,1.0844199)"><tspan
            style="font-size:12.84086037px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
            y="65.535881"
-           x="137.59731"
+           x="135.38492"
            id="tspan3251"
            sodipodi:role="line">Coastal Flooding</tspan><tspan
            id="tspan3259"
            y="82.874496"
-           x="137.59731"
+           x="135.38492"
            sodipodi:role="line"
            style="font-size:12.84086037px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Increasing sea levels combined with increased wave heights and storm </tspan><tspan
            y="100.8517"
-           x="137.59731"
+           x="135.38492"
            sodipodi:role="line"
            style="font-size:12.84086037px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3096">surge intensity will put Ireland's coastal infrastructure at risk and this includes </tspan><tspan
            y="118.8289"
-           x="137.59731"
+           x="135.38492"
            sodipodi:role="line"
            style="font-size:12.84086037px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3092">Ireland's major cities.  In addition, due to increased levels of winter </tspan><tspan
-           y="136.80609"
-           x="137.59731"
+           y="136.80611"
+           x="135.38492"
            sodipodi:role="line"
            style="font-size:12.84086037px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3113">precipitation, when combined with increased levels of estuarine flow, </tspan><tspan
+           id="tspan3940">precipitation, when combined with increased levels of river flow, innundation </tspan><tspan
            y="154.78331"
-           x="137.59731"
+           x="135.38492"
            sodipodi:role="line"
            style="font-size:12.84086037px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3940">innundation of Ireland's major cities is of particular,concern.</tspan></text>
+           id="tspan3116">of Ireland's major cities is of particular,concern.</tspan></text>
     </g>
     <g
        id="inland-flooding"
@@ -601,26 +602,21 @@
            sodipodi:role="line">I<tspan
    style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
    id="tspan4030">nland Flooding</tspan></tspan><tspan
-           id="tspan3328"
+           id="tspan3330"
            y="168.31186"
            x="247.07474"
            sodipodi:role="line"
-           style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Increased levels of winter precipitation, increases of 20% are </tspan><tspan
-           id="tspan3330"
+           style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Increased levels of winter precipitation will result in an increased </tspan><tspan
            y="182.02078"
            x="247.07474"
            sodipodi:role="line"
-           style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">expected for winter by mid-century will result in an increased risk </tspan><tspan
+           id="tspan3101"
+           style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">risk of inland flooding with new areas, previously not subject to </tspan><tspan
            y="195.72972"
            x="247.07474"
            sodipodi:role="line"
-           id="tspan3101"
-           style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">of inland flooding with new areas, previously not subject to flooding </tspan><tspan
-           y="209.43864"
-           x="247.07474"
-           sodipodi:role="line"
            style="font-size:10.00651932px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3954">being put at risk.</tspan></text>
+           id="tspan3954">flooding being put at risk.</tspan></text>
     </g>
     <g
        id="drought"
@@ -646,27 +642,22 @@
            x="-383.83844"
            id="tspan3376"
            sodipodi:role="line">Drought</tspan><tspan
-           id="tspan3378"
+           id="tspan3382"
            y="223.81902"
            x="-383.83844"
            sodipodi:role="line"
-           style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Decreased levels of summer precipitation, decreases of up to 40% </tspan><tspan
-           id="tspan3382"
+           style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Decreased levels of summer precipitation, particularly in the south </tspan><tspan
+           id="tspan3388"
            y="242.01901"
            x="-383.83844"
            sodipodi:role="line"
-           style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">are projected for summer by mid-century, particularly in the south </tspan><tspan
-           id="tspan3388"
-           y="260.21902"
-           x="-383.83844"
-           sodipodi:role="line"
            style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">and south east, may result in the increased occurrence of drought </tspan><tspan
-           y="278.41901"
+           y="260.21902"
            x="-383.83844"
            sodipodi:role="line"
            style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3964">conditions.  This will put water supply at risk due to low flows and </tspan><tspan
-           y="296.61902"
+           y="278.41901"
            x="-383.83844"
            sodipodi:role="line"
            style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
@@ -720,7 +711,7 @@
        transform="matrix(0.792,0,0,0.792,-130.7671,78.497608)">
       <path
          transform="matrix(2.7698279,0,0,2.4151072,841.52107,352.696)"
-         d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+         d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
          sodipodi:ry="18.117414"
          sodipodi:rx="17.28443"
          sodipodi:cy="125.32334"
