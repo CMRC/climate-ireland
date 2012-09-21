@@ -59,7 +59,9 @@
         regions (case cp
                   :county counties
                   :province provinces)
-        diff-fn (if (temp-var? variable) temp-diff-data diff-data)
+        diff-fn (if (= model "ICARUS")
+                  data-by-county ;; ICARUS data is already expressed as a delta
+                  (if (temp-var? variable) temp-diff-data diff-data))
         min (decadal-min months model scenario variable regions diff-fn)
         max (decadal-max months model scenario variable regions diff-fn)]
     {:status 200

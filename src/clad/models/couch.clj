@@ -157,24 +157,21 @@
           res (- comp ref)]
       res)))
 
-#_(ref-data "Leinster" "J2D" "CGCM31" "T_2M")
-#_(temp-diff-data "Leinster" "2021-30" "JJA" "HadGEM" "RCP45" "T_2M")
+(defn with-decadal [months model scenario variable regions diff-fn f]
+  (apply f
+         (remove #(nil? %)
+                 (map (fn [decade]
+                        (let [vals (map (fn [region] (diff-fn region decade months model scenario variable))
+                                        regions)
+                              goodvals (remove #(nil? %) vals)]
+                          (when (seq goodvals) (apply f goodvals))))
+              ["2021-30" "2031-40" "2041-50" "2051-60"]))))
 
 (defn decadal-min [months model scenario variable regions diff-fn]
-  (apply min
-         (map (fn [decade]
-                (apply min
-                       (map (fn [region] (diff-fn region decade months model scenario variable))
-                            regions)))
-              ["2021-30" "2031-40" "2041-50" "2051-60"])))
+  (with-decadal months model scenario variable regions diff-fn min))
 
 (defn decadal-max [months model scenario variable regions diff-fn]
-  (apply max
-         (map (fn [decade]
-                (apply max
-                       (map (fn [region] (diff-fn region decade months model scenario variable))
-                            regions)))
-              ["2021-30" "2031-40" "2041-50" "2051-60"])))
+  (with-decadal months model scenario variable regions diff-fn max))
 
 (def bycounty-memo (memoize data-by-county))
 
