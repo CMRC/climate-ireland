@@ -61,8 +61,7 @@
                   :province provinces)
         diff-fn (if (temp-var? variable) temp-diff-data diff-data)
         min (decadal-min months model scenario variable regions diff-fn)
-        max (decadal-max months model scenario variable regions diff-fn)
-        intyear (Integer/parseInt year)]
+        max (decadal-max months model scenario variable regions diff-fn)]
     {:status 200
      :headers {"Content-Type" "image/svg+xml"}
      :body
@@ -79,7 +78,7 @@
                    (-> (add-attrs elem :onmouseover
                                   (str "value(evt,'"
                                        (->
-                                        (diff-fn %2 intyear months model scenario variable)
+                                        (diff-fn %2 year months model scenario variable)
                                         (* 100)
                                         round
                                         (/ 100)
@@ -87,7 +86,7 @@
                                        (if (temp-var? variable) "°C " "% ")
                                        %2
                                        "')"))
-                       (colour-on-linear %2 intyear months model scenario variable region min max diff-fn)
+                       (colour-on-linear %2 year months model scenario variable region min max diff-fn)
                        (add-style :stroke (if (= region (:id (second elem))) "white" "black")))])))
             regions-svg			
             regions)

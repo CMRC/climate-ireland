@@ -26,7 +26,7 @@ seasonal <- function(run, season, year, variable, base.path) {
 
 makeurl <- function(run,county,year,season,variable) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate/",run, strip, year, season, variable, sep="")
+  paste("http://localhost:5984/climate_dev/",run, strip, year, season, variable, sep="")
 }
 
 byprovince <- function(sgdf, region, run, year, season, variable) {

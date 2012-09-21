@@ -4,20 +4,21 @@
   (:use [com.ashafa.clutch.view-server]
         clojure.contrib.math))
 
-;; (clutch/with-db db
-;;   (clutch/save-view "users"
-;;                     (clutch/view-server-fns
-;;                      :clojure
-;;                      {:users
-;;                       {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
+(def db "http://anthony:Gereb0em@localhost:5984/climate_dev")
 
-;;(clutch/with-db db
-;;   (clutch/put-document {:username ""
-;;                         :password (creds/hash-bcrypt "")
-;;                         :roles #{::user}}))
+(comment (clutch/with-db db
+           (clutch/save-view "users"
+                             (clutch/view-server-fns
+                              :clojure
+                              {:users
+                               {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
+         
+         (clutch/with-db db
+           (clutch/put-document {:username ""
+                                 :password (creds/hash-bcrypt "")
+                                 :roles #{::user}})))
 
-(def db "climate")
-;;(clutch/configure-view-server db (view-server-exec-string))
+#_(clutch/configure-view-server db (view-server-exec-string))
 
 (defn get-users []
   (try
@@ -25,9 +26,9 @@
       (reduce #(assoc %1 (:key %2) (:value %2)) {} (clutch/get-view "users" :users)))
     ;;for testing locally without the database we supply a default password
     (catch java.io.IOException e {"local" {:username "local"
-                                                 :password (creds/hash-bcrypt "local")
-                                                 :roles #{::user}}})))
-
+                                           :password (creds/hash-bcrypt "local")
+                                           :roles #{::user}}})))
+#_(get-users)
 
 (def provinces ["Leinster" "Munster" "Connaught" "Ulster"])
 
@@ -52,22 +53,22 @@
                       (clutch/view-server-fns
                        :clojure
                        {:by-county-year
-                        {:map (fn [doc] (if (= (class (:year doc)) java.lang.Integer)
-                                          [[[(:region doc)
-                                             (:year doc) (:months doc)
-                                             (:model doc) (:scenario doc) (:datum.variable doc)]
-                                            doc]]))}}))
+                        {:map (fn [doc] [[[(:region doc)
+                                           (:year doc) (:months doc)
+                                           (:model doc) (:scenario doc) (:datum.variable doc)]
+                                          doc]])}}))
     (clutch/save-view "models"
                       (clutch/view-server-fns
                        :clojure
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
+
 #_(save-views)
 
 (defn get-run-data [year months]
   (try
     (clutch/with-db db
-      (map #(:value %) (clutch/get-view "vals" :by-ym {:key [(Integer/parseInt year) months]})))
+      (map #(:value %) (clutch/get-view "vals" :by-ym {:key [year months]})))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (defn get-county-data [county months model scenario variable]
@@ -97,12 +98,11 @@
 (defn ref-data-slow [county months model variable]
   (try
     (clutch/with-db db
-      (/ (reduce
-          #(+ %1 (data-by-county county %2 months model "C20" variable))
-          0
-          (range 1961 1990))
-         (- 1990 1961)))
+      (data-by-county county "1961-90" months model "C20" variable))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
+
+#_(data-by-county "Kilkenny" "2021-30" "JJA" "ICARUS" "ICARUS" "T_2M")
+#_(clutch/get-view db "vals" :by-ym)
 
 (def ref-data (memoize ref-data-slow))
 
@@ -157,13 +157,16 @@
           res (- comp ref)]
       res)))
 
+#_(ref-data "Leinster" "J2D" "CGCM31" "T_2M")
+#_(temp-diff-data "Leinster" "2021-30" "JJA" "HadGEM" "RCP45" "T_2M")
+
 (defn decadal-min [months model scenario variable regions diff-fn]
   (apply min
          (map (fn [decade]
                 (apply min
                        (map (fn [region] (diff-fn region decade months model scenario variable))
                             regions)))
-              [202130 203140 204150 205160])))
+              ["2021-30" "2031-40" "2041-50" "2051-60"])))
 
 (defn decadal-max [months model scenario variable regions diff-fn]
   (apply max
@@ -171,7 +174,7 @@
                 (apply max
                        (map (fn [region] (diff-fn region decade months model scenario variable))
                             regions)))
-              [202130 203140 204150 205160])))
+              ["2021-30" "2031-40" "2041-50" "2051-60"])))
 
 (def bycounty-memo (memoize data-by-county))
 

@@ -15,7 +15,7 @@ populatecounties <- function(run, base.path) {
 
 makeurl <- function(run,county) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate/",run, strip, sep="")
+  paste("http://localhost:5984/climate_dev/",run, strip, sep="")
 }
 
 bycounty <- function(county, run) {
@@ -25,7 +25,8 @@ bycounty <- function(county, run) {
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1) / 10
 
-  year <- as.integer(gsub("temp(\\d{2})(\\d)\\d\\w+","\\1\\21\\20",run)) + 10L
+  intyear <- as.integer(gsub("temp(\\d{2})(\\d)\\d\\w+","\\21",run))
+  year <- paste("20",intyear,"-",intyear+9L,sep="")
   months <- toupper(gsub("temp\\d{4}(\\w+)","\\1",run))
   rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
   if(is.na(rev)){
