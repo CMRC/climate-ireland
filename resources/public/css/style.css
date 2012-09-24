@@ -163,12 +163,15 @@ body {
 	padding-bottom: 5px;
 	float: left;
 }
+
+	
 #view-2-1 {
 	width: 505px;
 	height: 595px;
 	float: left;
 	border: 3px solid #396538;
 	border-radius: 5px;
+	background: #F2F2F2;
 	
 }
 #view-2-2 {
@@ -178,6 +181,7 @@ body {
 	border: 3px solid #396538;
 	border-radius: 5px;
 	float: right;
+	background: #F2F2F2;
 }
 #view-2-map {
 	width: 500px;
