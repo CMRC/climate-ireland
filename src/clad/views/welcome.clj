@@ -261,7 +261,7 @@
                    [:.buttons :ul])))
 
 (def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
-(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
 
 (deftemplate welcome "clad/views/welcome.html"
   [map]
@@ -315,13 +315,10 @@
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
              [:option]
              (fn [a-node] (->
-                           (assoc-in (if (= (:years req)
-                                            (clojure.string/replace
-                                             decade "-" ""))
+                           (assoc-in (if (= (:years req) decade)
                                        (assoc-in a-node [:attrs :selected] nil)
                                        a-node) [:content] decade)
-                           (assoc-in [:attrs :value]
-                                     (clojure.string/replace decade "-" "")))))
+                           (assoc-in [:attrs :value] decade))))
   
   [:#regions :option]
   (clone-for [region ["Counties" "Provinces"]]
@@ -509,7 +506,7 @@
   (clad :topic more :glossary "Climate" :page page :section section))
 (defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
-  (by-county (Integer/parseInt year) months  model scenario variable))
+  (by-county year months  model scenario variable))
 (defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill"
   {:as req}
   (provinces-map req))
@@ -518,7 +515,7 @@
   (counties-map req))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
-  (counties-map-png (Integer/parseInt year) months model scenario variable fill))
+  (counties-map-png year months model scenario variable fill))
 (defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
 (defpage "/ci/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))
@@ -527,7 +524,7 @@
 (defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/linear" {:keys [county months variable]} 
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
-  (barchart region (Integer/parseInt year) months variable))
+  (barchart region year months variable))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
 (defpage "/ci/maptools" {:as req}
