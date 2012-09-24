@@ -357,7 +357,7 @@
                            (assoc-in [:attrs :value] month))))
 
   [:#runs :option]
-  (clone-for [run (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
+  (clone-for [run (conj ensemble ["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (and (= (:model req) (first run))

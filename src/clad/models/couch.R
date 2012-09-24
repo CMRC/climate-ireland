@@ -17,10 +17,7 @@ makeurl <- function(run,county) {
   strip <- gsub("(\\s)","", county)
   paste("http://localhost:5984/climate_dev/",run, strip, sep="")
 }
-
-bycounty <- function(county, run) {
-  sgdf <- countiesarray[[run]]
-  countydata <- counties[counties@data$COUNTY==county,] 
+clip <- function(county, run, countydata,sgdf) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1) / 10
@@ -46,6 +43,16 @@ bycounty <- function(county, run) {
              '_rev'=toString(rev))))
   }
 }
+bycounty <- function(region, run) {
+  sgdf <- countiesarray[[run]]
+  countydata <- counties[counties@data$COUNTY==region,] 
+  clip(region,run,countydata,sgdf)
+}
+byprovince <- function(region, run) {
+  sgdf <- countiesarray[[run]]
+  countydata <- counties[counties@data$Province==region,] 
+  clip(region,run,countydata,sgdf)
+}
 
 byrun <-function(run, base.path) { 
   populatecounties(run, base.path)
@@ -56,6 +63,9 @@ byrun <-function(run, base.path) {
                    "Wexford", "Wicklow")
   for(county in countynames) {
     bycounty(county, run)
+  }
+  for(province in c("Leinster", "Munster", "Connaught", "Ulster")) {
+    byprovince(province, run)
   }
 }
 

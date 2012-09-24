@@ -101,9 +101,6 @@
       (data-by-county county "1961-90" months model "C20" variable))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
-#_(data-by-county "Kilkenny" "2021-30" "JJA" "ICARUS" "ICARUS" "T_2M")
-#_(clutch/get-view db "vals" :by-ym)
-
 (def ref-data (memoize ref-data-slow))
 
 (def ensemble [["CGCM31" "A1B"]
