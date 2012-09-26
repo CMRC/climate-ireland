@@ -370,6 +370,15 @@
              
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
+  [:#tabs]
+  (content (select (transform (html-resource "clad/views/CI_Information.html")
+                              [:.buttons :a]
+                              (fn [a-node]
+                                (if (= (get-in a-node [:attrs :href]) "climate-projections")
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons]))
   [:#view-2-map]
   (content map)
   [:#view-2-map-tool]

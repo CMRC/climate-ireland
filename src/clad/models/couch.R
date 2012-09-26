@@ -6,7 +6,8 @@ library(RJSONIO)
 
 #Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+counties <- readOGR(dsn="/home/anthony/County/ING/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+print(summary (counties))
 countiesarray = new.env()
 
 populatecounties <- function(run, base.path) {
@@ -44,7 +45,7 @@ clip <- function(county, run, countydata,sgdf) {
   }
 }
 bycounty <- function(region, run) {
-  sgdf <- countiesarray[[run]]
+  sgdf <- countiesarray[[run]]q
   countydata <- counties[counties@data$COUNTY==region,] 
   clip(region,run,countydata,sgdf)
 }

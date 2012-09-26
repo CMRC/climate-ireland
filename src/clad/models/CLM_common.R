@@ -7,6 +7,7 @@ library(RJSONIO)
 Sys.setenv("http_proxy" = "")
 
 counties <- readOGR(dsn="/home/anthony/County/LandAreaAdmin_ROIandUKNI", layer="provinces")
+print(summary(counties))
 
 openyear <- function(run, base.path) {
   system(paste("cd " ,base.path, ";cdo yearmean ", run, " ym.nc;cdo splityear ym.nc year", sep=""))
