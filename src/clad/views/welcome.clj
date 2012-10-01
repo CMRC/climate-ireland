@@ -218,7 +218,10 @@
   (content (select (transform (html-resource text)
                               [:.buttons :a]
                               (fn [a-node]
-                                (if (= (get-in a-node [:attrs :href]) tab)
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{tab}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
                                   a-node)))
@@ -262,27 +265,6 @@
 
 (def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
 (def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
-
-(deftemplate welcome "clad/views/welcome.html"
-  [map]
-  [:#map]
-  (content map)
-  [:#banner]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
-  [:#footer]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
-  [:#buttons]
-  (content (select (transform (html-resource "clad/views/View_3.html")
-                              [:.buttons :a]
-                              (fn [a-node]
-                                (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
-                                     (some #{"welcome"}))
-                                  (assoc-in a-node [:attrs :id]
-                                            "current")
-                                  a-node)))
-                   [:.buttons :ul])))
 
 (defsnippet map-help "clad/views/chart-help.html"
   [:#map-help]
@@ -371,7 +353,7 @@
 (deftemplate current-climate "clad/views/View_3.html"
   [req]
   [:#main]
-  (content (html-resource "clad/views/CI_CurrentClimate.html")))
+  (content (html-resource "clad/views/CI_Information.html")))
 
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
@@ -381,11 +363,23 @@
   (content (select (transform (html-resource "clad/views/CI_Information.html")
                               [:li :a]
                               (fn [a-node]
-                                (if (= (get-in a-node [:attrs :href]) "climate-projections")
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{"projections"}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
                                   a-node)))
                    [:.buttons]))
+  [:.buttons :a]
+  (fn [a-node]
+    (if (->>
+         (get-in a-node [:attrs :href])
+         (str/split #"/")
+         (some #{"projections"}))
+      (assoc-in a-node [:attrs :id]
+                "current")
+      a-node))
   [:#info-header]
   (content (select (html-resource "clad/views/CI_Information.html") [:#climate-projections]))
   [:#view-2-map]
@@ -403,46 +397,7 @@
 
 (deftemplate login "clad/views/Login.html" [])
 
-(defpage "/ci/welcome/compare/:year1/:year2/:months/:variable"
-  {:keys [year1 year2 months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/svg/compare/" year1 "/" year2 "/" months "/" variable)
-                    :height "100%"}}))
-(defpage "/ci/welcome/plot/:region/:months/:variable/decadal"
-  {:keys [region months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal")
-                    :height "100%"}}))
-(defpage "/ci/welcome/plot/:region/:months/:variable/decadal-box"
-  {:keys [region months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal-box")}}))
-
-(defpage "/ci/welcome/plot/:region/:months/:variable"
-  {:keys [region months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/plot/" region "/" months "/" variable)
-                    :height "100%"}}))
-
-(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
-  {:keys [year months model scenario variable shading]}
-  (welcome {:tag :object
-            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
-                               scenario "/" variable "/" shading)
-                    :type "image/svg+xml"
-                    :height "550px"
-                    :width "440px"}}))
-
-(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading/counties"
-  {:keys [year months model scenario variable shading]}
-  (welcome {:tag :object
-            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
-                              scenario "/" variable "/" shading "/counties")
-                    :type "image/svg+xml"
-                    :height "550px"
-                    :width "440px"}}))
-
-(defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading"
+(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:shading"
  {:as req}
  (svgmap req
          {:tag :object
@@ -452,7 +407,7 @@
           :attrs {:src (make-url "box" req)
                   :max-width "100%"}}))
 
-(defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
+(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
  {:as req}
  (svgmap req
          {:tag :object
@@ -462,20 +417,6 @@
           :attrs {:src (make-url "box" req)
                   :max-width "100%"}}
          :counties? true))
-
-(defpage "/ci/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
-  {:keys [year months model scenario variable shading]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/png/" year "/" months "/" model "/"
-	    scenario "/" variable "/" shading)
-                    :height "100%"}}))
-
-(defpage "/ci/welcome/bar/:year/:county/:months/:variable"
-  {:keys [year county months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/bar/" year "/" county
-                              "/" months "/" variable)
-                    :height "100%"}}))
 
 (defpage "/" []
   (redirect "/ci/about"))
@@ -498,8 +439,11 @@
 (defpage "/ci/resources/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Resources.html" "resources" tab))
 
+(defpage "/ci/tools/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_tools.html" "tools" tab))
+
 (defpage "/ci/climate-information/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_Information.html" "current-data" tab))
+  (one-pane "clad/views/CI_Information.html" "climate-information" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
@@ -547,7 +491,7 @@
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
 (defpage "/ci/maptools" {:as req}
-  (redirect (str "/ci/welcome/svgbar/" (:region req)
+  (redirect (str "/ci/climate-information/projections/" (:region req)
                  "/" (:years req)
                  "/" (:months req)
                  "/" (:runs req)
