@@ -22,10 +22,14 @@ clip <- function(county, run, var, countydata,sgdf) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1) / 10
-
-  intyear <- as.integer(gsub(".*(\\d{2})(\\d)\\d\\w+","\\21",run))
+  print(county)
+  print(run)
+  intyear <- as.integer(gsub("^.*([0-9]{2})([0-9])[0-9]\\w+","\\21",run))
+  print(intyear)
   year <- paste("20",intyear,"-",intyear+9L,sep="")
-  months <- toupper(gsub(".*\\d{4}(\\w+)","\\1",run))
+  print(year)
+  months <- toupper(gsub("^.*[0-9]{4}(\\w+)","\\1",run))
+  print(months)
   rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
   if(is.na(rev)){
     getURL(makeurl(run,county),
@@ -54,6 +58,11 @@ byprovince <- function(region, var, run) {
   countydata <- counties[counties@data$Province==region,] 
   clip(region,run,var,countydata,sgdf)
 }
+NI <- function(var, run) {
+  sgdf <- countiesarray[[run]]
+  countydata <- counties[counties@data$Country=="UK",] 
+  clip("NI",run,var,countydata,sgdf)
+}
 
 byrun <-function(run, var, base.path) { 
   populatecounties(run, base.path)
@@ -68,6 +77,7 @@ byrun <-function(run, var, base.path) {
   for(province in c("Leinster", "Munster", "Connaught", "Ulster")) {
     byprovince(province, var, run)
   }
+  NI(var,run)
 }
 
 runs <- c("temp2020jja", "temp2020son", "temp2020djf", "temp2020mam", "temp2050jja", "temp2050son",

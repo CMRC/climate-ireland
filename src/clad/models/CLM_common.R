@@ -34,6 +34,10 @@ byprovince <- function(sgdf, region, run, year, season, variable) {
   countydata <- counties[counties@data$Province==region,]
   clip(countydata, sgdf, region, run, year, season, variable)
 }
+NI <- function(sgdf, run, year, season, variable) {
+  countydata <- counties[counties@data$Counry=="UK",]
+  clip(countydata, sgdf, "NI", run, year, season, variable)
+}
 
 flipHorizontal <- function(x) {
   if (!inherits(x, "SpatialGridDataFrame")) stop("x must be a SpatialGridDataFrame")
@@ -110,6 +114,8 @@ byrun <-function(run, years, base.path) {
           bycounty(ygdfy, county, run, year, "J2D", var)
           bycounty(sgdfy, county, run, year, season, var)
         }
+        NI(ygdfy, run, year, "J2D", var)
+        NI(sgdfy, run, year, season, var)
       }
     }
   }

@@ -12,7 +12,7 @@
    height="400"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.3.1 r9886"
    version="1.0"
    sodipodi:docname="provinces.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
@@ -148,13 +148,13 @@
      inkscape:cx="269.77731"
      inkscape:cy="208.6218"
      inkscape:document-units="px"
-     inkscape:current-layer="g3063"
+     inkscape:current-layer="legend"
      width="800px"
      height="1000px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1138"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1855"
+     inkscape:window-height="1175"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
      showgrid="false"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -507,8 +507,9 @@
          id="col-1"
          style="fill:#d73027;fill-opacity:1;fill-rule:nonzero;stroke:none" />
       <g
-         id="g3063"
-         transform="translate(-470.68282,47.910942)">
+         id="units"
+         transform="translate(-470.68282,47.910942)"
+         inkscape:label="#g3063">
         <text
            id="text3065"
            style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
@@ -606,11 +607,12 @@
            x="7.9497194"
            xml:space="preserve"> </text>
         <text
-           id="text3105"
+           id="Units"
            style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#000000;display:inline;font-family:Verdana"
            y="19.608597"
            x="775.34619"
-           xml:space="preserve">˚Celcius change </text>
+           xml:space="preserve"
+           inkscape:label="#text3105">˚Celcius change </text>
       </g>
     </g>
     <text

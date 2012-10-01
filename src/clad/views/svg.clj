@@ -109,7 +109,9 @@
                                                                              float)))))
                           legend
                           (range 11 -1 -1))
-           selected (transform-xml values [{:id "selected"}]
+           units (transform-xml values [{:id "units"}]
+                                (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
+           selected (transform-xml units [{:id "selected"}]
                                    (fn [node] (set-content node (str "Selected: " (:region req)))))]
        (emit selected))}))
 
