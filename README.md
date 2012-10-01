@@ -19,3 +19,4 @@ Copyright (C) 2011-2012 Coastal & Marine Research Centre
 
 Distributed under the Eclipse Public License, the same as Clojure.
 
+v1.0

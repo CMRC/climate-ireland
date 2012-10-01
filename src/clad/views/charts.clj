@@ -7,6 +7,7 @@
                     ByteArrayInputStream)
            (java.lang Integer)))
 
+(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
 
 (defn plot-models [county months variable]
   (let [ylab (if (temp-var? variable) "°C" "%")
@@ -107,6 +108,7 @@
                                     (map #(diff-fn county "2021-30" months (first %) (second %) variable)
                                          ensemble))
                               :legend true
+                              :title (str county " " (variables variable))
                               :y-label (if (temp-var? variable) "Difference in °C from baseline"
                                            "% difference from baseline")
                               :series-label "2021-30")
