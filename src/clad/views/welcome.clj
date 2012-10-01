@@ -357,7 +357,7 @@
                            (assoc-in [:attrs :value] month))))
 
   [:#runs :option]
-  (clone-for [run (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
+  (clone-for [run (conj ensemble ["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (and (= (:model req) (first run))
@@ -367,9 +367,27 @@
                                                           " (" (first run) ")"))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
-             
+
+(deftemplate current-climate "clad/views/View_3.html"
+  [req]
+  [:#main]
+  (content (html-resource "clad/views/CI_CurrentClimate.html")))
+
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
+  [:#banner]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
+  [:#tabs]
+  (content (select (transform (html-resource "clad/views/CI_Information.html")
+                              [:li :a]
+                              (fn [a-node]
+                                (if (= (get-in a-node [:attrs :href]) "climate-projections")
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons]))
+  [:#info-header]
+  (content (select (html-resource "clad/views/CI_Information.html") [:#climate-projections]))
   [:#view-2-map]
   (content map)
   [:#view-2-map-tool]
@@ -380,8 +398,6 @@
   (content (chart-help req))
   [:#map-help]
   (content (map-help))
-  [:#banner]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
   (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
 
@@ -481,6 +497,9 @@
 
 (defpage "/ci/resources/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Resources.html" "resources" tab))
+
+(defpage "/ci/climate-information/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_Information.html" "current-data" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}

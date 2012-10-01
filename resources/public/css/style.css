@@ -147,20 +147,25 @@ body {
 	height: 200px;
 	width: 100%;
 }
-#footer {
+#footer , #info-header{
 	width: 1018px;
-	height: 60px;
+	height: 62px;
 	text-align: right;
 	border: 3px solid #396538;
 	border-radius: 5px;
 	float: left;
 	background-color: rgba(39,65,38, 0.05);
+	margin-bottom: 2px;
 	}
+#info-header {
+    margin-top: 5px;
+    text-align: left;
+}
 #view-2 {
 	width: 1024px;
 	height: 600px;
 	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	float: left;
 }
 
@@ -172,7 +177,6 @@ body {
 	border: 3px solid #396538;
 	border-radius: 5px;
 	background: #F2F2F2;
-	
 }
 #view-2-2 {
 	width: 505px;

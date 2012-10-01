@@ -12,7 +12,7 @@
    height="400"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.3.1 r9886"
    version="1.0"
    sodipodi:docname="provinces.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
@@ -148,13 +148,13 @@
      inkscape:cx="269.77731"
      inkscape:cy="208.6218"
      inkscape:document-units="px"
-     inkscape:current-layer="g3063"
+     inkscape:current-layer="layer4"
      width="800px"
      height="1000px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1138"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1855"
+     inkscape:window-height="1175"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
      showgrid="false"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -507,92 +507,9 @@
          id="col-1"
          style="fill:#d73027;fill-opacity:1;fill-rule:nonzero;stroke:none" />
       <g
-         id="g3063"
-         transform="translate(-470.68282,47.910942)">
-        <text
-           id="text3065"
-           style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-64.86673"
-           x="0"
-           xml:space="preserve"> </text>
-        <text
-           id="text3067"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="0"
-           xml:space="preserve">FP7</text>
-        <text
-           id="text3069"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="26.099077"
-           xml:space="preserve">-</text>
-        <text
-           id="text3071"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="32.098866"
-           xml:space="preserve">SPACE</text>
-        <text
-           id="text3073"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="77.397263"
-           xml:space="preserve">-</text>
-        <text
-           id="text3075"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="83.397057"
-           xml:space="preserve">2012/5. </text>
-        <text
-           id="text3077"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="145.34486"
-           xml:space="preserve">Topic Analysis</text>
-        <text
-           id="text3079"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="245.54134"
-           xml:space="preserve"> </text>
-        <text
-           id="text3081"
-           style="font-size:12.44956017px;font-style:italic;font-weight:normal;text-align:start;text-anchor:start;fill:#447c4d;font-family:Verdana"
-           y="-49.665939"
-           x="249.74118"
-           xml:space="preserve">climate</text>
-        <text
-           id="text3083"
-           style="font-size:12.44956017px;font-style:italic;font-weight:bold;text-align:start;text-anchor:start;fill:#447c4d;font-family:Verdana"
-           y="-49.665939"
-           x="295.18958"
-           xml:space="preserve">HUB</text>
-        <text
-           id="text3085"
-           style="font-size:12.44956017px;font-style:normal;font-weight:bold;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-49.665939"
-           x="325.3385"
-           xml:space="preserve"> </text>
-        <text
-           id="text3095"
-           style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-33.562134"
-           x="590.67914"
-           xml:space="preserve"> </text>
-        <text
-           id="text3099"
-           style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#808080;font-family:Verdana"
-           y="-19.113861"
-           x="580.02948"
-           xml:space="preserve"> </text>
-        <text
-           id="text3101"
-           style="font-size:14.39949131px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#0000ff;font-family:Times New Roman"
-           y="-3.4615655"
-           x="0"
-           xml:space="preserve"> </text>
+         id="sagdf"
+         transform="translate(-470.68282,47.910942)"
+         inkscape:label="#g3063">
         <path
            id="path3103"
            d="m -8.8871861,-11.964976 607.7222861,0.05644 0,2.8219286 -607.7222861,-0.056439 z"
@@ -600,17 +517,12 @@
            style="fill:#7f7f7f;fill-opacity:1;fill-rule:nonzero;stroke:#7f7f7f;stroke-width:0.01874934px;stroke-linecap:butt;stroke-linejoin:round;stroke-opacity:1;stroke-dasharray:none"
            inkscape:connector-curvature="0" />
         <text
-           id="text3107"
-           style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#000000;font-family:Verdana"
-           y="12.642239"
-           x="7.9497194"
-           xml:space="preserve"> </text>
-        <text
-           id="text3105"
+           id="units"
            style="font-size:12.44956017px;font-style:normal;font-weight:normal;text-align:start;text-anchor:start;fill:#000000;display:inline;font-family:Verdana"
            y="19.608597"
            x="775.34619"
-           xml:space="preserve">˚Celcius change </text>
+           xml:space="preserve"
+           inkscape:label="#text3105">˚Celcius change </text>
       </g>
     </g>
     <text

@@ -106,8 +106,9 @@
         chart (doto (box-plot (cons (data-by-county county "2021-30" months "ICARUS" "ICARUS" variable)
                                     (map #(diff-fn county "2021-30" months (first %) (second %) variable)
                                          ensemble))
-                              :legend true :y-label (if (temp-var? variable) "Difference in °C from baseline"
-                                                        "% difference from baseline")
+                              :legend true
+                              :y-label (if (temp-var? variable) "Difference in °C from baseline"
+                                           "% difference from baseline")
                               :series-label "2021-30")
                 (add-box-plot (map #(diff-fn county "2031-40" months (first %) (second %) variable)
                                    ensemble)

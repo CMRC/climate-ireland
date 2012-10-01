@@ -4,7 +4,7 @@
   (:use [com.ashafa.clutch.view-server]
         clojure.contrib.math))
 
-(def db "http://anthony:Gereb0em@localhost:5984/climate_dev")
+(def db "climate_dev")
 
 (comment (clutch/with-db db
            (clutch/save-view "users"
@@ -101,9 +101,6 @@
       (data-by-county county "1961-90" months model "C20" variable))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
-#_(data-by-county "Kilkenny" "2021-30" "JJA" "ICARUS" "ICARUS" "T_2M")
-#_(clutch/get-view db "vals" :by-ym)
-
 (def ref-data (memoize ref-data-slow))
 
 (def ensemble [["CGCM31" "A1B"]
@@ -183,7 +180,7 @@
         "Meath" "Monaghan" "North Tipperary"
         "Offaly" "Roscommon" "Sligo"
         "South Tipperary" "Waterford" "Westmeath"
-        "Wexford" "Wicklow"])
+        "Wexford" "Wicklow" "NI"])
 
 (def counties-by-province
   {"Carlow" "Leinster"
@@ -212,7 +209,8 @@
    "Waterford" "Munster"
    "Westmeath" "Leinster"
    "Wexford" "Leinster"
-   "Wicklow" "Leinster"})
+   "Wicklow" "Leinster"
+   "NI" "Ulster"})
 
 (defn all-counties [year months model scenario variable]
   (map #(str (data-by-county % year months model scenario variable) ",") counties))
