@@ -367,7 +367,12 @@
                                                           " (" (first run) ")"))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
-             
+
+(deftemplate current-climate "clad/views/View_3.html"
+  [req]
+  [:#main]
+  (content (html-resource "clad/views/CI_CurrentClimate.html")))
+
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
   [:#banner]
@@ -492,6 +497,9 @@
 
 (defpage "/ci/resources/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Resources.html" "resources" tab))
+
+(defpage "/ci/climate-information/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_Information.html" "current-data" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
