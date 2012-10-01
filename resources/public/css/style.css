@@ -159,7 +159,10 @@ body {
 	}
 #info-header {
     margin-top: 5px;
+	width: 1018px;
     text-align: left;
+	height: 160px;
+	padding: 5px;
 }
 #view-2 {
 	width: 1024px;
@@ -169,7 +172,6 @@ body {
 	float: left;
 }
 
-	
 #view-2-1 {
 	width: 505px;
 	height: 595px;
