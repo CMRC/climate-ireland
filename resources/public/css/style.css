@@ -126,6 +126,7 @@ body {
 	height: 600px;
 	width: 397px;
 	padding: 10px;
+	margin: 0px;
 }
 #map img {
 	max-height: 100%;
