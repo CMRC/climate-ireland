@@ -104,25 +104,30 @@
 
 (defn decadal-box [county months variable]
   (let [diff-fn (if (temp-var? variable) temp-diff-data diff-data)
-        chart (doto (box-plot (cons (data-by-county county "2021-30" months "ICARUS" "ICARUS" variable)
-                                    (map #(diff-fn county "2021-30" months (first %) (second %) variable)
-                                         ensemble))
+        vals-fn (fn [decade]
+                  (map double
+                       (filter #(not (nil? %))
+                               (cons (data-by-county
+                                      county decade months
+                                      "ICARUS" "ICARUS" variable)
+                                     (map #(diff-fn
+                                            county decade months
+                                            (first %) (second %) variable)
+                                          ensemble)))))
+        p (println (vals-fn "2051-60"))
+        chart (doto (box-plot (vals-fn "2021-30")
                               :legend true
                               :title (str county " " (variables variable))
                               :y-label (if (temp-var? variable) "Difference in °C from baseline"
                                            "% difference from baseline")
                               :series-label "2021-30")
-                (add-box-plot (map #(diff-fn county "2031-40" months (first %) (second %) variable)
-                                   ensemble)
+                (add-box-plot (vals-fn "2031-40")
                               :legend true
                               :series-label "2031-40")
-                (add-box-plot (map #(diff-fn county "2041-50" months (first %) (second %) variable)
-                                   ensemble)
+                (add-box-plot (vals-fn "2041-50")
                               :legend true
                               :series-label "2041-50")
-                (add-box-plot (cons (data-by-county county "2051-60" months "ICARUS" "ICARUS" variable)
-                                    (map #(diff-fn county "2051-60" months (first %) (second %) variable)
-                                         ensemble))
+                (add-box-plot (vals-fn "2051-60")
                               :legend true
                               :series-label "2051-60"))
         out-stream (ByteArrayOutputStream.)

@@ -263,7 +263,7 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
+
 (def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
 
 (defsnippet map-help "clad/views/chart-help.html"

@@ -111,7 +111,10 @@
                           (range 11 -1 -1))
            units (transform-xml values [{:id "units"}]
                                 (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
-           selected (transform-xml units [{:id "selected"}]
+           pushpin (transform-xml units [{:id "Ireland"}]
+                                (fn [node] 
+                                  (add-content [:circle {:cx "200" :cy "200" :r "100" :fill "black" :stroke-width "5"}])))
+           selected (transform-xml pushpin [{:id "selected"}]
                                    (fn [node] (set-content node (str "Selected: " (:region req)))))]
        (emit selected))}))
 
