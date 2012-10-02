@@ -1,6 +1,7 @@
 (ns clad.models.couch
   (:require [com.ashafa.clutch :as clutch]
-            [cemerick.friend [credentials :as creds]])
+            [cemerick.friend [credentials :as creds]]
+            [clojure.tools.logging :as log])
   (:use [com.ashafa.clutch.view-server]
         clojure.contrib.math))
 
@@ -142,27 +143,33 @@
 
 (defn temp-diff-data [county year months model scenario variable]
   (if (= model "ensemble")
-    (let [ref (/ (reduce #(+ %1 (ref-data county months (first %2) variable)) 0 ensemble)
-                 (count ensemble))
-          comp (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
-                          0 ensemble)
-                  (count ensemble))
-          res (- comp ref)]
-      res)
+    (let [raw (filter #(not (nil? %))
+                      (map #(ref-data county months (first %) variable)
+                           ensemble))
+          ref (when (> (count raw) 0)
+                (/ (reduce + 0 raw)
+                   (count raw)))
+          rawcomp (filter #(not (nil? %))
+                          (map #(data-by-county county year months (first %) (second %) variable)
+                               ensemble))
+          comp (when (> (count rawcomp) 0)
+                 (/ (reduce + 0 rawcomp)
+                    (count rawcomp)))]
+      (when (and (not (nil? ref)) (not (nil? comp))) (- comp ref)))
     (let [ref (ref-data county months model variable)
-          comp (data-by-county county year months model scenario variable)
-          res (- comp ref)]
-      res)))
+          comp (data-by-county county year months model scenario variable)]
+      (if (nil? ref) nil (- comp ref)))))
 
 (defn with-decadal [months model scenario variable regions diff-fn f]
   (apply f
-         (remove #(nil? %)
+         (filter #(not (nil? %))
                  (map (fn [decade]
                         (let [vals (map (fn [region] (diff-fn region decade months model scenario variable))
                                         regions)
-                              goodvals (remove #(nil? %) vals)]
+                              goodvals (filter #(not (nil? %)) vals)]
+                          (log/info "goodvals: " goodvals)
                           (when (seq goodvals) (apply f goodvals))))
-              ["2021-30" "2031-40" "2041-50" "2051-60"]))))
+                      ["2021-30" "2031-40" "2041-50" "2051-60"]))))
 
 (defn decadal-min [months model scenario variable regions diff-fn]
   (with-decadal months model scenario variable regions diff-fn min))

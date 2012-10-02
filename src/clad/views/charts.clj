@@ -2,7 +2,8 @@
   (:use incanter.core, incanter.stats, incanter.charts,
 	incanter.io clad.models.couch)
   (:require [clj-time.core :as time]
-            [clj-time.coerce :as coerce])
+            [clj-time.coerce :as coerce]
+            [clojure.tools.logging :as log])
   (:import (java.io ByteArrayOutputStream
                     ByteArrayInputStream)
            (java.lang Integer)))
@@ -114,7 +115,8 @@
                                             county decade months
                                             (first %) (second %) variable)
                                           ensemble)))))
-        p (println (vals-fn "2051-60"))
+        l (log/info "Decadal values for " county " " months " " variable ": "
+                    (vals-fn "2051-60"))
         chart (doto (box-plot (vals-fn "2021-30")
                               :legend true
                               :title (str county " " (variables variable))

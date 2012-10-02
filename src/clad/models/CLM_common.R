@@ -35,7 +35,7 @@ byprovince <- function(sgdf, region, run, year, season, variable) {
   clip(countydata, sgdf, region, run, year, season, variable)
 }
 NI <- function(sgdf, run, year, season, variable) {
-  countydata <- counties[counties@data$Counry=="UK",]
+  countydata <- counties[counties@data$Country=="UK",]
   clip(countydata, sgdf, "NI", run, year, season, variable)
 }
 
