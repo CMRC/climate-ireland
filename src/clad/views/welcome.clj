@@ -2,6 +2,8 @@
   (:require [clojure.contrib.string :as str]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
+            [noir.session :as session]
+            [noir.response :as resp]
             (cemerick.friend [workflows :as workflows]
                              [credentials :as creds]))
   (:use [clad.views.site]
@@ -9,7 +11,6 @@
         [clad.views.svg]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
-        [noir.response :only [redirect json]]
         [noir.request :only [ring-request]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
@@ -419,10 +420,10 @@
          :counties? true))
 
 (defpage "/" []
-  (redirect "/ci/about"))
+  (resp/redirect "/ci/about"))
 
 (defpage "/ci" []
-  (redirect "/ci/about"))
+  (resp/redirect "/ci/about"))
 
 (defpage "/ci/about" []
   (two-pane "clad/views/CI_About.html" "about" "/img/impact-tool.svg"))
@@ -491,15 +492,25 @@
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" ""))
 (defpage "/ci/maptools" {:as req}
-  (redirect (str "/ci/climate-information/projections/" (:region req)
+  (resp/redirect (str "/ci/climate-information/projections/" (:region req)
                  "/" (:years req)
                  "/" (:months req)
                  "/" (:runs req)
                  "/" (:variable req)
                  "/linear"
                  (when (= (:regions req) "Counties") "/counties"))))
+
+(defn clear-identity [response] 
+  (update-in response [:session] dissoc ::identity))
+
+(defpage "/logout" []
+  (clear-identity (resp/redirect "/ci/about")) )
+
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
                                         ; We don't need to do anything, we just want to make sure we're 
                                         ; authenticated. 
-            nil))
+            (log/info "User: " (get-in req [:session :cemerick.friend/identity
+                                            :current])
+                      " logged in from: " (req :remote-addr)
+                      " to URI: " (req :uri))))
