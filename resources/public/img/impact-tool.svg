@@ -104,9 +104,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.1011599"
-     inkscape:cx="97.73016"
-     inkscape:cy="334.13835"
+     inkscape:zoom="1.5316667"
+     inkscape:cx="198.5"
+     inkscape:cy="300"
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
      width="3249.21px"
@@ -122,7 +122,11 @@
      fit-margin-right="0"
      fit-margin-bottom="10"
      showborder="true"
-     borderlayer="true" />
+     borderlayer="true">
+    <inkscape:grid
+       type="xygrid"
+       id="grid3111" />
+  </sodipodi:namedview>
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -304,7 +308,7 @@
        sodipodi:cy="125.32334"
        sodipodi:rx="17.28443"
        sodipodi:ry="18.117414"
-       d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+       d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
        transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
        onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
        onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;" />
@@ -466,7 +470,7 @@
     </g>
     <g
        id="coastal-erosion"
-       transform="matrix(1.2278689,0,0,0.50649745,392.91343,949.82119)"
+       transform="matrix(1.1764774,0,0,0.50649745,379.80715,938.12288)"
        inkscape:label="#g3086"
        style="display:none">
       <rect
@@ -490,47 +494,47 @@
            id="tspan3545" /></text>
       <text
          xml:space="preserve"
-         style="font-size:15.62875938px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-         x="-218.276"
-         y="-336.69629"
+         style="font-size:14.80534077px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+         x="-230.34937"
+         y="-318.95706"
          id="text3582"
-         sodipodi:linespacing="137%"
-         transform="scale(0.65966058,1.5159311)"><tspan
+         sodipodi:linespacing="140%"
+         transform="scale(0.62490562,1.6002417)"><tspan
            sodipodi:role="line"
            id="tspan3584"
-           x="-218.276"
-           y="-336.69629"
-           style="font-size:16.95301056px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold">Coastal Erosion</tspan><tspan
+           x="-230.34937"
+           y="-318.95706"
+           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold">Coastal Erosion</tspan><tspan
            sodipodi:role="line"
-           x="-218.276"
-           y="-313.47067"
-           id="tspan3592"
-           style="font-size:16.95301056px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">Rising sea levels combined with increased wave heights and </tspan><tspan
-           sodipodi:role="line"
-           x="-218.276"
-           y="-290.24503"
+           x="-230.34937"
+           y="-295.37994"
            id="tspan3596"
-           style="font-size:16.95301056px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">more intense surges will put all of Ireland's coastal areas at </tspan><tspan
+           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">Rising sea levels combined with increased wave heights and </tspan><tspan
            sodipodi:role="line"
-           x="-218.276"
-           y="-267.01941"
+           x="-230.34937"
+           y="-271.8028"
            id="tspan3098"
-           style="font-size:16.95301056px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">risk of coastal erosion, northeastern and southwestern coasts </tspan><tspan
+           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">more intense surges will put all of Ireland's coastal areas at </tspan><tspan
            sodipodi:role="line"
-           x="-218.276"
-           y="-243.79379"
+           x="-230.34937"
+           y="-248.22568"
            id="tspan3100"
-           style="font-size:16.95301056px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">in particular.  Amongst others, this will have important</tspan><tspan
+           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">risk of coastal erosion, northeastern and southwestern coasts </tspan><tspan
            sodipodi:role="line"
-           x="-218.276"
-           y="-220.56816"
-           style="font-size:16.95301056px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+           x="-230.34937"
+           y="-224.64854"
+           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan3129">in particular.  Amongst others, this will have important</tspan><tspan
+           sodipodi:role="line"
+           x="-230.34937"
+           y="-201.07141"
+           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3153">implications for infrastructure located on the coast.</tspan></text>
     </g>
     <g
        id="coastal-flooding"
        inkscape:label="#g3263"
-       transform="matrix(0.97871336,0,0,1,88.344425,625.37934)"
+       transform="matrix(0.92791857,0,0,1,93.605439,616.75137)"
        style="fill:#fffffa;fill-opacity:0;stroke:#000000;stroke-opacity:1;display:none">
       <rect
          y="49.427643"
@@ -540,48 +544,48 @@
          id="rect3247"
          style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
       <text
-         sodipodi:linespacing="137%"
+         sodipodi:linespacing="140%"
          id="text3249"
          y="60.396259"
          x="131.04707"
-         style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+         style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
          xml:space="preserve"
          transform="scale(0.96094406,1.0406433)"><tspan
-           style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
+           style="font-size:13.49548244px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial Bold"
            y="60.396259"
            x="131.04707"
            id="tspan3251"
            sodipodi:role="line">Coastal Flooding</tspan><tspan
            id="tspan3259"
-           y="79.091309"
+           y="79.199722"
            x="131.04707"
            sodipodi:role="line"
-           style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">Increasing sea levels combined with increased wave heights and </tspan><tspan
-           y="97.786354"
+           style="font-size:13.49548244px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:138.99999857%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial">Increasing sea levels combined with increased wave heights and </tspan><tspan
+           y="97.958443"
            x="131.04707"
            sodipodi:role="line"
-           style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:13.49548244px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:138.99999857%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3096">storm surge intensity will put Ireland's coastal infrastructure at risk </tspan><tspan
-           y="116.4814"
+           y="116.71716"
            x="131.04707"
            sodipodi:role="line"
-           style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:13.49548244px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:138.99999857%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3092">and this includes Ireland's major cities.  In addition, due to increased </tspan><tspan
-           y="135.17645"
+           y="135.47589"
            x="131.04707"
            sodipodi:role="line"
-           style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:13.49548244px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:138.99999857%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3940">levels of winter precipitation, when combined with increased levels </tspan><tspan
-           y="153.87149"
+           y="154.2346"
            x="131.04707"
            sodipodi:role="line"
-           style="font-size:13.64601994px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:13.49548244px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:138.99999857%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;fill-rule:nonzero;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3116">of river flow, innundation of Ireland's major cities is of concern.</tspan></text>
     </g>
     <g
        id="inland-flooding"
        inkscape:label="#g3334"
-       transform="matrix(1.2846125,0,0,1.3138581,-98.07866,485.70422)"
+       transform="matrix(1.253092,0,0,1.3138581,-89.77656,470.42237)"
        style="display:none">
       <rect
          y="143.53873"
@@ -591,37 +595,37 @@
          id="rect3318"
          style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
       <text
-         sodipodi:linespacing="130.99999%"
+         sodipodi:linespacing="140%"
          id="text3320"
          y="166.82164"
          x="247.57462"
-         style="font-size:10.379673px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:130.99999428%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         style="font-size:10.379673px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
          xml:space="preserve"><tspan
-           style="font-size:10.39138603px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:130.99999428%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
+           style="font-size:10.13159084px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
            y="166.82164"
            x="247.57462"
            id="tspan3322"
            sodipodi:role="line">Inland Flooding</tspan><tspan
            id="tspan3330"
-           y="180.85114"
+           y="181.00586"
            x="247.57462"
            sodipodi:role="line"
-           style="font-size:10.39138603px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Increased levels of winter precipitation will result in an increased </tspan><tspan
-           y="195.08733"
+           style="font-size:10.13159084px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Increased levels of winter precipitation will result in an </tspan><tspan
+           y="195.19009"
            x="247.57462"
            sodipodi:role="line"
            id="tspan3101"
-           style="font-size:10.39138603px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">risk of inland flooding with new areas, previously not subject to </tspan><tspan
-           y="209.32353"
+           style="font-size:10.13159084px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">increased risk of inland flooding with new areas, previously </tspan><tspan
+           y="209.37431"
            x="247.57462"
            sodipodi:role="line"
-           style="font-size:10.39138603px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3954">flooding being put at risk.</tspan></text>
+           style="font-size:10.13159084px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan3954">not subject to flooding being put at risk.</tspan></text>
     </g>
     <g
        id="drought"
        inkscape:label="#g3392"
-       transform="translate(591.67253,481.94841)"
+       transform="matrix(0.93494604,0,0,1,569.32544,473.98331)"
        style="display:none">
       <rect
          y="192.78314"
@@ -637,35 +641,35 @@
          x="-383.83844"
          style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
          xml:space="preserve"><tspan
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
+           style="font-size:13.44466782px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
            y="205.61902"
            x="-383.83844"
            id="tspan3376"
            sodipodi:role="line">Drought</tspan><tspan
            id="tspan3382"
-           y="224.51901"
+           y="224.44156"
            x="-383.83844"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Decreased levels of summer precipitation, particularly in the south </tspan><tspan
+           style="font-size:13.44466782px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Decreased levels of summer precipitation, particularly in the </tspan><tspan
            id="tspan3388"
-           y="243.41902"
+           y="243.26408"
            x="-383.83844"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">and south east, may result in the increased occurrence of drought </tspan><tspan
-           y="262.31903"
+           style="font-size:13.44466782px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">south and south east, may result in the increased occurrence </tspan><tspan
+           y="262.08661"
            x="-383.83844"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3964">conditions.  This will put water supply at risk due to low flows and </tspan><tspan
-           y="281.21902"
+           style="font-size:13.44466782px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan3964">of drought conditions.  This will put water supply at risk due </tspan><tspan
+           y="280.90915"
            x="-383.83844"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3966">increased risk of contamination.</tspan></text>
+           style="font-size:13.44466782px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan3966">to low flows and increased risk of contamination.</tspan></text>
     </g>
     <g
        id="growing-season"
-       transform="matrix(1.0444479,0,0,1.364482,559.41617,212.90939)"
+       transform="matrix(0.95171152,0,0,1.364482,533.22542,197.59784)"
        inkscape:label="#g3422"
        style="display:none">
       <rect
@@ -676,31 +680,31 @@
          id="rect3402"
          style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:0;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0" />
       <text
-         sodipodi:linespacing="125%"
+         sodipodi:linespacing="140%"
          id="text3404"
          y="355.70685"
          x="-339.18677"
-         style="font-size:10.88970375px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
+         style="font-size:10.88970375px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Sans;-inkscape-font-specification:Sans"
          xml:space="preserve"><tspan
-           style="font-size:11.30853844px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
+           style="font-size:11.40792847px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial Bold"
            y="355.70685"
            x="-339.18677"
            id="tspan3406"
            sodipodi:role="line">Growing Season</tspan><tspan
-           y="371.53879"
+           y="371.67795"
            x="-339.18677"
            sodipodi:role="line"
-           style="font-size:11.30853844px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:11.40792847px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3972">Increasing temperatures will serve to prolong the growing season with spring </tspan><tspan
-           y="387.37076"
+           y="387.64905"
            x="-339.18677"
            sodipodi:role="line"
-           style="font-size:11.30853844px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:11.40792847px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3976">occuring earlier.  Increasing temperatures may also serve to increase yields.  </tspan><tspan
-           y="403.2027"
+           y="403.62015"
            x="-339.18677"
            sodipodi:role="line"
-           style="font-size:11.30853844px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+           style="font-size:11.40792847px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3978">However, this increase may be offset by decreased levels of water availability</tspan></text>
     </g>
     <g
@@ -753,7 +757,7 @@
     <g
        id="biodiversity-loss"
        inkscape:label="#g4020"
-       transform="translate(-356.244,-60.455373)"
+       transform="translate(-361.46707,-74.165928)"
        style="display:none">
       <rect
          y="738.7561"
@@ -765,40 +769,45 @@
       <text
          sodipodi:linespacing="137%"
          id="text3990"
-         y="751.09521"
-         x="569.03809"
+         y="747.17792"
+         x="578.17847"
          style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial"
          xml:space="preserve"><tspan
            style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial Bold"
-           y="751.09521"
-           x="569.03809"
+           y="747.17792"
+           x="578.17847"
            id="tspan3992"
            sodipodi:role="line">Biodiversity Loss</tspan><tspan
            id="tspan3994"
-           y="769.59021"
-           x="569.03809"
+           y="765.67291"
+           x="578.17847"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">Projected shifts in climate and sea level rise will impact upon </tspan><tspan
+           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">Projected shifts in climate and sea level rise will impact </tspan><tspan
            id="tspan3996"
-           y="788.08521"
-           x="569.03809"
+           y="784.16791"
+           x="578.17847"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">the geographical range and phenology (timing of lifecycle </tspan><tspan
+           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">upon the geographical range and phenology (timing of </tspan><tspan
            id="tspan3998"
-           y="806.5802"
-           x="569.03809"
+           y="802.6629"
+           x="578.17847"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">events) of species native to Ireland, resulting in biodiversity </tspan><tspan
+           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">lifecycle events) of species native to Ireland, resulting in </tspan><tspan
            id="tspan4000"
-           y="825.0752"
-           x="569.03809"
+           y="821.1579"
+           x="578.17847"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">and ecosystem loss.  In addition, the occurence of invasive </tspan><tspan
+           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">biodiversity and ecosystem loss.  In addition, the occurence </tspan><tspan
            id="tspan4002"
-           y="843.57019"
-           x="569.03809"
+           y="839.65289"
+           x="578.17847"
            sodipodi:role="line"
-           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">species is expected to increase under projected climate change.</tspan></text>
+           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial">of invasive species is expected to increase under projected </tspan><tspan
+           y="858.14789"
+           x="578.17847"
+           sodipodi:role="line"
+           style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial"
+           id="tspan3136">climate change.</tspan></text>
     </g>
   </g>
   <g
