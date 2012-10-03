@@ -266,7 +266,13 @@
 
 
 (def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
-
+(def scenarios {["CGCM31" "A1B"] "A1B"
+                ["CGCM31" "A2"] "A2"
+                ["HadGEM" "RCP45"] "RCP45"
+                ["HadGEM" "RCP85"] "RCP85"
+                ["ICARUS" "ICARUS"] "A2 + B2 ensemble"
+                ["ensemble" "ensemble"] "ensemble"})
+                
 (defsnippet map-help "clad/views/chart-help.html"
   [:#map-help]
   
@@ -346,8 +352,7 @@
                            (assoc-in (if (and (= (:model req) (first run))
                                               (= (:scenario req) (second run)))
                                        (assoc-in a-node [:attrs :selected] nil)
-                                       a-node) [:content] (str (second run)
-                                                          " (" (first run) ")"))
+                                       a-node) [:content] (scenarios run))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
 

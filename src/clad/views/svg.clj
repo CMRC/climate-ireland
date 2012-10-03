@@ -124,10 +124,10 @@
              pushpin (transform-xml units [{:id "Ireland"}]
                                     (fn [node] 
                                       (add-content [:circle {:cx "200" :cy "200" :r "100" :fill "black" :stroke-width "5"}])))
-             selected (transform-xml values [{:id "selected"}]
+             selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    #_(catch NullPointerException ex
+    (catch NullPointerException ex
       (log/info req)
       "We do apologise. There is no data available for the selection you have chosen.
 Please select another combination of decade/variable/projection")))

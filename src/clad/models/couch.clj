@@ -104,10 +104,10 @@
 
 (def ref-data (memoize ref-data-slow))
 
-(def ensemble [["CGCM31" "A1B"]
-               ["CGCM31" "A2"]
-               ["HadGEM" "RCP45"]
+(def ensemble [["CGCM31" "A2"]
+               ["CGCM31" "A1B"]
                ["HadGEM" "RCP85"]
+               ["HadGEM" "RCP45"]
                #_["ICARUS" "ICARUS"]])
 
 (defn ensemble-data [county year months variable]
@@ -158,7 +158,7 @@
       (when (and (not (nil? ref)) (not (nil? comp))) (- comp ref)))
     (let [ref (ref-data county months model variable)
           comp (data-by-county county year months model scenario variable)]
-      (if (nil? ref) nil (- comp ref)))))
+      (when (and (not (nil? ref)) (not (nil? comp))) (- comp ref)))))
 
 (defn with-decadal [months model scenario variable regions diff-fn f]
   (apply f
