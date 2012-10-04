@@ -32,7 +32,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -346,7 +346,7 @@
      x="324.89297"
      height="19.862045"
      width="21.023512"
-     id="col-5-1"
+     id="col-5"
      style="fill:#ffffbf;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <text
      inkscape:label="#text3855"
@@ -380,7 +380,7 @@
      x="324.89297"
      height="19.862043"
      width="21.02351"
-     id="col-3-4"
+     id="col-3"
      style="fill:#fdae61;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -388,7 +388,7 @@
      x="324.89297"
      height="19.862043"
      width="21.02351"
-     id="col-4-8"
+     id="col-4"
      style="fill:#fee090;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -396,7 +396,7 @@
      x="324.89297"
      height="19.862041"
      width="21.023508"
-     id="col-6-8"
+     id="col-6"
      style="fill:#e0f3f8;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -404,7 +404,7 @@
      x="324.89297"
      height="19.862041"
      width="21.023508"
-     id="col-7-2"
+     id="col-7"
      style="fill:#abd9e9;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -412,7 +412,7 @@
      x="324.89297"
      height="19.862041"
      width="21.023508"
-     id="col-8-4"
+     id="col-8"
      style="fill:#74add1;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -420,7 +420,7 @@
      x="324.89297"
      height="19.862041"
      width="21.023508"
-     id="col-9-5"
+     id="col-9"
      style="fill:#4575b4;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -428,7 +428,7 @@
      x="324.89297"
      height="19.862041"
      width="21.023508"
-     id="col-10-5"
+     id="col-10"
      style="fill:#313695;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <text
      inkscape:label="#text3855"
@@ -566,7 +566,7 @@
      x="324.89304"
      height="19.862043"
      width="21.02351"
-     id="col-0-1"
+     id="col-0"
      style="fill:#a50026;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -574,7 +574,7 @@
      x="324.89304"
      height="19.862043"
      width="21.02351"
-     id="col-2-8"
+     id="col-2"
      style="fill:#24396f;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <rect
      inkscape:label="#rect3032"
@@ -582,7 +582,7 @@
      x="324.89304"
      height="19.862043"
      width="21.02351"
-     id="col-1-9"
+     id="col-1"
      style="fill:#d73027;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <text
      id="units"

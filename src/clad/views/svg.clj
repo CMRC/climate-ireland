@@ -38,7 +38,7 @@
 (defn linear-rgb [val domain]
   "Returns a colour string based on the value"
   (if (nil? val)
-    "black"
+    "grey"
     (let [colour-scale (let [s (scale/linear :domain domain
                                              :range [0 (dec (count colour-scheme))])]
                          (fn [d] (nth colour-scheme (floor (s d)))))]
@@ -66,7 +66,7 @@
                     :province provinces)
           diff-fn (if (= model "ICARUS")
                     data-by-county ;; ICARUS data is already expressed as a delta
-                    (if (temp-var? variable) temp-diff-data diff-data))
+                    diff-data)
           min (decadal-min months model scenario variable regions diff-fn)
           max (decadal-max months model scenario variable regions diff-fn)]
       (log/info "Min: " min " Max: " max)
@@ -99,7 +99,7 @@
                                            %2
                                            "')")))
                          (colour-on-linear %2 year months model scenario variable region min max diff-fn)
-                         (add-style :stroke (if (= region (:id (second elem))) "white" "black")))])))
+                         (add-style :stroke (if (= region (:id (second elem))) "red" "grey")))])))
               regions-svg			
               regions)
              legend (reduce #(transform-xml %1
@@ -121,13 +121,11 @@
                             (range 11 -1 -1))
              units (transform-xml values [{:id "units"}]
                                   (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
-             pushpin (transform-xml units [{:id "Ireland"}]
-                                    (fn [node] 
-                                      (add-content [:circle {:cx "200" :cy "200" :r "100" :fill "black" :stroke-width "5"}])))
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    (catch NullPointerException ex
+    (catch Exception ex
+      (log/info ex)
       (log/info req)
       "We do apologise. There is no data available for the selection you have chosen.
 Please select another combination of decade/variable/projection")))

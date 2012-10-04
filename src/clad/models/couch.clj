@@ -115,51 +115,43 @@
              0
              ensemble) (count ensemble)))
 
-(defn diff-data [county year months model scenario variable]
-  (if (= model "ensemble")
-    (let [ref (/ (reduce #(+ %1 (ref-data county months (first %2) variable)) 0 ensemble)
-                 (count ensemble))
-          comp (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
-                          0 ensemble)
-                  (count ensemble))
-          res (->
-               (- comp ref)
-               (/ ref)
-               (* 10000)
-               round
-               (/ 100)
-               float)]
-      res)
-    (let [ref (ref-data county months model variable)
-          comp (data-by-county county year months model scenario variable)
-          res (->
-               (- comp ref)
-               (/ ref)
-               (* 10000)
-               round
-               (/ 100)
-               float)]
-      res)))
+(def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
 
-(defn temp-diff-data [county year months model scenario variable]
-  (if (= model "ensemble")
-    (let [raw (filter #(not (nil? %))
-                      (map #(ref-data county months (first %) variable)
-                           ensemble))
-          ref (when (> (count raw) 0)
-                (/ (reduce + 0 raw)
-                   (count raw)))
-          rawcomp (filter #(not (nil? %))
-                          (map #(data-by-county county year months (first %) (second %) variable)
-                               ensemble))
-          comp (when (> (count rawcomp) 0)
-                 (/ (reduce + 0 rawcomp)
-                    (count rawcomp)))]
-      (when (and (not (nil? ref)) (not (nil? comp))) (- comp ref)))
-    (let [ref (ref-data county months model variable)
-          comp (data-by-county county year months model scenario variable)]
-      (when (and (not (nil? ref)) (not (nil? comp))) (- comp ref)))))
+(defn temp-var? [variable] (some #(= variable %) temp-vars))
 
+(defn percent [comp ref]
+  (->
+   (- comp ref)
+   (/ ref)
+   (* 10000)
+   round
+   (/ 100)
+   float))
+
+(defn diff-data
+  "calculate the display value based on a difference function between
+computed data and reference data. Difference function is subtraction for
+temperature data and percentage difference for everything else"
+  [county year months model scenario variable]
+  (let [diff-fn (if (temp-var? variable) - percent)]
+          (if (= model "ensemble")
+            (let [raw (filter #(not (nil? %))
+                              (map #(ref-data county months (first %) variable)
+                                   ensemble))
+                  ref (when (> (count raw) 0)
+                        (/ (reduce + 0 raw)
+                           (count raw)))
+                  rawcomp (filter #(not (nil? %))
+                                  (map #(data-by-county county year months (first %) (second %) variable)
+                                       ensemble))
+                  comp (when (> (count rawcomp) 0)
+                         (/ (reduce + 0 rawcomp)
+                            (count rawcomp)))]
+              (when (and (not (nil? ref)) (not (nil? comp))) (diff-fn comp ref)))
+            (let [ref (ref-data county months model variable)
+                  comp (data-by-county county year months model scenario variable)]
+              (when (and (not (nil? ref)) (not (nil? comp))) (diff-fn comp ref))))))
+  
 (defn with-decadal [months model scenario variable regions diff-fn f]
   (apply f
          (filter #(not (nil? %))
@@ -221,11 +213,6 @@
 
 (defn all-counties [year months model scenario variable]
   (map #(str (data-by-county % year months model scenario variable) ",") counties))
-
-
-(def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
-
-(defn temp-var? [variable] (some #(= variable %) temp-vars))
 
 (defn make-url [view req & {:keys [counties?] :or {counties? false}}]
   (str "/ci/"
