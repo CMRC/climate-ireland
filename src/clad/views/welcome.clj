@@ -242,11 +242,11 @@
                    [:.buttons :ul])))
 
 (deftemplate two-pane "clad/views/welcome.html"
-  [text page img]
+  [text page rhs]
   [:#blurb]
   (content (html-resource text))
   [:#map]
-  (content {:tag :object :attrs {:data img}})
+  (content rhs)
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
@@ -431,7 +431,7 @@
   (resp/redirect "/ci/about"))
 
 (defpage "/ci/about" []
-  (two-pane "clad/views/CI_About.html" "about" "/img/impact-tool.svg"))
+  (two-pane "clad/views/CI_About.html" "about" {:tag :object :attrs {:data "/img/impact-tool.svg"}}))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
@@ -495,7 +495,7 @@
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
   (barchart region year months variable))
 (defpage "/login" []
-  (two-pane "clad/views/Login.html" "login" ""))
+  (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
 (defpage "/ci/maptools" {:as req}
   (resp/redirect (str "/ci/climate-information/projections/" (:region req)
                  "/" (:years req)

@@ -190,7 +190,7 @@ body {
 	float: right;
 	background: #F2F2F2;
 }
-#view-2-map {
+#view-2-map, #view-2-map object {
 	width: 500px;
 	height: 420px;
 	text-align: center;
