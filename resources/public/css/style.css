@@ -126,6 +126,7 @@ body {
 	height: 600px;
 	width: 397px;
 	padding: 10px;
+	margin: 0px;
 }
 #map img {
 	max-height: 100%;
@@ -147,29 +148,38 @@ body {
 	height: 200px;
 	width: 100%;
 }
-#footer {
+#footer , #info-header{
 	width: 1018px;
-	height: 60px;
+	height: 62px;
 	text-align: right;
 	border: 3px solid #396538;
 	border-radius: 5px;
 	float: left;
 	background-color: rgba(39,65,38, 0.05);
+	margin-bottom: 2px;
 	}
+#info-header {
+    margin-top: 5px;
+	width: 1018px;
+    text-align: left;
+	height: 160px;
+	padding: 5px;
+}
 #view-2 {
 	width: 1024px;
 	height: 600px;
 	padding-top: 5px;
-	padding-bottom: 5px;
+	padding-bottom: 10px;
 	float: left;
 }
+
 #view-2-1 {
 	width: 505px;
 	height: 595px;
 	float: left;
 	border: 3px solid #396538;
 	border-radius: 5px;
-	
+	background: #F2F2F2;
 }
 #view-2-2 {
 	width: 505px;
@@ -178,8 +188,9 @@ body {
 	border: 3px solid #396538;
 	border-radius: 5px;
 	float: right;
+	background: #F2F2F2;
 }
-#view-2-map {
+#view-2-map, #view-2-map object {
 	width: 500px;
 	height: 420px;
 	text-align: center;
@@ -340,9 +351,7 @@ body {
 	max-width:580px;
 	}
 	
-#map-help{
-	padding: 5px;
-	}
+
 
 
 

@@ -2,6 +2,8 @@
   (:require [clojure.contrib.string :as str]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
+            [noir.session :as session]
+            [noir.response :as resp]
             (cemerick.friend [workflows :as workflows]
                              [credentials :as creds]))
   (:use [clad.views.site]
@@ -9,7 +11,6 @@
         [clad.views.svg]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
-        [noir.response :only [redirect json]]
         [noir.request :only [ring-request]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
@@ -218,7 +219,10 @@
   (content (select (transform (html-resource text)
                               [:.buttons :a]
                               (fn [a-node]
-                                (if (= (get-in a-node [:attrs :href]) tab)
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{tab}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
                                   a-node)))
@@ -238,11 +242,11 @@
                    [:.buttons :ul])))
 
 (deftemplate two-pane "clad/views/welcome.html"
-  [text page img]
+  [text page rhs]
   [:#blurb]
   (content (html-resource text))
   [:#map]
-  (content {:tag :img :attrs {:src img}})
+  (content rhs)
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
@@ -260,30 +264,15 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
-(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
 
-(deftemplate welcome "clad/views/welcome.html"
-  [map]
-  [:#map]
-  (content map)
-  [:#banner]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
-  [:#footer]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
-  [:#buttons]
-  (content (select (transform (html-resource "clad/views/View_3.html")
-                              [:.buttons :a]
-                              (fn [a-node]
-                                (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
-                                     (some #{"welcome"}))
-                                  (assoc-in a-node [:attrs :id]
-                                            "current")
-                                  a-node)))
-                   [:.buttons :ul])))
-
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
+(def scenarios {["CGCM31" "A1B"] "A1B"
+                ["CGCM31" "A2"] "A2"
+                ["HadGEM" "RCP45"] "RCP45"
+                ["HadGEM" "RCP85"] "RCP85"
+                ["ICARUS" "ICARUS"] "A2 + B2 ensemble"
+                ["ensemble" "ensemble"] "ensemble"})
+                
 (defsnippet map-help "clad/views/chart-help.html"
   [:#map-help]
   
@@ -315,13 +304,10 @@
   (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
              [:option]
              (fn [a-node] (->
-                           (assoc-in (if (= (:years req)
-                                            (clojure.string/replace
-                                             decade "-" ""))
+                           (assoc-in (if (= (:years req) decade)
                                        (assoc-in a-node [:attrs :selected] nil)
                                        a-node) [:content] decade)
-                           (assoc-in [:attrs :value]
-                                     (clojure.string/replace decade "-" "")))))
+                           (assoc-in [:attrs :value] decade))))
   
   [:#regions :option]
   (clone-for [region ["Counties" "Provinces"]]
@@ -360,19 +346,48 @@
                            (assoc-in [:attrs :value] month))))
 
   [:#runs :option]
-  (clone-for [run (conj ensemble #_["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
+  (clone-for [run (conj ensemble ["ICARUS" "ICARUS"] ["ensemble" "ensemble"])]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (and (= (:model req) (first run))
                                               (= (:scenario req) (second run)))
                                        (assoc-in a-node [:attrs :selected] nil)
-                                       a-node) [:content] (str (second run)
-                                                          " (" (first run) ")"))
+                                       a-node) [:content] (scenarios run))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
-             
+
+(deftemplate current-climate "clad/views/View_3.html"
+  [req]
+  [:#main]
+  (content (html-resource "clad/views/CI_Information.html")))
+
 (deftemplate svgmap "clad/views/View_2.html"
   [req map blurb & {:keys [counties?] :or {counties? false}}]
+  [:#banner]
+  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
+  [:#tabs]
+  (content (select (transform (html-resource "clad/views/CI_Information.html")
+                              [:li :a]
+                              (fn [a-node]
+                                (if (->>
+                                     (get-in a-node [:attrs :href])
+                                     (str/split #"/")
+                                     (some #{"projections"}))
+                                  (assoc-in a-node [:attrs :id]
+                                            "current")
+                                  a-node)))
+                   [:.buttons]))
+  [:.buttons :a]
+  (fn [a-node]
+    (if (->>
+         (get-in a-node [:attrs :href])
+         (str/split #"/")
+         (some #{"projections"}))
+      (assoc-in a-node [:attrs :id]
+                "current")
+      a-node))
+  [:#info-header]
+  (content (select (html-resource "clad/views/CI_Information.html") [:#climate-projections]))
   [:#view-2-map]
   (content map)
   [:#view-2-map-tool]
@@ -383,53 +398,12 @@
   (content (chart-help req))
   [:#map-help]
   (content (map-help))
-  [:#banner]
-  (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
   (substitute (select (html-resource "clad/views/View_3.html") [:#footer])))
 
 (deftemplate login "clad/views/Login.html" [])
 
-(defpage "/ci/welcome/compare/:year1/:year2/:months/:variable"
-  {:keys [year1 year2 months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/svg/compare/" year1 "/" year2 "/" months "/" variable)
-                    :height "100%"}}))
-(defpage "/ci/welcome/plot/:region/:months/:variable/decadal"
-  {:keys [region months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal")
-                    :height "100%"}}))
-(defpage "/ci/welcome/plot/:region/:months/:variable/decadal-box"
-  {:keys [region months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/plot/" region "/" months "/" variable "/decadal-box")}}))
-
-(defpage "/ci/welcome/plot/:region/:months/:variable"
-  {:keys [region months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/plot/" region "/" months "/" variable)
-                    :height "100%"}}))
-
-(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading"
-  {:keys [year months model scenario variable shading]}
-  (welcome {:tag :object
-            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
-                               scenario "/" variable "/" shading)
-                    :type "image/svg+xml"
-                    :height "550px"
-                    :width "440px"}}))
-
-(defpage "/ci/welcome/svg/:year/:months/:model/:scenario/:variable/:shading/counties"
-  {:keys [year months model scenario variable shading]}
-  (welcome {:tag :object
-            :attrs {(if (good-browser?) :data :src) (str "/ci/svg/" year "/" months "/" model "/"
-                              scenario "/" variable "/" shading "/counties")
-                    :type "image/svg+xml"
-                    :height "550px"
-                    :width "440px"}}))
-
-(defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading"
+(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:shading"
  {:as req}
  (svgmap req
          {:tag :object
@@ -439,7 +413,7 @@
           :attrs {:src (make-url "box" req)
                   :max-width "100%"}}))
 
-(defpage "/ci/welcome/svgbar/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
+(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
  {:as req}
  (svgmap req
          {:tag :object
@@ -450,28 +424,14 @@
                   :max-width "100%"}}
          :counties? true))
 
-(defpage "/ci/welcome/png/:year/:months/:model/:scenario/:variable/:shading"
-  {:keys [year months model scenario variable shading]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/png/" year "/" months "/" model "/"
-	    scenario "/" variable "/" shading)
-                    :height "100%"}}))
-
-(defpage "/ci/welcome/bar/:year/:county/:months/:variable"
-  {:keys [year county months variable]}
-  (welcome {:tag :img
-            :attrs {:src (str "/ci/bar/" year "/" county
-                              "/" months "/" variable)
-                    :height "100%"}}))
-
 (defpage "/" []
-  (redirect "/ci/about"))
+  (resp/redirect "/ci/about"))
 
 (defpage "/ci" []
-  (redirect "/ci/about"))
+  (resp/redirect "/ci/about"))
 
 (defpage "/ci/about" []
-  (two-pane "clad/views/CI_About.html" "about" "/img/Provinces_2.png"))
+  (two-pane "clad/views/CI_About.html" "about" {:tag :object :attrs {:data "/img/impact-tool.svg"}}))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
@@ -484,6 +444,12 @@
 
 (defpage "/ci/resources/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Resources.html" "resources" tab))
+
+(defpage "/ci/tools/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_tools.html" "tools" tab))
+
+(defpage "/ci/climate-information/:tab" {:keys [tab]}
+  (one-pane "clad/views/CI_Information.html" "climate-information" tab))
 
 (defpage "/clad/Resources/section/References/:ref"
   {:keys [ref]}
@@ -509,7 +475,7 @@
   (clad :topic more :glossary "Climate" :page page :section section))
 (defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
-  (by-county (Integer/parseInt year) months  model scenario variable))
+  (by-county year months  model scenario variable))
 (defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill"
   {:as req}
   (provinces-map req))
@@ -518,7 +484,7 @@
   (counties-map req))
 (defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
   {:keys [year months model scenario variable fill]}
-  (counties-map-png (Integer/parseInt year) months model scenario variable fill))
+  (counties-map-png year months model scenario variable fill))
 (defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
 (defpage "/ci/plot/:county/:months/:variable" {:keys [county months variable]} 
 	 (plot-models county months variable))
@@ -527,19 +493,29 @@
 (defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/linear" {:keys [county months variable]} 
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
-  (barchart region (Integer/parseInt year) months variable))
+  (barchart region year months variable))
 (defpage "/login" []
-  (two-pane "clad/views/Login.html" "login" ""))
+  (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
 (defpage "/ci/maptools" {:as req}
-  (redirect (str "/ci/welcome/svgbar/" (:region req)
+  (resp/redirect (str "/ci/climate-information/projections/" (:region req)
                  "/" (:years req)
                  "/" (:months req)
                  "/" (:runs req)
                  "/" (:variable req)
                  "/linear"
                  (when (= (:regions req) "Counties") "/counties"))))
+
+(defn clear-identity [response] 
+  (update-in response [:session] dissoc ::identity))
+
+(defpage "/logout" []
+  (clear-identity (resp/redirect "/ci/about")) )
+
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
                                         ; We don't need to do anything, we just want to make sure we're 
                                         ; authenticated. 
-            nil))
+            (log/info "User: " (get-in req [:session :cemerick.friend/identity
+                                            :current])
+                      " logged in from: " (req :remote-addr)
+                      " to URI: " (req :uri))))

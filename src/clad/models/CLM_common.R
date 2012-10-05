@@ -7,6 +7,7 @@ library(RJSONIO)
 Sys.setenv("http_proxy" = "")
 
 counties <- readOGR(dsn="/home/anthony/County/LandAreaAdmin_ROIandUKNI", layer="provinces")
+print(summary(counties))
 
 openyear <- function(run, base.path) {
   system(paste("cd " ,base.path, ";cdo yearmean ", run, " ym.nc;cdo splityear ym.nc year", sep=""))
@@ -26,12 +27,16 @@ seasonal <- function(run, season, year, variable, base.path) {
 
 makeurl <- function(run,county,year,season,variable) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate/",run, strip, year, season, variable, sep="")
+  paste("http://localhost:5984/climate_dev/",run, strip, year, season, variable, sep="")
 }
 
 byprovince <- function(sgdf, region, run, year, season, variable) {
   countydata <- counties[counties@data$Province==region,]
   clip(countydata, sgdf, region, run, year, season, variable)
+}
+NI <- function(sgdf, run, year, season, variable) {
+  countydata <- counties[counties@data$Country=="UK",]
+  clip(countydata, sgdf, "NI", run, year, season, variable)
 }
 
 flipHorizontal <- function(x) {
@@ -97,26 +102,3 @@ countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galwa
                  "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
                  "Wexford", "Wicklow")
 
-byrun <-function(run, years, base.path) { 
-  openyear(run, base.path)
-  for(year in years) {
-    for (season in c("DJF","MAM","JJA","SON")) {
-      seas(run, season, base.path)
-      for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
-        ygdfy <- yearly(run,year,var, base.path)
-        sgdfy <- seasonal(run,season,year,var, base.path)
-        for(province in c("Leinster","Munster","Connaught","Ulster")) {
-          byprovince(ygdfy, province, run, year, "J2D", var)
-          byprovince(sgdfy, province, run, year, season, var)
-        }
-        for(county in countynames) {
-          bycounty(ygdfy, county, run, year, "J2D", var)
-          bycounty(sgdfy, county, run, year, season, var)
-        }
-        NI(ygdfy, "NI", run, year, "J2D", var)
-        NI(sgdfy, "NI", run, year, season, var)
-      }
-    }
-  }
-  gc()
-}

@@ -1,6 +1,5 @@
 (ns clad.server
   (:require [noir.server :as server]
-            [clj-logging-config.log4j :as log-config]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
             (cemerick.friend [workflows :as workflows]
@@ -29,4 +28,4 @@
                                   true))
     (server/start port {:mode mode
                         :ns 'clad}))
-  #_(log/info "Server started"))
+  (log/info "Server started"))
