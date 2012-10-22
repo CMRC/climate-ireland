@@ -35,7 +35,7 @@ byprovince <- function(sgdf, region, run, year, season, variable) {
   clip(countydata, sgdf, region, run, year, season, variable)
 }
 NI <- function(sgdf, run, year, season, variable) {
-  countydata <- counties[counties@data$Counry=="UK",]
+  countydata <- counties[counties@data$Country=="UK",]
   clip(countydata, sgdf, "NI", run, year, season, variable)
 }
 
@@ -93,31 +93,12 @@ bycounty <- function(sgdf, region, run, year, season, variable) {
   countydata <- counties[counties@data$COUNTY==region,] 
   clip(countydata, sgdf, region, run, year, season, variable)
 }
+NI <- function(sgdf, region, run, year, season, variable) {
+  data <- counties[counties@data$Country==region,] 
+  clip(data, sgdf, region, run, year, season, variable)
+}
 countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
                  "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
                  "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
                  "Wexford", "Wicklow")
 
-byrun <-function(run, years, base.path) { 
-  openyear(run, base.path)
-  for(year in years) {
-    for (season in c("DJF","MAM","JJA","SON")) {
-      seas(run, season, base.path)
-      for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
-        ygdfy <- yearly(run,year,var, base.path)
-        sgdfy <- seasonal(run,season,year,var, base.path)
-        for(province in c("Leinster","Munster","Connaught","Ulster")) {
-          byprovince(ygdfy, province, run, year, "J2D", var)
-          byprovince(sgdfy, province, run, year, season, var)
-        }
-        for(county in countynames) {
-          bycounty(ygdfy, county, run, year, "J2D", var)
-          bycounty(sgdfy, county, run, year, season, var)
-        }
-        NI(ygdfy, run, year, "J2D", var)
-        NI(sgdfy, run, year, season, var)
-      }
-    }
-  }
-  gc()
-}

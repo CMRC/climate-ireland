@@ -2,6 +2,8 @@
   (:require [clojure.contrib.string :as str]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
+            [noir.session :as session]
+            [noir.response :as resp]
             (cemerick.friend [workflows :as workflows]
                              [credentials :as creds]))
   (:use [clad.views.site]
@@ -9,7 +11,6 @@
         [clad.views.svg]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
-        [noir.response :only [redirect json]]
         [noir.request :only [ring-request]]
         [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
@@ -241,11 +242,11 @@
                    [:.buttons :ul])))
 
 (deftemplate two-pane "clad/views/welcome.html"
-  [text page img]
+  [text page rhs]
   [:#blurb]
   (content (html-resource text))
   [:#map]
-  (content {:tag :object :attrs {:data img}})
+  (content rhs)
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
@@ -263,9 +264,15 @@
                                   a-node)))
                    [:.buttons :ul])))
 
-(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
-(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
 
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
+(def scenarios {["CGCM31" "A1B"] "A1B"
+                ["CGCM31" "A2"] "A2"
+                ["HadGEM" "RCP45"] "RCP45"
+                ["HadGEM" "RCP85"] "RCP85"
+                ["ICARUS" "ICARUS"] "A2 + B2 ensemble"
+                ["ensemble" "ensemble"] "ensemble"})
+                
 (defsnippet map-help "clad/views/chart-help.html"
   [:#map-help]
   
@@ -345,8 +352,7 @@
                            (assoc-in (if (and (= (:model req) (first run))
                                               (= (:scenario req) (second run)))
                                        (assoc-in a-node [:attrs :selected] nil)
-                                       a-node) [:content] (str (second run)
-                                                          " (" (first run) ")"))
+                                       a-node) [:content] (scenarios run))
                            (assoc-in [:attrs :value] (str (first run)
                                                           "/" (second run)))))))
 
@@ -419,13 +425,13 @@
          :counties? true))
 
 (defpage "/" []
-  (redirect "/ci/about"))
+  (resp/redirect "/ci/about"))
 
 (defpage "/ci" []
-  (redirect "/ci/about"))
+  (resp/redirect "/ci/about"))
 
 (defpage "/ci/about" []
-  (two-pane "clad/views/CI_About.html" "about" "/img/impact-tool.svg"))
+  (two-pane "clad/views/CI_About.html" "about" {:tag :object :attrs {:data "/img/impact-tool.svg"}}))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
@@ -489,17 +495,27 @@
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
   (barchart region year months variable))
 (defpage "/login" []
-  (two-pane "clad/views/Login.html" "login" ""))
+  (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
 (defpage "/ci/maptools" {:as req}
-  (redirect (str "/ci/climate-information/projections/" (:region req)
+  (resp/redirect (str "/ci/climate-information/projections/" (:region req)
                  "/" (:years req)
                  "/" (:months req)
                  "/" (:runs req)
                  "/" (:variable req)
                  "/linear"
                  (when (= (:regions req) "Counties") "/counties"))))
+
+(defn clear-identity [response] 
+  (update-in response [:session] dissoc ::identity))
+
+(defpage "/logout" []
+  (clear-identity (resp/redirect "/ci/about")) )
+
 (pre-route "/ci/*" {:as req}
            (friend/authenticated 
                                         ; We don't need to do anything, we just want to make sure we're 
                                         ; authenticated. 
-            nil))
+            (log/info "User: " (get-in req [:session :cemerick.friend/identity
+                                            :current])
+                      " logged in from: " (req :remote-addr)
+                      " to URI: " (req :uri))))

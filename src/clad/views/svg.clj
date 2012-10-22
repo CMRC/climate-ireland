@@ -8,7 +8,9 @@
         clojure.contrib.math
 	[clojure.java.io :only [file]])
   (:require [c2.scale :as scale]
-            [vomnibus.color-brewer :as color-brewer])
+            [vomnibus.color-brewer :as color-brewer]
+            [clojure.tools.logging :as log]
+            [clojure.stacktrace :as trace])
   (:import (org.apache.batik.transcoder.image PNGTranscoder)
            (org.apache.batik.transcoder TranscoderInput
                                         TranscoderOutput)
@@ -35,11 +37,13 @@
 
 (defn linear-rgb [val domain]
   "Returns a colour string based on the value"
-  (let [colour-scale (let [s (scale/linear :domain domain
-                                           :range [0 (dec (count colour-scheme))])]
-                       (fn [d] (nth colour-scheme (floor (s d)))))]
-    (colour-scale val)))
-  
+  (if (nil? val)
+    "grey"
+    (let [colour-scale (let [s (scale/linear :domain domain
+                                             :range [0 (dec (count colour-scheme))])]
+                         (fn [d] (nth colour-scheme (floor (s d)))))]
+      (colour-scale val))))
+
 (defn colour-on-linear
   "Calls CouchDB and returns a colour string based on the query parameters"
   [elem county year months model scenario variable region lmin lmax diff-fn]
@@ -52,69 +56,80 @@
    and generates a choropleth map where the colours represent the value
    of the given variable"
   [cp req]
-  (let [{:keys [year months model scenario variable fill region]} req
-        regions-svg (case cp
-                      :county counties-svg
-                      :province provinces-svg)
-        regions (case cp
-                  :county counties
-                  :province provinces)
-        diff-fn (if (= model "ICARUS")
-                  data-by-county ;; ICARUS data is already expressed as a delta
-                  (if (temp-var? variable) temp-diff-data diff-data))
-        min (decadal-min months model scenario variable regions diff-fn)
-        max (decadal-max months model scenario variable regions diff-fn)]
-    {:status 200
-     :headers {"Content-Type" "image/svg+xml"}
-     :body
-     (let [choropleth
-           (reduce
-            #(transform-xml
-              %1
-              [{:id %2}]
-              (fn [elem]
-                (let [link (make-url "welcome/svgbar"
-                                     (assoc-in req [:region] %2)
-                                     :counties? (= cp :county))]
-                  [:a {:xlink:href link :target "_top"}
-                   (-> (add-attrs elem :onmouseover
-                                  (str "value(evt,'"
-                                       (->
-                                        (diff-fn %2 year months model scenario variable)
-                                        (* 100)
-                                        round
-                                        (/ 100)
-                                        float)
-                                       (if (temp-var? variable) "°C " "% ")
-                                       %2
-                                       "')"))
-                       (colour-on-linear %2 year months model scenario variable region min max diff-fn)
-                       (add-style :stroke (if (= region (:id (second elem))) "white" "black")))])))
-            regions-svg			
-            regions)
-           legend (reduce #(transform-xml %1
-                                          [{:id (str "col-" %2)}]
-                                          (fn [node] (add-style node :fill (nth colour-scheme %2))))
-                          choropleth
-                          (range 0 11))
-           values (reduce #(transform-xml %1
-                                          [{:id (str "val-" %2)}]
-                                          (fn [node] (set-content node (str (->
-                                                                             ((scale/linear :domain [0 11]
-                                                                                            :range [max min])
-                                                                              %2)
-                                                                             (* 100)
-                                                                             round
-                                                                             (/ 100)
-                                                                             float)))))
-                          legend
-                          (range 11 -1 -1))
-           units (transform-xml values [{:id "units"}]
-                                (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
-           selected (transform-xml units [{:id "selected"}]
-                                   (fn [node] (set-content node (str "Selected: " (:region req)))))]
-       (emit selected))}))
-
+  (try
+    (let [{:keys [year months model scenario variable fill region]} req
+          regions-svg (case cp
+                        :county counties-svg
+                        :province provinces-svg)
+          regions (case cp
+                    :county counties
+                    :province provinces)
+          diff-fn (if (= model "ICARUS")
+                    data-by-county ;; ICARUS data is already expressed as a delta
+                    diff-data)
+          min (decadal-min months model scenario variable regions diff-fn)
+          max (decadal-max months model scenario variable regions diff-fn)]
+      (log/info "Min: " min " Max: " max)
+      {:status 200
+       :headers {"Content-Type" "image/svg+xml"}
+       :body
+       (let [choropleth
+             (reduce
+              #(transform-xml
+                %1
+                [{:id %2}]
+                (fn [elem]
+                  (let [link (make-url "climate-information/projections"
+                                       (assoc-in req [:region] %2)
+                                       :counties? (= cp :county))
+                        val (diff-fn %2 year months model scenario variable)]
+                    (log/info "Value: " val " From: " req)
+                    [:a {:xlink:href link :target "_top"}
+                     (-> (add-attrs elem :onmouseover
+                                    (if (nil? val)
+                                      "Unknown"
+                                      (str "value(evt,'"
+                                           (->
+                                            val
+                                            (* 100)
+                                            round
+                                            (/ 100)
+                                            float)
+                                           (if (temp-var? variable) "°C " "% ")
+                                           %2
+                                           "')")))
+                         (colour-on-linear %2 year months model scenario variable region min max diff-fn)
+                         (add-style :stroke (if (= region (:id (second elem))) "red" "grey")))])))
+              regions-svg			
+              regions)
+             legend (reduce #(transform-xml %1
+                                            [{:id (str "col-" %2)}]
+                                            (fn [node] (add-style node :fill (nth colour-scheme %2))))
+                            choropleth
+                            (range 0 11))
+             values (reduce #(transform-xml %1
+                                            [{:id (str "val-" %2)}]
+                                            (fn [node] (set-content node (str (->
+                                                                               ((scale/linear :domain [0 11]
+                                                                                              :range [max min])
+                                                                                %2)
+                                                                               (* 100)
+                                                                               round
+                                                                               (/ 100)
+                                                                               float)))))
+                            legend
+                            (range 11 -1 -1))
+             units (transform-xml values [{:id "units"}]
+                                  (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
+             selected (transform-xml units [{:id "selected"}]
+                                     (fn [node] (set-content node (str "Selected: " (:region req)))))]
+         (emit selected))})
+    (catch Exception ex
+      (log/info ex)
+      (log/info req)
+      "We do apologise. There is no data available for the selection you have chosen.
+Please select another combination of decade/variable/projection")))
+  
   
 (def regions-map (memoize regions-map-slow))
 
