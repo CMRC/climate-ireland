@@ -1,4 +1,5 @@
 (ns clad.server
+  (:gen-class)
   (:require [noir.server :as server]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
