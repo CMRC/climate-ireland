@@ -1,6 +1,9 @@
 (ns clad.server
   (:gen-class)
   (:require [noir.server :as server]
+            [clad.views.welcome]
+            [clad.views.svg]
+            [clad.views.charts]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
             (cemerick.friend [workflows :as workflows]
@@ -10,13 +13,12 @@
 (server/load-views "src/clad/views/")
 
 (server/add-middleware 
-      friend/authenticate 
-      {:credential-fn (partial creds/bcrypt-credential-fn users) 
-       :workflows [(workflows/interactive-form)] 
-       :login-uri "/login" 
-       :unauthorized-redirect-uri "/login" 
-       :default-landing-uri "/ci/about"}) 
-
+ friend/authenticate 
+ {:credential-fn (partial creds/bcrypt-credential-fn users) 
+  :workflows [(workflows/interactive-form)] 
+  :login-uri "/login" 
+  :unauthorized-redirect-uri "/login" 
+  :default-landing-uri "/ci/about"}) 
 
 (defn -main [& m]
   (let [mode (keyword (or (first m) :dev))
@@ -26,15 +28,6 @@
                                   (org.apache.log4j.EnhancedPatternLayout. org.apache.log4j.EnhancedPatternLayout/TTCC_CONVERSION_PATTERN)
                                   "logs/foo.log"
                                   true))
-    (server/load-views "src/clad/views/")
-
-    (server/add-middleware 
-     friend/authenticate 
-     {:credential-fn (partial creds/bcrypt-credential-fn users) 
-      :workflows [(workflows/interactive-form)] 
-      :login-uri "/login" 
-      :unauthorized-redirect-uri "/login" 
-      :default-landing-uri "/ci/about"}) 
     (server/start port {:mode mode
                         :ns 'clad}))
   (log/info "Server started"))
