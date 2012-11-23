@@ -1,11 +1,11 @@
 (ns clad.server
+  (:gen-class)
   (:require [noir.server :as server]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
             (cemerick.friend [workflows :as workflows]
                              [credentials :as creds]))
-  (:use [ring.middleware.params]
-        [clad.pw]))
+  (:use [clad.pw]))
 
 (server/load-views "src/clad/views/")
 
