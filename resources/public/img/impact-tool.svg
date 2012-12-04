@@ -260,14 +260,18 @@
       <text
          sodipodi:linespacing="125%"
          id="text3869-2"
-         y="596.22467"
-         x="471.62549"
-         style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+         y="582.04883"
+         x="503.62961"
+         style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
          xml:space="preserve"><tspan
-           y="596.22467"
-           x="471.62549"
+           y="582.04883"
+           x="503.62961"
            id="tspan3897"
-           sodipodi:role="line">Drought</tspan></text>
+           sodipodi:role="line">Water</tspan><tspan
+           y="606.35437"
+           x="503.62961"
+           sodipodi:role="line"
+           id="tspan3114">Scarcity</tspan></text>
     </g>
     <g
        id="g3439"
@@ -300,23 +304,30 @@
            x="529.70001"
            sodipodi:role="line">Erosion</tspan></text>
     </g>
-    <path
-       sodipodi:type="arc"
-       style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26277244;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-       id="path3859-1-8"
-       sodipodi:cx="-100.99937"
-       sodipodi:cy="125.32334"
-       sodipodi:rx="17.28443"
-       sodipodi:ry="18.117414"
-       d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-       transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
-       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-       onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;" />
     <a
-       id="a3049"
-       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+       xlink:href="CI_impacts.html"
+       target="blank"
+       id="a3105">
+      <path
+         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
+         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+         transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
+         d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
+         sodipodi:ry="18.117414"
+         sodipodi:rx="17.28443"
+         sodipodi:cy="125.32334"
+         sodipodi:cx="-100.99937"
+         id="path3859-1-8"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26277244;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         sodipodi:type="arc" />
+    </a>
+    <a
+       xlink:href="CI_impacts.html"
+       target="blank"
+       transform="matrix(0.6732,0,0,0.73981395,137.45496,40.998091)"
        onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
-       transform="matrix(0.6732,0,0,0.73981395,137.45496,40.998091)">
+       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+       id="a3049">
       <text
          sodipodi:linespacing="125%"
          id="text3869-6-2"
