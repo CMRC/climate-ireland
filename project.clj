@@ -1,4 +1,4 @@
-(defproject clad "0.1.0"
+(defproject clad "1.0.1"
             :description "Irish Climate Information Platform"
             :dependencies [[clj-stacktrace "0.2.4"]
                            [org.clojure/clojure "1.4.0"]
