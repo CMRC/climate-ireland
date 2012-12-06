@@ -433,7 +433,7 @@
 (defpage "/ci/about" []
   (two-pane "clad/views/CI_About.html" "about" {:tag :object :attrs {:data "/img/impact-tool.svg"}}))
   
-(defpage "/ci/about/impacts" []
+(defpage "/ci/about/impacts/:tab" {:keys [tab]}
   (two-pane "clad/views/CI_Impacts.html" "about" {:tag :object :attrs {:data "/img/impact-tool.svg"}}))
 
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
