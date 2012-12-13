@@ -104,9 +104,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.0827418"
-     inkscape:cx="141.86788"
-     inkscape:cy="291.8272"
+     inkscape:zoom="1.8642745"
+     inkscape:cx="109.27687"
+     inkscape:cy="322.2603"
      inkscape:document-units="px"
      inkscape:current-layer="layer4"
      width="3249.21px"
@@ -21588,7 +21588,7 @@
            transform="matrix(0.6732,0,0,0.73981395,116.549,67.825482)">
           <path
              transform="matrix(2.4656759,0,0,2.3523114,755.04008,294.74252)"
-             d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
              sodipodi:ry="18.117414"
              sodipodi:rx="17.28443"
              sodipodi:cy="125.32334"
@@ -21619,7 +21619,7 @@
            transform="matrix(0.6732,0,0,0.73981395,126.749,71.561916)">
           <path
              transform="matrix(2.4687167,0,0,2.3552124,808.84835,358.87258)"
-             d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
              sodipodi:ry="18.117414"
              sodipodi:rx="17.28443"
              sodipodi:cy="125.32334"
@@ -21650,7 +21650,7 @@
            transform="matrix(0.6732,0,0,0.73981395,126.749,71.561916)">
           <path
              transform="matrix(2.4701844,0,0,2.3566126,641.71225,446.78765)"
-             d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
              sodipodi:ry="18.117414"
              sodipodi:rx="17.28443"
              sodipodi:cy="125.32334"
@@ -21681,7 +21681,7 @@
            transform="matrix(0.6732,0,0,0.73981395,149.41852,27.253701)">
           <path
              transform="matrix(2.4708794,0,0,2.3572757,626.23075,256.04579)"
-             d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
              sodipodi:ry="18.117414"
              sodipodi:rx="17.28443"
              sodipodi:cy="125.32334"
@@ -21714,7 +21714,7 @@
              onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;"
              onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
              transform="matrix(2.2237085,0,0,2.121469,791.36669,245.21814)"
-             d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
              sodipodi:ry="18.117414"
              sodipodi:rx="17.28443"
              sodipodi:cy="125.32334"
@@ -21746,7 +21746,7 @@
            transform="matrix(0.6732,0,0,0.73981395,-5.7794614,54.794405)">
           <path
              transform="matrix(2.7698279,0,0,2.4151072,841.52107,352.696)"
-             d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
              sodipodi:ry="18.117414"
              sodipodi:rx="17.28443"
              sodipodi:cy="125.32334"
@@ -21791,8 +21791,8 @@
        xlink:href="/ci/about/impacts"
        id="a3105"
        target="/ci/about/impacts"
-       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;block&quot;;"
-       onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;none&quot;;">
+       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;g6914&quot;).style.display=&quot;block&quot;;"
+       onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;g6914&quot;).style.display=&quot;none&quot;;">
       <path
          onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
          onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
@@ -21809,17 +21809,17 @@
     <a
        xlink:href="/ci/about/impacts"
        transform="matrix(0.6732,0,0,0.73981395,139.45496,40.998091)"
-       onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;none&quot;;"
-       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;block&quot;;"
        id="a3049"
        target="/ci/about/impacts"
-       style="fill:#00000d;fill-opacity:1">
+       style="fill:#00000d;fill-opacity:1"
+       onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;g6914&quot;).style.display=&quot;none&quot;;"
+       onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;g33285&quot;).style.display=&quot;none&quot;;document.getElementById(&quot;Layers&quot;).style.display=&quot;block&quot;;document.getElementById(&quot;g6914&quot;).style.display=&quot;block&quot;;">
       <text
          sodipodi:linespacing="125%"
          id="text3869-6-2"
          y="305.27261"
          x="351.80331"
-         style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+         style="font-size:19.44444465999999800px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
          xml:space="preserve"><tspan
            y="305.27261"
            x="351.80331"
@@ -21884,6 +21884,46 @@
            sodipodi:role="line"
            style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;font-family:Arial;-inkscape-font-specification:Arial"
            id="tspan3136">climate change.</tspan></text>
+    </g>
+    <g
+       id="g6914"
+       style="display:none">
+      <path
+         inkscape:transform-center-y="-0.2933661"
+         inkscape:transform-center-x="0.2933661"
+         transform="translate(373.17855,215.69438)"
+         d="m 18.774059,114.55647 -3.816537,-1.29422 -3.229805,2.41025 0.05151,-4.02968 -3.2903542,-2.32691 3.8483702,-1.19626 1.196254,-3.84837 2.326917,3.29036 4.02968,-0.0515 -2.410256,3.22981 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="1.4137167"
+         sodipodi:arg1="0.78539816"
+         sodipodi:r2="3.0343461"
+         sodipodi:r1="6.0686922"
+         sodipodi:cy="110.26526"
+         sodipodi:cx="14.482845"
+         sodipodi:sides="5"
+         id="path6126"
+         style="fill:#f8000d;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         sodipodi:type="star" />
+      <path
+         inkscape:transform-center-y="-0.2933661"
+         inkscape:transform-center-x="0.2933661"
+         d="m 18.774059,114.55647 -3.816537,-1.29422 -3.229805,2.41025 0.05151,-4.02968 -3.2903542,-2.32691 3.8483702,-1.19626 1.196254,-3.84837 2.326917,3.29036 4.02968,-0.0515 -2.410256,3.22981 z"
+         inkscape:randomized="0"
+         inkscape:rounded="0"
+         inkscape:flatsided="false"
+         sodipodi:arg2="1.4137167"
+         sodipodi:arg1="0.78539816"
+         sodipodi:r2="3.0343461"
+         sodipodi:r1="6.0686922"
+         sodipodi:cy="110.26526"
+         sodipodi:cx="14.482845"
+         sodipodi:sides="5"
+         id="path6126-1"
+         style="fill:#f8000d;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:2;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;display:inline"
+         sodipodi:type="star"
+         transform="translate(482.36145,455.2229)" />
     </g>
   </g>
   <g
