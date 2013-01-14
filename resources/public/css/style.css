@@ -111,11 +111,11 @@ body {
 	background-color: rgba(39,65,38, 0.05);
 }
 #blurb {
-	float: right;
+	float: left;
 	height: 600px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	width: 396px;
+	width: 600px;
 	padding: 10px;
 }
 #mapsvg {
@@ -124,7 +124,7 @@ body {
 #map {
     float: right;
 	height: 600px;
-	width: 397px;
+	width: 350px;
 	padding: 10px;
 	margin: 0px;
 }
@@ -143,6 +143,7 @@ body {
 #main {
 	width:100%;
 	margin-top: 15px;
+	height: 635px;
 }
 .colb3 {
 	height: 200px;
@@ -154,7 +155,8 @@ body {
 	text-align: right;
 	border: 3px solid #396538;
 	border-radius: 5px;
-	float: left;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: rgba(39,65,38, 0.05);
 	margin-bottom: 2px;
 	}
@@ -212,7 +214,7 @@ body {
 	float: left;
 }
 #view-3-text{
-	width: 810px;
+	width: 1010px;
 	float: right;
 	padding: 5px;
 	border: 3px solid #396538;
@@ -301,7 +303,7 @@ body {
 	
 
 .right { 
-	margin: 0.5em 0pt 0.5em 0.8em; float:right; 
+	margin: 0.5em 0pt 0.5em 0.8em; float:right; clear:both; 
 	}
 
 .left { 
