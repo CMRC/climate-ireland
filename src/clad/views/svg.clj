@@ -17,8 +17,8 @@
            (java.io ByteArrayOutputStream
                     ByteArrayInputStream)))
 
-(def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
-(def provinces-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
+(def counties-svg (parse-xml (slurp (clojure.java.io/resource "clad/views/counties.svg"))))
+(def provinces-svg (parse-xml (slurp (clojure.java.io/resource "clad/views/provinces.svg"))))
 
 (defn counties-data [year months model scenario variable]
   (map #(data-by-county % year months model scenario variable) counties))

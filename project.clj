@@ -7,7 +7,7 @@
                            [org.clojars.pallix/analemma "1.0.0"]
                            [incanter "1.2.4"]
                            [clj-time "0.3.7"]
-                           [com.ashafa/clutch "0.4.0-SNAPSHOT"]
+                           [com.ashafa/clutch "0.4.0-RC1"]
 			   [org.clojars.pallix/batik "1.7.0"]
                            [clj-logging-config "1.9.7"]
                            [com.cemerick/friend "0.0.9"]
