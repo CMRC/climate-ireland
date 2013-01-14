@@ -111,7 +111,7 @@ body {
 	background-color: rgba(39,65,38, 0.05);
 }
 #blurb {
-	float: left;
+	float: right;
 	height: 600px;
 	overflow-x: hidden;
 	overflow-y: auto;
@@ -122,7 +122,7 @@ body {
 	clear: both;
 }
 #map {
-    float: right;
+    float: left;
 	height: 600px;
 	width: 350px;
 	padding: 10px;
