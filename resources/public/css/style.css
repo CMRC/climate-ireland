@@ -224,8 +224,6 @@ body {
 }
 #content {
 	height: 600px;
-	overflow-y: auto;
-	padding: 5px;
 }
 #view-3-text img{
     margin: 5px;

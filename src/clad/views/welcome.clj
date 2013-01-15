@@ -449,7 +449,7 @@
   (one-pane "clad/views/CI_Resources.html" "resources" tab))
 
 (defpage "/ci/tools/:tab" {:keys [tab]}
-  (one-pane "clad/views/CI_impacts.html" "coastal-erosion" tab))
+  (one-pane "clad/views/CI_impacts.html" "tools" tab))
 
 (defpage "/ci/climate-information/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Information.html" "climate-information" tab))
