@@ -104,9 +104,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5316667"
-     inkscape:cx="232.91368"
-     inkscape:cy="357.52463"
+     inkscape:zoom="1.8642745"
+     inkscape:cx="192.95553"
+     inkscape:cy="322.2603"
      inkscape:document-units="px"
      inkscape:current-layer="g8547"
      width="3249.21px"
@@ -3359,6 +3359,7 @@
 
 
 
+
 		</g>            <path
                id="path7971"
                d="m 89.2756,102.73244 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3379,6 +3380,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,99.61206)"><tspan
      id="tspan7977"
      x="0">0</tspan></text>
+
 
 
 
@@ -3407,6 +3409,7 @@
 
 
 
+
 		</g>            <path
                id="path7987"
                d="m 89.2756,140.65703 0,-14.16172 27.83863,0 0,14.16172 -27.83863,0 z"
@@ -3427,6 +3430,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,137.29662)"><tspan
      id="tspan7993"
      x="0 0.56107002 0.8538">0.3</tspan></text>
+
 
 
 
@@ -3455,6 +3459,7 @@
 
 
 
+
 		</g>            <path
                id="path8003"
                d="m 89.2756,178.34159 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3475,6 +3480,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,175.22121)"><tspan
      id="tspan8009"
      x="0 0.56107002 0.8538">0.5</tspan></text>
+
 
 
 
@@ -3503,6 +3509,7 @@
 
 
 
+
 		</g>            <path
                id="path8019"
                d="m 89.2756,216.26618 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3523,6 +3530,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,213.1458)"><tspan
      id="tspan8025"
      x="0 0.56107002 0.8538">1.2</tspan></text>
+
 
 
 
@@ -3587,79 +3595,69 @@
              x="503.62961"
              y="606.35437">Scarcity</tspan></text>
       </g>
-      <a
-         id="a24795"
-         xlink:href="/img/impact_tool_innundate.svg">
-        <g
-           style="display:inline"
-           id="g3445"
-           onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
-           onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;"
-           transform="matrix(0.6732,0,0,0.73981395,126.749,71.56192)">
-          <path
-             transform="matrix(2.4701844,0,0,2.3566126,641.71225,446.78765)"
-             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-             sodipodi:ry="18.117414"
-             sodipodi:rx="17.28443"
-             sodipodi:cy="125.32334"
-             sodipodi:cx="-100.99937"
-             id="path3859-7"
-             style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.24024725;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-             sodipodi:type="arc" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text3869-1"
-             y="734.86432"
+      <g
+         transform="matrix(0.6732,0,0,0.73981395,126.749,71.56192)"
+         onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;"
+         onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
+         id="g3445"
+         style="display:inline">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.24024725;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+           id="path3859-7"
+           sodipodi:cx="-100.99937"
+           sodipodi:cy="125.32334"
+           sodipodi:rx="17.28443"
+           sodipodi:ry="18.117414"
+           d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
+           transform="matrix(2.4701844,0,0,2.3566126,641.71225,446.78765)" />
+        <text
+           xml:space="preserve"
+           style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+           x="390.40948"
+           y="734.86432"
+           id="text3869-1"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3871-2"
              x="390.40948"
-             style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-             xml:space="preserve"><tspan
-               y="734.86432"
-               x="390.40948"
-               id="tspan3871-2"
-               sodipodi:role="line">Coastal</tspan><tspan
-               id="tspan4149"
-               y="759.16986"
-               x="390.40948"
-               sodipodi:role="line">Flooding</tspan></text>
-        </g>
-      </a>
-      <a
-         onclick="/img/impact-tool_flooding.svg"
-         id="a6129"
-         style="display:inline"
-         xlink:href="/img/impact-tool_flooding.svg">
-        <g
-           id="g3312"
-           onmouseover="document.getElementById(&quot;inland-flooding&quot;).style.display=&quot;block&quot;;"
-           onmouseout="document.getElementById(&quot;inland-flooding&quot;).style.display=&quot;none&quot;;"
-           transform="matrix(0.6732,0,0,0.73981395,149.41852,27.253701)">
-          <path
-             transform="matrix(2.4708794,0,0,2.3572757,626.23075,256.04579)"
-             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-             sodipodi:ry="18.117414"
-             sodipodi:rx="17.28443"
-             sodipodi:cy="125.32334"
-             sodipodi:cx="-100.99937"
-             id="path3859-7-6"
-             style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.22994268;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-             sodipodi:type="arc" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text3869-1-0"
-             y="543.40344"
+             y="734.86432">Coastal</tspan><tspan
+             sodipodi:role="line"
+             x="390.40948"
+             y="759.16986"
+             id="tspan4149">Flooding</tspan></text>
+      </g>
+      <g
+         transform="matrix(0.6732,0,0,0.73981395,149.41852,27.253701)"
+         onmouseout="document.getElementById(&quot;inland-flooding&quot;).style.display=&quot;none&quot;;"
+         onmouseover="document.getElementById(&quot;inland-flooding&quot;).style.display=&quot;block&quot;;"
+         id="g3312">
+        <path
+           sodipodi:type="arc"
+           style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.22994268;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+           id="path3859-7-6"
+           sodipodi:cx="-100.99937"
+           sodipodi:cy="125.32334"
+           sodipodi:rx="17.28443"
+           sodipodi:ry="18.117414"
+           d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
+           transform="matrix(2.4708794,0,0,2.3572757,626.23075,256.04579)" />
+        <text
+           xml:space="preserve"
+           style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+           x="376.09595"
+           y="543.40344"
+           id="text3869-1-0"
+           sodipodi:linespacing="125%"><tspan
+             sodipodi:role="line"
+             id="tspan3871-2-4"
              x="376.09595"
-             style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-             xml:space="preserve"><tspan
-               y="543.40344"
-               x="376.09595"
-               id="tspan3871-2-4"
-               sodipodi:role="line">Inland</tspan><tspan
-               id="tspan4025"
-               y="567.70898"
-               x="376.09595"
-               sodipodi:role="line">Flooding</tspan></text>
-        </g>
-      </a>
+             y="543.40344">Inland</tspan><tspan
+             sodipodi:role="line"
+             x="376.09595"
+             y="567.70898"
+             id="tspan4025">Flooding</tspan></text>
+      </g>
       <a
          id="a6607"
          xlink:href="/ci/about/impacts"
@@ -3714,128 +3712,98 @@
              id="tspan3988"
              sodipodi:role="line" /></text>
       </g>
-      <a
+      <path
          onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
          onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-         id="a3105"
-         xlink:href="/img/Impact-tool-erosion.svg">
-        <path
-           sodipodi:type="arc"
-           style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26277244;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-           id="path3859-1-8"
-           sodipodi:cx="-100.99937"
-           sodipodi:cy="125.32334"
-           sodipodi:rx="17.28443"
-           sodipodi:ry="18.117414"
-           d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-           transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
-           onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-           onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;" />
-      </a>
-      <a
+         transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
+         d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+         sodipodi:ry="18.117414"
+         sodipodi:rx="17.28443"
+         sodipodi:cy="125.32334"
+         sodipodi:cx="-100.99937"
+         id="path3859-1-8"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26277244;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         sodipodi:type="arc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3869-6-2"
+         y="254.54622"
+         x="394.46698"
+         style="font-size:13.72236156px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+         xml:space="preserve"
+         transform="scale(0.95391745,1.0483087)"
          onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
-         style="fill:#00000d;fill-opacity:1"
-         id="a3049"
-         transform="matrix(0.6732,0,0,0.73981395,139.45496,40.998091)"
-         xlink:href="/img/Impact-tool-erosion.svg">
-        <text
-           xml:space="preserve"
-           style="font-size:19.44444465999999800px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-           x="351.80331"
-           y="305.27261"
-           id="text3869-6-2"
-           sodipodi:linespacing="125%"><tspan
-             sodipodi:role="line"
-             id="tspan3923-7"
-             x="351.80331"
-             y="305.27261">Coastal</tspan><tspan
-             sodipodi:role="line"
-             x="351.80331"
-             y="329.57816"
-             id="tspan4058">Erosion</tspan></text>
-      </a>
-      <a
-         id="a24755"
-         onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
+         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"><tspan
+           y="254.54622"
+           x="394.46698"
+           id="tspan3923-7"
+           sodipodi:role="line">Coastal</tspan><tspan
+           id="tspan4058"
+           y="271.69916"
+           x="394.46698"
+           sodipodi:role="line">Erosion</tspan></text>
+      <g
+         transform="matrix(0.6732,0,0,0.73981395,251.7239,-95.215138)"
          onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;"
-         xlink:href="/img/impact_tool_innundate.svg">
-        <g
-           style="display:inline"
-           id="g3445-1"
-           onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
-           onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;"
-           transform="matrix(0.6732,0,0,0.73981395,251.7239,-95.215138)">
-          <path
-             transform="matrix(2.4701844,0,0,2.3566126,641.71225,446.78765)"
-             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-             sodipodi:ry="18.117414"
-             sodipodi:rx="17.28443"
-             sodipodi:cy="125.32334"
-             sodipodi:cx="-100.99937"
-             id="path3859-7-7"
-             style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.24024725;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-             sodipodi:type="arc" />
-          <text
-             sodipodi:linespacing="125%"
-             id="text3869-1-4"
-             y="734.86432"
-             x="390.40948"
-             style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-             xml:space="preserve"><tspan
-               y="734.86432"
-               x="390.40948"
-               id="tspan3871-2-0"
-               sodipodi:role="line">Coastal</tspan><tspan
-               id="tspan4149-9"
-               y="759.16986"
-               x="390.40948"
-               sodipodi:role="line">Flooding</tspan></text>
-        </g>
-      </a>
-      <a
-         transform="translate(133.19649,296.79766)"
-         style="display:inline"
-         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
-         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-         id="a3105-4"
-         xlink:href="/img/Impact-tool-erosion.svg">
+         onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
+         id="g3445-1"
+         style="display:inline">
         <path
            sodipodi:type="arc"
-           style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26277244;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-           id="path3859-1-8-8"
+           style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.24024725;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+           id="path3859-7-7"
            sodipodi:cx="-100.99937"
            sodipodi:cy="125.32334"
            sodipodi:rx="17.28443"
            sodipodi:ry="18.117414"
            d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-           transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
-           onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-           onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;" />
-      </a>
-      <a
-         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
-         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
-         style="fill:#00000d;fill-opacity:1;display:inline"
-         id="a3049-8"
-         transform="matrix(0.6732,0,0,0.73981395,272.65145,337.79575)"
-         xlink:href="/img/Impact-tool-erosion.svg">
+           transform="matrix(2.4701844,0,0,2.3566126,641.71225,446.78765)" />
         <text
            xml:space="preserve"
-           style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-           x="351.80331"
-           y="305.27261"
-           id="text3869-6-2-2"
+           style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+           x="390.40948"
+           y="734.86432"
+           id="text3869-1-4"
            sodipodi:linespacing="125%"><tspan
              sodipodi:role="line"
-             id="tspan3923-7-4"
-             x="351.80331"
-             y="305.27261">Coastal</tspan><tspan
+             id="tspan3871-2-0"
+             x="390.40948"
+             y="734.86432">Coastal</tspan><tspan
              sodipodi:role="line"
-             x="351.80331"
-             y="329.57816"
-             id="tspan4058-5">Erosion</tspan></text>
-      </a>
+             x="390.40948"
+             y="759.16986"
+             id="tspan4149-9">Flooding</tspan></text>
+      </g>
+      <path
+         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
+         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+         transform="matrix(1.6763643,0,0,1.6132649,678.15676,366.59338)"
+         d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+         sodipodi:ry="18.117414"
+         sodipodi:rx="17.28443"
+         sodipodi:cy="125.32334"
+         sodipodi:cx="-100.99937"
+         id="path3859-1-8-8"
+         style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26277244;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+         sodipodi:type="arc" />
+      <text
+         sodipodi:linespacing="125%"
+         id="text3869-6-2-2"
+         y="537.66669"
+         x="534.09802"
+         style="font-size:13.72236156px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
+         xml:space="preserve"
+         transform="scale(0.95391745,1.0483087)"
+         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"><tspan
+           y="537.66669"
+           x="534.09802"
+           id="tspan3923-7-4"
+           sodipodi:role="line">Coastal</tspan><tspan
+           id="tspan4058-5"
+           y="554.81964"
+           x="534.09802"
+           sodipodi:role="line">Erosion</tspan></text>
     </g>
     <g
        id="biodiversity-loss"
