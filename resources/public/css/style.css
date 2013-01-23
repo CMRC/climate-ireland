@@ -224,7 +224,7 @@ body {
 	overflow: auto;
 }
 #content {
-	height: 600px;
+	min-height: 600px;
 }
 #view-3-text img{
     margin: 5px;
