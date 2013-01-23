@@ -3589,7 +3589,7 @@
       </g>
       <a
          id="a24795"
-         xlink:href="/img/impact_tool_innundate.svg">
+         xlink:href="/img/impact-tool-innundate.svg">
         <g
            style="display:inline"
            id="g3445"
@@ -3664,7 +3664,7 @@
          id="a6607"
          xlink:href="/ci/about/impacts"
          target="/ci/about/impacts"
-         onclick="/img/impact_tool_innundate.svg"
+         onclick="/img/impact-tool-innundate.svg"
          onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
          onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;" />
       <g
@@ -3759,7 +3759,7 @@
          id="a24755"
          onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
          onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;"
-         xlink:href="/img/impact_tool_innundate.svg">
+         xlink:href="/img/impact-tool-innundate.svg">
         <g
            style="display:inline"
            id="g3445-1"
