@@ -4,9 +4,10 @@ source("couch.R")
 
 vals <- read.csv("/home/anthony/icarus/ensemble_scenarios/precip_ensemble_GCMs_1961_2099_a2.csv")
 
+##reference period 1961-90
 ref <- vals[as.integer(vals$new_year) %in% (1961:1990),]
 
-
+##weather stations
 stations <- c("rain1004ena2","rain1034ena2","rain2437ena2","rain2615ena2",
               "rain2727ena2","rain305ena2","rain3613ena2",
               "rain3723ena2","rain3904ena2","rain4919ena2","rain518ena2",
@@ -14,6 +15,7 @@ stations <- c("rain1004ena2","rain1034ena2","rain2437ena2","rain2615ena2",
 
 seasons = c("djf","mam","jja","son")
 
+##lat longs for stations
 df <- data.frame(stations)
 df$x <- c(183183.7805,	
           69165.25357	,
@@ -67,7 +69,7 @@ getstationmean <- function(station, season) {
   return (100 * (stationavg - stationrefavg) / stationrefavg)
 }
 
-for (normal in c(2021,2031,2041,2051)) {
+for (normal in c(2010,2020,2030,2040,2050,2060,2070)) {
   for (season in 0:3) {
     comp <- vals[as.integer(vals$new_year) %in% normal:(normal + 29),]
   
@@ -87,7 +89,8 @@ for (normal in c(2021,2031,2041,2051)) {
     sgdf$band1 <- sgdf$var1.pred
     print(summary(sgdf))
 
-    run <- paste("precip",toString(normal + 9),seasons[season],sep="")
+    print(seasons[season+1])
+    run <- paste("precip",toString(normal + 10),seasons[season+1],sep="")
     var <- "TOT_PREC"
 
     countiesarray[[run]] <- sgdf
