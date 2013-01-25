@@ -21,7 +21,7 @@ makeurl <- function(run,county) {
 clip <- function(county, run, var, countydata,sgdf) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
-  val <- mean(as(kkclipped, "data.frame")$band1) / 10
+  val <- mean(as(kkclipped, "data.frame")$band1)
   print(county)
   print(run)
   intyear <- as.integer(gsub("^.*([0-9]{2})([0-9])[0-9]\\w+","\\21",run))
@@ -86,5 +86,5 @@ precruns <- c("precip2020jja", "precip2020son", "precip2020djf", "precip2020mam"
               "precip2050son", "precip2050djf", "precip2050mam", "precip2080jja", "precip2080son",
               "precip2080djf", "precip2080mam")
 
-lapply(runs, byrun, var <- "T_2M", base.path <- "/var/data/coverages/Temperature/")
-lapply(precruns, byrun, var <- "TOT_PREC", base.path <- "/var/data/coverages/Precipitation/")
+##lapply(runs, byrun, var <- "T_2M", base.path <- "/var/data/coverages/Temperature/")
+##lapply(precruns, byrun, var <- "TOT_PREC", base.path <- "/var/data/coverages/Precipitation/")
