@@ -3,17 +3,26 @@ source("couch.R")
 
 
 vals <- read.csv("/home/anthony/icarus/ensemble_scenarios/precip_ensemble_GCMs_1961_2099_a2.csv")
+maxs <- read.csv("/home/anthony/icarus/ensemble_scenarios/tmax_ensemble_GCMs_1961_2099_a2.csv")
+mins <- read.csv("/home/anthony/icarus/ensemble_scenarios/tmin_ensemble_GCMs_1961_2099_a2.csv")
 
 ##reference period 1961-90
 ref <- vals[as.integer(vals$new_year) %in% (1961:1990),]
+refmaxs <- maxs[as.integer(maxs$new_year) %in% (1961:1990),]
+refmins <- mins[as.integer(mins$new_year) %in% (1961:1990),]
 
 ##weather stations
-stations <- c("rain1004ena2","rain1034ena2","rain2437ena2","rain2615ena2",
-              "rain2727ena2","rain305ena2","rain3613ena2",
-              "rain3723ena2","rain3904ena2","rain4919ena2","rain518ena2",
-              "rain532ena2","rain545ena2")
+stations <- c("1004","1034","2437","2615",
+              "2727","305","3613",
+              "3723","3904","4919","518",
+              "532","545")
 
 seasons = c("djf","mam","jja","son")
+
+countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
+                 "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
+                 "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
+                 "Wexford", "Wicklow")
 
 ##lat longs for stations
 df <- data.frame(stations)
@@ -46,7 +55,8 @@ df$y <- c(60049.64795,
           458585.7608)
 
 
-getstationmean <- function(station, season) {
+getstationmean <- function(station, season,variable,scenario,comp, ref, diff) {
+  station <- paste(variable,station,"en",scenario,sep="")
   stationtotal <- 0
   stationcount <- 0
   stationreftotal <- 0
@@ -55,6 +65,7 @@ getstationmean <- function(station, season) {
     compmonth <- comp[comp$MONTH == month,]
     refmonth <- ref[ref$MONTH == month,]
     stationmean <- mean(compmonth[[station]])
+    print(stationmean)
     stationcount <- stationcount + 1
     stationtotal <- stationtotal + stationmean
     
@@ -66,45 +77,57 @@ getstationmean <- function(station, season) {
   
   stationavg <- stationtotal / stationcount
   stationrefavg <- stationreftotal / stationrefcount
-  return (100 * (stationavg - stationrefavg) / stationrefavg)
+  return (diff (stationavg, stationrefavg))
+}
+
+populate <- function(df,prefix,varname) {
+
+  grd <- expand.grid(x=seq(from=-26995.9, to=423004.095, by=1000), y=seq(from=-2237.46, to=480762.54, by=1000) )
+  coordinates(grd) <- ~ x+y
+  gridded(grd) <- TRUE
+  
+
+  z <- krige(formula = avg ~ 1, locations = ~ x + y, data = df, newdata = grd) 
+  
+  sgdf <- as(z,"SpatialGridDataFrame")
+  sgdf$band1 <- sgdf$var1.pred
+  print(summary(sgdf))
+  
+  print(seasons[season+1])
+  run <- paste(prefix,toString(normal + 10),seasons[season+1],sep="")
+  var <- varname
+
+  countiesarray[[run]] <- sgdf
+
+  for(county in countynames) {
+    bycounty(county, var, run)
+  }
+  for(province in c("Leinster", "Munster", "Connaught", "Ulster")) {
+    byprovince(province, var, run)
+  }
+  NI(var,run)
 }
 
 for (normal in c(2010,2020,2030,2040,2050,2060,2070)) {
   for (season in 0:3) {
-    comp <- vals[as.integer(vals$new_year) %in% normal:(normal + 29),]
-  
+    #comp <- vals[as.integer(vals$new_year) %in% normal:(normal + 29),]
 
-    df$avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1))
+    #df$avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","a2",comp,ref,
+    #function (comp,ref) {100 * (stationavg - stationrefavg) / stationrefavg}))
 
+    #populate(df,"precip","TOT_PREC")
 
+    compmins <- mins[as.integer(mins$new_year) %in% normal:(normal + 29),]
+    compmaxs <- maxs[as.integer(mins$new_year) %in% normal:(normal + 29),]
+    df$min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","a2",compmins,refmins,
+                                                      function (comp,ref) {comp - ref}))
+    df$max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","a2",compmaxs,refmaxs,
+                                                      function (comp,ref) {comp - ref}))
 
-    grd <- expand.grid(x=seq(from=-26995.9, to=423004.095, by=1000), y=seq(from=-2237.46, to=480762.54, by=1000) )
-    coordinates(grd) <- ~ x+y
-    gridded(grd) <- TRUE
+    df$avg <- (df$min + df$max) / 2
 
-
-    z <- krige(formula = avg ~ 1, locations = ~ x + y, data = df, newdata = grd) 
-
-    sgdf <- as(z,"SpatialGridDataFrame")
-    sgdf$band1 <- sgdf$var1.pred
-    print(summary(sgdf))
-
-    print(seasons[season+1])
-    run <- paste("precip",toString(normal + 10),seasons[season+1],sep="")
-    var <- "TOT_PREC"
-
-    countiesarray[[run]] <- sgdf
-
-    countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
-                     "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
-                     "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
-                     "Wexford", "Wicklow")
-    for(county in countynames) {
-      bycounty(county, var, run)
-    }
-    for(province in c("Leinster", "Munster", "Connaught", "Ulster")) {
-      byprovince(province, var, run)
-    }
-    NI(var,run)
+    populate(df,"temp","T_2M")
   }
 }
+
+    
