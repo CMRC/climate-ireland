@@ -30,70 +30,6 @@
    Integer/parseInt
    (> 8)))
 
-(defn site []
-  ;;a little recursion might help here
-  (reduce (fn [new-map page]
-            (assoc new-map
-              (keyword (str/replace-re #"[^a-zA-Z0-9]" "-" (:title page)))
-              (assoc-in page [:sections]
-                        (reduce
-                         (fn [inner-map section]
-                           (assoc inner-map
-                             (keyword
-                              (str/replace-re #"[^a-zA-Z0-9]" "-" (:title section)))
-                             (assoc-in section [:topics]
-                                       (reduce
-                                        (fn [section-map topic]
-                                          (assoc section-map
-                                            (keyword
-                                             (str/replace-re #"[^a-zA-Z0-9]" "-" (:title topic)))
-                                            (assoc-in topic [:subtopics]
-                                                      (reduce
-                                                       (fn [topic-map subtopic]
-                                                         (assoc topic-map
-                                                           (keyword
-                                                            (str/replace-re #"[^a-zA-Z0-9]" "-" (:title subtopic)))
-                                                           subtopic))
-                                                       (array-map)
-                                                       (reverse (:subtopics topic))))))
-                                        (array-map)
-                                        (reverse (:topics section))))))
-                         (array-map)
-                         (reverse (:sections page))))))
-          (array-map)
-          (reverse sitemap)))
-
-(defn format-text [topic page section]
-  (let [file (str "clad/views/" (:file ((keyword page) (site))))
-        pre (html-resource file)
-        post (transform pre [:a.Glossary] 
-                        (fn [a-selected-node]
-                          (assoc-in a-selected-node [:attrs :href] 
-                                    (str "/clad/" page "/section/" (name section)
-                                         "/topic/" topic "/glossary/"
-                                         (:id (:attrs a-selected-node))))))]
-    post)) 
-
-(defn make-links [page section topics]
-  (clone-for [topic topics]
-             [:li]
-             (content [{:tag :a
-                       :attrs {:href (str "/clad/" page "/section/" (name section) "/topic/"
-                                          (name (key topic)))}
-                        :content (:title (val topic))}
-                       {:tag :ul
-                        :content (map
-                                  #(hash-map
-                                    :tag :li :content
-                                    (vector
-                                     (hash-map
-                                      :tag :a :content (:title (val %))
-                                      :attrs (hash-map
-                                              :href (str "/clad/" page "/section/" (name section)
-                                                         "/topic/" (name (key topic)) "/subtopic/"
-                                                         (name (key %)))))))
-                                  (:subtopics (val topic)))}])))
-
 (deftemplate table-output
   "clad/views/table.html"
   [year month]
@@ -301,13 +237,13 @@
   [req map & {:keys [counties?] :or {counties? false}}]
   
   [:#decades :option]
-  (clone-for [decade ["2021-30" "2031-40" "2041-50" "2051-60"]]
+  (clone-for [decade {"2030s" "2021-50" "2040s" "2031-60"}]
              [:option]
              (fn [a-node] (->
-                           (assoc-in (if (= (:years req) decade)
+                           (assoc-in (if (= (:years req) (second decade))
                                        (assoc-in a-node [:attrs :selected] nil)
-                                       a-node) [:content] decade)
-                           (assoc-in [:attrs :value] decade))))
+                                       a-node) [:content] (first decade))
+                           (assoc-in [:attrs :value] (second decade)))))
   
   [:#regions :option]
   (clone-for [region ["Counties" "Provinces"]]
