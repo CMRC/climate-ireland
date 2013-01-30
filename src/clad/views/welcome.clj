@@ -47,106 +47,6 @@
    :body (str (apply str (interpose "," counties)) "\n"
               (apply str (all-counties year months model scenario variable)))})
 
-(defsnippet content-nodes "clad/views/CLAD_1.html" [:html]
-  [{page :page section :section topic :topic glossary :glossary subtopic :subtopic}]
-  
-  [:#buttons :li]
-  (clone-for [context (site)]
-             [:a]
-             (fn [a-selected-node] 
-               (assoc-in a-selected-node [:content]
-                         (:title (val context))))
-             [:a]
-             (fn [a-selected-node] 
-               (assoc-in a-selected-node [:attrs :href]
-                         (let [level1 (key context)
-                               level2 (first (:sections (level1 (site))))
-                               level3 (get (val level2) :topics nil)]
-                           (str "/clad/" (name level1)
-                                "/section/"
-                                (name (key level2))
-                                (if (seq level3)
-                                  (str "/topic/" (name (key (first level3))))))))))
-  
-  [:.left_links]
-  (clone-for [section (:sections ((keyword page) (site)))]
-             [:a]
-             (fn [a-selected-node] 
-               (assoc-in
-                (assoc-in a-selected-node
-                          [:attrs :href]
-                          (str "/clad/" page "/section/" (name (key section))))
-                [:content]
-                (:title (val section))))
-             [:li]
-             (make-links page (key section) (:topics (val section))))
-
-  [:#Glossary]
-  (content (select (format-text topic page section)
-                   [[:.Glossary (keyword (str "#" (URLDecoder/decode glossary)))]]))
-
-  [:#References :ul]
-  (clone-for [ref
-              (let [sections (get-in (site) [(keyword page) :sections])
-                    topics (get (:topics ((keyword section) sections))
-                                (keyword topic)
-                                ((keyword section) sections))
-                    target (get-in topics [:subtopics (keyword subtopic)])]
-                (:refs target))]
-             [:li :a]
-             (fn [a-selected-node]
-               (->
-                (assoc-in a-selected-node [:content]
-                          (:title (ref references)))
-                (assoc-in [:attrs :href]
-                          (str "/clad/Resources/section/References/" (name ref))))))
-  
-  [:#Content_frame]
-  (content (select (format-text topic page section)
-                   [(let [sections (get-in (site) [(keyword page) :sections])
-                          topics (get (:topics ((keyword section) sections))
-                                      (keyword topic)
-                                      ((keyword section) sections))
-                          target (get-in topics [:subtopics (keyword subtopic)] topics)]
-                      (:from target))])))
-(defn clad
-  [& args]
-  (emit* (content-nodes args)))
-  
-(defn make-refs [ref]
-   (->
-    (content-nodes {:topic "References" :glossary "climate" :page "Resources" :section "References"})
-    (transform
-     [:#refs :.Title]
-     #(assoc-in % [:content] (:title ((keyword ref) references))))
-    (transform
-     [:#refs :.Authors]
-     #(assoc-in % [:content] (apply str (interpose \, (:authors ((keyword ref) references))))))
-    (transform
-     [:#refs :.Published :a]
-     #(assoc-in % [:content] (:published ((keyword ref) references))))
-    (transform
-     [:#refs :.Published :a]
-     (set-attr :href (:link ((keyword ref) references))))
-    emit*))
-
-(defn all-refs []
-   (->
-    (content-nodes {:topic "References" :glossary "climate" :page "Resources" :section "References"})
-    (transform
-     [:.Cite]
-     (clone-for
-      [cite (vals references)]
-      [:.Title]
-      (content (:title cite))
-      [:.Authors]
-      (content (apply str (interpose \, (:authors cite))))
-      [:.Published :a]
-      (content (:published cite))
-      [:.Published :a]
-      (set-attr :href (:link cite))))
-    emit*))
-
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
   [:#content]
@@ -390,28 +290,6 @@
 (defpage "/ci/climate-information/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Information.html" "climate-information" tab))
 
-(defpage "/clad/Resources/section/References/:ref"
-  {:keys [ref]}
-  (make-refs ref))
-(defpage "/clad" []
-  (clad :topic "What is Climate Change?" :glossary "climate" :page "Climate Change" :section "Essentials"))
-(defpage "/clad/:page"
-  {:keys [page section]}
-  (clad {:topic "What is Climate Change?" :glossary "climate" :page page :section section}))
-(defpage "/clad/:page/section/:section"
-  {:keys [page section]}
-  (if (= section "References")
-    (all-refs)
-    (clad :topic section :glossary "climate" :page page :section section)))
-(defpage [:get ["/clad/:page/section/:section/topic/:more/glossary/:glossary"]]
-  {:keys [more glossary page section]}
-  (clad {:topic more :glossary glossary :page page :section section}))
-(defpage [:get ["/clad/:page/section/:section/topic/:topic/subtopic/:subtopic"]]
-  {:keys [topic page section subtopic]}
-  (clad :topic topic :subtopic subtopic :page page :section section :glossary "climate"))
-(defpage [:get ["/clad/:page/section/:section/topic/:more"]]
-  {:keys [more page section]}
-  (clad :topic more :glossary "Climate" :page page :section section))
 (defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
   (by-county year months  model scenario variable))
