@@ -21,6 +21,21 @@ body {
 	text-align: justify;
 	
 }
+
+h2{
+	color: #396538;
+}
+
+h3{
+	color: #4C7875;
+	}
+	
+h4{
+	color: #4C7875;
+	font-style: italic;
+	font-size: small;
+	}
+	
 #wrapper {
 	width: 1024px;
 	margin-top: 20px;
@@ -253,11 +268,10 @@ a.logout {
 	position: relative;
 	}
 	
-.text-box{
+#text-box{
 	padding: 5px;
-	border: 3px #396538 solid;
-	border-radius: 5px;
-	background-color: #BDD2B7;	
+	font-weight: bold;
+	color: #4C7875;
 	}
 		
 #text-box-center{
