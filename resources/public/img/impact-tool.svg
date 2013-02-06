@@ -14,7 +14,7 @@
    sodipodi:version="0.32"
    inkscape:version="0.48.2 r9819"
    version="1.0"
-   sodipodi:docname="impact-tool.svg"
+   sodipodi:docname="Impact-tool.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
   <script
      type="text/javascript"
@@ -105,10 +105,10 @@
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
      inkscape:zoom="1.5316667"
-     inkscape:cx="232.91368"
-     inkscape:cy="357.52463"
+     inkscape:cx="198.5"
+     inkscape:cy="300"
      inkscape:document-units="px"
-     inkscape:current-layer="g3445"
+     inkscape:current-layer="g8547"
      width="3249.21px"
      height="600px"
      inkscape:window-width="1920"
@@ -276,12 +276,7 @@
            x="-230.34937"
            y="-224.64854"
            style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan3153">in particular.  In the map above, areas currently at risk of erosion </tspan><tspan
-           sodipodi:role="line"
-           x="-230.34937"
-           y="-201.07141"
-           style="font-size:16.84080696px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;writing-mode:lr-tb;text-anchor:start;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-           id="tspan33363">are marked in red.</tspan></text>
+           id="tspan33363">in particular.  .</tspan></text>
     </g>
     <g
        id="coastal-flooding"
@@ -3360,6 +3355,7 @@
 
 
 
+
 		</g>            <path
                id="path7971"
                d="m 89.2756,102.73244 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3380,6 +3376,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,99.61206)"><tspan
      id="tspan7977"
      x="0">0</tspan></text>
+
 
 
 
@@ -3410,6 +3407,7 @@
 
 
 
+
 		</g>            <path
                id="path7987"
                d="m 89.2756,140.65703 0,-14.16172 27.83863,0 0,14.16172 -27.83863,0 z"
@@ -3430,6 +3428,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,137.29662)"><tspan
      id="tspan7993"
      x="0 0.56107002 0.8538">0.3</tspan></text>
+
 
 
 
@@ -3460,6 +3459,7 @@
 
 
 
+
 		</g>            <path
                id="path8003"
                d="m 89.2756,178.34159 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3480,6 +3480,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,175.22121)"><tspan
      id="tspan8009"
      x="0 0.56107002 0.8538">0.5</tspan></text>
+
 
 
 
@@ -3510,6 +3511,7 @@
 
 
 
+
 		</g>            <path
                id="path8019"
                d="m 89.2756,216.26618 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3530,6 +3532,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,213.1458)"><tspan
      id="tspan8025"
      x="0 0.56107002 0.8538">1.2</tspan></text>
+
 
 
 
@@ -3716,7 +3719,7 @@
          onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
          onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
          transform="matrix(1.6763643,0,0,1.6132649,544.96027,69.795724)"
-         d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+         d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
          sodipodi:ry="18.117414"
          sodipodi:rx="17.28443"
          sodipodi:cy="125.32334"
@@ -3731,7 +3734,9 @@
          x="394.46698"
          style="font-size:13.72236156px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
          xml:space="preserve"
-         transform="scale(0.95391745,1.0483087)"><tspan
+         transform="scale(0.95391745,1.0483087)"
+         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"><tspan
            y="254.54622"
            x="394.46698"
            id="tspan3923-7"
@@ -3776,7 +3781,7 @@
          onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
          onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
          transform="matrix(1.6763643,0,0,1.6132649,678.15676,366.59338)"
-         d="m -83.714937,125.32334 a 17.28443,18.117414 0 1 1 -34.568863,0 17.28443,18.117414 0 1 1 34.568863,0 z"
+         d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
          sodipodi:ry="18.117414"
          sodipodi:rx="17.28443"
          sodipodi:cy="125.32334"
@@ -3791,7 +3796,9 @@
          x="534.09802"
          style="font-size:13.72236156px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
          xml:space="preserve"
-         transform="scale(0.95391745,1.0483087)"><tspan
+         transform="scale(0.95391745,1.0483087)"
+         onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
+         onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"><tspan
            y="537.66669"
            x="534.09802"
            id="tspan3923-7-4"
