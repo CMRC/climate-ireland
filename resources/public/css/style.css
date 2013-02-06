@@ -21,6 +21,21 @@ body {
 	text-align: justify;
 	
 }
+
+h2{
+	color: #396538;
+}
+
+h3{
+	color: #4C7875;
+	}
+	
+h4{
+	color: #4C7875;
+	font-style: italic;
+	font-size: small;
+	}
+	
 #wrapper {
 	width: 1024px;
 	margin-top: 20px;
@@ -115,18 +130,18 @@ body {
 	height: 600px;
 	overflow-x: hidden;
 	overflow-y: auto;
-	width: 396px;
+	width: 600px;
 	padding: 10px;
 }
 #mapsvg {
 	clear: both;
 }
 #map {
-    float: right;
+    float: left;
 	height: 600px;
-	width: 397px;
+	width: 350px;
 	padding: 10px;
-	margin: 0px;
+	margin: 10px;
 }
 #map img {
 	max-height: 100%;
@@ -154,9 +169,11 @@ body {
 	text-align: right;
 	border: 3px solid #396538;
 	border-radius: 5px;
-	float: left;
+	margin-left: auto;
+	margin-right: auto;
 	background-color: rgba(39,65,38, 0.05);
 	margin-bottom: 2px;
+	clear: both;
 	}
 #info-header {
     margin-top: 5px;
@@ -212,18 +229,21 @@ body {
 	float: left;
 }
 #view-3-text{
-	width: 810px;
+	width: 1010px;
 	float: right;
 	padding: 5px;
 	border: 3px solid #396538;
 	border-radius: 5px;
 	margin-top: 5px;
 	margin-bottom: 5px;
+	overflow: auto;
 }
 #content {
-	height: 600px;
-	overflow-y: auto;
-	padding: 5px;
+	min-height: 600px;
+}
+a.logout {
+    float: right;
+    clear: both;
 }
 #view-3-text img{
     margin: 5px;
@@ -250,9 +270,8 @@ body {
 	
 #text-box{
 	padding: 5px;
-	border: 3px #396538 solid;
-	border-radius: 5px;
-	background-color: #BDD2B7;	
+	font-weight: bold;
+	color: #4C7875;
 	}
 		
 #text-box-center{
@@ -273,6 +292,13 @@ body {
 	clear:both;
 	}
 	
+#text-box-3{
+	padding: 5px;
+	border: 3px #396538 solid;
+	border-radius: 5px;
+	border-style: dashed;
+	}
+	
 .resize{
 	height: auto;
 	width: auto;
@@ -291,17 +317,19 @@ body {
 	border: 1px solid #CCCCCC; padding: 5px;
 	font: 11px/1.4em Arial, sans-serif;
 	max-width: 340px;	
+	margin-left:auto; 
+	margin-right:auto;
 	}
 
 .picture img { 
 	border: 1px solid #CCCCCC;
 	vertical-align:middle; margin-bottom: 3px; 
-	max-width:330px;
+	max-width:330px; 
 	}
 	
 
 .right { 
-	margin: 0.5em 0pt 0.5em 0.8em; float:right; 
+	margin: 0.5em 0pt 0.5em 0.8em; float:right; clear:both; 
 	}
 
 .left { 
@@ -350,9 +378,12 @@ body {
 	vertical-align:middle; margin-bottom: 3px; 
 	max-width:580px;
 	}
-	
 
-
+.reference{
+	vertical-align: super;
+	color: blue;
+	font-size: 75%;
+	}
 
 
 /*------------------------------------*\

@@ -14,14 +14,14 @@ populatecounties <- function(run, base.path) {
   countiesarray[[run]] = sgdf <- as(GDAL.open(paste(base.path,run,sep="")),"SpatialGridDataFrame")
 }
 
-makeurl <- function(run,county) {
+makeurl <- function(run,county,scenario) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate_dev/",run, strip, sep="")
+  paste("http://localhost:5984/climate_dev/",run, strip, scenario, sep="")
 }
-clip <- function(county, run, var, countydata,sgdf) {
+clip <- function(county, run, var, countydata,sgdf,scenario) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
-  val <- mean(as(kkclipped, "data.frame")$band1) / 10
+  val <- mean(as(kkclipped, "data.frame")$band1)
   print(county)
   print(run)
   intyear <- as.integer(gsub("^.*([0-9]{2})([0-9])[0-9]\\w+","\\21",run))
@@ -30,61 +30,37 @@ clip <- function(county, run, var, countydata,sgdf) {
   print(year)
   months <- toupper(gsub("^.*[0-9]{4}(\\w+)","\\1",run))
   print(months)
-  rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
+  rev <- fromJSON(getURL(makeurl(run,county,scenario)))["_rev"]
   if(is.na(rev)){
-    getURL(makeurl(run,county),
+    getURL(makeurl(run,county,scenario),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
-             model="ICARUS", scenario="ICARUS",
+             model="ICARUS", scenario=scenario,
              datum.value=val, datum.variable=var)))
   } else {
-    getURL(makeurl(run,county),
+    getURL(makeurl(run,county,scenario),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
-             model="ICARUS", scenario="ICARUS",
+             model="ICARUS", scenario=scenario,
              datum.value=val, datum.variable=var,
              '_rev'=toString(rev))))
   }
 }
-bycounty <- function(region, var, run) {
+bycounty <- function(region, var, run, scenario) {
   sgdf <- countiesarray[[run]]
   countydata <- counties[counties@data$COUNTY==region,] 
-  clip(region,run,var,countydata,sgdf)
+  clip(region,run,var,countydata,sgdf,scenario)
 }
-byprovince <- function(region, var, run) {
+byprovince <- function(region, var, run, scenario) {
   sgdf <- countiesarray[[run]]
   countydata <- counties[counties@data$Province==region,] 
-  clip(region,run,var,countydata,sgdf)
+  clip(region,run,var,countydata,sgdf,scenario)
 }
-NI <- function(var, run) {
+NI <- function(var, run, scenario) {
   sgdf <- countiesarray[[run]]
   countydata <- counties[counties@data$Country=="UK",] 
-  clip("NI",run,var,countydata,sgdf)
+  clip("NI",run,var,countydata,sgdf,scenario)
 }
 
-byrun <-function(run, var, base.path) { 
-  populatecounties(run, base.path)
-
-  countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
-                   "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
-                   "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
-                   "Wexford", "Wicklow")
-  for(county in countynames) {
-    bycounty(county, var, run)
-  }
-  for(province in c("Leinster", "Munster", "Connaught", "Ulster")) {
-    byprovince(province, var, run)
-  }
-  NI(var,run)
-}
-
-runs <- c("temp2020jja", "temp2020son", "temp2020djf", "temp2020mam", "temp2050jja", "temp2050son",
-          "temp2050djf", "temp2050mam", "temp2080jja", "temp2080son", "temp2080djf", "temp2080mam")
-precruns <- c("precip2020jja", "precip2020son", "precip2020djf", "precip2020mam", "precip2050jja",
-              "precip2050son", "precip2050djf", "precip2050mam", "precip2080jja", "precip2080son",
-              "precip2080djf", "precip2080mam")
-
-lapply(runs, byrun, var <- "T_2M", base.path <- "/var/data/coverages/Temperature/")
-lapply(precruns, byrun, var <- "TOT_PREC", base.path <- "/var/data/coverages/Precipitation/")
