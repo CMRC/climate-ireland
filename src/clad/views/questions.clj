@@ -25,21 +25,21 @@
                 "Dissatisfied"
                 "Unsure"
                 "Satisfied"
-                "Very satisfied"]}}
+                "Very satisfied"]}
    "Navigation"
    {:question "How easy was it to navigate within the website?"
     :responses ["Very difficult"
                 "Difficult"
                 "Neutral"
                 "Easy"
-                "Very easy"]}}
+                "Very easy"]}
    "Organisation"
    {:question "How well was the information organised within the site?"
     :responses ["Very disorganised"
                 "Disorganised"
                 "Unsure"
                 "Well organised"
-                "Very well organised"]}}
+                "Very well organised"]}
    "Quality"
    {:question "How was the overall quality of the website content?"
     :responses ["Poor"
