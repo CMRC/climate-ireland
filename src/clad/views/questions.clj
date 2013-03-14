@@ -1,7 +1,8 @@
 (ns clad.views.questions)
 
 (def qs
-  {"Sector"
+  (array-map
+   "Sector"
    {:question "Please indicate your sector of interest.."
     :responses ["Not sector specific"
                 "Planning, including Spatial and Sustainable Development"
@@ -60,5 +61,5 @@
                 "Fair"
                 "Good"
                 "Very good"
-                "Excellent"]}})
+                "Excellent"]}))
   
