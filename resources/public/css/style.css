@@ -462,3 +462,6 @@ a.logout {
     float: none;
 }
 
+.question li {
+    list-style-type: none;
+}
