@@ -46,5 +46,19 @@
                 "Fair"
                 "Good"
                 "Very good"
+                "Excellent"]}
+   "Usefulness"
+   {:question "How useful was the website content to you?"
+    :responses ["Not at all useful"
+                "Slightlu useful"
+                "Somewhat useful"
+                "Moderately useful"
+                "Extremely useful"]}
+   "Layout"
+   {:question "How was the layout and design of the website?"
+    :responses ["Poor"
+                "Fair"
+                "Good"
+                "Very good"
                 "Excellent"]}})
   
