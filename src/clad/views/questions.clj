@@ -46,5 +46,12 @@
                 "Fair"
                 "Good"
                 "Very good"
-                "Excellent"]}})
+                "Excellent"]}
+   "Adaptation"
+   {:question "How useful was the section on climate adaptation to you?"
+    :responses ["Not at all useful"
+                "Slightly useful"
+                "Somewhat useful"
+                "Moderately useful"
+                "Extremely useful"]}})
   
