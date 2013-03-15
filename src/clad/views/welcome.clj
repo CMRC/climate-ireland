@@ -53,8 +53,8 @@
   [:.question]
   [[title {:keys [question responses]}]]
   [:h4] (content question)
-  [:form] (set-attr :onclick (str "googleEvent(this, 'Survey','"
-                                  title "');"))
+  [:form] (set-attr :onsubmit (str "googleEvent(this, 'Survey','"
+                                  title "');this.style.display='none';return false;"))
   [:li] (clone-for [response responses]
                      (content {:tag :input
                                :content response
@@ -66,7 +66,8 @@
 (deftemplate questionnaire "clad/views/View_3.html"
   [params]
   [:#content]
-  (content (map #(question %) qs)))
+  (content (conj (map #(question %) qs)
+                 (select (html-resource "clad/views/Questionnaire.html") [:#survey-info]))))
 
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]

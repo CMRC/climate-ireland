@@ -1,7 +1,8 @@
 (ns clad.views.questions)
 
 (def qs
-  {"Sector"
+  (array-map
+   "Sector"
    {:question "Please indicate your sector of interest.."
     :responses ["Not sector specific"
                 "Planning, including Spatial and Sustainable Development"
@@ -47,11 +48,67 @@
                 "Good"
                 "Very good"
                 "Excellent"]}
-   "Adaptation"
-   {:question "How useful was the section on climate adaptation to you?"
+   "Layout"
+   {:question "How was the layout and design of the website?"
+    :responses ["Poor"
+                "Fair"
+                "Good"
+                "Very good"
+                "Excellent"]}
+   "Usefulness"
+   {:question "How useful was the website content to you?"
     :responses ["Not at all useful"
                 "Slightly useful"
                 "Somewhat useful"
                 "Moderately useful"
-                "Extremely useful"]}})
+                "Extremely useful"]}
+   "Adaptation"
+   {:question "How useful was the section on Adaptation Information to you?"
+    :responses ["Not at all useful"
+                "Slightly useful"
+                "Somewhat useful"
+                "Moderately useful"
+                "Extremely useful"]}
+   "ClimateChange"
+   {:question "How useful was the section on Climate Change Information to you?"
+    :responses ["Not at all useful"
+                "Slightly useful"
+                "Somewhat useful"
+                "Moderately useful"
+                "Extremely useful"]}
+   "ClimateInformation"
+   {:question "How useful was the section on Climate Information and data to you?"
+    :responses ["Not at all useful"
+                "Slightly useful"
+                "Somewhat useful"
+                "Moderately useful"
+                "Extremely useful"]}
+   "SectoralInformation"
+   {:question "How useful was the section on Sectoral Information to you?"
+    :responses ["Not at all useful"
+                "Slightly useful"
+                "Somewhat useful"
+                "Moderately useful"
+                "Extremely useful"]}
+   "Reason"
+   {:question "Please indicate your primary reason for visiting Climate Ireland"
+    :responses ["To learn about Adaptation"
+                "To learn about Climate Change"
+                "To examine Climatic Information and Data"
+                "For guidance on developing an adaptation plan"
+                "Other"]}
+   "Find"
+   {:question "If you were looking for information how easily were you able to find it?"
+    :responses ["Very difficult"
+                "Difficult"
+                "Neutral"
+                "Easily"
+                "Very easily"]}
+   "Understand"
+   {:question "Was the information provided clear and easy and to understand?"
+    :responses ["Very difficult"
+                "Difficult"
+                "Neutral"
+                "Easy"
+                "Very easy"]}))
   
