@@ -462,3 +462,20 @@ a.logout {
     float: none;
 }
 
+.question li {
+    list-style-type: none;
+    clear: none;
+}
+.question ul {
+    clear: none;
+}
+.question li:last-child {
+    float: left;
+    width: 40%;
+}
+.question {
+    overflow: auto;
+}
+input.submit {
+    float: left;
+}

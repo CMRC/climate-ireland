@@ -9,6 +9,7 @@
   (:use [clad.views.site]
         [clad.views.charts]
         [clad.views.svg]
+        [clad.views.questions]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
         [noir.request :only [ring-request]]
@@ -46,6 +47,27 @@
              "Content-Disposition" "attachment;filename=counties.csv"}
    :body (str (apply str (interpose "," counties)) "\n"
               (apply str (all-counties year months model scenario variable)))})
+
+
+(defsnippet question "clad/views/Questionnaire.html"
+  [:.question]
+  [[title {:keys [question responses]}]]
+  [:h4] (content question)
+  [:form] (set-attr :onsubmit (str "googleEvent(this, 'Survey','"
+                                  title "');this.style.display='none';return false;"))
+  [:li] (clone-for [response responses]
+                     (content {:tag :input
+                               :content response
+                               :attrs
+                               {:value response
+                                :name title
+                                :type "radio"}})))
+
+(deftemplate questionnaire "clad/views/View_3.html"
+  [params]
+  [:#content]
+  (content (conj (map #(question %) qs)
+                 (select (html-resource "clad/views/Questionnaire.html") [:#survey-info]))))
 
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
@@ -313,6 +335,8 @@
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
   (barchart region year months variable))
+(defpage "/ci/questionnaire" {:as req}
+  (questionnaire req))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
 (defpage "/ci/maptools" {:as req}
@@ -338,3 +362,4 @@
                                             :current])
                       " logged in from: " (req :remote-addr)
                       " to URI: " (req :uri))))
+
