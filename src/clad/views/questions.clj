@@ -19,7 +19,8 @@
                 "Tourism & Lifestyle"
                 "Manufacturing & Industry"
                 "Retail"
-                "Services"]}
+                "Services"]
+    :freetext "Other, please specify.."}
    "Satisfaction"
    {:question "How satisfied were you overall with your experience on the site?"
     :responses ["Very dissatisfied"

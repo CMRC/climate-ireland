@@ -6,3 +6,16 @@ function googleEvent(radioObj, category, action) {
 	}
     }
 }
+
+function qinit () {
+    for (var a=document.querySelectorAll('form'),i=0,len=a.length;i<len;++i){
+	(function(form) {
+	    var radioLength = form.length;
+	    for(var i = 0; i < radioLength; i++) {
+		if(form[i].checked) {
+		    form.style.display = 'none';
+		}
+	    }
+	})(a[i]);
+    }
+}

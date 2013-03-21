@@ -51,20 +51,27 @@
 
 (defsnippet question "clad/views/Questionnaire.html"
   [:.question]
-  [[title {:keys [question responses]}]]
+  [[title {:keys [question responses freetext]}]]
   [:h4] (content question)
   [:form] (set-attr :onsubmit (str "googleEvent(this, 'Survey','"
                                   title "');this.style.display='none';return false;"))
-  [:li] (clone-for [response responses]
-                     (content {:tag :input
-                               :content response
-                               :attrs
-                               {:value response
-                                :name title
-                                :type "radio"}})))
-
+  [:li.select] (clone-for [response responses]
+                   (content {:tag :input
+                             :content response
+                             :attrs
+                             {:value response
+                              :name title
+                              :type "radio"}}))
+  [:li.free] (when freetext
+               (content {:tag :input
+                         :content [freetext {:tag :input :attrs {:type "text" :name title}}]
+                         :attrs {:value freetext
+                                 :name title
+                                 :type "radio"}})))
+  
 (deftemplate questionnaire "clad/views/View_3.html"
   [params]
+  [:body] (set-attr :onload "qinit();")
   [:#content]
   (content (conj (map #(question %) qs)
                  (select (html-resource "clad/views/Questionnaire.html") [:#survey-info]))))
