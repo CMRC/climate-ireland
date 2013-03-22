@@ -53,8 +53,8 @@
   [:.question]
   [[title {:keys [question responses freetext]}]]
   [:h4] (content question)
-  [:form] (set-attr :onsubmit (str "googleEvent(this, 'Survey','"
-                                  title "');this.style.display='none';return false;"))
+  [:.form] (set-attr :id title)
+  [:a] (set-attr :href (str "javascript: document.getElementById('" title "').style.display='none';"))
   [:li.select] (clone-for [response responses]
                    (content {:tag :input
                              :content response
@@ -64,17 +64,22 @@
                               :type "radio"}}))
   [:li.free] (when freetext
                (content {:tag :input
-                         :content [freetext {:tag :input :attrs {:type "text" :name title}}]
+                         :content [freetext {:tag :input :attrs {:type "text" :name (str title freetext)}}]
                          :attrs {:value freetext
                                  :name title
                                  :type "radio"}})))
-  
+
+(defsnippet qform "clad/views/Questionnaire.html"
+  [:#survey-info]
+  []
+  [:#questions]
+  (content (map #(question %) qs)))
+
 (deftemplate questionnaire "clad/views/View_3.html"
   [params]
   [:body] (set-attr :onload "qinit();")
   [:#content]
-  (content (conj (map #(question %) qs)
-                 (select (html-resource "clad/views/Questionnaire.html") [:#survey-info]))))
+  (content (qform)))
 
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
