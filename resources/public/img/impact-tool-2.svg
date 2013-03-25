@@ -5872,7 +5872,7 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5316667"
+     inkscape:zoom="5.6181056"
      inkscape:cx="198.5"
      inkscape:cy="300"
      inkscape:document-units="px"
@@ -11680,66 +11680,6 @@
          onclick="/img/impact_tool_innundate.svg"
          onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
          onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;" />
-      <a
-         id="a8563"
-         xlink:href="/ci/tools/biodiversity-loss"
-         target="_top">
-        <g
-           style="display:inline"
-           id="g3439-1"
-           transform="matrix(0.6732,0,0,0.73981395,-5.77946,54.79441)">
-          <a
-             id="a8592"
-             xlink:href="/ci/tools/biodiversity-loss"
-             target="/ci/tools">
-            <path
-               sodipodi:type="arc"
-               style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26202655;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-               id="path3859-1-7"
-               sodipodi:cx="-100.99937"
-               sodipodi:cy="125.32334"
-               sodipodi:rx="17.28443"
-               sodipodi:ry="18.117414"
-               d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-               transform="matrix(2.7698279,0,0,2.4151072,841.52107,352.696)" />
-          </a>
-          <a
-             id="a8587"
-             xlink:href="/ci/tools/biodiversity-loss"
-             target="/ci/tools">
-            <text
-               inkscape:label="#text3869-6-4"
-               xml:space="preserve"
-               style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-               x="562.69598"
-               y="652.8678"
-               id="invasive-species"
-               sodipodi:linespacing="125%"><tspan
-                 style="text-align:center;text-anchor:middle"
-                 id="tspan3123"
-                 sodipodi:role="line"
-                 x="564.91766"
-                 y="652.8678">Biodiversity </tspan><tspan
-                 style="text-align:center;text-anchor:middle"
-                 id="tspan3984"
-                 sodipodi:role="line"
-                 x="562.69598"
-                 y="677.17334">Loss</tspan></text>
-          </a>
-          <text
-             xml:space="preserve"
-             style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-             x="45.423908"
-             y="484.52271"
-             id="text3986"
-             sodipodi:linespacing="140%"
-             transform="matrix(1.2626263,0,0,1.2626263,418.21251,170.41811)"><tspan
-               sodipodi:role="line"
-               id="tspan3988"
-               x="45.423908"
-               y="484.52271" /></text>
-        </g>
-      </a>
       <a
          id="a3105"
          xlink:href="/ci/tools/coastal-erosion"
