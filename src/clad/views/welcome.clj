@@ -62,11 +62,7 @@
                               :name title
                               :type "radio"}}))
   [:li.free] (when freetext
-               (content {:tag :input
-                         :content [freetext {:tag :input :attrs {:type "text" :name (str title freetext)}}]
-                         :attrs {:value freetext
-                                 :name title
-                                 :type "radio"}})))
+               (content [freetext {:tag :input :attrs {:type "text" :name (str title freetext)}}])))
 
 (defsnippet qform "clad/views/Questionnaire.html"
   [:#survey-info]
@@ -83,7 +79,9 @@
 (deftemplate submit "clad/views/View_3.html"
   [req]
   [:#content]
-  (content req))
+  (content (html [:div
+                  [:p "Thank you"]
+                  [:p [:a {:href "/"} "Home.."]]])))
 
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
@@ -355,6 +353,7 @@
   (questionnaire req))
 (defpage [:post "/ci/submit"] {:as req}
   (do (put-submit req)
+      (println req)
       (submit req)))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))

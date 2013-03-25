@@ -477,5 +477,5 @@ a.logout {
     overflow: auto;
 }
 input.submit {
-    float: left;
+    left: 40%;
 }
