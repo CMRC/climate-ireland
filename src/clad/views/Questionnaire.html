@@ -1,19 +1,26 @@
 <body>
-  <div id="questions">
-    <div class="question">
-      <h4>How satisfied were you overall with your experience on the site?</h4>
-      <form>
-	<ul>
-	  <li>
-	    <input type="radio" name="satisfaction" value="1"></input>
-	  </li>
-	</ul>
-	<input type="submit" value="Submit" class="submit">
-      </form>	
-    </div>
     <div id="survey-info">
       <p>By answering these questions you will help us to understand how to make ClimateIreland into a better platform
 	for serving your climate information needs.</p>
       <p>The information will be combined with information from Google Analytics&copy; and used purely for statistical purposes, in order to understand how your choice of browser technology, engagement with the content, and the performance of the platform affect your experience.</p>
+      <form method="post" action="/ci/submit">
+	<div id="questions">
+	  <div class="question">
+	    <h4>How satisfied were you overall with your experience on the site?</h4>
+	    <div class="form">
+	      <ul>
+		<li class="select">
+		  <input type="radio" name="satisfaction" value="1"></input>
+		</li>
+		<li class="free"/>
+	      </ul>
+	      <a href="javascript: this.parent.submit();" class="submit">Hide</a>
+	    </div>	
+	  </div>
+	</div>
+	<p>
+	  <input type="submit" value="Submit" name="Survey"/>
+	</p>
+      </form>
     </div>
 </body>

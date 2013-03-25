@@ -95,20 +95,22 @@
     :responses ["To learn about Adaptation"
                 "To learn about Climate Change"
                 "To examine Climatic Information and Data"
-                "For guidance on developing an adaptation plan"
-                "Other"]}
+                "For guidance on developing an adaptation plan"]
+    :freetext "Other"}
    "Find"
    {:question "If you were looking for information how easily were you able to find it?"
     :responses ["Very difficult"
                 "Difficult"
                 "Neutral"
                 "Easily"
-                "Very easily"]}
+                "Very easily"]
+    :freetext "Comment"}
    "Understand"
    {:question "Was the information provided clear and easy and to understand?"
     :responses ["Very difficult"
                 "Difficult"
                 "Neutral"
                 "Easy"
-                "Very easy"]}))
+                "Very easy"]
+    :freetext "Comment"}))
   
