@@ -219,4 +219,7 @@ temperature data and percentage difference for everything else"
        view "/"
        (apply str (interpose "/" (vals req)))
        (when counties? "/counties")))
-  
+
+(defn put-submit [req]
+  (clutch/with-db db
+    (clutch/put-document req)))

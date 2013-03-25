@@ -81,6 +81,11 @@
   [:#content]
   (content (qform)))
 
+(deftemplate submit "clad/views/View_3.html"
+  [req]
+  [:#content]
+  (content req))
+
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
   [:#content]
@@ -349,6 +354,9 @@
   (barchart region year months variable))
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
+(defpage [:post "/ci/submit"] {:as req}
+  (do (put-submit req)
+      (submit req)))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
 (defpage "/ci/maptools" {:as req}
