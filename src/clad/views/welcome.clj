@@ -13,7 +13,6 @@
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
         [noir.request :only [ring-request]]
-        [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
   (:import (java.net URLEncoder
