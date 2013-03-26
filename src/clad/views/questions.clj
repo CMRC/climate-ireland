@@ -70,7 +70,7 @@
                 "Moderately useful"
                 "Extremely useful"]}
    "ClimateChange"
-   {:question "How useful was the section on Climate Change Information to you?"
+   {:question "How useful was the section on Climate Change to you?"
     :responses ["Not at all useful"
                 "Slightly useful"
                 "Somewhat useful"
