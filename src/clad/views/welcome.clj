@@ -9,10 +9,10 @@
   (:use [clad.views.site]
         [clad.views.charts]
         [clad.views.svg]
+        [clad.views.questions]
         [clad.models.couch]
         [noir.core :only [defpage pre-route]]
         [noir.request :only [ring-request]]
-        [hiccup.core :only [html]]
 	[net.cgrand.enlive-html]
         [incanter.core])
   (:import (java.net URLEncoder
@@ -46,6 +46,42 @@
              "Content-Disposition" "attachment;filename=counties.csv"}
    :body (str (apply str (interpose "," counties)) "\n"
               (apply str (all-counties year months model scenario variable)))})
+
+
+(defsnippet question "clad/views/Questionnaire.html"
+  [:.question]
+  [[title {:keys [question responses freetext]}]]
+  [:h4] (content question)
+  [:.form] (set-attr :id title)
+  [:a] (set-attr :href (str "javascript: document.getElementById('" title "').style.display='none';"))
+  [:li.select] (clone-for [response responses]
+                   (content {:tag :input
+                             :content response
+                             :attrs
+                             {:value response
+                              :name title
+                              :type "radio"}}))
+  [:li.free] (when freetext
+               (content [freetext {:tag :input :attrs {:type "text" :name (str title freetext)}}])))
+
+(defsnippet qform "clad/views/Questionnaire.html"
+  [:#survey-info]
+  []
+  [:#questions]
+  (content (map #(question %) qs)))
+
+(deftemplate questionnaire "clad/views/View_3.html"
+  [params]
+  [:body] (set-attr :onload "qinit();")
+  [:#content]
+  (content (qform)))
+
+(deftemplate submit "clad/views/View_3.html"
+  [req]
+  [:#content]
+  (content (html [:div
+                  [:p "Thank you"]
+                  [:p [:a {:href "/"} "Home.."]]])))
 
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
@@ -313,6 +349,12 @@
   (decadal-box county months variable))
 (defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
   (barchart region year months variable))
+(defpage "/ci/questionnaire" {:as req}
+  (questionnaire req))
+(defpage [:post "/ci/submit"] {:as req}
+  (do (put-submit req)
+      (println req)
+      (submit req)))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
 (defpage "/ci/maptools" {:as req}
@@ -338,3 +380,4 @@
                                             :current])
                       " logged in from: " (req :remote-addr)
                       " to URI: " (req :uri))))
+

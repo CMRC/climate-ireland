@@ -2,7 +2,7 @@
             :description "Irish Climate Information Platform"
             :dependencies [[clj-stacktrace "0.2.4"]
                            [org.clojure/clojure "1.4.0"]
-                           [enlive "1.0.0"]
+                           [enlive "1.1.1"]
                            [noir "1.2.1"]
                            [org.clojars.pallix/analemma "1.0.0"]
                            [incanter "1.2.4"]

@@ -295,7 +295,7 @@ a.logout {
 	padding: 5px;
 	border: 3px #396538 solid;
 	border-radius: 5px;
-	border-style: dashed;
+	border-style: solid;
 	}
 	
 .resize{
@@ -339,7 +339,7 @@ a.logout {
 	background-color: #F9F9F9;
 	border: 1px solid #CCCCCC; padding: 5px;
 	font: 11px/1.4em Arial, sans-serif;
-	width: 575px;
+	max-width: 575px;
 	margin-left: auto;
 	margin-right:auto;
 	}
@@ -462,3 +462,20 @@ a.logout {
     float: none;
 }
 
+.question li {
+    list-style-type: none;
+    clear: none;
+}
+.question ul {
+    clear: none;
+}
+.question li:last-child {
+    float: left;
+    width: 40%;
+}
+.question {
+    overflow: auto;
+}
+input.submit {
+    left: 40%;
+}

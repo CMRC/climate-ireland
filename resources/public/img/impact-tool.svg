@@ -104,19 +104,19 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5316667"
+     inkscape:zoom="1.505"
      inkscape:cx="198.5"
      inkscape:cy="300"
      inkscape:document-units="px"
      inkscape:current-layer="g8547"
      width="3249.21px"
      height="600px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1138"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="944"
+     inkscape:window-height="1122"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
      showgrid="false"
-     inkscape:window-maximized="1"
+     inkscape:window-maximized="0"
      fit-margin-top="0"
      fit-margin-left="0"
      fit-margin-right="0"
@@ -3356,6 +3356,7 @@
 
 
 
+
 		</g>            <path
                id="path7971"
                d="m 89.2756,102.73244 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3376,6 +3377,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,99.61206)"><tspan
      id="tspan7977"
      x="0">0</tspan></text>
+
 
 
 
@@ -3408,6 +3410,7 @@
 
 
 
+
 		</g>            <path
                id="path7987"
                d="m 89.2756,140.65703 0,-14.16172 27.83863,0 0,14.16172 -27.83863,0 z"
@@ -3428,6 +3431,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,137.29662)"><tspan
      id="tspan7993"
      x="0 0.56107002 0.8538">0.3</tspan></text>
+
 
 
 
@@ -3460,6 +3464,7 @@
 
 
 
+
 		</g>            <path
                id="path8003"
                d="m 89.2756,178.34159 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3480,6 +3485,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,175.22121)"><tspan
      id="tspan8009"
      x="0 0.56107002 0.8538">0.5</tspan></text>
+
 
 
 
@@ -3512,6 +3518,7 @@
 
 
 
+
 		</g>            <path
                id="path8019"
                d="m 89.2756,216.26618 0,-13.92169 27.83863,0 0,13.92169 -27.83863,0 z"
@@ -3532,6 +3539,7 @@
    transform="matrix(9.83952,0,0,9.84119,122.15398,213.1458)"><tspan
      id="tspan8025"
      x="0 0.56107002 0.8538">1.2</tspan></text>
+
 
 
 
@@ -3668,53 +3676,6 @@
          onclick="/img/impact-tool-innundate.svg"
          onmouseover="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;block&quot;;"
          onmouseout="document.getElementById(&quot;coastal-flooding&quot;).style.display=&quot;none&quot;;" />
-      <g
-         transform="matrix(0.6732,0,0,0.73981395,-5.77946,54.79441)"
-         onmouseout="document.getElementById(&quot;biodiversity-loss&quot;).style.display=&quot;none&quot;;"
-         onmouseover="document.getElementById(&quot;biodiversity-loss&quot;).style.display=&quot;block&quot;;"
-         id="g3439-1"
-         style="display:inline">
-        <path
-           sodipodi:type="arc"
-           style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.26202655;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-           id="path3859-1-7"
-           sodipodi:cx="-100.99937"
-           sodipodi:cy="125.32334"
-           sodipodi:rx="17.28443"
-           sodipodi:ry="18.117414"
-           d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-           transform="matrix(2.7698279,0,0,2.4151072,841.52107,352.696)" />
-        <text
-           inkscape:label="#text3869-6-4"
-           xml:space="preserve"
-           style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
-           x="562.69598"
-           y="652.8678"
-           id="invasive-species"
-           sodipodi:linespacing="125%"><tspan
-             style="text-align:center;text-anchor:middle"
-             id="tspan3123"
-             sodipodi:role="line"
-             x="564.91766"
-             y="652.8678">Biodiversity </tspan><tspan
-             style="text-align:center;text-anchor:middle"
-             id="tspan3984"
-             sodipodi:role="line"
-             x="562.69598"
-             y="677.17334">Loss</tspan></text>
-        <text
-           transform="matrix(1.2626263,0,0,1.2626263,418.21251,170.41811)"
-           sodipodi:linespacing="140%"
-           id="text3986"
-           y="484.52271"
-           x="45.423908"
-           style="font-size:13px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:139.99999762%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-           xml:space="preserve"><tspan
-             y="484.52271"
-             x="45.423908"
-             id="tspan3988"
-             sodipodi:role="line" /></text>
-      </g>
       <path
          onmouseout="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;none&quot;;"
          onmouseover="document.getElementById(&quot;coastal-erosion&quot;).style.display=&quot;block&quot;;"
