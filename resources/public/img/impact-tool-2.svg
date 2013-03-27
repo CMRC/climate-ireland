@@ -5872,11 +5872,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6181056"
+     inkscape:zoom="1"
      inkscape:cx="198.5"
      inkscape:cy="300"
      inkscape:document-units="px"
-     inkscape:current-layer="g8547"
+     inkscape:current-layer="g3445"
      width="3249.21px"
      height="600px"
      inkscape:window-width="1920"
@@ -11612,7 +11612,7 @@
           <a
              id="a8595"
              xlink:href="/ci/tools/coastal-flooding"
-             target="/ci/tools">
+             target="_top">
             <text
                xml:space="preserve"
                style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
@@ -11784,7 +11784,7 @@
          id="a3049-8"
          transform="matrix(0.6732,0,0,0.73981395,244.57746,343.6717)"
          xlink:href="/ci/tools/coastal-erosion"
-         target="/ci/tools">
+         target="_top">
         <text
            xml:space="preserve"
            style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
