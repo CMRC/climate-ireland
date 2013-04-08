@@ -17,7 +17,7 @@
    version="1.1"
    id="svg2"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="Streamflow-winter-2020s.svg">
+   sodipodi:docname="Streamflow-summer-2080s.svg">
   <metadata
      id="metadata401">
     <rdf:RDF>
@@ -26,7 +26,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -11642,6 +11642,7 @@
 
 
 
+
 		</g>  <g
      id="g294"
      xml:space="preserve"
@@ -11656,6 +11657,7 @@
    transform="matrix(8.63447,0,0,8.63173,15.11032,24.06599)"><tspan
      id="tspan298"
      x="0 0.24992 0.58315003 0.91637999 1.4995199 2.3325901 2.58251 2.9990499 3.5822001 3.9987299 4.3319602 4.8318 5.4149499 5.7481699 6.3313198 6.9144702 7.2477002 7.8308501 8.41399 8.74722 9.3303699 9.9135199 10.24675 10.82989 11.49635 12.41272 12.99587 13.57902 13.91225"> flow for selected catchments</tspan></text>
+
 
 
 
@@ -11680,28 +11682,32 @@
        id="tspan4255"
        x="159.50485"
        y="415.56909">Irish catchments (Murphy and Charlton, 2009)</tspan></text>
-  <g
-     id="g4204"
-     transform="translate(-0.85413684,-118.32059)">
-    <rect
-       y="456.85181"
-       x="48.162674"
-       height="14.479783"
-       width="47.728672"
-       id="rect4170-4"
-       style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.74901700000000000;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-    <text
-       sodipodi:linespacing="137%"
-       id="text4154"
-       y="467.89386"
-       x="55.591312"
-       style="font-size:10.80000019px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       xml:space="preserve"><tspan
-         y="467.89386"
+  <a
+     id="a7057"
+     xlink:href="/img/Streamflow-winter-2020s.svg">
+    <g
+       transform="translate(-0.85413684,-118.32059)"
+       id="g4204">
+      <rect
+         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.74901700000000000;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         id="rect4170-4"
+         width="47.728672"
+         height="14.479783"
+         x="48.162674"
+         y="456.85181" />
+      <text
+         xml:space="preserve"
+         style="font-size:10.80000019px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
          x="55.591312"
-         id="tspan4156"
-         sodipodi:role="line">Winter</tspan></text>
-  </g>
+         y="467.89386"
+         id="text4154"
+         sodipodi:linespacing="137%"><tspan
+           sodipodi:role="line"
+           id="tspan4156"
+           x="55.591312"
+           y="467.89386">Winter</tspan></text>
+    </g>
+  </a>
   <a
      id="a5589"
      xlink:href="/img/Streamflow-autumn-2020s.svg">
