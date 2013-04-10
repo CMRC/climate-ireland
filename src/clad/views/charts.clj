@@ -106,13 +106,10 @@
   (let [vals-fn (fn [decade]
                   (map double
                        (filter #(not (nil? %))
-                               (cons (data-by-county
+                               (map #(diff-data
                                       county decade months
-                                      "ICARUS" "ICARUS" variable)
-                                     (map #(diff-data
-                                            county decade months
-                                            (first %) (second %) variable)
-                                          ensemble)))))
+                                      (first %) (second %) variable)
+                                    (get ensemble "ensemble")))))
         l (log/info "Decadal values for " county " " months " " variable ": "
                     (vals-fn "2051-60"))
         chart (doto (box-plot (vals-fn "2021-30")

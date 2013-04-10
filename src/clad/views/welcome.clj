@@ -138,6 +138,7 @@
 
 
 (def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
+
 (def scenarios (array-map
 		["CGCM31" "A1B"] "A1B"
                 ["CGCM31" "A2"] "A2 [1]"
@@ -145,6 +146,9 @@
                 ["HadGEM" "RCP85"] "RCP85"
                 ["ICARUS" "a2"] "A2 [2]"
                 ["ICARUS" "b2"] "B2"
+                ["ensemble" "high"] "High"
+                ["ensemble" "medium"] "Medium"
+                ["ensemble" "low"] "Low"
                 ["ensemble" "ensemble"] "ensemble"))
                 
 (defsnippet map-help "clad/views/chart-help.html"
