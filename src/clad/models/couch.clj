@@ -172,7 +172,7 @@ temperature data and percentage difference for everything else"
                               goodvals (filter #(not (nil? %)) vals)]
                           (log/info "goodvals: " goodvals)
                           (when (seq goodvals) (apply f goodvals))))
-                      ["2021-30" "2031-40" "2041-50" "2051-60"]))))
+                      ["2021-50" "2031-60"]))))
 
 (defn decadal-min [months model scenario variable regions diff-fn]
   (with-decadal months model scenario variable regions diff-fn min))
