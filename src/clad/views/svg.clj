@@ -33,7 +33,7 @@
 (defn colour-on-quartiles [elem county year months model scenario variable]
   )
 
-(def colour-scheme color-brewer/RdYlBu-11)
+(def colour-scheme color-brewer/OrRd-7)
 
 (defn linear-rgb [val domain]
   "Returns a colour string based on the value"
@@ -65,8 +65,8 @@
                     :county counties
                     :province provinces)
           diff-fn diff-data
-          min (decadal-min months model scenario variable regions diff-fn)
-          max (decadal-max months model scenario variable regions diff-fn)]
+          min -0.5 #_(decadal-min months model scenario variable regions diff-fn)
+          max 3 #_(decadal-max months model scenario variable regions diff-fn)]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -104,11 +104,11 @@
                                             [{:id (str "col-" %2)}]
                                             (fn [node] (add-style node :fill (nth colour-scheme %2))))
                             choropleth
-                            (range 0 11))
+                            (range 0 (count colour-scheme)))
              values (reduce #(transform-xml %1
                                             [{:id (str "val-" %2)}]
                                             (fn [node] (set-content node (str (->
-                                                                               ((scale/linear :domain [0 11]
+                                                                               ((scale/linear :domain [0 (count colour-scheme)]
                                                                                               :range [max min])
                                                                                 %2)
                                                                                (* 100)
@@ -116,7 +116,7 @@
                                                                                (/ 100)
                                                                                float)))))
                             legend
-                            (range 11 -1 -1))
+                            (range (count colour-scheme) -1 -1))
              units (transform-xml values [{:id "units"}]
                                   (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
              selected (transform-xml units [{:id "selected"}]

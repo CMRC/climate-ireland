@@ -4,6 +4,8 @@
             [cemerick.friend :as friend]
             [noir.session :as session]
             [noir.response :as resp]
+            [clj-time.core :as time]
+            [clj-time.format :as format]
             (cemerick.friend [workflows :as workflows]
                              [credentials :as creds]))
   (:use [clad.views.site]
@@ -356,8 +358,7 @@
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
 (defpage [:post "/ci/submit"] {:as req}
-  (do (put-submit req)
-      (println req)
+  (do (put-submit (assoc req :time (format/unparse (format/formatters :basic-date-time) (time/now))))
       (submit req)))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))

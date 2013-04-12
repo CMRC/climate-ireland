@@ -232,5 +232,7 @@ temperature data and percentage difference for everything else"
        (when counties? "/counties")))
 
 (defn put-submit [req]
-  (clutch/with-db db
-    (clutch/put-document req)))
+  (do
+    (log/info req)
+    (clutch/with-db db
+      (clutch/put-document req))))

@@ -13,7 +13,8 @@
                            [com.cemerick/friend "0.1.3"]
                            [org.clojure/clojurescript "0.0-1011"]
                            [com.keminglabs/c2 "0.2.1"]
-                           [com.keminglabs/vomnibus "0.3.1"]]
+                           [com.keminglabs/vomnibus "0.3.1"]
+                           [clj-time "0.5.0"]]
             :plugins [[lein-ring "0.7.1"]]
             :main clad.server)
 
