@@ -33,14 +33,14 @@
 (defn colour-on-quartiles [elem county year months model scenario variable]
   )
 
-(def colour-scheme color-brewer/OrRd-7)
+(def colour-scheme (reverse color-brewer/OrRd-7))
 
 (defn linear-rgb [val domain]
   "Returns a colour string based on the value"
   (if (nil? val)
     "grey"
     (let [colour-scale (let [s (scale/linear :domain domain
-                                             :range [0 (dec (count colour-scheme))])]
+                                             :range [0 (count colour-scheme)])]
                          (fn [d] (nth colour-scheme (floor (s d)))))]
       (colour-scale val))))
 
@@ -65,8 +65,8 @@
                     :county counties
                     :province provinces)
           diff-fn diff-data
-          min -0.5 #_(decadal-min months model scenario variable regions diff-fn)
-          max 3 #_(decadal-max months model scenario variable regions diff-fn)]
+          min -0.5
+          max 3]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -116,7 +116,7 @@
                                                                                (/ 100)
                                                                                float)))))
                             legend
-                            (range (count colour-scheme) -1 -1))
+                            (range 0 (inc (count colour-scheme))))
              units (transform-xml values [{:id "units"}]
                                   (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
              selected (transform-xml units [{:id "selected"}]
