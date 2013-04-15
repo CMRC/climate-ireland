@@ -33,9 +33,7 @@
 (defn colour-on-quartiles [elem county year months model scenario variable]
   )
 
-(def colour-scheme (reverse color-brewer/OrRd-7))
-
-(defn linear-rgb [val domain]
+(defn linear-rgb [val domain colour-scheme]
   "Returns a colour string based on the value"
   (if (nil? val)
     "grey"
@@ -46,10 +44,10 @@
 
 (defn colour-on-linear
   "Calls CouchDB and returns a colour string based on the query parameters"
-  [elem county year months model scenario variable region lmin lmax diff-fn]
+  [elem county year months model scenario variable region lmin lmax diff-fn colour-scheme]
   (let [domain [lmax lmin]
         val (diff-fn county year months model scenario variable)]
-    (add-style elem :fill (linear-rgb val domain))))
+    (add-style elem :fill (linear-rgb val domain colour-scheme))))
 
 (defn regions-map-slow
   "Takes an svg file representing a map of Ireland divdided into regions
@@ -65,8 +63,9 @@
                     :county counties
                     :province provinces)
           diff-fn diff-data
-          min -0.5
-          max 3]
+          colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
+          min (if (temp-var? variable) -0.5 -30.0)
+          max (if (temp-var? variable) 3 40.0)]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -96,7 +95,7 @@
                                            (if (temp-var? variable) "°C " "% ")
                                            %2
                                            "')")))
-                         (colour-on-linear %2 year months model scenario variable region min max diff-fn)
+                         (colour-on-linear %2 year months model scenario variable region min max diff-fn colour-scheme)
                          (add-style :stroke (if (= region (:id (second elem))) "red" "grey")))])))
               regions-svg			
               regions)
