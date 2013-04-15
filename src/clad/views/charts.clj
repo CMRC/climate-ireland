@@ -35,7 +35,7 @@
                       (ref-data county months "HadGEM" variable)) ha85)
         ica [2025 2055 2085]
         icax (map #(coerce/to-long (time/date-time %)) ica)
-        icay (map #(data-by-county county (- % 5) months "ICARUS" "ICARUS" variable) ica)
+        icay (map #(data-by-county county (- % 5) months "ICARUS" "a2" variable) ica)
         chart (doto (time-series-plot x a1by :y-label ylab :x-label "" :series-label "CGCM3.1 A1B"
                                       :legend true :title (str county " " variable " " months))
                 (add-lines x a2y :series-label "CGCM3.1 A2")                
@@ -112,21 +112,27 @@
                                     (get ensemble "ensemble")))))
         l (log/info "Decadal values for " county " " months " " variable ": "
                     (vals-fn "2051-60"))
-        chart (doto (box-plot (vals-fn "2021-30")
+        chart (doto (box-plot (vals-fn "2021-50")
                               :legend true
                               :title (str county " " (variables variable))
                               :y-label (if (temp-var? variable) "Difference in °C from baseline"
                                            "% difference from baseline")
-                              :series-label "2021-30")
-                (add-box-plot (vals-fn "2031-40")
+                              :series-label "2030s")
+                (add-box-plot (vals-fn "2031-60")
                               :legend true
-                              :series-label "2031-40")
-                (add-box-plot (vals-fn "2041-50")
+                              :series-label "2040s")
+                (add-box-plot (vals-fn "2041-70")
                               :legend true
-                              :series-label "2041-50")
-                (add-box-plot (vals-fn "2051-60")
+                              :series-label "2050s")
+                (add-box-plot (vals-fn "2051-80")
                               :legend true
-                              :series-label "2051-60"))
+                              :series-label "2060s")
+                (add-box-plot (vals-fn "2061-90")
+                              :legend true
+                              :series-label "2070s")
+                (add-box-plot (vals-fn "2071-100")
+                              :legend true
+                              :series-label "2080s"))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save chart out-stream :width 450 :height 400)
