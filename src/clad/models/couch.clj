@@ -142,11 +142,12 @@
                   :value
                   :datum.value)
         ref (ref-data county months model variable)]
-    (if (= model "ICARUS")
-      d
-      (if (temp-var? variable)
-        (- d ref)
-        (percent d ref)))))
+    (when d
+      (if (= model "ICARUS")
+        d
+        (if (temp-var? variable)
+          (- d ref)
+          (percent d ref))))))
 
 (defn diff-data
   "calculate the display value based on a difference function between

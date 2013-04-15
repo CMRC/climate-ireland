@@ -181,7 +181,12 @@
   [req map & {:keys [counties?] :or {counties? false}}]
   
   [:#decades :option]
-  (clone-for [decade {"2030s" "2021-50" "2040s" "2031-60"}]
+  (clone-for [decade {"2030s" "2021-50"
+                      "2040s" "2031-60"
+                      "2050s" "2041-70"
+                      "2060s" "2051-80"
+                      "2070s" "2061-90"
+                      "2080s" "2071-100"}]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (= (:years req) (second decade))

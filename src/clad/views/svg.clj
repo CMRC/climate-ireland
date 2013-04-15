@@ -121,7 +121,7 @@
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    (catch Exception ex
+    #_(catch Exception ex
       (log/info ex)
       (log/info req)
       "We do apologise. There is no data available for the selection you have chosen.
