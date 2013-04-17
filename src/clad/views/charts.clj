@@ -6,7 +6,8 @@
             [clojure.tools.logging :as log])
   (:import (java.io ByteArrayOutputStream
                     ByteArrayInputStream)
-           (java.lang Integer)))
+           (java.lang Integer)
+           (org.jfree.chart.annotations CategoryTextAnnotation)))
 
 (def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
 
@@ -112,11 +113,16 @@
                                     (get ensemble "ensemble")))))
         l (log/info "Decadal values for " county " " months " " variable ": "
                     (vals-fn "2051-60"))
-        chart (doto (box-plot (vals-fn "2021-50")
+        decades ["2021-50" "2031-60" "2041-70" "2051-80" "2061-90" "2071-100"]
+        chart (doto (box-plot [0]
                               :legend true
                               :title (str county " " (variables variable))
                               :y-label (if (temp-var? variable) "Difference in °C from baseline"
                                            "% difference from baseline")
+                              :series-label "decade:"
+                              :x-label "")
+                (add-box-plot (vals-fn "2021-50")
+                              :legend true
                               :series-label "2030s")
                 (add-box-plot (vals-fn "2031-60")
                               :legend true
@@ -133,6 +139,9 @@
                 (add-box-plot (vals-fn "2071-100")
                               :legend true
                               :series-label "2080s"))
+        chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
+                 (doseq [[sim val] (zipmap (get ensemble "ensemble") (vals-fn (second plot)))]
+                   (.addAnnotation (.getPlot chart) (CategoryTextAnnotation. (second sim) (first plot) val))))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save chart out-stream :width 450 :height 400)

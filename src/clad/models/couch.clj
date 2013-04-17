@@ -5,19 +5,19 @@
   (:use [com.ashafa.clutch.view-server]
         clojure.contrib.math))
 
-(def db "climate_dev")
+(def db "climate_dev2")
 
-(comment (clutch/with-db db
-           (clutch/save-view "users"
-                             (clutch/view-server-fns
-                              :clojure
-                              {:users
-                               {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
-         
-         (clutch/with-db db
-           (clutch/put-document {:username ""
-                                 :password (creds/hash-bcrypt "")
-                                 :roles #{::user}})))
+#_(clutch/with-db db
+    (clutch/save-view "users"
+                      (clutch/view-server-fns
+                       :clojure
+                       {:users
+                        {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
+
+#_(clutch/with-db db
+  (clutch/put-document {:username "user"
+                        :password (creds/hash-bcrypt "icip")
+                        :roles #{::user}}))
 
 #_(clutch/configure-view-server db (view-server-exec-string))
 
@@ -105,12 +105,12 @@
 (def ref-data (memoize ref-data-slow))
 
 (def ensemble {"ensemble"
-               [["CGCM31" "A2"]
-               ["CGCM31" "A1B"]
-               ["HadGEM" "RCP85"]
-               ["HadGEM" "RCP45"]
-               ["ICARUS" "a2"]
-               ["ICARUS" "b2"]]
+               [["ICARUS" "a2"]
+                ["ICARUS" "b2"]
+                ["CGCM31" "A2"]
+                ["CGCM31" "A1B"]
+                ["HadGEM" "RCP85"]
+                ["HadGEM" "RCP45"]]
                "high"
                [["HadGEM" "RCP85"]
                 ["CGCM31" "A2"]
