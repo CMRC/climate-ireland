@@ -32,7 +32,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -80,7 +80,7 @@
      inkscape:pageopacity="0"
      inkscape:pageshadow="2"
      inkscape:window-width="1855"
-     inkscape:window-height="1175"
+     inkscape:window-height="1072"
      id="namedview3167"
      showgrid="false"
      inkscape:zoom="2.3329294"
@@ -349,19 +349,6 @@
      id="col-5"
      style="fill:#ffffbf;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
   <text
-     inkscape:label="#text3855"
-     transform="scale(0.66879285,1.4952313)"
-     sodipodi:linespacing="125%"
-     id="val-11"
-     y="221.48979"
-     x="520.64819"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
-     xml:space="preserve"><tspan
-       y="221.48979"
-       x="520.64819"
-       id="tspan3041-4"
-       sodipodi:role="line">0.00</tspan></text>
-  <text
      inkscape:label="#text3855-8"
      transform="scale(0.66879285,1.4952313)"
      sodipodi:linespacing="125%"
@@ -398,64 +385,6 @@
      width="21.023508"
      id="col-6"
      style="fill:#e0f3f8;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
-  <rect
-     inkscape:label="#rect3032"
-     y="237.8268"
-     x="324.89297"
-     height="19.862041"
-     width="21.023508"
-     id="col-7"
-     style="fill:#abd9e9;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
-  <rect
-     inkscape:label="#rect3032"
-     y="260.56998"
-     x="324.89297"
-     height="19.862041"
-     width="21.023508"
-     id="col-8"
-     style="fill:#74add1;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
-  <rect
-     inkscape:label="#rect3032"
-     y="283.31308"
-     x="324.89297"
-     height="19.862041"
-     width="21.023508"
-     id="col-9"
-     style="fill:#4575b4;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
-  <rect
-     inkscape:label="#rect3032"
-     y="306.05627"
-     x="324.89297"
-     height="19.862041"
-     width="21.023508"
-     id="col-10"
-     style="fill:#313695;fill-opacity:1;fill-rule:nonzero;stroke:none;display:inline" />
-  <text
-     inkscape:label="#text3855"
-     transform="scale(0.66879285,1.4952313)"
-     sodipodi:linespacing="125%"
-     id="val-8"
-     y="176.27222"
-     x="520.64819"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
-     xml:space="preserve"><tspan
-       y="176.27222"
-       x="520.64819"
-       id="tspan3041-3-7"
-       sodipodi:role="line">0.00</tspan></text>
-  <text
-     inkscape:label="#text3855"
-     transform="scale(0.66879285,1.4952313)"
-     sodipodi:linespacing="125%"
-     id="val-9"
-     y="191.34474"
-     x="520.64819"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
-     xml:space="preserve"><tspan
-       y="191.34474"
-       x="520.64819"
-       id="tspan3041-16-1"
-       sodipodi:role="line">0.00</tspan></text>
   <text
      inkscape:label="#text3855"
      transform="scale(0.66879285,1.4952313)"
@@ -546,19 +475,6 @@
        y="161.19968"
        x="520.64807"
        id="tspan3041-1-5"
-       sodipodi:role="line">0.00</tspan></text>
-  <text
-     inkscape:label="#text3855"
-     transform="scale(0.6687928,1.4952314)"
-     sodipodi:linespacing="125%"
-     id="val-10"
-     y="206.41725"
-     x="520.64807"
-     style="font-size:12px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:start;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial;-inkscape-font-specification:Arial"
-     xml:space="preserve"><tspan
-       y="206.41725"
-       x="520.64807"
-       id="tspan3041-14-6"
        sodipodi:role="line">0.00</tspan></text>
   <rect
      inkscape:label="#rect3032"
