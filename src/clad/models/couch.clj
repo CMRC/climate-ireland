@@ -7,19 +7,19 @@
 
 (def db "climate_dev2")
 
-(clutch/with-db db
+#_(clutch/with-db db
     (clutch/save-view "users"
                       (clutch/view-server-fns
                        :clojure
                        {:users
                         {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
 
-(clutch/with-db db
+#_(clutch/with-db db
   (clutch/put-document {:username "user"
                         :password (creds/hash-bcrypt "icip")
                         :roles #{::user}}))
 
-(clutch/configure-view-server db (view-server-exec-string))
+#_(clutch/configure-view-server db (view-server-exec-string))
 
 (defn get-users []
   (try
@@ -64,7 +64,7 @@
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
 
-(save-views)
+#_(save-views)
 
 (defn get-run-data [year months]
   (try
