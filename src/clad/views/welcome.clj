@@ -1,5 +1,5 @@
 (ns clad.views.welcome
-  (:require [clojure.contrib.string :as str]
+  (:require [clojure.string :as str]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
             [noir.session :as session]
@@ -94,8 +94,7 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{tab}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -107,8 +106,7 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{page}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -130,8 +128,7 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{page}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -255,8 +252,7 @@
                               [:li :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{"projections"}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -265,8 +261,7 @@
   [:.buttons :a]
   (fn [a-node]
     (if (->>
-         (get-in a-node [:attrs :href])
-         (str/split #"/")
+         (str/split (get-in a-node [:attrs :href]) #"/")
          (some #{"projections"}))
       (assoc-in a-node [:attrs :id]
                 "current")

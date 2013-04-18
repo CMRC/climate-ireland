@@ -5,7 +5,7 @@
 	analemma.xml
         clad.models.couch
         incanter.stats
-        clojure.contrib.math
+        clojure.math.numeric-tower
 	[clojure.java.io :only [file]])
   (:require [c2.scale :as scale]
             [vomnibus.color-brewer :as color-brewer]

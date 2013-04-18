@@ -3,23 +3,23 @@
             [cemerick.friend [credentials :as creds]]
             [clojure.tools.logging :as log])
   (:use [com.ashafa.clutch.view-server]
-        clojure.contrib.math))
+        [clojure.math.numeric-tower]))
 
 (def db "climate_dev2")
 
-#_(clutch/with-db db
+(clutch/with-db db
     (clutch/save-view "users"
                       (clutch/view-server-fns
                        :clojure
                        {:users
                         {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
 
-#_(clutch/with-db db
+(clutch/with-db db
   (clutch/put-document {:username "user"
                         :password (creds/hash-bcrypt "icip")
                         :roles #{::user}}))
 
-#_(clutch/configure-view-server db (view-server-exec-string))
+(clutch/configure-view-server db (view-server-exec-string))
 
 (defn get-users []
   (try
@@ -64,7 +64,7 @@
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
 
-#_(save-views)
+(save-views)
 
 (defn get-run-data [year months]
   (try
