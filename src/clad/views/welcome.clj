@@ -1,9 +1,11 @@
 (ns clad.views.welcome
-  (:require [clojure.contrib.string :as str]
+  (:require [clojure.string :as str]
             [clojure.tools.logging :as log]
             [cemerick.friend :as friend]
             [noir.session :as session]
             [noir.response :as resp]
+            [clj-time.core :as time]
+            [clj-time.format :as format]
             (cemerick.friend [workflows :as workflows]
                              [credentials :as creds]))
   (:use [clad.views.site]
@@ -92,8 +94,7 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{tab}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -105,8 +106,7 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{page}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -128,8 +128,7 @@
                               [:.buttons :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{page}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -179,7 +178,12 @@
   [req map & {:keys [counties?] :or {counties? false}}]
   
   [:#decades :option]
-  (clone-for [decade {"2030s" "2021-50" "2040s" "2031-60"}]
+  (clone-for [decade {"2030s" "2021-50"
+                      "2040s" "2031-60"
+                      "2050s" "2041-70"
+                      "2060s" "2051-80"
+                      "2070s" "2061-90"
+                      "2080s" "2071-100"}]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (= (:years req) (second decade))
@@ -248,8 +252,7 @@
                               [:li :a]
                               (fn [a-node]
                                 (if (->>
-                                     (get-in a-node [:attrs :href])
-                                     (str/split #"/")
+                                     (str/split (get-in a-node [:attrs :href]) #"/")
                                      (some #{"projections"}))
                                   (assoc-in a-node [:attrs :id]
                                             "current")
@@ -258,8 +261,7 @@
   [:.buttons :a]
   (fn [a-node]
     (if (->>
-         (get-in a-node [:attrs :href])
-         (str/split #"/")
+         (str/split (get-in a-node [:attrs :href]) #"/")
          (some #{"projections"}))
       (assoc-in a-node [:attrs :id]
                 "current")
@@ -356,8 +358,7 @@
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
 (defpage [:post "/ci/submit"] {:as req}
-  (do (put-submit req)
-      (println req)
+  (do (put-submit (assoc req :time (format/unparse (format/formatters :basic-date-time) (time/now))))
       (submit req)))
 (defpage "/login" []
   (two-pane "clad/views/Login.html" "login" (html-resource "clad/views/terms.html")))
