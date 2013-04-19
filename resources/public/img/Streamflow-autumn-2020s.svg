@@ -10,9 +10,9 @@
    xmlns:xlink="http://www.w3.org/1999/xlink"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="373.88303"
-   height="532.30243"
-   viewBox="0 0 299.10642 425.84192"
+   width="389.2225"
+   height="592.15179"
+   viewBox="0 0 311.378 473.72141"
    enable-background="new 0 0 300.75591 351.75118"
    version="1.1"
    id="svg2"
@@ -21746,9 +21746,9 @@
      inkscape:window-height="1138"
      id="namedview397"
      showgrid="false"
-     inkscape:zoom="1.7938623"
-     inkscape:cx="179.44151"
-     inkscape:cy="266.15122"
+     inkscape:zoom="1.5519669"
+     inkscape:cx="194.61125"
+     inkscape:cy="296.0759"
      inkscape:window-x="-8"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
@@ -21761,12 +21761,12 @@
   <a
      id="a8160"
      xlink:href="/img/Streamflow-autumn-2020s.svg"
-     transform="translate(6.8803061,30.213487)">
+     transform="translate(6.880306,30.213491)">
     <g
        transform="translate(-1.0086922,14.180802)"
        id="g3423">
       <rect
-         style="fill:#0066ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.60000002000000000;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#0066ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.60000002;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="rect3382"
          width="36.164955"
          height="14.628522"
@@ -26907,12 +26907,13 @@
   </a>
   <a
      id="a11600"
-     xlink:href="/img/Streamflow-autumn-2050s.svg">
+     xlink:href="/img/Streamflow-autumn-2050s.svg"
+     transform="translate(-1.2402991e-7,3.9797089e-6)">
     <g
        transform="translate(0.8938611,44.394289)"
        id="g3428">
       <rect
-         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.60000002000000000;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.60000002;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="rect3382-1"
          width="36.164955"
          height="14.628522"
@@ -26936,12 +26937,13 @@
   </a>
   <a
      id="a17336"
-     xlink:href="/img/Streamflow-autumn-2080s.svg">
+     xlink:href="/img/Streamflow-autumn-2080s.svg"
+     transform="translate(-1.2402991e-7,3.9797089e-6)">
     <g
        transform="translate(5.8716141,44.394289)"
        id="g3433">
       <rect
-         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.60000002000000000;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.60000002;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="rect3382-0"
          width="36.164955"
          height="14.628522"
@@ -26968,12 +26970,14 @@
      kerning="0"
      font-size="1"
      style="font-size:1px;font-weight:700;fill:#000000;font-family:Arial"
-     transform="translate(5.8046431,0.28847042)">
+     transform="translate(5.804643,0.2884744)">
 			<text
    id="text290"
    transform="matrix(8.63447,0,0,8.63173,3.59769,13.99565)"><tspan
      id="tspan292"
      x="0 0.66645998 1.2496001 1.83275 2.4159 2.9990499 3.6654999 4.2486501 4.49857 4.8318 5.4149499 5.9980998 6.5812402 7.2477002 7.9141502 8.4973001 8.9971399 9.3303699 9.6636 10.57997 10.9132 11.24643 11.49635 12.1628 12.41272 12.99587 13.3291 13.74563 14.32878 14.91193">Seasonal changes (%) in stream</tspan></text>
+
+
 
 
 
@@ -26992,7 +26996,7 @@
      kerning="0"
      font-size="1"
      style="font-size:1px;font-weight:700;fill:#000000;font-family:Arial"
-     transform="translate(-7.1103199,1.1494684)">
+     transform="translate(-7.11032,1.1494724)">
 			<text
    id="text296"
    transform="matrix(8.63447,0,0,8.63173,15.11032,24.06599)"><tspan
@@ -27008,29 +27012,56 @@
 
 
 
+
+
 		</g>  <text
      xml:space="preserve"
      style="font-size:10.80000019px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-     x="159.50485"
-     y="400.77307"
+     x="15.340503"
+     y="399.84894"
      id="text4247"
      sodipodi:linespacing="137%"><tspan
        sodipodi:role="line"
-       id="tspan4253"
-       x="161.0025"
-       y="400.77307">Projected changes in streamflow for a selection of </tspan><tspan
+       x="15.340503"
+       y="399.84894"
+       id="tspan10015"
+       style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Compared to the 1961-1990 reference period, this map displays </tspan><tspan
        sodipodi:role="line"
-       id="tspan4255"
-       x="159.50485"
-       y="415.56906">Irish catchments (Murphy and Charlton, 2009)</tspan></text>
+       x="15.340503"
+       y="413.00095"
+       id="tspan10003"
+       style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">projected changes in streamflow calculated for a number of Irish </tspan><tspan
+       sodipodi:role="line"
+       x="15.340503"
+       y="426.15295"
+       id="tspan10007"
+       style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">catchments (Murphy and Charlton, 2008).  These data are based </tspan><tspan
+       sodipodi:role="line"
+       x="15.340503"
+       y="439.30493"
+       style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+       id="tspan10043">upon a multi-model average of climate scenarios (A2; B2) which </tspan><tspan
+       sodipodi:role="line"
+       x="15.340503"
+       y="452.45694"
+       style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+       id="tspan10047">are then coupled with hydrological parameterised for each of the </tspan><tspan
+       sodipodi:role="line"
+       x="15.340503"
+       y="465.60895"
+       style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:center;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:middle;font-family:Arial;-inkscape-font-specification:Arial"
+       id="tspan10053"><tspan
+   style="font-size:9.60000038px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial"
+   id="tspan10055">selected catchments</tspan>.      </tspan></text>
   <a
      id="a11606"
-     xlink:href="/img/Streamflow-winter-2020s.svg">
+     xlink:href="/img/Streamflow-winter-2020s.svg"
+     transform="translate(-1.2402991e-7,3.9797089e-6)">
     <g
        transform="translate(-0.8541369,-118.32059)"
        id="g4204">
       <rect
-         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.74901700000000000;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+         style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.749017;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
          id="rect4170-4"
          width="47.728672"
          height="14.479783"
@@ -27051,14 +27082,14 @@
   </a>
   <g
      id="g4209"
-     transform="translate(-8.3320179,-118.32059)">
+     transform="translate(-8.332018,-118.32059)">
     <rect
        y="456.85202"
        x="111.96063"
        height="14.479397"
        width="47.751045"
        id="rect4170-7"
-       style="fill:#0066ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.74940359999999990;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+       style="fill:#0066ff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.7494036;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
     <text
        sodipodi:linespacing="137%"
        id="text4158"
@@ -27073,7 +27104,8 @@
   </g>
   <a
      id="a11612"
-     xlink:href="/img/streamflow-spring-2020s.svg">
+     xlink:href="/img/streamflow-spring-2020s.svg"
+     transform="translate(-1.2402991e-7,3.9797089e-6)">
     <g
        transform="translate(-3.9932669,-118.32059)"
        id="g4214">
@@ -27099,7 +27131,8 @@
   </a>
   <a
      id="a11618"
-     xlink:href="/img/streamflow-summer-2020s.svg">
+     xlink:href="/img/streamflow-summer-2020s.svg"
+     transform="translate(-1.2402991e-7,3.9797089e-6)">
     <g
        transform="translate(-0.8541369,-118.32059)"
        id="g4219">
@@ -27124,7 +27157,7 @@
     </g>
   </a>
   <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#b6edf0;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1484"
@@ -27132,7 +27165,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1486"
      xml:space="preserve"
@@ -27148,8 +27181,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#98d2ed;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1492"
@@ -27157,7 +27192,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1494"
      xml:space="preserve"
@@ -27173,8 +27208,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#7cbbeb;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1500"
@@ -27182,7 +27219,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1502"
      xml:space="preserve"
@@ -27198,8 +27235,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#5ca3e6;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1508"
@@ -27207,7 +27246,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1510"
      xml:space="preserve"
@@ -27223,8 +27262,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#368de3;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1516"
@@ -27232,7 +27273,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1518"
      xml:space="preserve"
@@ -27248,8 +27289,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#2176d9;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1524"
@@ -27257,7 +27300,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1526"
      xml:space="preserve"
@@ -27273,8 +27316,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#2259c7;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1532"
@@ -27282,7 +27327,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1534"
      xml:space="preserve"
@@ -27298,8 +27343,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#1d3eb5;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1540"
@@ -27307,7 +27354,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1542"
      xml:space="preserve"
@@ -27323,8 +27370,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#1727a3;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1548"
@@ -27332,7 +27381,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1550"
      xml:space="preserve"
@@ -27348,8 +27397,10 @@
 
 
 
+
+
 		</g>  <path
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="fill:#090991;fill-rule:evenodd;stroke:#6e6e6e;stroke-width:0.71954;stroke-linecap:round;stroke-linejoin:round;stroke-miterlimit:10"
      inkscape:connector-curvature="0"
      id="path1556"
@@ -27357,7 +27408,7 @@
      stroke-miterlimit="10"
      clip-path="url(#SVG_CP_2-2)" />
   <g
-     transform="translate(-38.089189,2.4816376)"
+     transform="translate(-38.089189,2.4816416)"
      style="font-size:1px;font-weight:400;fill:#000000;font-family:Arial"
      id="g1558"
      xml:space="preserve"
@@ -27370,6 +27421,8 @@
    transform="matrix(9.35401,0,0,9.35104,68.3562,160.40623)"><tspan
      id="tspan1562"
      x="0 0.30759999 0.92277998 1.2303801 1.61487 1.84557">-5 - 0</tspan></text>
+
+
 
 
 
