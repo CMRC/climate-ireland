@@ -3,21 +3,21 @@
             [cemerick.friend [credentials :as creds]]
             [clojure.tools.logging :as log])
   (:use [com.ashafa.clutch.view-server]
-        clojure.contrib.math))
+        [clojure.math.numeric-tower]))
 
-(def db "climate_dev")
+(def db "climate_dev2")
 
-(comment (clutch/with-db db
-           (clutch/save-view "users"
-                             (clutch/view-server-fns
-                              :clojure
-                              {:users
-                               {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
-         
-         (clutch/with-db db
-           (clutch/put-document {:username ""
-                                 :password (creds/hash-bcrypt "")
-                                 :roles #{::user}})))
+#_(clutch/with-db db
+    (clutch/save-view "users"
+                      (clutch/view-server-fns
+                       :clojure
+                       {:users
+                        {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
+
+#_(clutch/with-db db
+  (clutch/put-document {:username "user"
+                        :password (creds/hash-bcrypt "icip")
+                        :roles #{::user}}))
 
 #_(clutch/configure-view-server db (view-server-exec-string))
 
@@ -104,16 +104,24 @@
 
 (def ref-data (memoize ref-data-slow))
 
-(def ensemble [["CGCM31" "A2"]
-               ["CGCM31" "A1B"]
-               ["HadGEM" "RCP85"]
-               ["HadGEM" "RCP45"]
-               #_["ICARUS" "ICARUS"]])
-
-(defn ensemble-data [county year months variable]
-  (/ (reduce #(+ %1 (data-by-county county year months (first %2) (second %2) variable))
-             0
-             ensemble) (count ensemble)))
+(def ensemble {"ensemble"
+               [["ICARUS" "a2"]
+                ["ICARUS" "b2"]
+                ["CGCM31" "A2"]
+                ["CGCM31" "A1B"]
+                ["HadGEM" "RCP85"]
+                ["HadGEM" "RCP45"]]
+               "high"
+               [["HadGEM" "RCP85"]
+                ["CGCM31" "A2"]
+                ["ICARUS" "a2"]]
+               "medium"
+               [["ICARUS" "b2"]
+                ["CGCM31" "A2"]
+                ["ICARUS" "a2"]]
+               "low"
+               [["HadGEM" "RCP45"]
+                ["CGCM31" "A1B"]]})
 
 (def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
 
@@ -128,30 +136,34 @@
    (/ 100)
    float))
 
+(defn diff-by-county [county year months model scenario variable]
+  (let [d (->> (get-county-by-year county year months model scenario variable)
+                  first 
+                  :value
+                  :datum.value)
+        ref (ref-data county months model variable)]
+    (when d
+      (if (= model "ICARUS")
+        d
+        (if (temp-var? variable)
+          (- d ref)
+          (percent d ref))))))
+
 (defn diff-data
   "calculate the display value based on a difference function between
 computed data and reference data. Difference function is subtraction for
 temperature data and percentage difference for everything else"
   [county year months model scenario variable]
-  (let [diff-fn (if (temp-var? variable) - percent)]
-          (if (= model "ensemble")
-            (let [raw (filter #(not (nil? %))
-                              (map #(ref-data county months (first %) variable)
-                                   ensemble))
-                  ref (when (> (count raw) 0)
-                        (/ (reduce + 0 raw)
-                           (count raw)))
-                  rawcomp (filter #(not (nil? %))
-                                  (map #(data-by-county county year months (first %) (second %) variable)
-                                       ensemble))
-                  comp (when (> (count rawcomp) 0)
-                         (/ (reduce + 0 rawcomp)
-                            (count rawcomp)))]
-              (when (and (not (nil? ref)) (not (nil? comp))) (diff-fn comp ref)))
-            (let [ref (ref-data county months model variable)
-                  comp (data-by-county county year months model scenario variable)]
-              (when (and (not (nil? ref)) (not (nil? comp))) (diff-fn comp ref))))))
-  
+  (if (= model "ensemble")
+    (let [rawcomp (filter #(not (nil? %))
+                          (map #(diff-by-county county year months (first %) (second %) variable)
+                               (get ensemble scenario)))
+          comp (when (> (count rawcomp) 0)
+                 (/ (reduce + 0 rawcomp)
+                    (count rawcomp)))]
+      comp)
+    (diff-by-county county year months model scenario variable)))
+
 (defn with-decadal [months model scenario variable regions diff-fn f]
   (apply f
          (filter #(not (nil? %))
@@ -161,7 +173,7 @@ temperature data and percentage difference for everything else"
                               goodvals (filter #(not (nil? %)) vals)]
                           (log/info "goodvals: " goodvals)
                           (when (seq goodvals) (apply f goodvals))))
-                      ["2021-30" "2031-40" "2041-50" "2051-60"]))))
+                      ["2021-50" "2031-60"]))))
 
 (defn decadal-min [months model scenario variable regions diff-fn]
   (with-decadal months model scenario variable regions diff-fn min))
@@ -221,5 +233,7 @@ temperature data and percentage difference for everything else"
        (when counties? "/counties")))
 
 (defn put-submit [req]
-  (clutch/with-db db
-    (clutch/put-document req)))
+  (do
+    (log/info req)
+    (clutch/with-db db
+      (clutch/put-document req))))

@@ -5,7 +5,7 @@
 	analemma.xml
         clad.models.couch
         incanter.stats
-        clojure.contrib.math
+        clojure.math.numeric-tower
 	[clojure.java.io :only [file]])
   (:require [c2.scale :as scale]
             [vomnibus.color-brewer :as color-brewer]
@@ -33,23 +33,21 @@
 (defn colour-on-quartiles [elem county year months model scenario variable]
   )
 
-(def colour-scheme color-brewer/RdYlBu-11)
-
-(defn linear-rgb [val domain]
+(defn linear-rgb [val domain colour-scheme]
   "Returns a colour string based on the value"
   (if (nil? val)
     "grey"
     (let [colour-scale (let [s (scale/linear :domain domain
-                                             :range [0 (dec (count colour-scheme))])]
+                                             :range [0 (count colour-scheme)])]
                          (fn [d] (nth colour-scheme (floor (s d)))))]
       (colour-scale val))))
 
 (defn colour-on-linear
   "Calls CouchDB and returns a colour string based on the query parameters"
-  [elem county year months model scenario variable region lmin lmax diff-fn]
+  [elem county year months model scenario variable region lmin lmax diff-fn colour-scheme]
   (let [domain [lmax lmin]
         val (diff-fn county year months model scenario variable)]
-    (add-style elem :fill (linear-rgb val domain))))
+    (add-style elem :fill (linear-rgb val domain colour-scheme))))
 
 (defn regions-map-slow
   "Takes an svg file representing a map of Ireland divdided into regions
@@ -64,11 +62,10 @@
           regions (case cp
                     :county counties
                     :province provinces)
-          diff-fn (if (= model "ICARUS")
-                    data-by-county ;; ICARUS data is already expressed as a delta
-                    diff-data)
-          min (decadal-min months model scenario variable regions diff-fn)
-          max (decadal-max months model scenario variable regions diff-fn)]
+          diff-fn diff-data
+          colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
+          min (if (temp-var? variable) -0.5 -30.0)
+          max (if (temp-var? variable) 3 40.0)]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -98,7 +95,7 @@
                                            (if (temp-var? variable) "°C " "% ")
                                            %2
                                            "')")))
-                         (colour-on-linear %2 year months model scenario variable region min max diff-fn)
+                         (colour-on-linear %2 year months model scenario variable region min max diff-fn colour-scheme)
                          (add-style :stroke (if (= region (:id (second elem))) "red" "grey")))])))
               regions-svg			
               regions)
@@ -106,11 +103,11 @@
                                             [{:id (str "col-" %2)}]
                                             (fn [node] (add-style node :fill (nth colour-scheme %2))))
                             choropleth
-                            (range 0 11))
+                            (range 0 (count colour-scheme)))
              values (reduce #(transform-xml %1
                                             [{:id (str "val-" %2)}]
                                             (fn [node] (set-content node (str (->
-                                                                               ((scale/linear :domain [0 11]
+                                                                               ((scale/linear :domain [0 (count colour-scheme)]
                                                                                               :range [max min])
                                                                                 %2)
                                                                                (* 100)
@@ -118,13 +115,13 @@
                                                                                (/ 100)
                                                                                float)))))
                             legend
-                            (range 11 -1 -1))
+                            (range 0 (inc (count colour-scheme))))
              units (transform-xml values [{:id "units"}]
                                   (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    (catch Exception ex
+    #_(catch Exception ex
       (log/info ex)
       (log/info req)
       "We do apologise. There is no data available for the selection you have chosen.

@@ -101,7 +101,7 @@ populate <- function(df,prefix,varname,scenario="ICARUS") {
   print(summary(sgdf))
   
   print(seasons[season+1])
-  run <- paste(prefix,toString(normal + 10),seasons[season+1],sep="")
+  run <- paste(prefix,toString(normal),seasons[season+1],sep="")
   var <- varname
 
   countiesarray[[run]] <- sgdf

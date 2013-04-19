@@ -5872,11 +5872,11 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="5.6181056"
-     inkscape:cx="198.5"
-     inkscape:cy="300"
+     inkscape:zoom="1.9138702"
+     inkscape:cx="186.03683"
+     inkscape:cy="339.22586"
      inkscape:document-units="px"
-     inkscape:current-layer="g8547"
+     inkscape:current-layer="g3312"
      width="3249.21px"
      height="600px"
      inkscape:window-width="1920"
@@ -11612,7 +11612,7 @@
           <a
              id="a8595"
              xlink:href="/ci/tools/coastal-flooding"
-             target="/ci/tools">
+             target="_top">
             <text
                xml:space="preserve"
                style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
@@ -11634,23 +11634,27 @@
       <a
          onclick="/img/impact-tool_flooding.svg"
          id="a6129"
-         style="display:inline"
-         xlink:href="/">
+         style="display:inline">
         <g
            id="g3312"
            onmouseover="document.getElementById(&quot;inland-flooding&quot;).style.display=&quot;block&quot;;"
            onmouseout="document.getElementById(&quot;inland-flooding&quot;).style.display=&quot;none&quot;;"
            transform="matrix(0.6732,0,0,0.73981395,149.41852,27.253701)">
-          <path
-             transform="matrix(2.4708794,0,0,2.3572757,626.23075,256.04579)"
-             d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
-             sodipodi:ry="18.117414"
-             sodipodi:rx="17.28443"
-             sodipodi:cy="125.32334"
-             sodipodi:cx="-100.99937"
-             id="path3859-7-6"
-             style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.22994268;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
-             sodipodi:type="arc" />
+          <a
+             id="a5530"
+             xlink:href="/ci/tools/inland-flooding"
+             target="_top">
+            <path
+               sodipodi:type="arc"
+               style="fill:#ffffff;fill-opacity:1;stroke:#ff0000;stroke-width:1.22994268;stroke-linejoin:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;stroke-dashoffset:0;display:inline"
+               id="path3859-7-6"
+               sodipodi:cx="-100.99937"
+               sodipodi:cy="125.32334"
+               sodipodi:rx="17.28443"
+               sodipodi:ry="18.117414"
+               d="m -83.714937,125.32334 c 0,10.00597 -7.738503,18.11742 -17.284433,18.11742 -9.54592,0 -17.28443,-8.11145 -17.28443,-18.11742 0,-10.00597 7.73851,-18.11741 17.28443,-18.11741 9.54593,0 17.284433,8.11144 17.284433,18.11741 z"
+               transform="matrix(2.4708794,0,0,2.3572757,626.23075,256.04579)" />
+          </a>
           <a
              id="a8572"
              xlink:href="/ci/tools/inland-flooding"
@@ -11784,7 +11788,7 @@
          id="a3049-8"
          transform="matrix(0.6732,0,0,0.73981395,244.57746,343.6717)"
          xlink:href="/ci/tools/coastal-erosion"
-         target="/ci/tools">
+         target="_top">
         <text
            xml:space="preserve"
            style="font-size:19.44444466px;font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;text-align:center;line-height:125%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:middle;fill:#00000d;fill-opacity:1;stroke:none;display:inline;font-family:Arial Narrow;-inkscape-font-specification:Arial Narrow Bold"
