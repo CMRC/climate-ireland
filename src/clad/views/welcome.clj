@@ -136,7 +136,7 @@
                    [:.buttons :ul])))
 
 
-(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "All Seasons"})
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
 
 (def scenarios (array-map
 		["CGCM31" "A1B"] "A1B"
