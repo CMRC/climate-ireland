@@ -353,8 +353,6 @@
   (plot-models-decadal county months variable))
 (defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/linear" {:keys [county months variable]} 
   (decadal-box county months variable))
-(defpage "/ci/bar/:region/:year/:months/:model/:scenario/:variable/:fill" {:keys [region year months variable]}
-  (barchart region year months variable))
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
 (defpage [:post "/ci/submit"] {:as req}

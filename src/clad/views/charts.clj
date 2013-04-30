@@ -111,8 +111,6 @@
                                       county decade months
                                       (first %) (second %) variable)
                                     (get ensemble "ensemble")))))
-        l (log/info "Decadal values for " county " " months " " variable ": "
-                    (vals-fn "2051-2060"))
         decades ["2021-2050"
                  "2031-2060"
                  "2041-2070"

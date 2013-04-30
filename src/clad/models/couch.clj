@@ -97,10 +97,11 @@
                   :value
                   :datum.value)] d))
 
-(defn ref-data-slow [county months model variable]
+(defn ref-data-slow [county months model scenario variable]
   (try
     (clutch/with-db db
-      (data-by-county county "1961-1990" months model "C20" variable))
+      (data-by-county county "1961-1990" months model
+                      (if (= model "ICARUS") scenario "C20") variable))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (def ref-data (memoize ref-data-slow))
@@ -142,7 +143,7 @@
                   first 
                   :value
                   :datum.value)
-        ref (ref-data county months model variable)]
+        ref (ref-data county months model scenario variable)]
     (when d
       (if (temp-var? variable)
         (- d ref)
