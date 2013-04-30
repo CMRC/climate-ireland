@@ -53,15 +53,15 @@
   "Takes an svg file representing a map of Ireland divdided into regions
    and generates a choropleth map where the colours represent the value
    of the given variable"
-  [cp req]
+  [req]
   (try
     (let [{:keys [year months model scenario variable fill region]} req
-          regions-svg (case cp
-                        :county counties-svg
-                        :province provinces-svg)
-          regions (case cp
-                    :county counties
-                    :province provinces)
+          regions-svg (case (:regions req)
+                        "Counties" counties-svg
+                        "Provinces" provinces-svg)
+          regions (case (:regions req)
+                    "Counties" counties
+                    "Provinces" provinces)
           diff-fn diff-data
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
           min (if (temp-var? variable) -0.5 -30)
@@ -78,7 +78,7 @@
                 (fn [elem]
                   (let [link (make-url "climate-information/projections"
                                        (assoc-in req [:region] %2)
-                                       :counties? (= cp :county))
+                                       :counties? (= (:regions req) "Counties"))
                         val (diff-fn %2 year months model scenario variable)]
                     (log/info "Value: " val " From: " req)
                     [:a {:xlink:href link :target "_top"}
@@ -129,15 +129,6 @@ Please select another combination of decade/variable/projection")))
   
   
 (def regions-map (memoize regions-map-slow))
-
-(defn counties-map 
-  [req]
-  (regions-map :county req))
-
-(defn provinces-map
-  [req]
-  (regions-map :province req))
-
 
 (defn counties-map-png 
   ([year months model scenario variable fill]

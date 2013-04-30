@@ -175,7 +175,7 @@
   (set-attr :class (when (not= variable "TOT_PREC") "do-not-display")))
 
 (defsnippet maptools "clad/views/maptools.html" [:#view-2-map-tool]
-  [req map & {:keys [counties?] :or {counties? false}}]
+  [req map]
   
   [:#decades :option]
   (clone-for [decade {"2030s" "2021-2050"
@@ -195,11 +195,7 @@
   (clone-for [region ["Counties" "Provinces"]]
              [:option]
              (fn [a-node] (->
-                           (assoc-in (if (or
-                                          (and counties?
-                                               (= region "Counties"))
-                                          (and (not counties?)
-                                               (= region "Provinces")))
+                           (assoc-in (if (= region (:regions req))
                                        (assoc-in a-node [:attrs :selected] nil)
                                        a-node) [:content] region)
                            (assoc-in [:attrs :value] region))))
@@ -244,7 +240,7 @@
   (content (html-resource "clad/views/CI_Information.html")))
 
 (deftemplate svgmap "clad/views/View_2.html"
-  [req map blurb & {:keys [counties?] :or {counties? false}}]
+  [req map blurb]
   [:#banner]
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#tabs]
@@ -271,7 +267,7 @@
   [:#view-2-map]
   (content map)
   [:#view-2-map-tool]
-  (content (maptools req map :counties? counties?))
+  (content (maptools req map))
   [:#view-2-2-chart]
   (content blurb)
   [:#view-2-2-expl]
@@ -283,26 +279,15 @@
 
 (deftemplate login "clad/views/Login.html" [])
 
-(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:shading"
- {:as req}
- (svgmap req
-         {:tag :object
-          :attrs {(if (good-browser?) :data :src) (make-url "svg" req)
-                  :type "image/svg+xml"}}
-         {:tag :img
-          :attrs {:src (make-url "box" req)
-                  :max-width "100%"}}))
-
-(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:shading/counties"
- {:as req}
- (svgmap req
-         {:tag :object
-          :attrs {(if (good-browser?) :data :src) (make-url "svg" req :counties? true)
-                  :type "image/svg+xml"}}
-         {:tag :img
-          :attrs {:src (make-url "box" req)
-                  :max-width "100%"}}
-         :counties? true))
+(defpage "/ci/climate-information/projections/:region/:years/:months/:model/:scenario/:variable/:abs/:regions"
+  {:as req}
+  (svgmap req
+          {:tag :object
+           :attrs {(if (good-browser?) :data :src) (make-url "svg" req)
+                   :type "image/svg+xml"}}
+          {:tag :img
+           :attrs {:src (make-url "box" req)
+                   :max-width "100%"}}))
 
 (defpage "/" []
   (resp/redirect "/ci/about"))
@@ -337,21 +322,11 @@
 (defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
   (by-county year months  model scenario variable))
-(defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill"
+(defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:abs/:regions"
   {:as req}
-  (provinces-map req))
-(defpage "/ci/svg/:region/:year/:months/:model/:scenario/:variable/:fill/counties"
-  {:as req}
-  (counties-map req))
-(defpage "/ci/png/:year/:months/:model/:scenario/:variable/:fill"
-  {:keys [year months model scenario variable fill]}
-  (counties-map-png year months model scenario variable fill))
+  (regions-map req))
 (defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
-(defpage "/ci/plot/:county/:months/:variable" {:keys [county months variable]} 
-	 (plot-models county months variable))
-(defpage "/ci/plot/:county/:months/:variable/decadal" {:keys [county months variable]} 
-  (plot-models-decadal county months variable))
-(defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/linear" {:keys [county months variable]} 
+(defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/:abs?" {:keys [county months variable abs?]} 
   (decadal-box county months variable))
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
@@ -366,8 +341,8 @@
                  "/" (:months req)
                  "/" (:runs req)
                  "/" (:variable req)
-                 "/linear"
-                 (when (= (:regions req) "Counties") "/counties"))))
+                 "/" "false"
+                 "/" (:regions req))))
 
 (defn clear-identity [response] 
   (update-in response [:session] dissoc ::identity))
