@@ -64,8 +64,8 @@
                     :province provinces)
           diff-fn diff-data
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) -0.5 -30.0)
-          max (if (temp-var? variable) 3 40.0)]
+          min (if (temp-var? variable) -0.5 -30)
+          max (if (temp-var? variable) 3.0 40)]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}

@@ -5,25 +5,26 @@
   (:use [com.ashafa.clutch.view-server]
         [clojure.math.numeric-tower]))
 
-(def db "climate_dev2")
+(def users-db "climate_dev2")
+(def db "climate_dev4")
 
-#_(clutch/with-db db
+#_(clutch/with-db users-db
     (clutch/save-view "users"
                       (clutch/view-server-fns
                        :clojure
                        {:users
                         {:map (fn [doc] (if (:username doc) [[(:username doc) doc]]))}})))
 
-#_(clutch/with-db db
-  (clutch/put-document {:username "user"
-                        :password (creds/hash-bcrypt "icip")
+#_(clutch/with-db users-db
+  (clutch/put-document {:username "sea"
+                        :password (creds/hash-bcrypt "longford")
                         :roles #{::user}}))
 
 #_(clutch/configure-view-server db (view-server-exec-string))
 
 (defn get-users []
   (try
-    (clutch/with-db db
+    (clutch/with-db users-db
       (reduce #(assoc %1 (:key %2) (:value %2)) {} (clutch/get-view "users" :users)))
     ;;for testing locally without the database we supply a default password
     (catch java.io.IOException e {"local" {:username "local"
@@ -99,7 +100,7 @@
 (defn ref-data-slow [county months model variable]
   (try
     (clutch/with-db db
-      (data-by-county county "1961-90" months model "C20" variable))
+      (data-by-county county "1961-1990" months model "C20" variable))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (def ref-data (memoize ref-data-slow))
@@ -143,11 +144,9 @@
                   :datum.value)
         ref (ref-data county months model variable)]
     (when d
-      (if (= model "ICARUS")
-        d
-        (if (temp-var? variable)
-          (- d ref)
-          (percent d ref))))))
+      (if (temp-var? variable)
+        (- d ref)
+        (percent d ref)))))
 
 (defn diff-data
   "calculate the display value based on a difference function between
@@ -164,34 +163,7 @@ temperature data and percentage difference for everything else"
       comp)
     (diff-by-county county year months model scenario variable)))
 
-(defn with-decadal [months model scenario variable regions diff-fn f]
-  (apply f
-         (filter #(not (nil? %))
-                 (map (fn [decade]
-                        (let [vals (map (fn [region] (diff-fn region decade months model scenario variable))
-                                        regions)
-                              goodvals (filter #(not (nil? %)) vals)]
-                          (log/info "goodvals: " goodvals)
-                          (when (seq goodvals) (apply f goodvals))))
-                      ["2021-50" "2031-60"]))))
-
-(defn decadal-min [months model scenario variable regions diff-fn]
-  (with-decadal months model scenario variable regions diff-fn min))
-
-(defn decadal-max [months model scenario variable regions diff-fn]
-  (with-decadal months model scenario variable regions diff-fn max))
-
 (def bycounty-memo (memoize data-by-county))
-
-(def counties
-       ["Carlow" "Cavan" "Clare" "Cork"
-        "Donegal" "Dublin" "Galway" "Kerry"
-        "Kildare" "Kilkenny" "Laois" "Leitrim"
-        "Limerick" "Longford" "Louth" "Mayo"
-        "Meath" "Monaghan" "North Tipperary"
-        "Offaly" "Roscommon" "Sligo"
-        "South Tipperary" "Waterford" "Westmeath"
-        "Wexford" "Wicklow" "NI"])
 
 (def counties-by-province
   {"Carlow" "Leinster"
@@ -222,6 +194,8 @@ temperature data and percentage difference for everything else"
    "Wexford" "Leinster"
    "Wicklow" "Leinster"
    "NI" "Ulster"})
+
+(def counties (keys counties-by-province))
 
 (defn all-counties [year months model scenario variable]
   (map #(str (data-by-county % year months model scenario variable) ",") counties))

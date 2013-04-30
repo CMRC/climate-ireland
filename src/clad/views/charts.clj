@@ -112,8 +112,13 @@
                                       (first %) (second %) variable)
                                     (get ensemble "ensemble")))))
         l (log/info "Decadal values for " county " " months " " variable ": "
-                    (vals-fn "2051-60"))
-        decades ["2021-50" "2031-60" "2041-70" "2051-80" "2061-90" "2071-100"]
+                    (vals-fn "2051-2060"))
+        decades ["2021-2050"
+                 "2031-2060"
+                 "2041-2070"
+                 "2051-2080"
+                 "2061-2090"
+                 "2071-2100"]
         chart (doto (box-plot [0]
                               :legend true
                               :title (str county " " (variables variable))
@@ -121,22 +126,22 @@
                                            "% difference from baseline")
                               :series-label "decade:"
                               :x-label "")
-                (add-box-plot (vals-fn "2021-50")
+                (add-box-plot (vals-fn "2021-2050")
                               :legend true
                               :series-label "2030s")
-                (add-box-plot (vals-fn "2031-60")
+                (add-box-plot (vals-fn "2031-2060")
                               :legend true
                               :series-label "2040s")
-                (add-box-plot (vals-fn "2041-70")
+                (add-box-plot (vals-fn "2041-2070")
                               :legend true
                               :series-label "2050s")
-                (add-box-plot (vals-fn "2051-80")
+                (add-box-plot (vals-fn "2051-2080")
                               :legend true
                               :series-label "2060s")
-                (add-box-plot (vals-fn "2061-90")
+                (add-box-plot (vals-fn "2061-2090")
                               :legend true
                               :series-label "2070s")
-                (add-box-plot (vals-fn "2071-100")
+                (add-box-plot (vals-fn "2071-2100")
                               :legend true
                               :series-label "2080s"))
         chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
@@ -150,25 +155,3 @@
     {:status 200
      :headers {"Content-Type" "image/png"}
      :body in-stream}))
-
-(defn barchart [county year months variable]
-  (let [y (cons (data-by-county county year months "ICARUS" "ICARUS" variable)
-                (map #(diff-data county year months (first %) (second %) variable)
-                     ensemble))
-        runs (cons "ICARUS" (map #(str (first %) " " (second %)) ensemble))
-        x (repeat (count runs) "")
-        chart (bar-chart x y :title (str county " " year " " months " " variable)
-                         :x-label "Model runs"			     
-                         :y-label (if (temp-var? variable) "Difference in °C from baseline"
-                                      "% difference from baseline")
-                         :legend true
-                         :group-by runs)
-        out-stream (ByteArrayOutputStream.)
-        in-stream (do
-                    (save chart out-stream :width 397 :height 580)
-                    (ByteArrayInputStream. 
-                     (.toByteArray out-stream)))]
-    {:status 200
-     :headers {"Content-Type" "image/png"}
-     :body in-stream}))
-

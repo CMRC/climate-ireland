@@ -26,7 +26,7 @@ for(run in c("MM_haCLM4_C20_4km", "MM_caCLM4_C20_4km")) {
   cdoseasonaldecadal(run, "1961/1990")
   for(season in c("DJF","MAM","JJA","SON","J2D")) {
     for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
-      decade <- "1961-90"
+      decade <- "1961-1990"
       sd20s <- maketifseasonaldecadal(run, decade, season, var)
       NI(sd20s, run, decade, season, var)
       for(province in c("Leinster","Munster","Connaught","Ulster")) {
@@ -45,7 +45,7 @@ for(start in c(2021L,2031L)) {
     cdoseasonaldecadal(run, paste(toString(start),sep="/",toString(start+29)))
     for(season in c("DJF","MAM","JJA","SON","J2D")) {
       for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
-        decade <- paste(toString(start),sep="-",toString(start+29-2000))
+        decade <- paste(toString(start),sep="-",toString(start+29))
         sd20s <- maketifseasonaldecadal(run, decade, season, var) 
         NI(sd20s, run, decade, season, var)
         for(province in c("Leinster","Munster","Connaught","Ulster")) {
