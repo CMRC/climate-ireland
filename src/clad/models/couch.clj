@@ -91,21 +91,6 @@
       (clutch/get-view "models" :by-model))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
-(defn data-by-county [county year months model scenario variable]
-  (when-let [d (->> (get-county-by-year county year months model scenario variable)
-                  first 
-                  :value
-                  :datum.value)] d))
-
-(defn ref-data-slow [county months model scenario variable]
-  (try
-    (clutch/with-db db
-      (data-by-county county "1961-1990" months model
-                      (if (= model "ICARUS") scenario "C20") variable))
-    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
-
-(def ref-data (memoize ref-data-slow))
-
 (def ensemble {"ensemble"
                [["ICARUS" "a2"]
                 ["ICARUS" "b2"]
@@ -137,6 +122,32 @@
    round
    (/ 100)
    float))
+
+(defn data-by-county [county year months model scenario variable]
+  (letfn [(get-data [county year months model scenario variable]
+            (->> (get-county-by-year county year months model scenario variable)
+                 first 
+                 :value
+                 :datum.value))]
+    (if (= model "ensemble")
+      (let [d (map #(get-data county year months (first %) (second %) variable)
+                   (get ensemble scenario))]
+        (/ (reduce + 0 d) (count d)))
+      (get-data county year months model scenario variable))))
+
+(defn abs-data [county year months model scenario variable]
+  (if (temp-var? variable)
+    (- (data-by-county county year months model scenario variable) 273.15)
+    (data-by-county county year months model scenario variable)))
+
+(defn ref-data-slow [county months model scenario variable]
+  (try
+    (clutch/with-db db
+      (data-by-county county "1961-1990" months model
+                      (if (= model "ICARUS") scenario "C20") variable))
+    (catch java.net.ConnectException e [{:region "Kilkenny"}])))
+
+(def ref-data (memoize ref-data-slow))
 
 (defn diff-by-county [county year months model scenario variable]
   (let [d (->> (get-county-by-year county year months model scenario variable)

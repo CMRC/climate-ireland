@@ -30,8 +30,7 @@
 
 (def quartiles (memoize quartiles-slow))
   
-(defn colour-on-quartiles [elem county year months model scenario variable]
-  )
+(defn colour-on-quartiles [elem county year months model scenario variable])
 
 (defn linear-rgb [val domain colour-scheme]
   "Returns a colour string based on the value"
@@ -50,7 +49,7 @@
     (add-style elem :fill (linear-rgb val domain colour-scheme))))
 
 (defn regions-map-slow
-  "Takes an svg file representing a map of Ireland divdided into regions
+  "Takes an svg file representing a map of Ireland divided into regions
    and generates a choropleth map where the colours represent the value
    of the given variable"
   [req]
@@ -62,10 +61,11 @@
           regions (case (:regions req)
                     "Counties" counties
                     "Provinces" provinces)
-          diff-fn diff-data
+          delta (= (:abs req) "delta")
+          diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) -0.5 -30)
-          max (if (temp-var? variable) 3.0 40)]
+          min (if (temp-var? variable) (if delta -0.5 -5) (if delta -30 0))
+          max (if (temp-var? variable) (if delta 3.0 30) (if delta 40 10))]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
