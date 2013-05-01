@@ -12,7 +12,7 @@
    height="600"
    id="svg2"
    sodipodi:version="0.32"
-   inkscape:version="0.48.2 r9819"
+   inkscape:version="0.48.3.1 r9886"
    version="1.0"
    sodipodi:docname="impact-tool-2.svg"
    inkscape:output_extension="org.inkscape.output.svg.inkscape">
@@ -5876,13 +5876,13 @@
      inkscape:cx="186.03683"
      inkscape:cy="339.22586"
      inkscape:document-units="px"
-     inkscape:current-layer="g3312"
+     inkscape:current-layer="g8547"
      width="3249.21px"
      height="600px"
-     inkscape:window-width="1920"
-     inkscape:window-height="1138"
-     inkscape:window-x="-8"
-     inkscape:window-y="-8"
+     inkscape:window-width="1855"
+     inkscape:window-height="1072"
+     inkscape:window-x="65"
+     inkscape:window-y="24"
      showgrid="false"
      inkscape:window-maximized="1"
      fit-margin-top="0"
@@ -11547,11 +11547,11 @@
         </g>
       </g>
       <a
-         id="a8556">
-        <a
-           id="a5547"
-           xlink:href="/ci/tools/water-scarcity"
-           target="/ci/tools">
+         id="a5547"
+         xlink:href="/ci/tools/water-scarcity"
+         target="/ci/tools">
+        <g
+           id="g8154">
           <a
              id="a6372">
             <path
@@ -11586,7 +11586,7 @@
                  x="503.62961"
                  y="606.35437">Scarcity</tspan></text>
           </a>
-        </a>
+        </g>
       </a>
       <a
          id="a24795"
