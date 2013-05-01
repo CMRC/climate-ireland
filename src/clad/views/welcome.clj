@@ -232,7 +232,16 @@
                                        (assoc-in a-node [:attrs :selected] nil)
                                        a-node) [:content] (scenarios run))
                            (assoc-in [:attrs :value] (str (first run)
-                                                          "/" (second run)))))))
+                                                          "/" (second run))))))
+               
+  [:#abs :option]
+  (clone-for [abs ["Delta" "Absolute"]]
+             [:option]
+             (fn [a-node] (->
+                           (assoc-in (if (= (:abs req) abs)
+                                       (assoc-in a-node [:attrs :selected] nil)
+                                       a-node) [:content] abs)
+                           (assoc-in [:attrs :value] abs)))))
 
 (deftemplate current-climate "clad/views/View_3.html"
   [req]
@@ -327,7 +336,7 @@
   (regions-map req))
 (defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
 (defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/:abs/:regions" {:keys [county months variable abs]} 
-  (decadal-box county months variable))
+  (decadal-box county months variable abs))
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
 (defpage [:post "/ci/submit"] {:as req}
@@ -341,7 +350,7 @@
                  "/" (:months req)
                  "/" (:runs req)
                  "/" (:variable req)
-                 "/" "false"
+                 "/" (:abs req)
                  "/" (:regions req))))
 
 (defn clear-identity [response] 

@@ -61,11 +61,11 @@
           regions (case (:regions req)
                     "Counties" counties
                     "Provinces" provinces)
-          delta (= (:abs req) "delta")
+          delta (= (:abs req) "Delta")
           diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) (if delta -0.5 -5) (if delta -30 0))
-          max (if (temp-var? variable) (if delta 3.0 30) (if delta 40 10))]
+          min (if (temp-var? variable) (if delta -0.5 2.5) (if delta -30 0))
+          max (if (temp-var? variable) (if delta 3.0 20) (if delta 40 10))]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -92,7 +92,7 @@
                                             round
                                             (/ 100)
                                             float)
-                                           (if (temp-var? variable) "°C " "% ")
+                                           (if (temp-var? variable) "°C " (if delta "% " "mm??? "))
                                            %2
                                            "')")))
                          (colour-on-linear %2 year months model scenario variable region min max diff-fn colour-scheme)
@@ -117,11 +117,14 @@
                             legend
                             (range 0 (inc (count colour-scheme))))
              units (transform-xml values [{:id "units"}]
-                                  (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
+                                  (fn [node] (set-content node
+                                                          (if (temp-var? variable)
+                                                            (str "°Celsius" (when delta " change"))
+                                                            (if delta "% change" "mm???")))))
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    #_(catch Exception ex
+    (catch Exception ex
       (log/info ex)
       (log/info req)
       "We do apologise. There is no data available for the selection you have chosen.

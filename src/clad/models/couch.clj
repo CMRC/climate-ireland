@@ -136,9 +136,11 @@
       (get-data county year months model scenario variable))))
 
 (defn abs-data [county year months model scenario variable]
-  (if (temp-var? variable)
-    (- (data-by-county county year months model scenario variable) 273.15)
-    (data-by-county county year months model scenario variable)))
+  (let [d (data-by-county county year months model scenario variable)]
+    (when d
+      (if (temp-var? variable)
+        (- d 273.15)
+        d))))
 
 (defn ref-data-slow [county months model scenario variable]
   (try
