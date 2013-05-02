@@ -61,33 +61,25 @@ df$y <- c(60049.64795,
           243380.7743	,
           458585.7608)
 
-
-getstationmean <- function(station, season,variable,scenario,comp, ref, diff) {
+getstationmean <- function(station, season,variable,scenario,comp) {
   station <- paste(variable,station,"en",scenario,sep="")
   stationtotal <- 0
   stationcount <- 0
-  stationreftotal <- 0
-  stationrefcount <- 0
+
   for (month in (season:(season+2))) {
     compmonth <- comp[comp$MONTH == month,]
-    refmonth <- ref[ref$MONTH == month,]
     stationmean <- mean(compmonth[[station]])
     print(stationmean)
     stationcount <- stationcount + 1
     stationtotal <- stationtotal + stationmean
-    
-    stationrefmean <- mean(refmonth[[station]])
-    stationrefcount <- stationrefcount + 1
-    stationreftotal <- stationreftotal + stationrefmean
   }
   
   
   stationavg <- stationtotal / stationcount
-  stationrefavg <- stationreftotal / stationrefcount
-  return (diff (stationavg, stationrefavg))
+  return (stationavg)
 }
 
-populate <- function(df,prefix,varname,scenario="ICARUS") {
+populate <- function(df,prefix,varname,scenario="ICARUS",normal) {
 
   grd <- expand.grid(x=seq(from=-26995.9, to=423004.095, by=1000), y=seq(from=-2237.46, to=480762.54, by=1000) )
   coordinates(grd) <- ~ x+y
@@ -121,50 +113,60 @@ for (normal in c(2010,2020,2030,2040,2050,2060,2070)) {
     ##a2
     a2comp <- a2vals[as.integer(a2vals$new_year) %in% normal:(normal + 29),]
 
-    df$a2avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","a2",a2comp,a2ref,
-                                                        function (comp,ref) {100 * (comp - ref) / ref}))
+    df$a2avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","a2",a2comp))
     df$avg <- df$a2avg
-    populate(df,"precip","TOT_PREC","a2")
+    populate(df,"precip","TOT_PREC","a2",normal)
 
     ##b2
     b2comp <- b2vals[as.integer(b2vals$new_year) %in% normal:(normal + 29),]
 
-    df$b2avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","b2",b2comp,b2ref,
-                                                        function (comp,ref) {100 * (comp - ref) / ref}))
+    df$b2avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","b2",b2comp))
     df$avg <- df$b2avg
-    populate(df,"precip","TOT_PREC","b2")
-
-    ##a2 + b2 ensemble
-    df$avg <- (df$a2avg + df$b2avg) / 2
-    populate(df,"precip","TOT_PREC")
+    populate(df,"precip","TOT_PREC","b2",normal)
 
     ##mean temperature
     #a2
     a2compmins <- a2mins[as.integer(a2mins$new_year) %in% normal:(normal + 29),]
     a2compmaxs <- a2maxs[as.integer(a2mins$new_year) %in% normal:(normal + 29),]
-    df$a2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","a2",a2compmins,a2refmins,
-                                                      function (comp,ref) {comp - ref}))
-    df$a2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","a2",a2compmaxs,a2refmaxs,
-                                                      function (comp,ref) {comp - ref}))
+    df$a2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","a2",a2compmins))
+    df$a2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","a2",a2compmaxs))
     df$a2avg <- (df$a2min + df$a2max) / 2
-    df$avg <- df$a2avg
-    populate(df,"temp","T_2M","a2")
+    df$avg <- df$a2avg + 273.15
+    populate(df,"temp","T_2M","a2",normal)
 
     #b2
     b2compmins <- b2mins[as.integer(b2mins$new_year) %in% normal:(normal + 29),]
     b2compmaxs <- b2maxs[as.integer(b2mins$new_year) %in% normal:(normal + 29),]
-    df$b2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","b2",b2compmins,b2refmins,
-                                                      function (comp,ref) {comp - ref}))
-    df$b2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","b2",b2compmaxs,b2refmaxs,
-                                                      function (comp,ref) {comp - ref}))
+    df$b2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","b2",b2compmins))
+    df$b2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","b2",b2compmaxs))
     df$b2avg <- (df$b2min + df$b2max) / 2
-    df$avg <- df$b2avg
-    populate(df,"temp","T_2M","b2")
-
-    #ensemble
-    df$avg <- (df$a2avg + df$b2avg) / 2
-    populate(df,"temp","T_2M")
+    df$avg <- df$b2avg + 273.15
+    populate(df,"temp","T_2M","b2",normal)
   }
 }
 
+for (season in 0:3) {
+  ##a2ref prec
+  df$a2avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","a2",a2ref))
+  df$avg <- df$a2avg
+  populate(df,"precip","TOT_PREC","a2", 1960)
     
+  ##b2ref prec
+  df$b2avg <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"rain","b2",b2ref))
+  df$avg <- df$b2avg
+  populate(df,"precip","TOT_PREC","b2", 1960)
+
+  ##a2ref temp
+  df$a2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","a2",a2refmins))
+  df$a2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","a2",a2refmaxs))
+  df$a2avg <- (df$a2min + df$a2max) / 2
+  df$avg <- df$a2avg + 273.15
+  populate(df,"temp","T_2M","a2", 1960)
+
+  ##b2ref temp
+  df$b2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","b2",b2refmins))
+  df$b2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","b2",b2refmaxs))
+  df$b2avg <- (df$b2min + df$b2max) / 2
+  df$avg <- df$b2avg + 273.15
+  populate(df,"temp","T_2M","b2", 1960)
+}

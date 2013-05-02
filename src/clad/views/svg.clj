@@ -30,8 +30,7 @@
 
 (def quartiles (memoize quartiles-slow))
   
-(defn colour-on-quartiles [elem county year months model scenario variable]
-  )
+(defn colour-on-quartiles [elem county year months model scenario variable])
 
 (defn linear-rgb [val domain colour-scheme]
   "Returns a colour string based on the value"
@@ -50,22 +49,23 @@
     (add-style elem :fill (linear-rgb val domain colour-scheme))))
 
 (defn regions-map-slow
-  "Takes an svg file representing a map of Ireland divdided into regions
+  "Takes an svg file representing a map of Ireland divided into regions
    and generates a choropleth map where the colours represent the value
    of the given variable"
-  [cp req]
+  [req]
   (try
     (let [{:keys [year months model scenario variable fill region]} req
-          regions-svg (case cp
-                        :county counties-svg
-                        :province provinces-svg)
-          regions (case cp
-                    :county counties
-                    :province provinces)
-          diff-fn diff-data
+          regions-svg (case (:regions req)
+                        "Counties" counties-svg
+                        "Provinces" provinces-svg)
+          regions (case (:regions req)
+                    "Counties" counties
+                    "Provinces" provinces)
+          delta (= (:abs req) "Delta")
+          diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) -0.5 -30.0)
-          max (if (temp-var? variable) 3 40.0)]
+          min (if (temp-var? variable) (if delta -0.5 2.5) (if delta -30 0))
+          max (if (temp-var? variable) (if delta 3.0 20) (if delta 40 10))]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -78,7 +78,7 @@
                 (fn [elem]
                   (let [link (make-url "climate-information/projections"
                                        (assoc-in req [:region] %2)
-                                       :counties? (= cp :county))
+                                       :counties? (= (:regions req) "Counties"))
                         val (diff-fn %2 year months model scenario variable)]
                     (log/info "Value: " val " From: " req)
                     [:a {:xlink:href link :target "_top"}
@@ -92,7 +92,7 @@
                                             round
                                             (/ 100)
                                             float)
-                                           (if (temp-var? variable) "°C " "% ")
+                                           (if (temp-var? variable) "°C " (if delta "% " "mm??? "))
                                            %2
                                            "')")))
                          (colour-on-linear %2 year months model scenario variable region min max diff-fn colour-scheme)
@@ -117,11 +117,14 @@
                             legend
                             (range 0 (inc (count colour-scheme))))
              units (transform-xml values [{:id "units"}]
-                                  (fn [node] (set-content node (if (temp-var? variable) "°Celsius change" "% change"))))
+                                  (fn [node] (set-content node
+                                                          (if (temp-var? variable)
+                                                            (str "°Celsius" (when delta " change"))
+                                                            (if delta "% change" "mm???")))))
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    #_(catch Exception ex
+    (catch Exception ex
       (log/info ex)
       (log/info req)
       "We do apologise. There is no data available for the selection you have chosen.
@@ -129,15 +132,6 @@ Please select another combination of decade/variable/projection")))
   
   
 (def regions-map (memoize regions-map-slow))
-
-(defn counties-map 
-  [req]
-  (regions-map :county req))
-
-(defn provinces-map
-  [req]
-  (regions-map :province req))
-
 
 (defn counties-map-png 
   ([year months model scenario variable fill]

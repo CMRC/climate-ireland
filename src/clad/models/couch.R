@@ -10,13 +10,9 @@ counties <- readOGR(dsn="/home/anthony/County/ING/LandAreaAdmin_ROIandUKNI", lay
 print(summary (counties))
 countiesarray = new.env()
 
-populatecounties <- function(run, base.path) {
-  countiesarray[[run]] = sgdf <- as(GDAL.open(paste(base.path,run,sep="")),"SpatialGridDataFrame")
-}
-
 makeurl <- function(run,county,scenario) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate_dev2/",run, strip, scenario, sep="")
+  paste("http://localhost:5984/climate_dev4/",run, strip, scenario, sep="")
 }
 clip <- function(county, run, var, countydata,sgdf,scenario) {
   ckk=!is.na(overlay(sgdf, countydata))
@@ -24,9 +20,9 @@ clip <- function(county, run, var, countydata,sgdf,scenario) {
   val <- mean(as(kkclipped, "data.frame")$band1)
   print(county)
   print(run)
-  intyear <- as.integer(gsub("^.*([0-9]{2})([0-9])[0-9]\\w+","\\21",run))
+  intyear <- as.integer(gsub("^.*([0-9]{2}[0-9])[0-9]\\w+","\\11",run))
   print(intyear)
-  year <- paste("20",intyear,"-",intyear+29L,sep="")
+  year <- paste(intyear,"-",intyear+29L,sep="")
   print(year)
   months <- toupper(gsub("^.*[0-9]{4}(\\w+)","\\1",run))
   print(months)
