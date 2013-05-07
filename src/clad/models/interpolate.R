@@ -135,10 +135,10 @@ for (normal in c(2010,2020,2030,2040,2050,2060,2070)) {
     populate(df,"temp","T_2M","a2",normal)
 
     df$avg = df$a2max + 273.15
-    populate(df,"temp","TMAX_2M","a2",normal)
+    populate(df,"maxtemp","TMAX_2M","a2",normal)
 
     df$avg = df$a2min + 273.15
-    populate(df,"temp","TMIN_2M","a2",normal)
+    populate(df,"mintemp","TMIN_2M","a2",normal)
 
     #b2
     b2compmins <- b2mins[as.integer(b2mins$new_year) %in% normal:(normal + 29),]

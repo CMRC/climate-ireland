@@ -9,10 +9,14 @@
            (java.lang Integer)
            (org.jfree.chart.annotations CategoryTextAnnotation)))
 
-(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
+(def variables {"T_2M" "Temperature"
+                "TMIN_2M" "Min Temp"
+                "TMAX_2M" "Max Temp"
+                "TOT_PREC" "Precipitation"})
 
-(defn decadal-box [county months variable abs]
-  (let [delta (= abs "Delta")
+(defn decadal-box [county months variable abs ensemble]
+  (let [models (get ensembles ensemble)
+        delta (= abs "Delta")
         diff-fn (if delta diff-data abs-data)
         vals-fn (fn [decade]
                   (map double
@@ -20,7 +24,7 @@
                                (map #(diff-fn
                                       county decade months
                                       (first %) (second %) variable)
-                                    (get ensemble "ensemble")))))
+                                    models))))
         decades ["2021-2050"
                  "2031-2060"
                  "2041-2070"
@@ -54,7 +58,7 @@
                               :legend true
                               :series-label "2080s"))
         chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
-                 (doseq [[sim val] (zipmap (get ensemble "ensemble") (vals-fn (second plot)))]
+                 (doseq [[sim val] (zipmap models (vals-fn (second plot)))]
                    (.addAnnotation (.getPlot chart) (CategoryTextAnnotation. (second sim) (first plot) val))))
         out-stream (ByteArrayOutputStream.)
         in-stream (do

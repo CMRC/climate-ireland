@@ -20,9 +20,6 @@
 (def counties-svg (parse-xml (slurp (clojure.java.io/resource "clad/views/counties.svg"))))
 (def provinces-svg (parse-xml (slurp (clojure.java.io/resource "clad/views/provinces.svg"))))
 
-(defn counties-data [year months model scenario variable]
-  (map #(data-by-county % year months model scenario variable) counties))
-
 (defn quartiles-slow [year months model scenario variable cp diff-fn]
   (map #(/ (round (* % 100)) 100)
        (quantile (map (fn [county] (diff-fn county year months model scenario variable))
@@ -64,8 +61,8 @@
           delta (= (:abs req) "Delta")
           diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) (if delta -0.5 2.5) (if delta -30 0))
-          max (if (temp-var? variable) (if delta 3.0 30) (if delta 40 7))]
+          min (if (temp-var? variable) (if delta -0.5 4) (if delta -30 0))
+          max (if (temp-var? variable) (if delta 3.0 18) (if delta 40 7))]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
