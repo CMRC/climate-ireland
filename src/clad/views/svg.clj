@@ -65,7 +65,7 @@
           diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
           min (if (temp-var? variable) (if delta -0.5 2.5) (if delta -30 0))
-          max (if (temp-var? variable) (if delta 3.0 20) (if delta 40 10))]
+          max (if (temp-var? variable) (if delta 3.0 30) (if delta 40 7))]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -77,8 +77,7 @@
                 [{:id %2}]
                 (fn [elem]
                   (let [link (make-url "climate-information/projections"
-                                       (assoc-in req [:region] %2)
-                                       :counties? (= (:regions req) "Counties"))
+                                       (assoc-in req [:region] %2))
                         val (diff-fn %2 year months model scenario variable)]
                     (log/info "Value: " val " From: " req)
                     [:a {:xlink:href link :target "_top"}
@@ -132,19 +131,3 @@ Please select another combination of decade/variable/projection")))
   
   
 (def regions-map (memoize regions-map-slow))
-
-(defn counties-map-png 
-  ([year months model scenario variable fill]
-    (let [input (TranscoderInput. (str "http://www.climateireland.ie:8888/svg/" year "/" months "/" model
-                                       "/" scenario "/" variable "/" fill))
-          ostream (ByteArrayOutputStream.)
-	  output (TranscoderOutput. ostream)
-          t (PNGTranscoder.)
-          n (. t transcode input output)
-          istream (ByteArrayInputStream. 
-                   (.toByteArray ostream))]
-      {:status 200
-       :headers {"Content-Type" "image/png"}
-        :body
-       istream})))
-

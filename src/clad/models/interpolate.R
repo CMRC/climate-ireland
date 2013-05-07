@@ -126,13 +126,19 @@ for (normal in c(2010,2020,2030,2040,2050,2060,2070)) {
 
     ##mean temperature
     #a2
-    a2compmins <- a2mins[as.integer(a2mins$new_year) %in% normal:(normal + 29),]
+    a2compmins  <- a2mins[as.integer(a2mins$new_year) %in% normal:(normal + 29),]
     a2compmaxs <- a2maxs[as.integer(a2mins$new_year) %in% normal:(normal + 29),]
     df$a2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","a2",a2compmins))
     df$a2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","a2",a2compmaxs))
     df$a2avg <- (df$a2min + df$a2max) / 2
     df$avg <- df$a2avg + 273.15
     populate(df,"temp","T_2M","a2",normal)
+
+    df$avg = df$a2max + 273.15
+    populate(df,"temp","TMAX_2M","a2",normal)
+
+    df$avg = df$a2min + 273.15
+    populate(df,"temp","TMIN_2M","a2",normal)
 
     #b2
     b2compmins <- b2mins[as.integer(b2mins$new_year) %in% normal:(normal + 29),]
@@ -142,6 +148,12 @@ for (normal in c(2010,2020,2030,2040,2050,2060,2070)) {
     df$b2avg <- (df$b2min + df$b2max) / 2
     df$avg <- df$b2avg + 273.15
     populate(df,"temp","T_2M","b2",normal)
+
+    df$avg = df$b2max + 273.15
+    populate(df,"maxtemp","TMAX_2M","b2",normal)
+
+    df$avg = df$b2min + 273.15
+    populate(df,"mintemp","TMIN_2M","b2",normal)
   }
 }
 
@@ -163,10 +175,22 @@ for (season in 0:3) {
   df$avg <- df$a2avg + 273.15
   populate(df,"temp","T_2M","a2", 1960)
 
+  df$avg = df$a2max + 273.15
+  populate(df,"temp","TMAX_2M","a2",1960)
+  
+  df$avg = df$a2min + 273.15
+  populate(df,"temp","TMIN_2M","a2",1960)
+
   ##b2ref temp
   df$b2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","b2",b2refmins))
   df$b2max <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"max","b2",b2refmaxs))
   df$b2avg <- (df$b2min + df$b2max) / 2
   df$avg <- df$b2avg + 273.15
   populate(df,"temp","T_2M","b2", 1960)
+
+  df$avg = df$b2max + 273.15
+  populate(df,"maxtemp","TMAX_2M","b2",1960)
+  
+  df$avg = df$b2min + 273.15
+  populate(df,"mintemp","TMIN_2M","b2",1960)
 }
