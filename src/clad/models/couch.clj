@@ -91,7 +91,7 @@
       (clutch/get-view "models" :by-model))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
-(def ensemble {"ensemble"
+(def ensembles {"ensemble"
                [["ICARUS" "a2"]
                 ["ICARUS" "b2"]
                 ["CGCM31" "A2"]
@@ -108,7 +108,19 @@
                 ["ICARUS" "a2"]]
                "low"
                [["HadGEM" "RCP45"]
-                ["CGCM31" "A1B"]]})
+                ["CGCM31" "A1B"]]
+               "a2"
+               [["ICARUS" "a2"]]
+               "b2"
+               [["ICARUS" "b2"]]
+               "A2"
+               [["CGCM31" "A2"]]
+               "A1B"
+               [["CGCM31" "A1B"]]
+               "RCP85"
+               [["HadGEM" "RCP85"]]
+               "RCP45"
+               [["HadGEM" "RCP45"]]})
 
 (def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
 
@@ -131,7 +143,7 @@
                  :datum.value))]
     (if (= model "ensemble")
       (let [d (map #(get-data county year months (first %) (second %) variable)
-                   (get ensemble scenario))]
+                   (get ensembles scenario))]
         (/ (reduce + 0 d) (count d)))
       (get-data county year months model scenario variable))))
 
@@ -170,7 +182,7 @@ temperature data and percentage difference for everything else"
   (if (= model "ensemble")
     (let [rawcomp (filter #(not (nil? %))
                           (map #(diff-by-county county year months (first %) (second %) variable)
-                               (get ensemble scenario)))
+                               (get ensembles scenario)))
           comp (when (> (count rawcomp) 0)
                  (/ (reduce + 0 rawcomp)
                     (count rawcomp)))]
