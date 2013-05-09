@@ -19,15 +19,19 @@
         delta (= abs "Delta")
         diff-fn (if delta diff-data abs-data)
         vals-fn (fn [decade]
-                  (map double
-                       (filter #(not (nil? %))
-                               (map #(diff-fn
-                                      county decade months
-                                      (first %) (second %) variable)
+                  (map #(vector (double (first %)) (second %))
+                       (filter #(not (nil? (first %)))
+                               (map #(vector (diff-fn
+                                              county decade months
+                                              (first %) (second %) variable)
+                                             (second %))
                                     models))))
-        add-decade (fn [decade chart]
+        add-decade (fn [[cat decade] chart]
                      (when-let [vals (vals-fn decade)]
-                       (add-box-plot chart (vals-fn decade)
+                       (doseq [[val sim] vals]
+                         (when val (.addAnnotation (.getPlot chart)
+                                                   (CategoryTextAnnotation. sim cat val))))
+                       (add-box-plot chart (map first vals)
                                      :legend true
                                      :series-label decade)))
         decades ["2021-2050"
@@ -44,10 +48,10 @@
                                    (if delta "% difference from baseline" "mm/hr"))
                         :series-label "decade:"
                         :x-label "")
-        labeled (reduce #(add-decade %2 %1) chart decades)
-        chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
-                 (doseq [[sim val] (zipmap models (vals-fn (second plot)))]
-                   (.addAnnotation (.getPlot chart) (CategoryTextAnnotation. (second sim) (first plot) val))))
+        labeled (reduce #(add-decade %2 %1) chart (map vector ["1" "2" "3" "4" "5" "6"] decades))
+        ;; chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
+        ;;          (doseq [[sim val] (zipmap models (vals-fn (second plot)))]
+        ;;            (.addAnnotation (.getPlot chart) (CategoryTextAnnotation. (second sim) (first plot) val))))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save labeled out-stream :width 450 :height 400)
