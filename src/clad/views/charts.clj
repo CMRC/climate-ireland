@@ -34,7 +34,8 @@
                        (add-box-plot chart (map first vals)
                                      :legend true
                                      :series-label decade)))
-        decades ["2021-2050"
+        decades ["2011-2040"
+                 "2021-2050"
                  "2031-2060"
                  "2041-2070"
                  "2051-2080"
@@ -48,10 +49,7 @@
                                    (if delta "% difference from baseline" "mm/hr"))
                         :series-label "decade:"
                         :x-label "")
-        labeled (reduce #(add-decade %2 %1) chart (map vector ["1" "2" "3" "4" "5" "6"] decades))
-        ;; chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
-        ;;          (doseq [[sim val] (zipmap models (vals-fn (second plot)))]
-        ;;            (.addAnnotation (.getPlot chart) (CategoryTextAnnotation. (second sim) (first plot) val))))
+        labeled (reduce #(add-decade %2 %1) chart (map vector (map str (range 1 7)) decades))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save labeled out-stream :width 450 :height 400)
