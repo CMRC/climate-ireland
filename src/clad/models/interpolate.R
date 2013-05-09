@@ -176,10 +176,10 @@ for (season in 0:3) {
   populate(df,"temp","T_2M","a2", 1960)
 
   df$avg = df$a2max + 273.15
-  populate(df,"temp","TMAX_2M","a2",1960)
+  populate(df,"maxtemp","TMAX_2M","a2",1960)
   
   df$avg = df$a2min + 273.15
-  populate(df,"temp","TMIN_2M","a2",1960)
+  populate(df,"mintemp","TMIN_2M","a2",1960)
 
   ##b2ref temp
   df$b2min <- apply(df,1,function(row) getstationmean(row[1],season*3 +1,"min","b2",b2refmins))

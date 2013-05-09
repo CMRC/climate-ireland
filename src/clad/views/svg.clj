@@ -61,8 +61,8 @@
           delta (= (:abs req) "Delta")
           diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) (if delta -0.5 4) (if delta -30 0))
-          max (if (temp-var? variable) (if delta 3.0 18) (if delta 40 7))]
+          min (if (temp-var? variable) (if delta 0 3) (if delta -30 0.8))
+          max (if (temp-var? variable) (if delta 3.5 24) (if delta 40 3.6))]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -88,7 +88,7 @@
                                             round
                                             (/ 100)
                                             float)
-                                           (if (temp-var? variable) "°C " (if delta "% " "mm??? "))
+                                           (if (temp-var? variable) "°C " (if delta "% " "mm/hr"))
                                            %2
                                            "')")))
                          (colour-on-linear %2 year months model scenario variable region min max diff-fn colour-scheme)
@@ -116,7 +116,7 @@
                                   (fn [node] (set-content node
                                                           (if (temp-var? variable)
                                                             (str "°Celsius" (when delta " change"))
-                                                            (if delta "% change" "mm???")))))
+                                                            (if delta "% change" "mm/hr")))))
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
