@@ -7,8 +7,10 @@
   (:import (java.io ByteArrayOutputStream
                     ByteArrayInputStream)
            (java.lang Integer)
+           (org.jfree.chart StandardChartTheme)
            (org.jfree.chart.annotations CategoryTextAnnotation)
-           (org.jfree.chart.axis CategoryAxis)))
+           (org.jfree.chart.axis CategoryAxis)
+           (org.jfree.chart.block BlockBorder)))
 
 (def variables {"T_2M" "Temperature"
                 "TMIN_2M" "Min Temp"
@@ -53,6 +55,7 @@
                               :x-label "")
                 (set-y-range (get-in mins [abs variable])
                              (get-in maxs [abs variable]))
+                (set-theme (StandardChartTheme/createLegacyTheme))
                 (.setBackgroundPaint light-gray)
                 (->
                  .getPlot
@@ -60,11 +63,17 @@
                 (->
                  .getPlot
                  .getDomainAxis
-                 (.setVisible false)))
+                 (.setVisible false))
+                (->
+                 .getLegend
+                 (.setBackgroundPaint light-gray))
+                (->
+                 .getLegend
+                 (.setFrame (BlockBorder. 0 0 0 0))))
         labeled (reduce #(add-decade %2 %1) chart (map vector (map str (range 1 7)) decades))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save labeled out-stream :width 450 :height 400)
+                    (save labeled out-stream :width 500 :height 400)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
