@@ -7,5 +7,5 @@
 (deftest test-linear-rgb
   (let [mid (linear-rgb 75 [50 100] color-brewer/OrRd-7)]
     ;;check valid colour string
-    (is (re-find #"rgb\(\d{3},\d{3},\d{3}\)" mid))))
+    (is (re-find #"rgb\(\d{1,3},\d{1,3},\d{1,3}\)" mid))))
 

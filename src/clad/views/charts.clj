@@ -7,7 +7,8 @@
   (:import (java.io ByteArrayOutputStream
                     ByteArrayInputStream)
            (java.lang Integer)
-           (org.jfree.chart.annotations CategoryTextAnnotation)))
+           (org.jfree.chart.annotations CategoryTextAnnotation)
+           (org.jfree.chart.axis CategoryAxis)))
 
 (def variables {"T_2M" "Temperature"
                 "TMIN_2M" "Min Temp"
@@ -41,14 +42,25 @@
                  "2051-2080"
                  "2061-2090"
                  "2071-2100"]
-        chart (box-plot (vals-fn "1961-1990")
-                        :legend true
-                        :title (str county " " (variables variable))
-                        :y-label (if (temp-var? variable)
-                                   (if delta "Difference in °C from baseline" "°C")
-                                   (if delta "% difference from baseline" "mm/hr"))
-                        :series-label "decade:"
-                        :x-label "")
+        light-gray (java.awt.Color. 0xf2 0xf2 0xf2)
+        chart (doto (box-plot (vals-fn "1961-1990")
+                              :legend true
+                              :title (str county " " (variables variable))
+                              :y-label (if (temp-var? variable)
+                                         (if delta "Difference in °C from baseline" "°C")
+                                         (if delta "% difference from baseline" "mm/hr"))
+                              :series-label "decade:"
+                              :x-label "")
+                (set-y-range (get-in mins [abs variable])
+                             (get-in maxs [abs variable]))
+                (.setBackgroundPaint light-gray)
+                (->
+                 .getPlot
+                 (.setBackgroundPaint light-gray))
+                (->
+                 .getPlot
+                 .getDomainAxis
+                 (.setVisible false)))
         labeled (reduce #(add-decade %2 %1) chart (map vector (map str (range 1 7)) decades))
         out-stream (ByteArrayOutputStream.)
         in-stream (do

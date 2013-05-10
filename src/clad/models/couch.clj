@@ -91,9 +91,37 @@
       (clutch/get-view "models" :by-model))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
+(def mins {"Delta"
+           {"T_2M" 0
+            "TMAX_2M" 0
+            "TMIN_2M" 0
+            "TOT_PREC" -30}
+           "Absolute"
+           {"T_2M" 3
+            "TMAX_2M" 3
+            "TMIN_2M" 3
+            "TOT_PREC" 0.8}})
+
+(def maxs {"Delta"
+           {"T_2M" 3.5
+            "TMAX_2M" 3.5
+            "TMIN_2M" 3.5
+            "TOT_PREC" 40}
+           "Absolute"
+           {"T_2M" 24
+            "TMAX_2M" 24
+            "TMIN_2M" 24
+            "TOT_PREC" 3.6}})
+
 (def ensembles {"ensemble"
                [["ICARUS" "a2"]
                 ["ICARUS" "b2"]
+                ["CCCM"   "A2"]
+                ["CCCM"   "B2"]
+                ["CSIRO"   "A2"]
+                ["CSIRO"   "B2"]
+                ["HadCM3"   "A2"]
+                ["HadCM3"   "B2"]
                 ["CGCM31" "A2"]
                 ["CGCM31" "A1B"]
                 ["HadGEM" "RCP85"]
@@ -105,7 +133,13 @@
                "medium"
                [["ICARUS" "b2"]
                 ["CGCM31" "A2"]
-                ["ICARUS" "a2"]]
+                ["ICARUS" "a2"]
+                ["CCCM"   "A2"]
+                ["CCCM"   "B2"]
+                ["CSIRO"   "A2"]
+                ["CSIRO"   "B2"]
+                ["HadCM3"   "A2"]
+                ["HadCM3"   "B2"]]
                "low"
                [["HadGEM" "RCP45"]
                 ["CGCM31" "A1B"]]

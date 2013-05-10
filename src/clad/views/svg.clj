@@ -61,8 +61,8 @@
           delta (= (:abs req) "Delta")
           diff-fn (if delta diff-data abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
-          min (if (temp-var? variable) (if delta 0 3) (if delta -30 0.8))
-          max (if (temp-var? variable) (if delta 3.5 24) (if delta 40 3.6))]
+          min (get-in mins [(:abs req) variable])
+          max (get-in maxs [(:abs req) variable])]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
