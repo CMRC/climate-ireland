@@ -91,9 +91,37 @@
       (clutch/get-view "models" :by-model))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
+(def mins {"Delta"
+           {"T_2M" 0
+            "TMAX_2M" 0
+            "TMIN_2M" 0
+            "TOT_PREC" -30}
+           "Absolute"
+           {"T_2M" 3
+            "TMAX_2M" 3
+            "TMIN_2M" 3
+            "TOT_PREC" 0.8}})
+
+(def maxs {"Delta"
+           {"T_2M" 3.5
+            "TMAX_2M" 3.5
+            "TMIN_2M" 3.5
+            "TOT_PREC" 40}
+           "Absolute"
+           {"T_2M" 24
+            "TMAX_2M" 24
+            "TMIN_2M" 24
+            "TOT_PREC" 3.6}})
+
 (def ensembles {"ensemble"
                [["ICARUS" "a2"]
                 ["ICARUS" "b2"]
+                ["CCCM"   "A2"]
+                ["CCCM"   "B2"]
+                ["CSIRO"   "A2"]
+                ["CSIRO"   "B2"]
+                ["HadCM3"   "A2"]
+                ["HadCM3"   "B2"]
                 ["CGCM31" "A2"]
                 ["CGCM31" "A1B"]
                 ["HadGEM" "RCP85"]
@@ -105,7 +133,13 @@
                "medium"
                [["ICARUS" "b2"]
                 ["CGCM31" "A2"]
-                ["ICARUS" "a2"]]
+                ["ICARUS" "a2"]
+                ["CCCM"   "A2"]
+                ["CCCM"   "B2"]
+                ["CSIRO"   "A2"]
+                ["CSIRO"   "B2"]
+                ["HadCM3"   "A2"]
+                ["HadCM3"   "B2"]]
                "low"
                [["HadGEM" "RCP45"]
                 ["CGCM31" "A1B"]]
@@ -120,7 +154,10 @@
                "RCP85"
                [["HadGEM" "RCP85"]]
                "RCP45"
-               [["HadGEM" "RCP45"]]})
+               [["HadGEM" "RCP45"]]
+               "C20"
+               [["HadGEM" "C20"]
+                ["CGCM31" "C20"]]})
 
 (def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
 
@@ -141,11 +178,10 @@
                  first 
                  :value
                  :datum.value))]
-    (if (= model "ensemble")
-      (let [d (map #(get-data county year months (first %) (second %) variable)
-                   (get ensembles scenario))]
-        (/ (reduce + 0 d) (count d)))
-      (get-data county year months model scenario variable))))
+    (let [d (filter #(not (nil? %))
+                    (map #(get-data county year months (first %) (second %) variable)
+                         (get ensembles scenario)))]
+      (when (seq d) (/ (reduce + 0 d) (count d))))))
 
 (defn abs-data [county year months model scenario variable]
   (let [d (data-by-county county year months model scenario variable)]
@@ -164,30 +200,27 @@
 (def ref-data (memoize ref-data-slow))
 
 (defn diff-by-county [county year months model scenario variable]
-  (let [d (->> (get-county-by-year county year months model scenario variable)
-                  first 
-                  :value
-                  :datum.value)
+  (let [d (data-by-county county year months model scenario variable)
         ref (ref-data county months model scenario variable)]
-    (when d
+    (if (and d ref)
       (if (temp-var? variable)
         (- d ref)
-        (percent d ref)))))
+        (percent d ref))
+      (log/warn "null values! d: " d " ref: " ref
+                   " params " county year months model scenario variable))))
 
 (defn diff-data
   "calculate the display value based on a difference function between
 computed data and reference data. Difference function is subtraction for
 temperature data and percentage difference for everything else"
   [county year months model scenario variable]
-  (if (= model "ensemble")
-    (let [rawcomp (filter #(not (nil? %))
-                          (map #(diff-by-county county year months (first %) (second %) variable)
-                               (get ensembles scenario)))
-          comp (when (> (count rawcomp) 0)
-                 (/ (reduce + 0 rawcomp)
-                    (count rawcomp)))]
-      comp)
-    (diff-by-county county year months model scenario variable)))
+  (let [rawcomp (filter #(not (nil? %))
+                        (map #(diff-by-county county year months (first %) (second %) variable)
+                             (get ensembles scenario)))
+        comp (when (> (count rawcomp) 0)
+               (/ (reduce + 0 rawcomp)
+                  (count rawcomp)))]
+    comp))
 
 (def bycounty-memo (memoize data-by-county))
 

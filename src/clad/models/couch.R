@@ -8,13 +8,12 @@ library(RJSONIO)
 
 counties <- readOGR(dsn="/home/anthony/County/ING/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 print(summary (counties))
-countiesarray = new.env()
 
-makeurl <- function(run,county,scenario) {
+makeurl <- function(run,county,model,scenario) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate_dev4/",run, strip, scenario, sep="")
+  paste("http://localhost:5984/climate_dev4/",run, strip, model, scenario, sep="")
 }
-clip <- function(county, run, var, countydata,sgdf,scenario) {
+clip <- function(county, run, var, countydata,sgdf,model,scenario) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)
@@ -26,37 +25,34 @@ clip <- function(county, run, var, countydata,sgdf,scenario) {
   print(year)
   months <- toupper(gsub("^.*[0-9]{4}(\\w+)","\\1",run))
   print(months)
-  rev <- fromJSON(getURL(makeurl(run,county,scenario)))["_rev"]
+  rev <- fromJSON(getURL(makeurl(run,county,model,scenario)))["_rev"]
   if(is.na(rev)){
-    getURL(makeurl(run,county,scenario),
+    getURL(makeurl(run,county,model,scenario),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
-             model="ICARUS", scenario=scenario,
+             model=model, scenario=scenario,
              datum.value=val, datum.variable=var)))
   } else {
-    getURL(makeurl(run,county,scenario),
+    getURL(makeurl(run,county,model,scenario),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
-             model="ICARUS", scenario=scenario,
+             model=model, scenario=scenario,
              datum.value=val, datum.variable=var,
              '_rev'=toString(rev))))
   }
 }
-bycounty <- function(region, var, run, scenario) {
-  sgdf <- countiesarray[[run]]
+bycounty <- function(sgdf, region, var, run, model, scenario) {
   countydata <- counties[counties@data$COUNTY==region,] 
-  clip(region,run,var,countydata,sgdf,scenario)
+  clip(region,run,var,countydata,sgdf,model,scenario)
 }
-byprovince <- function(region, var, run, scenario) {
-  sgdf <- countiesarray[[run]]
+byprovince <- function(sgdf, region, var, run, model, scenario) {
   countydata <- counties[counties@data$Province==region,] 
-  clip(region,run,var,countydata,sgdf,scenario)
+  clip(region,run,var,countydata,sgdf,model,scenario)
 }
-NI <- function(var, run, scenario) {
-  sgdf <- countiesarray[[run]]
+NI <- function(sgdf, var, run, model, scenario) {
   countydata <- counties[counties@data$Country=="UK",] 
-  clip("NI",run,var,countydata,sgdf,scenario)
+  clip("NI",run,var,countydata,sgdf,model,scenario)
 }
 
