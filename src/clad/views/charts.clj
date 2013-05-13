@@ -7,168 +7,66 @@
   (:import (java.io ByteArrayOutputStream
                     ByteArrayInputStream)
            (java.lang Integer)
-           (org.jfree.chart.annotations CategoryTextAnnotation)))
+           (org.jfree.chart.annotations CategoryTextAnnotation)
+           (org.jfree.chart.axis CategoryAxis)))
 
-(def variables {"T_2M" "Temperature", "TOT_PREC" "Precipitation"})
+(def variables {"T_2M" "Temperature"
+                "TMIN_2M" "Min Temp"
+                "TMAX_2M" "Max Temp"
+                "TOT_PREC" "Precipitation"})
 
-(defn plot-models [county months variable]
-  (let [ylab (if (temp-var? variable) "°C" "%")
-        diff-fn (if (some #(= variable %) temp-vars) - #(* (/ (- %1 %2) %2) 100))
-        a1b (get-county-data county months "CGCM31" "A1B" variable)
-        x (map #(coerce/to-long (time/date-time (:year (:value %)))) a1b)
-	a1by (map #(diff-fn (:datum.value (:value %))
-                      (ref-data county months "CGCM31" variable)) a1b)
-	a2 (get-county-data county months "CGCM31" "A2" variable)
-        a2y (map #(diff-fn (:datum.value (:value %))
-                     (ref-data county months "CGCM31" variable)) a2)
-        cc20 (get-county-data county months "CGCM31" "C20" variable)
-        cc20y (map #(diff-fn (:datum.value (:value %))
-                       (ref-data county months "CGCM31" variable)) cc20)		
-        cc20x (map #(coerce/to-long (time/date-time (:year (:value %)))) cc20)
-	ha45 (get-county-data county months "HadGEM" "RCP45" variable)
-        ha45y (map #(diff-fn (:datum.value (:value %))
-                       (ref-data county months "HadGEM" variable)) ha45)			
-	hc20 (get-county-data county months "HadGEM" "C20" variable)
-        hc20y (map #(diff-fn (:datum.value (:value %))
-                       (ref-data county months "HadGEM" variable)) hc20)		
-        ha85 (get-county-data county months "HadGEM" "RCP85" variable)
-        ha85y (map #(diff-fn (:datum.value (:value %))
-                      (ref-data county months "HadGEM" variable)) ha85)
-        ica [2025 2055 2085]
-        icax (map #(coerce/to-long (time/date-time %)) ica)
-        icay (map #(data-by-county county (- % 5) months "ICARUS" "a2" variable) ica)
-        chart (doto (time-series-plot x a1by :y-label ylab :x-label "" :series-label "CGCM3.1 A1B"
-                                      :legend true :title (str county " " variable " " months))
-                (add-lines x a2y :series-label "CGCM3.1 A2")                
-                (add-lines cc20x cc20y :series-label "CGCM3.1 C20")                
-		(add-lines cc20x hc20y :series-label "HadGEM C20")                
-		(add-lines x ha45y :series-label "HadGEM RCP45")
-                (add-lines x ha85y :series-label "HadGEM RCP85")
-                (add-lines icax icay :series-label "ICARUS"))
-        out-stream (ByteArrayOutputStream.)
-        in-stream (do
-                    (save chart out-stream :width 397 :height 600)
-                    (ByteArrayInputStream. 
-                     (.toByteArray out-stream)))]
-    {:status 200
-     :headers {"Content-Type" "image/png"}
-     :body in-stream}))
-
-(defn decadal [run r step diff-fn county months variable]
-  (map
-   (fn [start]
-     (/ (reduce
-         (fn [acc yr]
-           
-           (+ acc
-              (diff-fn county yr months (first run)
-                       (second run) variable)))
-         0 
-         (range start (+ start step)))
-        step)) r))
-  
-(defn plot-models-decadal [county months variable]
-  (let [ylab (if (temp-var? variable) "Δ°C" "%")
-        step 10
-        base-range (range 1961 1991 10)
-        projected-range (range 2021 2031 10)
-        a1b (decadal ["CGCM31" "A1B"] projected-range step diff-data county months variable)
-        x (map #(coerce/to-long (time/date-time (+ 5 %))) projected-range)
-        refx (map #(coerce/to-long (time/date-time (+ 5 %))) base-range)
-        ica [2025 2055 2085]
-        icax (map #(coerce/to-long (time/date-time %)) ica)
-        icay (map #(data-by-county county (- % 5) months "ICARUS" "ICARUS" variable) ica)   
-        chart (doto (time-series-plot x a1b :y-label ylab
-                                      :x-label ""
-                                      :series-label "CGCM3.1 A1B"
-                                      :legend true
-                                      :title (str county " " variable " " months))
-                (add-lines x (decadal ["CGCM31" "A2"] projected-range step diff-data county months variable)
-                           :series-label "CGCM3.1 A2")
-                (add-lines refx (decadal ["HadGEM" "C20"] base-range step diff-data county months variable)
-                           :series-label "HadGEM C20")
-                (add-lines refx (decadal ["CGCM31" "C20"] base-range step diff-data county months variable)
-                           :series-label "CGCM31 C20")
-                (add-lines x (decadal ["HadGEM" "RCP45"] projected-range step diff-data county months variable)
-                           :series-label "HadGEM RCP45")
-                (add-lines x (decadal ["HadGEM" "RCP85"] projected-range step diff-data county months variable)
-                           :series-label "HadGEM RCP85")
-                (add-lines icax icay :series-label "ICARUS"))
-        out-stream (ByteArrayOutputStream.)
-        in-stream (do
-                    (save chart out-stream :width 397 :height 600)
-                    (ByteArrayInputStream. 
-                     (.toByteArray out-stream)))]
-    {:status 200
-     :headers {"Content-Type" "image/png"}
-     :body in-stream}))
-
-(defn decadal-box [county months variable]
-  (let [vals-fn (fn [decade]
-                  (map double
-                       (filter #(not (nil? %))
-                               (map #(diff-data
-                                      county decade months
-                                      (first %) (second %) variable)
-                                    (get ensemble "ensemble")))))
-        l (log/info "Decadal values for " county " " months " " variable ": "
-                    (vals-fn "2051-60"))
-        decades ["2021-50" "2031-60" "2041-70" "2051-80" "2061-90" "2071-100"]
-        chart (doto (box-plot [0]
+(defn decadal-box [county months variable abs ensemble]
+  (let [models (get ensembles ensemble)
+        delta (= abs "Delta")
+        diff-fn (if delta diff-data abs-data)
+        vals-fn (fn [decade]
+                  (map #(vector (double (first %)) (second %))
+                       (filter #(not (nil? (first %)))
+                               (map #(vector (diff-fn
+                                              county decade months
+                                              (first %) (second %) variable)
+                                             (second %))
+                                    models))))
+        add-decade (fn [[cat decade] chart]
+                     (when-let [vals (vals-fn decade)]
+                       (doseq [[val sim] vals]
+                         (when val (.addAnnotation (.getPlot chart)
+                                                   (CategoryTextAnnotation. sim cat val))))
+                       (add-box-plot chart (map first vals)
+                                     :legend true
+                                     :series-label decade)))
+        decades ["2011-2040"
+                 "2021-2050"
+                 "2031-2060"
+                 "2041-2070"
+                 "2051-2080"
+                 "2061-2090"
+                 "2071-2100"]
+        light-gray (java.awt.Color. 0xf2 0xf2 0xf2)
+        chart (doto (box-plot (vals-fn "1961-1990")
                               :legend true
                               :title (str county " " (variables variable))
-                              :y-label (if (temp-var? variable) "Difference in °C from baseline"
-                                           "% difference from baseline")
+                              :y-label (if (temp-var? variable)
+                                         (if delta "Difference in °C from baseline" "°C")
+                                         (if delta "% difference from baseline" "mm/hr"))
                               :series-label "decade:"
                               :x-label "")
-                (add-box-plot (vals-fn "2021-50")
-                              :legend true
-                              :series-label "2030s")
-                (add-box-plot (vals-fn "2031-60")
-                              :legend true
-                              :series-label "2040s")
-                (add-box-plot (vals-fn "2041-70")
-                              :legend true
-                              :series-label "2050s")
-                (add-box-plot (vals-fn "2051-80")
-                              :legend true
-                              :series-label "2060s")
-                (add-box-plot (vals-fn "2061-90")
-                              :legend true
-                              :series-label "2070s")
-                (add-box-plot (vals-fn "2071-100")
-                              :legend true
-                              :series-label "2080s"))
-        chart2 (doseq [plot (zipmap ["1" "2" "3" "4" "5" "6"] decades)]
-                 (doseq [[sim val] (zipmap (get ensemble "ensemble") (vals-fn (second plot)))]
-                   (.addAnnotation (.getPlot chart) (CategoryTextAnnotation. (second sim) (first plot) val))))
+                (set-y-range (get-in mins [abs variable])
+                             (get-in maxs [abs variable]))
+                (.setBackgroundPaint light-gray)
+                (->
+                 .getPlot
+                 (.setBackgroundPaint light-gray))
+                (->
+                 .getPlot
+                 .getDomainAxis
+                 (.setVisible false)))
+        labeled (reduce #(add-decade %2 %1) chart (map vector (map str (range 1 7)) decades))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
-                    (save chart out-stream :width 450 :height 400)
+                    (save labeled out-stream :width 450 :height 400)
                     (ByteArrayInputStream. 
                      (.toByteArray out-stream)))]
     {:status 200
      :headers {"Content-Type" "image/png"}
      :body in-stream}))
-
-(defn barchart [county year months variable]
-  (let [y (cons (data-by-county county year months "ICARUS" "ICARUS" variable)
-                (map #(diff-data county year months (first %) (second %) variable)
-                     ensemble))
-        runs (cons "ICARUS" (map #(str (first %) " " (second %)) ensemble))
-        x (repeat (count runs) "")
-        chart (bar-chart x y :title (str county " " year " " months " " variable)
-                         :x-label "Model runs"			     
-                         :y-label (if (temp-var? variable) "Difference in °C from baseline"
-                                      "% difference from baseline")
-                         :legend true
-                         :group-by runs)
-        out-stream (ByteArrayOutputStream.)
-        in-stream (do
-                    (save chart out-stream :width 397 :height 580)
-                    (ByteArrayInputStream. 
-                     (.toByteArray out-stream)))]
-    {:status 200
-     :headers {"Content-Type" "image/png"}
-     :body in-stream}))
-
