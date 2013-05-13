@@ -17,7 +17,7 @@ maketifseasonaldecadal <- function(run, decade, season, variable) {
                season, ".nc:", variable, "\" seas.tif",sep="")
   print(com)
   system(com)
-  as(GDAL.open(paste(base.path,"seas.tif",sep="")),"SpatialGridDataFrame")
+  readGDAL(paste(base.path,"seas.tif",sep=""),p4s="+proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs +towgs84=0,0,0")
 }
 
 #baseline data
@@ -28,6 +28,7 @@ for(run in c("MM_haCLM4_C20_4km", "MM_caCLM4_C20_4km")) {
     for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
       decade <- "1961-90"
       sd20s <- maketifseasonaldecadal(run, decade, season, var)
+      print(summary(sd20s))
       NI(sd20s, run, decade, season, var)
       for(province in c("Leinster","Munster","Connaught","Ulster")) {
         byprovince(sd20s, province, run, decade, season, var)
