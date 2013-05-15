@@ -130,10 +130,10 @@
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    #_(catch Exception ex
+    (catch Exception ex
       (log/info ex)
       (log/info req)
-      "We do apologise. There is no data available for the selection you have chosen.
+      "We do apologise. There are no data available for the selection you have chosen.
 Please select another combination of decade/variable/projection")))
   
   

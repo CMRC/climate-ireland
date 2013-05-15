@@ -101,7 +101,7 @@
            {"T_2M" 0
             "TMAX_2M" 0
             "TMIN_2M" 0
-            "TOT_PREC" -30}
+            "TOT_PREC" -60}
            "Absolute"
            {"T_2M" 3
             "TMAX_2M" 3
@@ -112,7 +112,7 @@
            {"T_2M" 3.5
             "TMAX_2M" 3.5
             "TMIN_2M" 3.5
-            "TOT_PREC" 40}
+            "TOT_PREC" 55}
            "Absolute"
            {"T_2M" 24
             "TMAX_2M" 24
@@ -130,6 +130,13 @@
                  ["CGCM31" "A1B"]
                  ["HadGEM" "RCP85"]
                  ["HadGEM" "RCP45"]]
+                "icarus"
+                [["CCCM"   "A2"]
+                 ["CCCM"   "B2"]
+                 ["CSIRO"   "A2"]
+                 ["CSIRO"   "B2"]
+                 ["HadCM3"   "A2"]
+                 ["HadCM3"   "B2"]]
                 "high"
                 [["HadGEM" "RCP85"]
                  ["CGCM31" "A2"]
