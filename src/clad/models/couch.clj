@@ -65,7 +65,7 @@
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
 
-#_(save-views)
+#_(save-views) ;;eval this when running on a new database
 
 (defn get-run-data [year months]
   (try

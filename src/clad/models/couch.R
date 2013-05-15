@@ -4,7 +4,7 @@ library(rgdal)
 library(RCurl)
 library(RJSONIO)
 
-#Sys.setenv("http_proxy" = "")
+Sys.setenv("http_proxy" = "")
 
 counties <- readOGR(dsn="/home/anthony/County/ING/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
 print(summary (counties))
@@ -14,7 +14,7 @@ makeurl <- function(run,county,model,scenario) {
   paste("http://localhost:5984/climate_dev4/",run, strip, model, scenario, sep="")
 }
 clip <- function(county, run, var, countydata,sgdf,model,scenario) {
-  ckk=!is.na(overlay(sgdf, countydata))
+  ckk=!is.na(over(sgdf, countydata, returnList=TRUE))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)
   print(county)
