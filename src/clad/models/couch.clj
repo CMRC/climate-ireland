@@ -6,7 +6,7 @@
         [clojure.math.numeric-tower]))
 
 (def users-db "climate_dev2")
-(def db "climate_dev4")
+(def db "climate_dev5")
 
 #_(clutch/with-db users-db
     (clutch/save-view "users"
@@ -82,7 +82,13 @@
 (defn get-county-by-year [county year months model scenario variable]
   (try
     (clutch/with-db db
-      (clutch/get-view "counties-year" :by-county-year {:key [county year months model scenario variable]})
+      (clutch/get-view "counties-year"
+                       :by-county-year
+                       {:key [county year months model
+                              (if (and
+                                   (= year "1961-1990")
+                                   (some #{model} ["CGCM31" "HadGEM"]))
+                                "C20" scenario) variable]})
       (catch java.net.ConnectException e [{:region county :year year :months months :model model
                                            :scenario scenario :variable variable :datum.value 1}]))))
 (defn get-models []
@@ -95,69 +101,62 @@
            {"T_2M" 0
             "TMAX_2M" 0
             "TMIN_2M" 0
-            "TOT_PREC" -30}
+            "TOT_PREC" -60}
            "Absolute"
            {"T_2M" 3
             "TMAX_2M" 3
             "TMIN_2M" 3
-            "TOT_PREC" 0.8}})
+            "TOT_PREC" 0.5}})
 
 (def maxs {"Delta"
            {"T_2M" 3.5
             "TMAX_2M" 3.5
             "TMIN_2M" 3.5
-            "TOT_PREC" 40}
+            "TOT_PREC" 55}
            "Absolute"
            {"T_2M" 24
             "TMAX_2M" 24
             "TMIN_2M" 24
-            "TOT_PREC" 3.6}})
+            "TOT_PREC" 4}})
 
 (def ensembles {"ensemble"
-               [["ICARUS" "a2"]
-                ["ICARUS" "b2"]
-                ["CCCM"   "A2"]
-                ["CCCM"   "B2"]
-                ["CSIRO"   "A2"]
-                ["CSIRO"   "B2"]
-                ["HadCM3"   "A2"]
-                ["HadCM3"   "B2"]
-                ["CGCM31" "A2"]
-                ["CGCM31" "A1B"]
-                ["HadGEM" "RCP85"]
-                ["HadGEM" "RCP45"]]
-               "high"
-               [["HadGEM" "RCP85"]
-                ["CGCM31" "A2"]
-                ["ICARUS" "a2"]]
-               "medium"
-               [["ICARUS" "b2"]
-                ["CGCM31" "A2"]
-                ["ICARUS" "a2"]
-                ["CCCM"   "A2"]
-                ["CCCM"   "B2"]
-                ["CSIRO"   "A2"]
-                ["CSIRO"   "B2"]
-                ["HadCM3"   "A2"]
-                ["HadCM3"   "B2"]]
-               "low"
-               [["HadGEM" "RCP45"]
-                ["CGCM31" "A1B"]]
-               "a2"
-               [["ICARUS" "a2"]]
-               "b2"
-               [["ICARUS" "b2"]]
-               "A2"
-               [["CGCM31" "A2"]]
-               "A1B"
-               [["CGCM31" "A1B"]]
-               "RCP85"
-               [["HadGEM" "RCP85"]]
-               "RCP45"
-               [["HadGEM" "RCP45"]]
-               "C20"
-               [["HadGEM" "C20"]
-                ["CGCM31" "C20"]]})
+                [["CCCM"   "A2"]
+                 ["CCCM"   "B2"]
+                 ["CSIRO"   "A2"]
+                 ["CSIRO"   "B2"]
+                 ["HadCM3"   "A2"]
+                 ["HadCM3"   "B2"]
+                 ["CGCM31" "A2"]
+                 ["CGCM31" "A1B"]
+                 ["HadGEM" "RCP85"]
+                 ["HadGEM" "RCP45"]]
+                "icarus"
+                [["CCCM"   "A2"]
+                 ["CCCM"   "B2"]
+                 ["CSIRO"   "A2"]
+                 ["CSIRO"   "B2"]
+                 ["HadCM3"   "A2"]
+                 ["HadCM3"   "B2"]]
+                "high"
+                [["HadGEM" "RCP85"]
+                 ["CGCM31" "A2"]
+                 ["CCCM" "A2"]
+                 ["CCCM"   "B2"]
+                 ["CSIRO"   "A2"]
+                 ["CSIRO"   "B2"]
+                 ["HadCM3"   "A2"]
+                 ["HadCM3"   "B2"]]
+                "medium"
+                [["CGCM31" "A2"]
+                 ["CCCM"   "A2"]
+                 ["CCCM"   "B2"]
+                 ["CSIRO"   "A2"]
+                 ["CSIRO"   "B2"]
+                 ["HadCM3"   "A2"]
+                 ["HadCM3"   "B2"]]
+                "low"
+                [["HadGEM" "RCP45"]
+                 ["CGCM31" "A1B"]]})
 
 (def temp-vars ["T_2M" "TMAX_2M" "TMIN_2M"])
 
@@ -172,55 +171,41 @@
    (/ 100)
    float))
 
-(defn data-by-county [county year months model scenario variable]
+(defn data-by-county [county year months models variable]
   (letfn [(get-data [county year months model scenario variable]
             (->> (get-county-by-year county year months model scenario variable)
                  first 
                  :value
                  :datum.value))]
-    (let [d (filter #(not (nil? %))
-                    (map #(get-data county year months (first %) (second %) variable)
-                         (get ensembles scenario)))]
-      (when (seq d) (/ (reduce + 0 d) (count d))))))
+    (map #(get-data county year months (first %) (second %) variable)
+         models)))
 
-(defn abs-data [county year months model scenario variable]
-  (let [d (data-by-county county year months model scenario variable)]
-    (when d
+(defn abs-data [county year months models variable]
+  (let [d (data-by-county county year months models variable)]
+    (when (seq d)
       (if (temp-var? variable)
-        (- d 273.15)
+        (map #(when % (- % 273.15)) d)
         d))))
 
-(defn ref-data-slow [county months model scenario variable]
+(defn ref-data-slow [county months models variable]
   (try
     (clutch/with-db db
-      (data-by-county county "1961-1990" months model
-                      (if (= model "ICARUS") scenario "C20") variable))
+      (data-by-county county "1961-1990" months models variable))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
 (def ref-data (memoize ref-data-slow))
 
-(defn diff-by-county [county year months model scenario variable]
-  (let [d (data-by-county county year months model scenario variable)
-        ref (ref-data county months model scenario variable)]
-    (if (and d ref)
+(defn diff-by-county [county year months models variable]
+  (let [d (data-by-county county year months models variable)
+        refs (ref-data county months models variable)
+        refsnotnil (filter #(not (nil? %)) refs)
+        refval (when (seq refsnotnil) (/ (reduce + 0 refsnotnil) (count refsnotnil)))]
+    (if (and (seq d) refval)
       (if (temp-var? variable)
-        (- d ref)
-        (percent d ref))
-      (log/warn "null values! d: " d " ref: " ref
-                   " params " county year months model scenario variable))))
-
-(defn diff-data
-  "calculate the display value based on a difference function between
-computed data and reference data. Difference function is subtraction for
-temperature data and percentage difference for everything else"
-  [county year months model scenario variable]
-  (let [rawcomp (filter #(not (nil? %))
-                        (map #(diff-by-county county year months (first %) (second %) variable)
-                             (get ensembles scenario)))
-        comp (when (> (count rawcomp) 0)
-               (/ (reduce + 0 rawcomp)
-                  (count rawcomp)))]
-    comp))
+        (map #(when % (- % refval)) d)
+        (map #(when % (percent % refval)) d))
+      (log/warn "null values! d: " d " ref: " refval
+                " params " county year months models variable))))
 
 (def bycounty-memo (memoize data-by-county))
 

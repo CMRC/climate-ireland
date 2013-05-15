@@ -11,7 +11,7 @@ print(summary(counties))
 
 makeurl <- function(run,county,year,season,variable) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate_dev4/",run, strip, year, season, variable, sep="")
+  paste("http://localhost:5984/climate_dev5/",run, strip, year, season, variable, sep="")
 }
 
 byprovince <- function(sgdf, region, run, year, season, variable) {

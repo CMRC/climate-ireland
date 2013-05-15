@@ -34,15 +34,21 @@
   (if (nil? val)
     "grey"
     (let [colour-scale (let [s (scale/linear :domain domain
-                                             :range [0 (count colour-scheme)])]
-                         (fn [d] (nth colour-scheme (floor (s d)))))]
+                                             :range [0 (count colour-scheme)])
+                             idx (fn [d] (floor (s d)))
+                             checked-idx (fn [d] (if (< (idx d) 0) 0
+                                                     (if (> (idx d) (dec (count colour-scheme)))
+                                                       (dec (count colour-scheme))
+                                                       (idx d))))]
+                         (fn [d] (nth colour-scheme (checked-idx d))))]
       (colour-scale val))))
 
 (defn colour-on-linear
   "Calls CouchDB and returns a colour string based on the query parameters"
-  [elem county year months model scenario variable region lmin lmax diff-fn colour-scheme]
+  [elem county year months models variable region lmin lmax diff-fn colour-scheme]
   (let [domain [lmax lmin]
-        val (diff-fn county year months model scenario variable)]
+        vals (filter (fn [x] (not (nil? x))) (diff-fn county year months models variable))
+        val (/ (reduce + 0 vals) (count vals))]
     (add-style elem :fill (linear-rgb val domain colour-scheme))))
 
 (defn regions-map-slow
@@ -52,6 +58,9 @@
   [req]
   (try
     (let [{:keys [year months model scenario variable fill region]} req
+          models (if (= model "ensemble")
+                   (get ensembles scenario)
+                   (vector (vector model scenario)))
           regions-svg (case (:regions req)
                         "Counties" counties-svg
                         "Provinces" provinces-svg)
@@ -59,7 +68,7 @@
                     "Counties" counties
                     "Provinces" provinces)
           delta (= (:abs req) "Delta")
-          diff-fn (if delta diff-data abs-data)
+          diff-fn (if delta diff-by-county abs-data)
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
           min (get-in mins [(:abs req) variable])
           max (get-in maxs [(:abs req) variable])]
@@ -75,7 +84,8 @@
                 (fn [elem]
                   (let [link (make-url "climate-information/projections"
                                        (assoc-in req [:region] %2))
-                        val (diff-fn %2 year months model scenario variable)]
+                        vals (filter (fn [x] (not (nil? x))) (diff-fn %2 year months models variable))
+                        val (/ (reduce + 0 vals) (count vals))]
                     (log/info "Value: " val " From: " req)
                     [:a {:xlink:href link :target "_top"}
                      (-> (add-attrs elem :onmouseover
@@ -91,7 +101,7 @@
                                            (if (temp-var? variable) "°C " (if delta "% " "mm/hr"))
                                            %2
                                            "')")))
-                         (colour-on-linear %2 year months model scenario variable region min max diff-fn colour-scheme)
+                         (colour-on-linear %2 year months models variable region min max diff-fn colour-scheme)
                          (add-style :stroke (if (= region (:id (second elem))) "red" "grey")))])))
               regions-svg			
               regions)
@@ -123,7 +133,7 @@
     (catch Exception ex
       (log/info ex)
       (log/info req)
-      "We do apologise. There is no data available for the selection you have chosen.
+      "We do apologise. There are no data available for the selection you have chosen.
 Please select another combination of decade/variable/projection")))
   
   

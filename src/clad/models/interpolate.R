@@ -118,25 +118,27 @@ populate <- function(sdf,varname,model,scenario,normal) {
 for (normal in c(1960,2010,2020,2030,2040,2050,2060,2070)) {
   for (season in 0:3) {
     for(model in models) {
-      for(variable in c("TOT_PREC","TMAX_2M","TMIN_2M")) {
-        for(scenario in c("A2","B2")) {
+      for(scenario in c("A2","B2")) {
+        for(variable in c("TOT_PREC","TMAX_2M","TMIN_2M")) {
           projected[[model]][[variable]][[scenario]] =
             vals[[model]][[variable]][[scenario]][as.integer(vals[[model]][[variable]][[scenario]]$YEAR) %in% normal:(normal + 29),]
           names(projected[[model]][[variable]][[scenario]]) =
             gsub("^[^0-9]*([0-9]{3,4}).*$","\\1",names(projected[[model]][[variable]][[scenario]]))
           print(names(projected[[model]][[variable]][[scenario]]))
           sdf$avg =  apply(sdf,1,function(rw) getstationmean(rw[1],season*3 +1, variable, scenario,
-            projected[[model]][[variable]][[scenario]]))
+            projected[[model]][[variable]][[scenario]])) 
           if (variable == "TMAX_2M") {
+            sdf$avg = sdf$avg + 273.15
             sdf$max = sdf$avg
           } else if (variable == "TMIN_2M") {
+            sdf$avg = sdf$avg + 273.15
             sdf$min = sdf$avg
           }
           populate(sdf,variable,model,scenario,normal)
         }
+        sdf$avg = (sdf$min + sdf$max) / 2
+        populate(sdf,"T_2M",model,scenario,normal)
       }
-      sdf$avg = (sdf$min + sdf$max) / 2
-      populate(sdf,"T_2M",model,scenario,normal)
     }
   }
 }
