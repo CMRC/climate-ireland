@@ -17,26 +17,29 @@
                 "TMAX_2M" "Max Temp"
                 "TOT_PREC" "Precipitation"})
 
-(defn decadal-box [county months variable abs ensemble]
-  (let [models (get ensembles ensemble)
+(defn decadal-box [county months variable abs model ensemble]
+  (let [models (if (= model "ensemble")
+                 (get ensembles ensemble)
+                 (vector (vector model ensemble)))
         delta (= abs "Delta")
-        diff-fn (if delta diff-data abs-data)
+        diff-fn (if delta diff-by-county abs-data)
+        delta (= abs "Delta")
+        p (println models)
         vals-fn (fn [decade]
                   (map #(vector (double (first %)) (second %))
                        (filter #(not (nil? (first %)))
-                               (map #(vector (diff-fn
-                                              county decade months
-                                              (first %) (second %) variable)
-                                             (second %))
+                               (map vector (diff-fn
+                                            county decade months
+                                            models variable)
                                     models))))
         add-decade (fn [[cat decade] chart]
                      (when-let [vals (vals-fn decade)]
                        (doseq [[val sim] vals]
                          (when val (.addAnnotation (.getPlot chart)
-                                                   (CategoryTextAnnotation. sim cat val))))
+                                                   (CategoryTextAnnotation. (second sim) (str cat) val))))
                        (add-box-plot chart (map first vals)
                                      :legend true
-                                     :series-label decade)))
+                                     :series-label (str (* 10 (inc cat)) "s"))))
         decades ["2011-2040"
                  "2021-2050"
                  "2031-2060"
@@ -70,7 +73,7 @@
                 (->
                  .getLegend
                  (.setFrame (BlockBorder. 0 0 0 0))))
-        labeled (reduce #(add-decade %2 %1) chart (map vector (map str (range 1 7)) decades))
+        labeled (reduce #(add-decade %2 %1) chart (map vector (range 1 7) decades))
         out-stream (ByteArrayOutputStream.)
         in-stream (do
                     (save labeled out-stream :width 500 :height 400)

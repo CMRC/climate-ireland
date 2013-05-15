@@ -335,8 +335,8 @@
   {:as req}
   (regions-map req))
 (defpage "/ci/html/:year/:months" {:keys [year months] } (table-output year months))
-(defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/:abs/:regions" {:keys [county months variable abs scenario]} 
-  (decadal-box county months variable abs scenario))
+(defpage "/ci/box/:county/:years/:months/:model/:scenario/:variable/:abs/:regions" {:keys [county months variable abs model scenario]} 
+  (decadal-box county months variable abs model scenario))
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
 (defpage [:post "/ci/submit"] {:as req}
