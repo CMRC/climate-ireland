@@ -2,31 +2,6 @@ library(gstat)
 library(gdata)
 source("couch.R")
 
-vals = list()
-models = c("CCCM","CSIRO","HadCM3")
-projected=list()
-
-for (model in models) {
-  head = "/var/data/icarus/GCMs/GCM_"
-  tail = "_precip.xls"
-  vals[[model]][["TOT_PREC"]][["A2"]] =
-    read.xls(paste(head, model, tail, sep=""),sheet=1)
-  vals[[model]][["TOT_PREC"]][["B2"]] =
-    read.xls(paste(head, model, tail, sep=""),sheet=2)
-  
-  tail = "_tmin.xls"
-  vals[[model]][["TMIN_2M"]][["A2"]] =
-    read.xls(paste(head, model, tail, sep=""),sheet=1)
-  vals[[model]][["TMIN_2M"]][["B2"]] =
-    read.xls(paste(head, model, tail, sep=""),sheet=2)
-  
-  tail = "_tmax.xls"
-  vals[[model]][["TMAX_2M"]][["A2"]] =
-    read.xls(paste(head, model, tail, sep=""),sheet=1)
-  vals[[model]][["TMAX_2M"]][["B2"]] =
-    read.xls(paste(head, model, tail, sep=""),sheet=2)
-}
-
 ##weather stations
 stations <- c("1004","1034","2437","2615",
               "2727","305","3613",
@@ -117,16 +92,16 @@ populate <- function(sdf,varname,model,scenario,normal) {
 
 for (normal in c(1960,2010,2020,2030,2040,2050,2060,2070)) {
   for (season in 0:3) {
-    for(model in models) {
+    for(model in c("CCCM","CSIRO","HadCM3")) {
       for(scenario in c("A2","B2")) {
         for(variable in c("TOT_PREC","TMAX_2M","TMIN_2M")) {
-          projected[[model]][[variable]][[scenario]] =
-            vals[[model]][[variable]][[scenario]][as.integer(vals[[model]][[variable]][[scenario]]$YEAR) %in% normal:(normal + 29),]
-          names(projected[[model]][[variable]][[scenario]]) =
-            gsub("^[^0-9]*([0-9]{3,4}).*$","\\1",names(projected[[model]][[variable]][[scenario]]))
+          head = "/var/data/icarus/GCMs/GCM_"
+          tail = paste("_",variable,".xls",sep="")
+          vals = read.xls(paste(head, model, tail, sep=""),sheet=1)
+          projected = vals[as.integer(vals$YEAR) %in% normal:(normal + 29),]
+          names(projected) = gsub("^[^0-9]*([0-9]{3,4}).*$","\\1",names(projected))
           print(names(projected[[model]][[variable]][[scenario]]))
-          sdf$avg =  apply(sdf,1,function(rw) getstationmean(rw[1],season*3 +1, variable, scenario,
-            projected[[model]][[variable]][[scenario]])) 
+          sdf$avg =  apply(sdf,1,function(rw) getstationmean(rw[1],season*3 +1, variable, scenario, projected)) 
           if (variable == "TMAX_2M") {
             sdf$avg = sdf$avg + 273.15
             sdf$max = sdf$avg

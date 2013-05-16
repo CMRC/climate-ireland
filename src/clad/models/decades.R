@@ -22,8 +22,8 @@ maketifseasonaldecadal <- function(run, decade, season, variable) {
 
 #baseline data
 for(run in c("MM_haCLM4_C20_4km", "MM_caCLM4_C20_4km")) {
-  #cdoyearlydecadal(run, "1961/1990")
-  #cdoseasonaldecadal(run, "1961/1990")
+  cdoyearlydecadal(run, "1961/1990")
+  cdoseasonaldecadal(run, "1961/1990")
   for(season in c("DJF","MAM","JJA","SON","J2D")) {
     for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
       decade <- "1961-1990"
@@ -42,8 +42,8 @@ for(run in c("MM_haCLM4_C20_4km", "MM_caCLM4_C20_4km")) {
 
 for(start in c(2021L,2031L)) {
   for(run in c("MM_caCLM4_A1B_4km","MM_caCLM4_A2_4km","MM_haCLM4_RCP45_4km","MM_haCLM4_RCP85_4km")) {
-    #cdoyearlydecadal(run, paste(toString(start),sep="/",toString(start+29)))
-    #cdoseasonaldecadal(run, paste(toString(start),sep="/",toString(start+29)))
+    cdoyearlydecadal(run, paste(toString(start),sep="/",toString(start+29)))
+    cdoseasonaldecadal(run, paste(toString(start),sep="/",toString(start+29)))
     for(season in c("DJF","MAM","JJA","SON","J2D")) {
       for(var in c("lat","lon","PS","TOT_PREC","PMSL","QV_2M","T_2M","RUNOFF_G","RUNOFF_S","TMAX_2M","TMIN_2M","VGUST_DYN")) {
         decade <- paste(toString(start),sep="-",toString(start+29))
