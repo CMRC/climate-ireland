@@ -11,7 +11,7 @@ print(summary (counties))
 
 makeurl <- function(run,county,model,scenario) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate_dev5/",run, strip, model, scenario, sep="")
+  paste("http://localhost:5984/climate_dev6/",run, strip, model, scenario, sep="")
 }
 clip <- function(county, run, var, countydata,sgdf,model,scenario) {
   ckk=!is.na(overlay(sgdf, countydata))
