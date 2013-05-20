@@ -6,7 +6,7 @@
         [clojure.math.numeric-tower]))
 
 (def users-db "climate_dev2")
-(def db "climate_dev4")
+(def db "climate_dev5")
 
 #_(clutch/with-db users-db
     (clutch/save-view "users"
