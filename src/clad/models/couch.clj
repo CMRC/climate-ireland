@@ -6,7 +6,7 @@
         [clojure.math.numeric-tower]))
 
 (def users-db "climate_dev2")
-(def db "climate_dev4")
+(def db "climate_dev5")
 
 #_(clutch/with-db users-db
     (clutch/save-view "users"
@@ -65,7 +65,7 @@
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
 
-#_(save-views) ;;eval this when running on a new database
+(save-views) ;;eval this when running on a new database
 
 (defn get-run-data [year months]
   (try

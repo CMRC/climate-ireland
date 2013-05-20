@@ -14,7 +14,7 @@ makeurl <- function(run,county,model,scenario) {
   paste("http://localhost:5984/climate_dev5/",run, strip, model, scenario, sep="")
 }
 clip <- function(county, run, var, countydata,sgdf,model,scenario) {
-  ckk=!is.na(over(sgdf, countydata, returnList=TRUE))
+  ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)
   print(county)

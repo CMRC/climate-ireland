@@ -45,7 +45,7 @@ flipVertical <- function(x) {
 
 clip <- function(countydata, sgdf, region, run, year, season, variable) {
   sgdf <- flipVertical(sgdf)
-  ckk=!is.na(over(sgdf, countydata, returnList=TRUE))
+  ckk=!is.na(overlay(sgdf, countydata))
   ##print(summary(ckk))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)

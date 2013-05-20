@@ -74,7 +74,7 @@ populate <- function(sdf,varname,model,scenario,normal) {
   z <- krige(formula = avg ~ 1, locations = ~ x + y, data = sdf, newdata = ireland) 
   
   sgdf <- as(z,"SpatialGridDataFrame")
-  sgdf@proj4string = CRS("+proj=tmerc +lat_0=53.5 +lon_0=-8 +k=1.000035 +x_0=200000 +y_0=250000 +ellps=mod_airy +datum=ire65 +units=m +no_defs +towgs84=482.530,-130.596,564.557,-1.042,-0.214,-0.631,8.15")
+  sgdf@proj4string = counties@proj4string
   sgdf$band1 <- sgdf$var1.pred
   print(summary(sgdf))
   
@@ -90,17 +90,16 @@ populate <- function(sdf,varname,model,scenario,normal) {
   NI(sgdf, varname, run, model, scenario)
 }
 
-for (normal in c(1960,2010,2020,2030,2040,2050,2060,2070)) {
-  for (season in 0:3) {
-    for(model in c("CCCM","CSIRO","HadCM3")) {
-      for(scenario in c("A2","B2")) {
-        for(variable in c("TOT_PREC","TMAX_2M","TMIN_2M")) {
-          head = "/var/data/icarus/GCMs/GCM_"
-          tail = paste("_",variable,".xls",sep="")
-          vals = read.xls(paste(head, model, tail, sep=""),sheet=1)
+for(model in c("CCCM","CSIRO","HadCM3")) {
+  for(scenario in c("A2","B2")) {
+    for(variable in c("TOT_PREC","TMAX_2M","TMIN_2M")) {
+      head = "/var/data/icarus/GCMs/GCM_"
+      tail = paste("_",variable,".xls",sep="")
+      vals = read.xls(paste(head, model, tail, sep=""),sheet=1)
+      for (normal in c(1960,2010,2020,2030,2040,2050,2060,2070)) {
+        for (season in 0:3) {
           projected = vals[as.integer(vals$YEAR) %in% normal:(normal + 29),]
           names(projected) = gsub("^[^0-9]*([0-9]{3,4}).*$","\\1",names(projected))
-          print(names(projected[[model]][[variable]][[scenario]]))
           sdf$avg =  apply(sdf,1,function(rw) getstationmean(rw[1],season*3 +1, variable, scenario, projected)) 
           if (variable == "TMAX_2M") {
             sdf$avg = sdf$avg + 273.15
@@ -108,11 +107,12 @@ for (normal in c(1960,2010,2020,2030,2040,2050,2060,2070)) {
           } else if (variable == "TMIN_2M") {
             sdf$avg = sdf$avg + 273.15
             sdf$min = sdf$avg
+            sdf$avg = (sdf$min + sdf$max) / 2
+            populate(sdf,"T_2M",model,scenario,normal)
+            sdf$avg = sdf$min
           }
           populate(sdf,variable,model,scenario,normal)
         }
-        sdf$avg = (sdf$min + sdf$max) / 2
-        populate(sdf,"T_2M",model,scenario,normal)
       }
     }
   }
