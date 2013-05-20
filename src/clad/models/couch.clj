@@ -101,7 +101,7 @@
            {"T_2M" 0
             "TMAX_2M" 0
             "TMIN_2M" 0
-            "TOT_PREC" -60}
+            "TOT_PREC" -40}
            "Absolute"
            {"T_2M" 3
             "TMAX_2M" 3
@@ -112,7 +112,7 @@
            {"T_2M" 3.5
             "TMAX_2M" 3.5
             "TMIN_2M" 3.5
-            "TOT_PREC" 55}
+            "TOT_PREC" 30}
            "Absolute"
            {"T_2M" 24
             "TMAX_2M" 24
@@ -197,13 +197,15 @@
 
 (defn diff-by-county [county year months models variable]
   (let [d (data-by-county county year months models variable)
+        log (log/info county year months models variable d)
         refs (ref-data county months models variable)
+        pairs (map vector d refs)
         refsnotnil (filter #(not (nil? %)) refs)
         refval (when (seq refsnotnil) (/ (reduce + 0 refsnotnil) (count refsnotnil)))]
     (if (and (seq d) refval)
       (if (temp-var? variable)
-        (map #(when % (- % refval)) d)
-        (map #(when % (percent % refval)) d))
+        (map #(when (and (first %) (second %)) (- (first %) (second %))) pairs)
+        (map #(when (and (first %) (second %)) (percent (first %) (second %))) pairs))
       (log/warn "null values! d: " d " ref: " refval
                 " params " county year months models variable))))
 

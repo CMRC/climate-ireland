@@ -74,7 +74,7 @@ populate <- function(sdf,varname,model,scenario,normal) {
   z <- krige(formula = avg ~ 1, locations = ~ x + y, data = sdf, newdata = ireland) 
   
   sgdf <- as(z,"SpatialGridDataFrame")
-  sgdf@proj4string = CRS("+proj=tmerc +lat_0=53.5 +lon_0=-8 +k=1.000035 +x_0=200000 +y_0=250000 +ellps=mod_airy +datum=ire65 +units=m +no_defs +towgs84=482.530,-130.596,564.557,-1.042,-0.214,-0.631,8.15")
+  sgdf@proj4string = counties@proj4string
   sgdf$band1 <- sgdf$var1.pred
   print(summary(sgdf))
   
