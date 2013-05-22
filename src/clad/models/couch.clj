@@ -65,7 +65,7 @@
                        {:by-model
                         {:map (fn [doc] [[(:year doc),doc]])}}))))
 
-(save-views) ;;eval this when running on a new database
+#_(save-views) ;;eval this when running on a new database
 
 (defn get-run-data [year months]
   (try
@@ -97,23 +97,23 @@
       (clutch/get-view "models" :by-model))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
-(def mins {"Delta"
+(def mins {"Change"
            {"T_2M" 0
             "TMAX_2M" 0
             "TMIN_2M" 0
-            "TOT_PREC" -40}
-           "Absolute"
+            "TOT_PREC" -35}
+           "Value"
            {"T_2M" 3
             "TMAX_2M" 3
             "TMIN_2M" 3
             "TOT_PREC" 0.5}})
 
-(def maxs {"Delta"
+(def maxs {"Change"
            {"T_2M" 3.5
             "TMAX_2M" 3.5
             "TMIN_2M" 3.5
-            "TOT_PREC" 30}
-           "Absolute"
+            "TOT_PREC" 20}
+           "Value"
            {"T_2M" 24
             "TMAX_2M" 24
             "TMIN_2M" 24

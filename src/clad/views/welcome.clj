@@ -139,11 +139,6 @@
 (def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
 
 (def scenarios (array-map
-		["CGCM31" "A1B"] "A1B"
-                ["CGCM31" "A2"] "A2 [1]"
-                ["HadGEM" "RCP45"] "RCP45"
-                ["HadGEM" "RCP85"] "RCP85"
-                ["ensemble" "icarus"] "ICARUS"
                 ["ensemble" "high"] "High"
                 ["ensemble" "medium"] "Medium"
                 ["ensemble" "low"] "Low"
@@ -234,7 +229,7 @@
                                                           "/" (second run))))))
                
   [:#abs :option]
-  (clone-for [abs ["Delta" "Absolute"]]
+  (clone-for [abs ["Change" "Value"]]
              [:option]
              (fn [a-node] (->
                            (assoc-in (if (= (:abs req) abs)
