@@ -14,7 +14,7 @@ makeurl <- function(run,county,model,scenario) {
   paste("http://localhost:5984/climate_dev6/",run, strip, model, scenario, sep="")
 }
 clip <- function(county, run, var, countydata,sgdf,model,scenario) {
-  ckk=!is.na(over(sgdf, countydata, returnList=TRUE))
+  ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)
   print(county)
@@ -54,5 +54,9 @@ byprovince <- function(sgdf, region, var, run, model, scenario) {
 NI <- function(sgdf, var, run, model, scenario) {
   countydata <- counties[counties@data$Country=="UK",] 
   clip("NI",run,var,countydata,sgdf,model,scenario)
+}
+Ireland <- function(sgdf, var, run, model, scenario) {
+  countydata <- counties[counties@data$Country,] 
+  clip("Ireland",run,var,countydata,sgdf,model,scenario)
 }
 

@@ -11,7 +11,7 @@ print(summary(counties))
 
 makeurl <- function(run,county,year,season,variable) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate_dev5/",run, strip, year, season, variable, sep="")
+  paste("http://localhost:5984/climate_dev6/",run, strip, year, season, variable, sep="")
 }
 
 byprovince <- function(sgdf, region, run, year, season, variable) {
@@ -21,6 +21,10 @@ byprovince <- function(sgdf, region, run, year, season, variable) {
 NI <- function(sgdf, run, year, season, variable) {
   countydata <- counties[counties@data$Country=="UK",]
   clip(countydata, sgdf, "NI", run, year, season, variable)
+}
+Ireland <- function(sgdf, run, year, season, variable) {
+  countydata <- counties
+  clip(countydata, sgdf, "Ireland", run, year, season, variable)
 }
 
 flipHorizontal <- function(x) {
@@ -45,7 +49,7 @@ flipVertical <- function(x) {
 
 clip <- function(countydata, sgdf, region, run, year, season, variable) {
   sgdf <- flipVertical(sgdf)
-  ckk=!is.na(over(sgdf, countydata, returnList=TRUE))
+  ckk=!is.na(overlay(sgdf, countydata))
   ##print(summary(ckk))
   kkclipped= sgdf[ckk,]
   val <- mean(as(kkclipped, "data.frame")$band1)

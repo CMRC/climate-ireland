@@ -21,7 +21,7 @@
   (let [models (if (= model "ensemble")
                  (get ensembles ensemble)
                  (vector (vector model ensemble)))
-        delta (= abs "Delta")
+        delta (= abs "Change")
         diff-fn (if delta diff-by-county abs-data)
         log (log/info county months variable abs model ensemble)
         log1 (log/info models)
@@ -34,7 +34,7 @@
                                     models))))
         add-decade (fn [[cat decade] chart]
                      (when-let [vals (vals-fn decade)]
-                       (doseq [[val sim] vals]
+                       #_(doseq [[val sim] vals]
                          (log/info decade " ... " val sim)
                          (when val (.addAnnotation (.getPlot chart)
                                                    (CategoryTextAnnotation. (second sim) (str cat) val))))

@@ -30,6 +30,7 @@ for(run in c("MM_haCLM4_C20_4km", "MM_caCLM4_C20_4km")) {
       sd20s <- maketifseasonaldecadal(run, decade, season, var)
       print(summary(sd20s))
       NI(sd20s, run, decade, season, var)
+      Ireland(sd20s, run, decade, season, var)
       for(province in c("Leinster","Munster","Connaught","Ulster")) {
         byprovince(sd20s, province, run, decade, season, var)
       }
@@ -49,6 +50,7 @@ for(start in c(2021L,2031L)) {
         decade <- paste(toString(start),sep="-",toString(start+29))
         sd20s <- maketifseasonaldecadal(run, decade, season, var) 
         NI(sd20s, run, decade, season, var)
+        Ireland(sd20s, run, decade, season, var)
         for(province in c("Leinster","Munster","Connaught","Ulster")) {
           byprovince(sd20s, province, run, decade, season, var)
         }
