@@ -8,7 +8,7 @@ stations <- c("1004","1034","2437","2615",
               "3723","3904","4919","518",
               "532","545")
 
-seasons = c("djf","mam","jja","son")
+seasons = c("djf","mam","jja","son","j2d")
 
 countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
                  "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
@@ -61,7 +61,7 @@ getstationmean <- function(station, season,variable,scenario,projected) {
   return (stationavg)
 }
 
-populate <- function(sdf,varname,model,scenario,normal) {
+populate <- function(sdf,season,varname,model,scenario,normal) {
   
   x=seq(from=-26995.9, to=423004.095, by=1000)
   y=seq(from=-2237.46, to=480762.54, by=1000)
@@ -88,6 +88,7 @@ populate <- function(sdf,varname,model,scenario,normal) {
     byprovince(sgdf, province, varname, run, model, scenario)
   }
   NI(sgdf, varname, run, model, scenario)
+  Ireland(sgdf, varname, run, model, scenario)
 }
 
 for(model in c("CCCM","CSIRO","HadCM3")) {
@@ -97,6 +98,7 @@ for(model in c("CCCM","CSIRO","HadCM3")) {
       tail = paste("_",variable,".xls",sep="")
       vals = read.xls(paste(head, model, tail, sep=""),sheet=1)
       for (normal in c(1960,2010,2020,2030,2040,2050,2060,2070)) {
+        sdf$yearlyavg = sdf$y * 0
         for (season in 0:3) {
           projected = vals[as.integer(vals$YEAR) %in% normal:(normal + 29),]
           names(projected) = gsub("^[^0-9]*([0-9]{3,4}).*$","\\1",names(projected))
@@ -108,11 +110,14 @@ for(model in c("CCCM","CSIRO","HadCM3")) {
             sdf$avg = sdf$avg + 273.15
             sdf$min = sdf$avg
             sdf$avg = (sdf$min + sdf$max) / 2
-            populate(sdf,"T_2M",model,scenario,normal)
+            populate(sdf,season,"T_2M",model,scenario,normal)
             sdf$avg = sdf$min
           }
-          populate(sdf,variable,model,scenario,normal)
+          populate(sdf,season,variable,model,scenario,normal)
+          sdf$yearlyavg = sdf$yearlyavg + sdf$avg
         }
+        sdf$avg = sdf$yearlyavg / 4
+        populate(sdf,4,variable,model,scenario,normal)
       }
     }
   }

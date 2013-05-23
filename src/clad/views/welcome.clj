@@ -101,7 +101,7 @@
                                   a-node)))
                    [:.buttons]))
 
-  [:#buttons]
+  [:#menu]
   (content (select (transform (html-resource "clad/views/View_3.html")
                               [:.buttons :a]
                               (fn [a-node]
@@ -123,7 +123,7 @@
   (substitute (select (html-resource "clad/views/View_3.html") [:#banner]))
   [:#footer]
   (substitute (select (html-resource "clad/views/View_3.html") [:#footer]))
-  [:#buttons]
+  [:#menu]
   (content (select (transform (html-resource "clad/views/View_3.html")
                               [:.buttons :a]
                               (fn [a-node]

@@ -55,4 +55,8 @@ NI <- function(sgdf, var, run, model, scenario) {
   countydata <- counties[counties@data$Country=="UK",] 
   clip("NI",run,var,countydata,sgdf,model,scenario)
 }
+Ireland <- function(sgdf, var, run, model, scenario) {
+  countydata <- counties[counties@data$Country,] 
+  clip("Ireland",run,var,countydata,sgdf,model,scenario)
+}
 

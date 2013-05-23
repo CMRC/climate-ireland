@@ -22,6 +22,10 @@ NI <- function(sgdf, run, year, season, variable) {
   countydata <- counties[counties@data$Country=="UK",]
   clip(countydata, sgdf, "NI", run, year, season, variable)
 }
+Ireland <- function(sgdf, run, year, season, variable) {
+  countydata <- counties
+  clip(countydata, sgdf, "Ireland", run, year, season, variable)
+}
 
 flipHorizontal <- function(x) {
   if (!inherits(x, "SpatialGridDataFrame")) stop("x must be a SpatialGridDataFrame")
