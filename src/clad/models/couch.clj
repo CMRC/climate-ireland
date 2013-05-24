@@ -6,7 +6,7 @@
         [clojure.math.numeric-tower]))
 
 (def users-db "climate_dev2")
-(def db "climate_dev5")
+(def db "climate_dev6")
 
 #_(clutch/with-db users-db
     (clutch/save-view "users"
@@ -97,23 +97,23 @@
       (clutch/get-view "models" :by-model))
     (catch java.net.ConnectException e [{:region "Kilkenny"}])))
 
-(def mins {"Delta"
+(def mins {"Change"
            {"T_2M" 0
             "TMAX_2M" 0
             "TMIN_2M" 0
-            "TOT_PREC" -60}
-           "Absolute"
+            "TOT_PREC" -35}
+           "Value"
            {"T_2M" 3
             "TMAX_2M" 3
             "TMIN_2M" 3
             "TOT_PREC" 0.5}})
 
-(def maxs {"Delta"
+(def maxs {"Change"
            {"T_2M" 3.5
             "TMAX_2M" 3.5
             "TMIN_2M" 3.5
-            "TOT_PREC" 55}
-           "Absolute"
+            "TOT_PREC" 20}
+           "Value"
            {"T_2M" 24
             "TMAX_2M" 24
             "TMIN_2M" 24
@@ -197,13 +197,15 @@
 
 (defn diff-by-county [county year months models variable]
   (let [d (data-by-county county year months models variable)
+        log (log/info county year months models variable d)
         refs (ref-data county months models variable)
+        pairs (map vector d refs)
         refsnotnil (filter #(not (nil? %)) refs)
         refval (when (seq refsnotnil) (/ (reduce + 0 refsnotnil) (count refsnotnil)))]
     (if (and (seq d) refval)
       (if (temp-var? variable)
-        (map #(when % (- % refval)) d)
-        (map #(when % (percent % refval)) d))
+        (map #(when (and (first %) (second %)) (- (first %) (second %))) pairs)
+        (map #(when (and (first %) (second %)) (percent (first %) (second %))) pairs))
       (log/warn "null values! d: " d " ref: " refval
                 " params " county year months models variable))))
 

@@ -67,11 +67,12 @@
           regions (case (:regions req)
                     "Counties" counties
                     "Provinces" provinces)
-          delta (= (:abs req) "Delta")
+          delta (= (:abs req) "Change")
           diff-fn (if delta diff-by-county abs-data)
-          colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/PuBu-7))
+          colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/RdBu-11))
           min (get-in mins [(:abs req) variable])
-          max (get-in maxs [(:abs req) variable])]
+          max (get-in maxs [(:abs req) variable])
+          offset (if (temp-var? variable) (fn [_] 0) {"JJA" 4, "DJF" 0, "SON" 1 "MAM" 2})]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}
@@ -107,7 +108,8 @@
               regions)
              legend (reduce #(transform-xml %1
                                             [{:id (str "col-" %2)}]
-                                            (fn [node] (add-style node :fill (nth colour-scheme %2))))
+                                            (fn [node] (add-style node :fill (nth colour-scheme
+                                                                                  (+ %2 (offset months))))))
                             choropleth
                             (range 0 (count colour-scheme)))
              values (reduce #(transform-xml %1
@@ -115,7 +117,7 @@
                                             (fn [node] (set-content node (str (->
                                                                                ((scale/linear :domain [0 (count colour-scheme)]
                                                                                               :range [max min])
-                                                                                %2)
+                                                                                (+ %2 (offset months)))
                                                                                (* 100)
                                                                                round
                                                                                (/ 100)
@@ -130,7 +132,7 @@
              selected (transform-xml units [{:id "selected"}]
                                      (fn [node] (set-content node (str "Selected: " (:region req)))))]
          (emit selected))})
-    (catch Exception ex
+    #_(catch Exception ex
       (log/info ex)
       (log/info req)
       "We do apologise. There are no data available for the selection you have chosen.
