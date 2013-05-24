@@ -72,7 +72,7 @@
           colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/RdBu-11))
           min (get-in mins [(:abs req) variable])
           max (get-in maxs [(:abs req) variable])
-          offset (if (temp-var? variable) (fn [_] 0) {"JJA" 4, "DJF" 0, "SON" 1 "MAM" 2})]
+          offset (if (temp-var? variable) (fn [_] 0) {"JJA" 4, "DJF" 0, "SON" 1 "MAM" 2 "J2D" 2})]
       (log/info "Min: " min " Max: " max)
       {:status 200
        :headers {"Content-Type" "image/svg+xml"}

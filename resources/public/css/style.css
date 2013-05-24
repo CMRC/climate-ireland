@@ -44,14 +44,6 @@ p {
     margin-left: 1em;
     line-height: 1.4 ;
 }
-ul {
-    margin: 8px 10px 8px  30px ;
-}
-ul li {
-    line-height: 1.4 ;
-    margin-bottom: 3px ;
-    font-size: 0.938em ; 
-}
 
 h1, h2, h3, h4, h5 {
     font-weight: bold ;
@@ -129,8 +121,11 @@ h4{
 
 #menu {
     position: relative;
-    top: 10;
+    top: 2em;
     width: 600px;	
+    float: left;
+}
+#banner a img {
     float: right;
 }
 .buttons ul { 
@@ -138,7 +133,6 @@ h4{
     text-align: center;
 }
 .buttons ul li, .menu ul li { 
-    margin-bottom: 3px;
     display: inline;
 }
 #menu ul li a {
@@ -149,15 +143,15 @@ h4{
 }
 #tabs .buttons ul li {
     display: table;
-    float: right;
+    float: left;
     vertical-align: middle;
     height: 3em;
     width: 120px;
-    margin-right: 1px;
+    margin-left: 1px;
     border-right: 1px white solid;
 }
 #tabs .buttons ul li a {
-    padding: 0em 0.5em 0.1em 0;
+y    padding: 0em 0.5em 0.1em 0;
     text-decoration: none;
     color: white;
     border: 0.1em #436756 solid;
@@ -175,10 +169,8 @@ h4{
     background-color: white;
 }
 #tabs {
-    float: none;
+    height: 2em;
     clear: both;
-    margin-left: auto;
-    margin-right: auto;
     width: 100%;
 }
 #blurb {
@@ -222,11 +214,10 @@ h4{
     margin-left: auto;
     margin-right: auto;
     background-color: rgba(39,65,38, 0.05);
-    margin-top: 10px;
     clear: both;
 }
 #info-header {
-    margin-top: 5px;
+    display: inline-block;
     text-align: left;
     height: 160px;
 }
@@ -275,7 +266,6 @@ h4{
     width: 1010px;
     float: right;
     padding: 5px;
-    margin-top: 5px;
     margin-bottom: 5px;
     overflow: auto;
 }
