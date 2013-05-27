@@ -1,458 +1,417 @@
+/*reset*/
+html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockquote, pre, a, abbr, acronym, address, big, cite, code,del, dfn, em, img, ins, kbd, q, small, strike, strong, sub, sup, tt, var, b, u, i, center,dl, dt, dd, ol, ul, li, fieldset, form, label, legend,table, caption, tbody, tfoot, thead, tr, th, td,article, aside, canvas, details, embed,figure, figcaption, footer, header, hgroup,menu, nav, output, ruby, section, summary,time, mark,audio, video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+body {
+    line-height: 1;
+    font-family: Arial, sans-serif ;
+}
+
+ol,ul {
+    
+    padding: 0 0 4px 33px;
+    font-size: 1em;
+    margin-bottom: 10px;
+    margin-left: 35px;
+    line-height: 1.4;
+    
+}
+blockquote, q {
+    quotes: none;
+}
+blockquote:before, blockquote:after,
+q:before, q:after {
+    content: '';
+    content: none;
+}
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+p {
+    font-size: 0.938em ;
+    margin-bottom: 10px ;
+    margin-left: 1em;
+    line-height: 1.4 ;
+}
+
+h1, h2, h3, h4, h5 {
+    font-weight: bold ;
+    margin-left: 1em;
+}
+h1 {
+    font-size: 1.750em  ;
+    margin-bottom: 10px ;
+    margin-top: 8px ;
+    line-height: 1.2 ;
+}
+h2 { font-size: 1.375em; 	margin-bottom: 10px ; margin-top: 8px ; line-height: 1.2}
+h3 { font-size: 1.125em ; 	margin-bottom: 6px ; margin-top: 8px ; line-height: 1.2}
+h4 { font-size: 1.000em ; 	margin-bottom: 6px ; margin-top: 8px ; line-height: 1.2}
+h5 { font-size: 0.813em ; 	margin-bottom: 6px ; margin-top: 8px ; line-height: 1.2}
+strong {
+    font-weight: bold ;
+}
+a {
+    color: #369 ;
+    text-decoration: none ;
+}
+a.see-more {
+    color: #cc2a41;
+
+}
+a:hover {
+    text-decoration: underline; 
+}
+
 .do-not-display {
     display: none;
 }
 html {
-	width: 100%;
-	height: 100%;
-	margin: 0px;
+    max-width: 1024px;
+    height: 100%;
+    margin-left: auto;
+    margin-right: auto;
 }
 body {
-	width: 100%;
-	height: 95%;
-	margin: 0px;
-	padding: 0px;
-	background-position: top center;
-	background-repeat: no-repeat;
-	font-family: Verdana, Geneva, sans-serif;
-	line-height: 130%;
-	color: #252525;
-	background-color: white;
-	font-size: small;
-	text-align: justify;
-	
+    width: 100%;
+    height: 95%;
+    margin: 0px;
+    padding: 0px;
+    background-position: top center;
+    background-repeat: no-repeat;
+    font-family: Verdana, Geneva, sans-serif;
+    line-height: 130%;
+    color: #252525;
+    background-color: white;
+    font-size: small;
+    text-align: justify;
+    
 }
 
 h2{
-	color: #396538;
+    color: #396538;
 }
 
 h3{
-	color: #4C7875;
-	}
-	
+    color: #4C7875;
+}
+
 h4{
-	color: #4C7875;
-	font-style: italic;
-	font-size: small;
-	}
-	
-#wrapper {
-	width: 1024px;
-	margin-top: 20px;
-	margin-left: auto;
-	margin-right: auto;
-	display: block;
-	margin-bottom: 20px;
+    color: #4C7875;
+    font-style: italic;
+    font-size: small;
 }
-#banner {
-	width: 1018px;
-	height: 80px;
-	text-align: left;
-	border: 3px solid #396538;
-	border-radius: 5px;
-	background-image:url(/img/Banner.jpg);
+
+.box {
+    border: 1px #396538 solid;
+    border-radius: 2px;
+    border-style: solid;
 }
-#banner img {
-    height: 80px;
+
+#menu {
+    position: relative;
+    top: 2em;
+    width: 600px;	
     float: left;
 }
-#buttons {
-	position: relative;
-	top: 52px;
-	width: 1000px;	
+#banner a img {
+    float: right;
 }
 .buttons ul { 
     list-style-type: none; 
     text-align: center;
 }
-.buttons ul li { 
-	margin-bottom: 3px;
-	display: inline;
+.buttons ul li, .menu ul li { 
+    display: inline;
 }
-.buttons ul li a {
-	text-decoration: none;
-	padding: 0em 0.5em 0.1em 0;
-	color: #fff;
-	border: 0.1em #436756 solid;
-	background-color: #436756;
-	border-bottom-style: none;
+#menu ul li a {
+    padding: 0em 0.5em 0.1em 0;
 }
-.buttons ul li a:hover,
-.buttons ul li a:link#current,
-.buttons ul li a:visited#current
-{
-    color: #436756;
-    background-color: white;
-    text-align: center;
+#menu ul li a:link#current {
+    text-decoration: underline;
 }
-#tabs {
-    position: relative;
-    top: 7.5px;
-    margin-left: -250px;
-    width: 1524px;
-    float: none;
-    clear: both;
+#tabs ul {
+    padding: 0;
+    margin-left: 0;
+}
+#tabs .buttons ul li {
+    display: table;
+    float: left;
+    vertical-align: middle;
+    height: 3em;
+    width: 120px;
+    margin-left: 1px;
+    border-right: 1px white solid;
 }
 #tabs .buttons ul li a {
-    background-color: #356a46;
+y    padding: 0em 0.5em 0.1em 0;
+    text-decoration: none;
+    color: white;
+    border: 0.1em #436756 solid;
+    background-color: #436756;
+    border-bottom-style: none;
+    display: table-cell;
+    height: 100%;
 }
 #tabs .buttons ul li a:hover,
-#tabs .buttons ul li a:visited#current {
-    color: #356a46;
+#tabs .buttons ul li a:link#current,
+#tabs .buttons ul li a:visited#current
+{
+    color: #436756;
+    text-align: center;
     background-color: white;
 }
-#scroll {
-	width:100%;
-	height:30px;
-}
-.hbutton {
-	width: 20%;
-	float: right;
-	overflow: hidden;
-	text-align: center;
-	
-}
-#col1 {
-	float: left;
-	height: 600px;
-	width: 170px;
-	position: relative;
-	border: 3px solid; 
-	border-color: #396538;
-	border-radius: 5px;
-	padding: 5px;
-	margin: 5px;
-	margin-left: 0px;
-	background-color: rgba(39,65,38, 0.05);
+#tabs {
+    height: 2em;
+    clear: both;
+    width: 100%;
 }
 #blurb {
-	float: right;
-	height: 600px;
-	overflow-x: hidden;
-	overflow-y: auto;
-	width: 600px;
-	padding: 10px;
+    float: right;
+    height: 600px;
+    overflow-x: hidden;
+    overflow-y: auto;
+    width: 600px;
+    padding: 10px;
 }
 #mapsvg {
-	clear: both;
+    clear: both;
 }
 #map {
     float: left;
-	height: 600px;
-	width: 350px;
-	padding: 10px;
-	margin: 10px;
+    height: 600px;
+    width: 350px;
+    padding: 10px;
+    margin: 10px;
 }
 #map img {
-	max-height: 100%;
-	max-width: 100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 .col1b {
-	height: 200px;
-	width: 100%;
+    height: 200px;
+    width: 100%;
 }
 .colb2 {
-	height: 200px;
-	width: 100%;
+    height: 200px;
+    width: 100%;
 }
 #main {
-	width:100%;
-	margin-top: 15px;
-}
-.colb3 {
-	height: 200px;
-	width: 100%;
+    width:100%;
+    margin-top: 0;
+    height: 620px;
 }
 #footer , #info-header{
-	width: 1018px;
-	height: 62px;
-	text-align: right;
-	border: 3px solid #396538;
-	border-radius: 5px;
-	margin-left: auto;
-	margin-right: auto;
-	background-color: rgba(39,65,38, 0.05);
-	margin-bottom: 2px;
-	clear: both;
-	}
+    height: 64px;
+    text-align: right;
+    margin-left: auto;
+    margin-right: auto;
+    background-color: rgba(39,65,38, 0.05);
+    clear: both;
+}
 #info-header {
-    margin-top: 5px;
-	width: 1018px;
+    display: inline-block;
     text-align: left;
-	height: 160px;
-	padding: 5px;
+    height: 160px;
 }
 #view-2 {
-	width: 1024px;
-	height: 600px;
-	padding-top: 5px;
-	padding-bottom: 10px;
-	float: left;
+    height: 610px;
+    float: left;
+    margin-top: 10px;
 }
 
 #view-2-1 {
-	width: 505px;
-	height: 595px;
-	float: left;
-	border: 3px solid #396538;
-	border-radius: 5px;
-	background: #F2F2F2;
+    width: 505px;
+    height: 595px;
+    float: left;
+    background: #F2F2F2;
+    margin-right: 10px;
 }
 #view-2-2 {
-	width: 505px;
-	height: 595px;
-	float: left;
-	border: 3px solid #396538;
-	border-radius: 5px;
-	float: right;
-	background: #F2F2F2;
+    width: 505px;
+    height: 595px;
+    float: left;
+    float: right;
+    background: #F2F2F2;
 }
 #view-2-map, #view-2-map object {
-	width: 500px;
-	height: 420px;
-	text-align: center;
+    width: 500px;
+    height: 420px;
+    text-align: center;
 }
 #view-2-map-tool{
-	width: 500px;
-	height: 60px;
-	float: left;
-	background: #aaaaaa;	
+    width: 500px;
+    height: 60px;
+    float: left;
+    background: #aaaaaa;	
 }
 #view-2-2-chart {
-	width: 450px;
-	height: 400px;
-	float: left;
+    width: 450px;
+    height: 400px;
+    float: left;
 }
 #view-2-2-expl {
-	width: 500px;
-	height: 170px;
-	float: left;
+    width: 500px;
+    height: 170px;
+    float: left;
 }
 #view-3-text{
-	width: 1010px;
-	float: right;
-	padding: 5px;
-	border: 3px solid #396538;
-	border-radius: 5px;
-	margin-top: 5px;
-	margin-bottom: 5px;
-	overflow: auto;
+    width: 1010px;
+    float: right;
+    padding: 5px;
+    margin-bottom: 5px;
+    overflow: auto;
 }
 #content {
-	min-height: 600px;
+    min-height: 600px;
 }
 a.logout {
     float: right;
     clear: both;
+    margin-top: 1em;
 }
 #view-3-text img{
     margin: 5px;
 }
 
 .text-pic-right{
-	width: 200px;
-	height: 600px;
-	float: right;
-	padding: 5px;
-	position:relative;
-	margin: 5px;
-	margin-top: 20px;
-	}
+    width: 200px;
+    height: 600px;
+    float: right;
+    padding: 5px;
+    position:relative;
+    margin: 5px;
+    margin-top: 20px;
+}
 .text-pic-right img{
     margin: 5px;
 }
-	
+
 .text-pic-bottom{
-	width: 790px;
-	height: 150px;
-	position: relative;
-	}
-	
+    width: 790px;
+    height: 150px;
+    position: relative;
+}
+
 #text-box{
-	padding: 5px;
-	font-weight: bold;
-	color: #4C7875;
-	}
-		
+    padding: 5px;
+    font-weight: bold;
+    color: #4C7875;
+}
+
 #text-box-center{
-	padding: 5px;
-	border: 3px #396538 solid;
-	border-radius: 5px;
-	background-color: #BDD2B7;	
-	margin-left: auto;
-	margin-right: auto;
-	max-width: 500px;
-	}
-	
+    padding: 5px;
+    background-color: #BDD2B7;	
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 500px;
+}
+
 #text-box-2{
-	padding: 5px;
-	
-	background-color: #BDD2B7;
-	clear:both;
-	}
-	
+    padding: 5px;
+    
+    background-color: #BDD2B7;
+    clear:both;
+}
+
 #text-box-3{
-	padding: 5px;
-	border: 3px #396538 solid;
-	border-radius: 5px;
-	border-style: solid;
-	}
-	
+    padding: 5px;
+}
+
 .resize{
-	height: auto;
-	width: auto;
-	}
+    height: auto;
+    width: auto;
+}
 
 .picture clear { 
-	background-color: #F9F9F9;
-	border: 1px solid #CCCCCC; padding: 5px;
-	font: 11px/1.4em Arial, sans-serif;
-	max-width: 680px;	
-	float:clear;
-	}
-	
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC; padding: 5px;
+    font: 11px/1.4em Arial, sans-serif;
+    max-width: 680px;	
+    float:clear;
+}
+
 .picture { 
-	background-color: #F9F9F9;
-	border: 1px solid #CCCCCC; padding: 5px;
-	font: 11px/1.4em Arial, sans-serif;
-	max-width: 340px;	
-	margin-left:auto; 
-	margin-right:auto;
-	}
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC; padding: 5px;
+    font: 11px/1.4em Arial, sans-serif;
+    max-width: 340px;	
+    margin-left:auto; 
+    margin-right:auto;
+}
 
 .picture img { 
-	border: 1px solid #CCCCCC;
-	vertical-align:middle; margin-bottom: 3px; 
-	max-width:330px; 
-	}
-	
+    border: 1px solid #CCCCCC;
+    vertical-align:middle; margin-bottom: 3px; 
+    max-width:330px; 
+}
+
 
 .right { 
-	margin: 0.5em 0pt 0.5em 0.8em; float:right; clear:both; 
-	}
+    margin: 0.5em 0pt 0.5em 0.8em; float:right; clear:both; 
+}
 
 .left { 
-	margin: 0.5em 0.8em 0.5em 0; float:left; 
-	}
-	
+    margin: 0.5em 0.8em 0.5em 0; float:left; 
+}
+
 .picture-large { 	
-	background-color: #F9F9F9;
-	border: 1px solid #CCCCCC; padding: 5px;
-	font: 11px/1.4em Arial, sans-serif;
-	max-width: 575px;
-	margin-left: auto;
-	margin-right:auto;
-	}
-	
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC; padding: 5px;
+    font: 11px/1.4em Arial, sans-serif;
+    max-width: 575px;
+    margin-left: auto;
+    margin-right:auto;
+}
+
 .picture-large img { 
-	border: 1px solid #CCCCCC;
-	vertical-align:middle; 
-	margin-bottom: 3px; 
-	max-width:565px;
+    border: 1px solid #CCCCCC;
+    vertical-align:middle; 
+    margin-bottom: 3px; 
+    max-width:565px;
 }
 #mapouter {
     text-align: center;
 }
 .picture-small { 
-	background-color: #F9F9F9;
-	border: 1px solid #CCCCCC; padding: 5px;
-	font: 11px/1.4em Arial, sans-serif;
-	max-width: 200px;	
-	}
+    background-color: #F9F9F9;
+    border: 1px solid #CCCCCC; padding: 5px;
+    font: 11px/1.4em Arial, sans-serif;
+    max-width: 200px;	
+}
 
 .picture-small img { 
-	border: 1px solid #CCCCCC;
-	vertical-align:middle; margin-bottom: 3px; 
-	max-width:190px;
-	}
-	
+    border: 1px solid #CCCCCC;
+    vertical-align:middle; margin-bottom: 3px; 
+    max-width:190px;
+}
+
 .picture-extra-large {
-	border: 1px solid #CCCCCC;
-	vertical-align:middle; margin-bottom: 3px; 
-	max-width:600px;
-	}
-	
+    border: 1px solid #CCCCCC;
+    vertical-align:middle; margin-bottom: 3px; 
+    max-width:600px;
+}
+
 .picture-extra-large img { 
-	border: 1px solid #CCCCCC;
-	vertical-align:middle; margin-bottom: 3px; 
-	max-width:580px;
-	}
+    border: 1px solid #CCCCCC;
+    vertical-align:middle; margin-bottom: 3px; 
+    max-width:580px;
+}
 
 .reference{
-	vertical-align: super;
-	color: blue;
-	font-size: 75%;
-	}
-
-
-/*------------------------------------*\
-	NAV
-\*------------------------------------*/
-#nav{
-	list-style:none;
-	font-weight:bold;
-	margin-bottom:10px;
-	/* Clear floats */
-	float:left;
-	width:100%;
-	/* Bring the nav above everything else--uncomment if needed.
-	position:relative;
-	z-index:5;
-	*/
-}
-#nav li{
-	float:left;
-	margin-right:10px;
-	position:relative;
-}
-#nav a{
-	display:block;
-	padding: 0em 0.5em 0.1em 0;
-	color: black;
-	background: grey;
-	text-decoration:none;
-	border: 3px solid grey;
-	border-style: outset;
-}
-#nav a:hover{
-	color:black;
-	background: grey;
-	text-decoration:none;
-	border-style: outset;
+    vertical-align: super;
+    color: blue;
+    font-size: 75%;
 }
 
-/*--- DROPDOWN ---*/
-#nav ul{
-	background: #fff; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
-	background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
-	list-style:none;
-	position:absolute;
-	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
-}
-#nav ul li{
-	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
-	float:none;
-	margin: 0;
-}
-#nav ul a{
-	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
-}
-#nav li:hover ul{ /* Display the dropdown on hover */
-	left:-40px; /* Bring back on-screen when needed */
-}
-#nav li:hover a{ /* These create persistent hover states, meaning the top-most link stays 'hovered' even when your cursor has moved down the list. */
-	background: #666666;
-	text-decoration:none;
-}
-#nav li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
-	text-decoration:none;
-}
-#nav li:hover ul li a:hover, 
-#nav li:hover ul li a:active,
-#nav li:hover ul li a#current{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
-	background: #999999;
-	color: black;
-	border-style: inset;
+.table{
+    line-height: 175%;
 }
 #maptools{
     border: 1px solid #666666;
