@@ -136,7 +136,7 @@
                    [:.buttons :ul])))
 
 
-(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn"})
+(def seasons {"DJF" "Winter", "MAM" "Spring", "JJA" "Summer", "SON" "Autumn" "J2D" "Annual"})
 
 (def scenarios (array-map
                 ["ensemble" "high"] "High"
