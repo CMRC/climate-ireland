@@ -12,7 +12,7 @@ body {
     font-family: Arial, sans-serif ;
 }
 
-ol {
+ol,ul {
     
     padding: 0 0 4px 33px;
     font-size: 1em;
@@ -20,11 +20,6 @@ ol {
     margin-left: 35px;
     line-height: 1.4;
     
-}
-
-
-ul {
-    list-style-position: inside;
 }
 blockquote, q {
     quotes: none;
@@ -140,6 +135,10 @@ h4{
 }
 #menu ul li a:link#current {
     text-decoration: underline;
+}
+#tabs ul {
+    padding: 0;
+    margin-left: 0;
 }
 #tabs .buttons ul li {
     display: table;
