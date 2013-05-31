@@ -413,6 +413,12 @@ a.logout {
 .table{
     line-height: 175%;
 }
+
+.table, td{
+	border: 1px solid black;
+	padding: 5px;
+	}
+
 #maptools{
     border: 1px solid #666666;
     background: #aaaaaa;
