@@ -6,12 +6,9 @@
     <style type="text/css">
       @import "/css/style.css";
     </style>
-    <style type="text/css">
-      @import "resources/public/css/style.css";
-    </style>
-    <link href="/css/style.css" rel="stylesheet" type="text/css" />
+    <script src="/js/svg.js"></script>
     <script type="text/javascript">
-
+      
       var _gaq = _gaq || [];
       _gaq.push(['_setAccount', 'UA-33996197-1']);
       _gaq.push(['_trackPageview']);
@@ -21,42 +18,41 @@
       ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
       var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
       })();
-
+      
     </script>  
   </head>
   
   <body>
     <div id="wrapper">
-      <div id="user"/>
-      <div id = "banner">
-	<img src="/img/Climate-Ireland-Logo-RGB.png" />
-	<div class = "buttons" id="buttons">
+      <div id = "banner">      
+	<a href="/"><img src="/img/Climate-Ireland-Logo-RGB.png"/></a>
+	<div class = "buttons" id="menu">
 	  <ul>
 	    <li><a href="/ci/about">About</a></li>
-	    <li><a href="/ci/climate-change/what-is-climate-change">Climate Change</a></li>
-	    <li><a href="/ci/adaptation/climate-adaptation">Adaptation</a></li>
-	    <li><a href="/ci/welcome/svg/2050/JJA/ensemble/ensemble/T_2M/linear">Climate Information</a></li>
+	    <li><a href="/ci/climate-change/climate-change">Climate Change</a></li>
+	    <li><a href="/ci/adaptation/adaptation">Adaptation</a></li>
+	    <li><a href="/ci/climate-information/projections/Ireland/2031-2060/JJA/ensemble/ensemble/T_2M/Change/Provinces">Climate Information</a></li>
 	    <li><a href="/ci/sectors/sectors">Sectors</a></li>
+		<li><a href="/ci/tools/tools">Tools</a></li>
 	    <li><a href="/ci/resources/resources">Resources</a></li>
 	  </ul>
 	</div>
+	<div id="tabs">
+	</div>
       </div> 
       <div id="main">
-	<div id="col1">
-	  <div class="col1b" id="news">News</div>
-	  <div class="colb2" id="events">Events</div>
-	  <div class="colb3" id="faqs">FAQs</div>
-	</div>
-	<div id="view-3-text">
-	  <div id="tabs"/>
+	
+	<div id="view-3-text" class="box">
 	  <div id="content"/>
 	</div>
       </div>
-      <div id="footer">
-	<img src="/img/epa.png" width="106" height="55" alt="EPA logo" align="left" />
-	<img src="/img/CMRCLogo.png" width="392" height="64" alt="CMRC Logo" align="right"/></div>
+      <div id="footer" class="box">
+	<a href="http://www.epa.ie"><img src="/img/epa.png" width="106" height="55" alt="EPA logo" align="left" /></a>
+	<a href="http://www.cmrc.ie"><img src="/img/CMRCLogo.png" height="58" alt="CMRC Logo" align="right"/></a>       
+	<a href="/logout" class="logout">Logout</a>
+      </div>           
     </div>
-  </div>
-</body>
-
+    <script src="/js/script.js"></script>
+  </body>
+  
 </html>

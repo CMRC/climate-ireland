@@ -4,61 +4,59 @@ library(rgdal)
 library(RCurl)
 library(RJSONIO)
 
-#Sys.setenv("http_proxy" = "")
+Sys.setenv("http_proxy" = "")
 
-counties <- readOGR(dsn="/home/anthony/County/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
-countiesarray = new.env()
+counties <- readOGR(dsn="/home/anthony/County/ING/LandAreaAdmin_ROIandUKNI", layer="LandAreaAdmin_ROIandUKNI")
+print(summary (counties))
 
-populatecounties <- function(run, base.path) {
-  countiesarray[[run]] = sgdf <- as(GDAL.open(paste(base.path,run,sep="")),"SpatialGridDataFrame")
-}
-
-makeurl <- function(run,county) {
+makeurl <- function(run,county,model,scenario) {
   strip <- gsub("(\\s)","", county)
-  paste("http://localhost:5984/climate/",run, strip, sep="")
+  paste("http://localhost:5984/climate_dev6/",run, strip, model, scenario, sep="")
 }
-
-bycounty <- function(county, run) {
-  sgdf <- countiesarray[[run]]
-  countydata <- counties[counties@data$COUNTY==county,] 
+clip <- function(county, run, var, countydata,sgdf,model,scenario) {
   ckk=!is.na(overlay(sgdf, countydata))
   kkclipped= sgdf[ckk,]
-  val <- mean(as(kkclipped, "data.frame")$band1) / 10
-
-  year <- as.numeric(gsub("temp(\\d{4})\\w+","\\1",run))
-  months <- toupper(gsub("temp\\d{4}(\\w+)","\\1",run))
-  rev <- fromJSON(getURL(makeurl(run,county)))["_rev"]
+  val <- mean(as(kkclipped, "data.frame")$band1)
+  print(county)
+  print(run)
+  intyear <- as.integer(gsub("^.*([0-9]{2}[0-9])[0-9]\\w+","\\11",run))
+  print(intyear)
+  year <- paste(intyear,"-",intyear+29L,sep="")
+  print(year)
+  months <- toupper(gsub("^.*[0-9]{4}(\\w+)","\\1",run))
+  print(months)
+  rev <- fromJSON(getURL(makeurl(run,county,model,scenario)))["_rev"]
   if(is.na(rev)){
-    getURL(makeurl(run,county),
+    getURL(makeurl(run,county,model,scenario),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
-             model="ICARUS", scenario="ICARUS",
-             datum.value=val, datum.variable="T_2M",datum.units="K")))
+             model=model, scenario=scenario,
+             datum.value=val, datum.variable=var)))
   } else {
-    getURL(makeurl(run,county),
+    getURL(makeurl(run,county,model,scenario),
            customrequest="PUT",
            httpheader=c('Content-Type'='application/json'),
            postfields=toJSON(list(region=county, year=year, months=months,
-             model="ICARUS", scenario="ICARUS",
-             datum.value=val, datum.variable="T_2M",datum.units="K",
+             model=model, scenario=scenario,
+             datum.value=val, datum.variable=var,
              '_rev'=toString(rev))))
   }
 }
-
-byrun <-function(run, base.path) { 
-  populatecounties(run, base.path)
-
-  countynames <- c("Carlow", "Cavan", "Clare", "Cork", "Donegal", "Dublin", "Galway", "Kerry", "Kildare",
-                   "Kilkenny", "Laois", "Leitrim", "Limerick", "Longford", "Louth", "Mayo", "Meath", "Monaghan",
-                   "North Tipperary", "Offaly", "Roscommon", "Sligo", "South Tipperary", "Waterford", "Westmeath",
-                   "Wexford", "Wicklow")
-  for(county in countynames) {
-    bycounty(county, run)
-  }
+bycounty <- function(sgdf, region, var, run, model, scenario) {
+  countydata <- counties[counties@data$COUNTY==region,] 
+  clip(region,run,var,countydata,sgdf,model,scenario)
+}
+byprovince <- function(sgdf, region, var, run, model, scenario) {
+  countydata <- counties[counties@data$Province==region,] 
+  clip(region,run,var,countydata,sgdf,model,scenario)
+}
+NI <- function(sgdf, var, run, model, scenario) {
+  countydata <- counties[counties@data$Country=="UK",] 
+  clip("NI",run,var,countydata,sgdf,model,scenario)
+}
+Ireland <- function(sgdf, var, run, model, scenario) {
+  countydata <- counties[counties@data$Country,] 
+  clip("Ireland",run,var,countydata,sgdf,model,scenario)
 }
 
-runs <- c("temp2020jja", "temp2020son", "temp2020djf", "temp2020mam", "temp2050jja", "temp2050son",
-          "temp2050djf", "temp2050mam", "temp2080jja", "temp2080son", "temp2080djf", "temp2080mam")
-
-lapply(runs, byrun, base.path <- "/var/data/coverages/Temperature/")

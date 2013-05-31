@@ -5,152 +5,138 @@
 	analemma.xml
         clad.models.couch
         incanter.stats
-        clojure.contrib.math
+        clojure.math.numeric-tower
 	[clojure.java.io :only [file]])
+  (:require [c2.scale :as scale]
+            [vomnibus.color-brewer :as color-brewer]
+            [clojure.tools.logging :as log]
+            [clojure.stacktrace :as trace])
   (:import (org.apache.batik.transcoder.image PNGTranscoder)
            (org.apache.batik.transcoder TranscoderInput
                                         TranscoderOutput)
            (java.io ByteArrayOutputStream
                     ByteArrayInputStream)))
 
-(def counties-svg (parse-xml (slurp "src/clad/views/counties.svg")))
-(def provinces-svg (parse-xml (slurp "src/clad/views/provinces.svg")))
+(def counties-svg (parse-xml (slurp (clojure.java.io/resource "clad/views/counties.svg"))))
+(def provinces-svg (parse-xml (slurp (clojure.java.io/resource "clad/views/provinces.svg"))))
 
-(defn counties-data [year months model scenario variable]
-  (map #(data-by-county % year months model scenario variable) counties))
-
-(defn quartiles-slow [year months model scenario variable]
+(defn quartiles-slow [year months model scenario variable cp diff-fn]
   (map #(/ (round (* % 100)) 100)
-       (quantile (map (fn [county] (temp-diff-data county year months model scenario variable))
-                      counties))))
+       (quantile (map (fn [county] (diff-fn county year months model scenario variable))
+                      (case cp :county counties :province provinces)))))
 
 (def quartiles (memoize quartiles-slow))
   
-(defn colour-on-quartiles [elem county year months model scenario variable]
-  (let [val (temp-diff-data county year months model scenario variable)]
-    (add-style elem :fill (cond (< val (nth (quartiles year months model scenario variable) 1))
-                                "#56b"
-                                (< val (nth (quartiles year months model scenario variable) 2))
-                                "#769"
-                                (< val (nth (quartiles year months model scenario variable) 3))
-                                "#967"
-                                :else "#b65"))))
-(defn linear-rgb [val min max]
-  (let [step (/ 100 (- max min))
-        red (+ 50 (round (* step (float (- val min)))))
-        green 96
-        blue (- 200 (round (* step (float (- val min)))))]
-    (str "#" (format "%x" red) (format "%x" green) (format "%x" blue))))
-  
-(defn colour-on-linear [elem county year months model scenario variable]
-  (let [val (temp-diff-data county year months model scenario variable)
-        min (nth (quartiles year months model scenario variable) 0)
-        max (nth (quartiles year months model scenario variable) 4)]
-    (add-style elem :fill (linear-rgb val min max))))
+(defn colour-on-quartiles [elem county year months model scenario variable])
 
-(defn counties-map 
-  ([year months variable]
-     (counties-map year months "ensemble" "ensemble" variable "linear"))
-  ([year months model scenario variable fill]
-     (let [fill-fns {"linear" colour-on-linear,
-                     "quartiles" colour-on-quartiles}
-           min (nth (quartiles year months model scenario variable) 0)
-           max (nth (quartiles year months model scenario variable) 4)
-           mid (/ (+ max min) 2)]
-       {:status 200
-        :headers {"Content-Type" "image/svg+xml"}
-        :body
-        (emit (->
-               (reduce #(transform-xml
-                         %1
-                         [{:id %2}]
-                         (fn [elem]
-                           (let [link (str "/ci/welcome/svgbar/"
-                                           (apply str
-                                                  (interpose "/" [%2 year months model scenario
-                                                                  variable fill])))]
-                             [:a {:xlink:href link :target "_top"}
-                              (-> (add-attrs elem :onmouseover
-                                             (str "value(evt,'"
-                                                  (->
-                                                   (temp-diff-data %2 year months model scenario variable)
-                                                   (* 100)
-                                                   round
-                                                   (/ 100)
-                                                   float)
-                                                  "K : "
-                                                  %2
-                                                 "')"))
-                                  ((fill-fns fill) %2 year months model scenario variable))])))
-                       counties-svg			
-                       counties)
-               (transform-xml
-                [{:id "min-text"}]
-                #(set-content % (str (float min))))
-               (transform-xml
-                [{:id "max-text"}]
-                #(set-content % (str (float max))))
-               (transform-xml
-                [{:id "min"}]
-                #(add-style % :fill (linear-rgb min min max)))
-               (transform-xml
-                [{:id "mid"}]
-                #(add-style % :fill (linear-rgb mid min max)))
-               (transform-xml
-                [{:id "max"}]
-                #(add-style % :fill (linear-rgb max min max)))))})))
+(defn linear-rgb [val domain colour-scheme]
+  "Returns a colour string based on the value"
+  (if (nil? val)
+    "grey"
+    (let [colour-scale (let [s (scale/linear :domain domain
+                                             :range [0 (count colour-scheme)])
+                             idx (fn [d] (floor (s d)))
+                             checked-idx (fn [d] (if (< (idx d) 0) 0
+                                                     (if (> (idx d) (dec (count colour-scheme)))
+                                                       (dec (count colour-scheme))
+                                                       (idx d))))]
+                         (fn [d] (nth colour-scheme (checked-idx d))))]
+      (colour-scale val))))
 
-  
-(defn counties-map-png 
-  ([year months model scenario variable fill]
-    (let [input (TranscoderInput. (str "http://www.climateireland.ie:8080/ci/svg/" year "/" months "/" model
-                                       "/" scenario "/" variable "/" fill))
-          ostream (ByteArrayOutputStream.)
-	  output (TranscoderOutput. ostream)
-          t (PNGTranscoder.)
-          n (. t transcode input output)
-          istream (ByteArrayInputStream. 
-                   (.toByteArray ostream))]
+(defn colour-on-linear
+  "Calls CouchDB and returns a colour string based on the query parameters"
+  [elem county year months models variable region lmin lmax diff-fn colour-scheme]
+  (let [domain [lmax lmin]
+        vals (filter (fn [x] (not (nil? x))) (diff-fn county year months models variable))
+        val (/ (reduce + 0 vals) (count vals))]
+    (add-style elem :fill (linear-rgb val domain colour-scheme))))
+
+(defn regions-map-slow
+  "Takes an svg file representing a map of Ireland divided into regions
+   and generates a choropleth map where the colours represent the value
+   of the given variable"
+  [req]
+  (try
+    (let [{:keys [year months model scenario variable fill region]} req
+          models (if (= model "ensemble")
+                   (get ensembles scenario)
+                   (vector (vector model scenario)))
+          regions-svg (case (:regions req)
+                        "Counties" counties-svg
+                        "Provinces" provinces-svg)
+          regions (case (:regions req)
+                    "Counties" counties
+                    "Provinces" provinces)
+          delta (= (:abs req) "Change")
+          diff-fn (if delta diff-by-county abs-data)
+          colour-scheme (if (temp-var? variable) (reverse color-brewer/OrRd-7) (reverse color-brewer/RdBu-11))
+          min (get-in mins [(:abs req) variable])
+          max (get-in maxs [(:abs req) variable])
+          offset (if (temp-var? variable) (fn [_] 0) {"JJA" 4, "DJF" 0, "SON" 1 "MAM" 2 "J2D" 2})]
+      (log/info "Min: " min " Max: " max)
       {:status 200
-       :headers {"Content-Type" "image/png"}
-        :body
-       istream})))
-
-(defn compare-map 
-  [year1 year2 months variable]
-  {:status 200
-   :headers {"Content-Type" "image/svg+xml"}
-      :title (str variable " " year1 " v " year2)
-   :body
-   (emit (reduce #(transform-xml
-                   %1
-                   [{:id %2}]
-                   (fn [prov]
-                     (let [y1 (ensemble-data %2 year1 months variable)
-                           y2 (ensemble-data %2 year2 months variable)
-                           g (-> (transform-xml
-                                  prov
-                                  [{:class "val"}]
-                                  (fn [elem]
-                                    (set-content elem (-> (- y2 y1)
-                                                          (/ y1)
-                                                          (* 10000)
-                                                          round
-                                                          (/ 100)
-                                                          float
-                                                          (str "%")))))
-                                 (transform-xml
-                                  [{:class "shape"}]
-                                  (fn [elem]
-                                    (let [diff (- y2 y1)
-                                          base 0x40
-                                          mult 100
-                                          r (if (neg? diff) (+ base (round (abs (* diff mult)))) base)
-                                          g (if (pos? diff) (+ base (round (* diff mult))) base)
-                                          b base
-                                          fill (str "#" (format "%02x" r) (format "%02x" g) (format "%02x" b))]
-                                      (add-style elem :fill fill)))))
-                           link "/ci/welcome"]
-                       [:a {:xlink:href link} g])))
-                 provinces-svg
-                 provinces))})
+       :headers {"Content-Type" "image/svg+xml"}
+       :body
+       (let [choropleth
+             (reduce
+              #(transform-xml
+                %1
+                [{:id %2}]
+                (fn [elem]
+                  (let [link (make-url "climate-information/projections"
+                                       (assoc-in req [:region] %2))
+                        vals (filter (fn [x] (not (nil? x))) (diff-fn %2 year months models variable))
+                        val (/ (reduce + 0 vals) (count vals))]
+                    (log/info "Value: " val " From: " req)
+                    [:a {:xlink:href link :target "_top"}
+                     (-> (add-attrs elem :onmouseover
+                                    (if (nil? val)
+                                      "Unknown"
+                                      (str "value(evt,'"
+                                           (->
+                                            val
+                                            (* 100)
+                                            round
+                                            (/ 100)
+                                            float)
+                                           (if (temp-var? variable) "°C " (if delta "% " "mm/hr"))
+                                           %2
+                                           "')")))
+                         (colour-on-linear %2 year months models variable region min max diff-fn colour-scheme)
+                         (add-style :stroke (if (= region (:id (second elem))) "red" "grey")))])))
+              regions-svg			
+              regions)
+             legend (reduce #(transform-xml %1
+                                            [{:id (str "col-" %2)}]
+                                            (fn [node] (add-style node :fill (nth colour-scheme
+                                                                                  (+ %2 (offset months))))))
+                            choropleth
+                            (range 0 (count colour-scheme)))
+             values (reduce #(transform-xml %1
+                                            [{:id (str "val-" %2)}]
+                                            (fn [node] (set-content node (str (->
+                                                                               ((scale/linear :domain [0 (count colour-scheme)]
+                                                                                              :range [max min])
+                                                                                (+ %2 (offset months)))
+                                                                               (* 100)
+                                                                               round
+                                                                               (/ 100)
+                                                                               float)))))
+                            legend
+                            (range 0 (inc (count colour-scheme))))
+             units (transform-xml values [{:id "units"}]
+                                  (fn [node] (set-content node
+                                                          (if (temp-var? variable)
+                                                            (str "°Celsius" (when delta " change"))
+                                                            (if delta "% change" "mm/hr")))))
+             selected (transform-xml units [{:id "selected"}]
+                                     (fn [node] (set-content node (str "Selected: " (:region req)))))]
+         (emit selected))})
+    #_(catch Exception ex
+      (log/info ex)
+      (log/info req)
+      "We do apologise. There are no data available for the selection you have chosen.
+Please select another combination of decade/variable/projection")))
+  
+  
+(def regions-map (memoize regions-map-slow))
