@@ -17,7 +17,7 @@
    version="1.1"
    id="svg2"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="Streamflow-autumn-2050s.svg">
+   sodipodi:docname="streamflow-autumn-2050s.svg">
   <metadata
      id="metadata401">
     <rdf:RDF>
@@ -70403,13 +70403,13 @@
      inkscape:window-height="1138"
      id="namedview397"
      showgrid="false"
-     inkscape:zoom="1.5519669"
-     inkscape:cx="194.61125"
-     inkscape:cy="296.0759"
-     inkscape:window-x="-8"
+     inkscape:zoom="1.606217"
+     inkscape:cx="187.11126"
+     inkscape:cy="296.07588"
+     inkscape:window-x="1672"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
-     inkscape:current-layer="svg2"
+     inkscape:current-layer="g25610"
      fit-margin-top="10"
      fit-margin-left="10"
      fit-margin-right="25"
@@ -70442,7 +70442,7 @@
   </a>
   <a
      id="a11600"
-     xlink:href="/img/Streamflow-2050s.svg"
+     xlink:href="/img/streamflow-2050s.svg"
      transform="translate(0.51547477,-29.984413)">
     <g
        transform="translate(0.8938611,44.394289)"
@@ -70472,7 +70472,7 @@
   </a>
   <a
      id="a17336"
-     xlink:href="/img/Streamflow-2080s.svg"
+     xlink:href="/img/streamflow-2080s.svg"
      transform="translate(0.51547477,-29.984413)">
     <g
        transform="translate(5.8716141,44.394289)"
@@ -70531,6 +70531,7 @@
 
 
 
+
 		</g>  <g
      id="g294"
      xml:space="preserve"
@@ -70545,6 +70546,7 @@
    transform="matrix(8.63447,0,0,8.63173,15.11032,24.06599)"><tspan
      id="tspan298"
      x="0 0.24992 0.58315003 0.91637999 1.4995199 2.3325901 2.58251 2.9990499 3.5822001 3.9987299 4.3319602 4.8318 5.4149499 5.7481699 6.3313198 6.9144702 7.2477002 7.8308501 8.41399 8.74722 9.3303699 9.9135199 10.24675 10.82989 11.49635 12.41272 12.99587 13.57902 13.91225"> flow for selected catchments</tspan></text>
+
 
 
 
@@ -70612,24 +70614,31 @@
        xlink:href="/img/streamflow-winter-2050s.svg">
       <g
          id="g25610">
-        <rect
-           y="456.85181"
-           x="48.162674"
-           height="14.479783"
-           width="47.728672"
-           id="rect4170-4"
-           style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.749017;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
-        <text
-           sodipodi:linespacing="137%"
-           id="text4154"
-           y="467.89386"
-           x="55.591312"
-           style="font-size:10.80000019px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-           xml:space="preserve"><tspan
-             y="467.89386"
-             x="55.591312"
-             id="tspan4156"
-             sodipodi:role="line">Winter</tspan></text>
+        <a
+           id="a24044"
+           xlink:href="/img/streamflow-winter-2050s.svg">
+          <g
+             id="g24039">
+            <rect
+               y="456.85181"
+               x="48.162674"
+               height="14.479783"
+               width="47.728672"
+               id="rect4170-4"
+               style="fill:#00ffff;fill-opacity:1;fill-rule:nonzero;stroke:#000000;stroke-width:1.749017;stroke-linecap:round;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none" />
+            <text
+               sodipodi:linespacing="137%"
+               id="text4154"
+               y="467.89386"
+               x="55.591312"
+               style="font-size:10.80000019px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+               xml:space="preserve"><tspan
+                 y="467.89386"
+                 x="55.591312"
+                 id="tspan4156"
+                 sodipodi:role="line">Winter</tspan></text>
+          </g>
+        </a>
       </g>
     </a>
   </g>
@@ -76074,7 +76083,7 @@
   </g>
   <a
      id="a57059"
-     xlink:href="/img/Streamflow-autumn-2050s.svg"
+     xlink:href="/img/streamflow-autumn-2050s.svg"
      transform="translate(54.83019,-0.45922432)">
     <g
        transform="translate(19.035064,-99.763489)"
@@ -76877,7 +76886,7 @@
   </g>
   <a
      id="a11606-4"
-     xlink:href="/img/Streamflow-2050s.svg"
+     xlink:href="/img/streamflow-2050s.svg"
      transform="translate(-102.10137,19.128842)">
     <g
        transform="translate(-0.8541369,-118.32059)"
