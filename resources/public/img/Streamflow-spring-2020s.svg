@@ -48696,10 +48696,10 @@
      inkscape:window-height="1138"
      id="namedview397"
      showgrid="false"
-     inkscape:zoom="1.5519669"
-     inkscape:cx="117.61219"
-     inkscape:cy="296.0759"
-     inkscape:window-x="-8"
+     inkscape:zoom="1.606217"
+     inkscape:cx="187.11126"
+     inkscape:cy="296.07588"
+     inkscape:window-x="1672"
      inkscape:window-y="-8"
      inkscape:window-maximized="1"
      inkscape:current-layer="svg2"
@@ -48735,7 +48735,7 @@
   </a>
   <a
      id="a11600"
-     xlink:href="/img/Streamflow-2050s.svg"
+     xlink:href="/img/streamflow-2050s.svg"
      transform="translate(0.51547477,-29.984413)">
     <g
        transform="translate(0.8938611,44.394289)"
@@ -48765,7 +48765,7 @@
   </a>
   <a
      id="a17336"
-     xlink:href="/img/Streamflow-2080s.svg"
+     xlink:href="/img/streamflow-2080s.svg"
      transform="translate(0.51547477,-29.984413)">
     <g
        transform="translate(5.8716141,44.394289)"
@@ -48822,6 +48822,7 @@
 
 
 
+
 		</g>  <g
      id="g294"
      xml:space="preserve"
@@ -48836,6 +48837,7 @@
    transform="matrix(8.63447,0,0,8.63173,15.11032,24.06599)"><tspan
      id="tspan298"
      x="0 0.24992 0.58315003 0.91637999 1.4995199 2.3325901 2.58251 2.9990499 3.5822001 3.9987299 4.3319602 4.8318 5.4149499 5.7481699 6.3313198 6.9144702 7.2477002 7.8308501 8.41399 8.74722 9.3303699 9.9135199 10.24675 10.82989 11.49635 12.41272 12.99587 13.57902 13.91225"> flow for selected catchments</tspan></text>
+
 
 
 
@@ -48895,7 +48897,7 @@
    id="tspan10055">selected catchments</tspan>.      </tspan></text>
   <a
      id="a11606"
-     xlink:href="/img/Streamflow-winter-2020s.svg"
+     xlink:href="/img/streamflow-winter-2020s.svg"
      transform="translate(194.9208,18.81445)">
     <g
        transform="translate(-0.8541369,-118.32059)"
@@ -48922,7 +48924,7 @@
   </a>
   <a
      id="a57059"
-     xlink:href="/img/Streamflow-autumn-2020s.svg"
+     xlink:href="/img/streamflow-autumn-2020s.svg"
      transform="translate(55.266271,0.25732868)">
     <g
        transform="translate(19.035064,-99.763489)"
@@ -55163,7 +55165,7 @@
   </g>
   <a
      id="a11606-4"
-     xlink:href="/img/Streamflow-2020s.svg"
+     xlink:href="/img/streamflow-2020s.svg"
      transform="translate(-102.10137,19.845395)">
     <g
        transform="translate(-0.8541369,-118.32059)"
