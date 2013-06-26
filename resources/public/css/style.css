@@ -61,7 +61,7 @@ p {
     line-height: 1.4 ;
 }
 
-h1, h2, h3, h4, h5 {
+h1, h2, h3, h4, h5, h6 {
     font-weight: bold ;
     margin-left: 1em;
 }
@@ -75,6 +75,9 @@ h2 { font-size: 1.375em; 	margin-bottom: 10px ; margin-top: 8px ; line-height: 1
 h3 { font-size: 1.125em ; 	margin-bottom: 6px ; margin-top: 8px ; line-height: 1.2}
 h4 { font-size: 1.000em ; 	margin-bottom: 6px ; margin-top: 8px ; line-height: 1.2}
 h5 { font-size: 0.813em ; 	margin-bottom: 6px ; margin-top: 8px ; line-height: 1.2}
+h6 { font-size: 1.375em ; 	margin-bottom: 10px ; margin-top: 8px ; line-height: 1.2; border-bottom: 1px dotted rgb(171, 161, 148)}
+
+
 strong {
     font-weight: bold ;
 }
