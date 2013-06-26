@@ -1,0 +1,125 @@
+<h2>How to Adapt?</h2></a>
+	<p>
+	Adaptation is <b>an ongoing and iterative process</b> rather than a discrete project or event. Therefore, it is <b>important to integrate adaptation into existing planning and decision-making processes</b>.  There are a number of key elements to the adaptation process and these are:
+	</p>
+	<ol>
+	<li>Gather available information and develop a robust knowledge base;</li>
+	<li>Assessment of vulnerability;</li>
+	<li>Development of strategic objectives;</li>
+	<li>Identification and assessment of adaptation requirements and their associated options, together with an estimation of costs and benefits;</li>
+	<li>Develop an adaptation action plan;</li>
+	<li>A review mechanism</li>
+	</ol>
+	<p>
+	
+	</p>
+	<h3>1. Gather available knowledge and develop a robust knowledge base</h3>
+	
+	<p>The changing climate will present different challenges for individual sectors, areas, ecosystems and populations.  As a result, in order to get started in the adaptation process, a clear understanding of your expected climate change exposure and the sensitivity of your sector, area, ecosystem, population and therefore consequential potential impacts is a fundamental starting point.  To date, some sectors have started to identify the potential impacts of climate change on their area of business and this information will provide you with a very useful knowledge base.</p>
+	
+	<div id="text-box">
+	<b>Sectoral Analyses of Climate Change Impacts</b>
+	<ul>
+	<li>The Heritage Council and Failte Ireland's <a href="http://www.heritagecouncil.ie/fileadmin/user_upload/Publications/Inland_Waterways/General/Climate_Summary_English.pdf" target="blank"><i>Climate Change, Heritage and Tourism, Implications for Ireland's Coast and Inland Waterways</i></a></li>  
+	<li>The Irish Academy of Engineering's <a href="http://www.iae.ie/site_media/pressroom/documents/2009/Jun/09/Ireland_at_Risk_Water.pdf" target="blank"><i>Ireland at Risk No.1: The Impact of Climate Change on the Water Environment</i></a>
+	<li>The Irish Academy of Engineering's <a href="http://www.iae.ie/site_media/pressroom/documents/2009/Nov/17/Ireland_at_Risk_2.pdf" target="blank"><i>Ireland at Risk No.2: Critical Infrastructure, Adaptation for Climate Change</i></a></li>
+	<li>The Marine Institute's <a href="http://oar.marine.ie/bitstream/10793/560/3/Foresight%20Series%202%20Climate%20Change%20Implications.pdf" target="blank"><i>Climate Change: Implications for Ireland's Marine Environment and Resources</i></a></li>
+	<li>Forf&aacute;s's <a href="http://www.forfas.ie/media/Adaptation%20to%20Climate%20Change%20Summary%20Report%20ONLINE%20FINAL.pdf" target="blank"><i>Adaptation to Climate Change: Issues for Business</i></a>
+	</li>
+	</ul>
+	</div>
+	
+	<p>Changing climate will affect a wide range of actors at sectoral, local, regional and national levels.  As a result, the process of making adaptation plans should be open, transparent and inclusive and opportunity should be provided to all interested individuals and organisations to input to the process of preparing the plans.  Importantly, such stakeholder engagement will offset the possibility of maladaptation whereby an adaptation decision in one sector/area might have adverse consequences for another sector or local area.  Therefore, a key step in developing an adaptation plan involves identifying and engaging with those who are likely to be affected by the adaptation plan, or those whose support will be required to successfully implement any adaptation decision taken.  This will allow for flexible responses to climate-related risks.
+	</p>
+	<p>
+	<ul>
+	<li><a href="/ci/climate-change/climate-change" target="_blank">Do you want to know more about climate change?</a></li>
+	<li><a href="/ci/adaptation/adaptation" target="_blank">Do you want to know more about adaptation?<a></li>
+	<li><a href="/ci/adaptation/stakeholder" target="_blank">Do you want to know more about the identification and engagement of stakeholders</a>
+	</ul>
+	</p>
+	<h3>2. Assessment of vulnerability</h3>
+	<p>
+	
+	<p>In the context of adaptation, vulnerability can be seen as a measure of the susceptibility of a sector, group, region or activity to unacceptable levels of climate risk.  Assessing vulnerability involves identifying who and what is exposed to climatic and non-climatic risk and consideration of the specific factors that make people or the environment sensitive to climate change.  Moreover, assessing vulnerability enhances our understanding of the systems we manage, and, through helping to build a baseline against which observed and projected climate impacts can be gauged, is also a critical component in the development of strategies or policies to limit the losses and exploit the benefits resulting from change </p> 
+	
+	<i>Current vulnerability</i>
+	</p>
+	
+	<p>As well as creating novel future problems to address, climate change is expected to exacerbate the existing vulnerabilities of most sectors and regions.  As a result, understanding your current vulnerability is important and will help you to understand how future climate changes will impact you.  Identifying existing vulnerability will involve coming to a clear understanding of how climate currently affects you, both directly and indirectly.  In addition, an examination of current non-climatic pressures is also important as climate may indirectly alter how these pressures are manifest.  In this respect, detailing these non-climatic pressures will provide useful insight into the sensitivities you must be cognisant of, and the adaptive capacities you have at your disposal in preparing for climate change.</p>   
+	</p>
+	
+	<p>In understanding your current vulnerability, key questions might include:
+	</p>
+	<ul>
+	<li>How have <b>previous weather events</b> affected your organisation or community?</li> 
+	<li>Were <b>critical thresholds exceeded</b> that resulted in losses or opportunities?</li>
+	<li>How well did you cope?</li>
+	<li>Were there any <b>indirect impacts</b> that need to be considered?</li>
+	<li>What are the key non-climatic pressures your organisation or community currently faces?</li>
+	</ul>
+	
+	<p>
+	<i>Future vulnerability</i>
+	</p>
+	
+	<p>Once you have gained an understanding of your current vulnerability to climate change, you can begin to examine how a changing climate might affect you in the future.  However, possible climate futures need to also be examined in the context of social and economic change.</p>  
+	
+	<p>There is uncertainty associated with projections of future climate.  However, the science indicates increasing temperatures, changes in rainfall patterns, rising sea levels and increases in extreme events are likely to be encountered in the near to medium term.  In order to overcome the uncertainties surrounding the precise nature of climate impact regime encountered in a given location or by a given sector, a wide range of future climate scenarios should be explored.  This exploration should provide you with a clear understanding of how the range of potential consequences of climate change might affect your sector or local area. This will allow you to investigate in more detail, the specific climate issues you may  encounter and how best to respond to them.</p>  
+	
+	<ul>
+	<li>How is <b>climate expected to change and what are the key impacts?</b></li>
+	<li>Are there <b>indirect impacts</b> that need to be considered?</li>
+	<li>What are the <b>priority risks</b>?</li>
+	<li>How will the non-climatic pressures you face change and evolve in the future?</li>
+	<li>Will these changes increase the sensitivity of your sector or community to climate change or enhance its capacity to adapt?</li>
+	</ul>
+	<p>
+	<ul>
+	<li><a href="/ci/sectors/sectors" target="_blank">Do you want more information on how climate change might affect your sector of operations?</a></li>
+	<li>For information on current climate, click <a href="/ci/climate-information/current-data" target="_blank">here</a>, and for projected climate, click <a href="/ci/climate-information/projections/Leinster/2051-60/JJA/ensemble/ensemble/T_2M/linear" target="_blank">here</a>.</li></ul>
+	</p>
+	<h3>3. Development of Strategic Objectives</h3>
+	
+	<p>
+	Adaptation occurs by improving coping strategies or by reducing exposure to known threats. Based on the information collected in step 2, <b>strategic objectives</b> should be developed that will <b>address the short-term/current and long-term priority risk and opportunities</b>.  Initially, <b>a range of objectives should be identified</b>.  In light of the uncertainty surrounding projections of future climate and developmental trends, these objectives should to as great an extent as possible focus on enhancing the flexibility of the system in coping with future change.  
+	</p>
+	
+	
+	<h3>4. Identification and assessment of adaptation requirements</h3>
+	<p>
+	After prioritising current and possible future climatic risks and, on this basis, developing a set of strategic objectives, <b>an inventory of adaptation options should be identified</b>.  Through screening and appraisal, a subset of preferred adaptation options that would reduce vulnerability under the current climate should be identified that are socially, technically and economically feasible given the prevailing regulatory environment.  If the lifetime of the option is short term, a few years or less, testing against current climate variability might be appropriate.  However, if the lifetime of the option is long term, testing against future scenarios will be required.  Given the uncertainty associated with projections of future climate, long-term adaptation options should be open-ended and flexible, and testing should be undertaken against the full range of projected climatic changes.
+	</p>
+	<p>
+	<p>
+	Adaptation options include:
+	</p>
+	<ul>
+	<li><b>Low-regret</b> options will deliver benefits whatever the extent of climate change, e.g. not building infrastructure in high-risk areas such as floodplains.</li>
+	<li><b>Win-win</b> options will enhance your adaptive capacity while also helping to achieve other social, environmental or economic goals, e.g. improving the cooling capacity of buildings through increased shading and/or less energy intensive cooling strategies. </li>
+	<li><b>Flexible or adaptive management</b> options will explicitly account for the opportunity to treat intervention as an experimental, learning experience, by which the performance of adaptive measures can be incrementally improved over time adaptation actions.</li>
+	<li><b>To delay a decision</b> to implement an adaptation measure is also a viable option, provided the postponement is used to find out more about the problem.</li>
+	<li><b>A decision to do nothing</b> may also represent a legitimate option in a situation where climate risks are outweighed by other factors.  This decision, however, should not be used as a default position and should only be reached after careful consideration of your climate risks and adaptation options.</li>
+	<li><b>Monitoring</b> the scale and impact of change as it unfolds is likely to be an appropriate option in all circumstances, in order that a knowledge base of locally/sectorally specific impacts is developed over time, and to help steer adaptation decision making in the future.  This is a particularly important factor to bear in mind where the decision is to delay adaptation action or do nothing.</li>
+	</ul>
+	
+	<h3>5. Develop an adaptation action plan</h3>
+	<p>
+	Having considered risks (Step 2) and selected preferred adaptation options, <b>an implementation plan needs to be developed that states what needs to be done, by whom and when, to convert adaptation options into actions</b>.  The implementation of adaptation options will be contingent on the chosen adaptations and being <b>strongly linked to existing policies and procedures</b>.
+	</p>
+	<p>In Ireland, mainstreaming of adaptation into existing policies and procedures is to be principally achieved through:</p>
+	<ul>
+	<li>Spatial Planning - At a local level, adaptation is to be incorporated into development (City and County) and local area plans.  The changing climate will present different challenges to each local authority based on their vulnerability to climate risk and their capacity to adapt.  As a result, preparation for expected impacts and integrating appropriate responses into the development of policies, plans and programmes is required.  As a first step, existing development and local area plans are to be reviewed to include climate change adaptation (if necessary through amendment and variation procedures) if this is not already adequately addressed.  This review process is to be underway by mid-2014.  In effect, development plans will become the mechanism for the delivery of local adaptation action.</li>   
+	<li>Sectoral Planning - At a sectoral level, adaptation is to be incorporated into sectoral plans developed by relevant Government Department or State Agency.  Draft sectoral plans are to be published by mid-2014 and will be based on sectoral risk assessments.</li>
+	<li>SEA Procedures - In line with European Directives and national policy, the conduct of SEA in Ireland will involve greater emphasis on the role of climate adaptation.  As knowledge accrues with respect to the efficacy and indirect effects of adaptation initiatives, scoping and cumulative impacts assessment processes will incorporate analyses of how adaptation objectives will be met in assessing the credentials of a given plan, policy or programme.</li>
+	</ul>
+	
+	<h3>6. A review mechanism</h3>
+	<p>
+	Adaptation is <b>an iterative process that needs to be closely monitored</b> with regular review to ensure that it remains effective.  Moreover, adaptation plans will need to be updated and refined over time as more information on impacts becomes available and experience of adaptation increase.  This step will ensure that the adaptation initiatives are working and will <b>determine whether changes or refinements are required in response to new conditions and information</b>.
+	</p>
+	</div>	
+	
+	
+	
+	
