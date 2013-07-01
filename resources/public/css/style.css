@@ -349,7 +349,22 @@ a.logout {
     max-width: 500px;
 	border: 1px solid rgb(67, 103, 86);
 	font-size: 1.05em;
+	overflow: auto;
 }
+
+#text-box-text{
+	float: left;
+	width:400px;
+	}
+	
+#text-box-question{
+	float: right;
+	width:100px;
+	overflow: auto;
+	}
+
+	vertical-align: middle;
+	}
 
 #text-box-2{
     padding: 5px;
@@ -372,12 +387,12 @@ figure {
 img, figcaption {
     display: table-row;
     vertical-align: bottom;
-	font-size: 0.85em;max-width: 340px;
+	font-size: 0.85em;
+	max-width: 340px;
 }
 figcaption {
     padding-left: 4px;
 }
-
 
 .resize{
     height: auto;
