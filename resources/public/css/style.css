@@ -18,6 +18,7 @@ ol,ul {
     font-size: 1em;
     margin-bottom: 10px;
     margin-left: 35px;
+	margin-right: 1em;
     line-height: 1.4;
     
 }
@@ -29,7 +30,7 @@ margin-left: -25px;
 
 ul.small-indent 
 {
-margin-left: -15px;
+margin-left: -10px;
 }
 
 ol.no-indent 
@@ -39,7 +40,7 @@ margin-left: -25px;
 
 ol.small-indent 
 {
-margin-left: -15px;
+margin-left: -10px;
 }
 
 blockquote, q {
@@ -58,6 +59,7 @@ p {
     font-size: 0.938em ;
     margin-bottom: 10px ;
     margin-left: 1em;
+	margin-right: 1em;
     line-height: 1.4 ;
 }
 
@@ -321,7 +323,16 @@ a.logout {
     width: 790px;
     height: 150px;
     position: relative;
+	
 }
+
+#key-info{
+	padding:10px;
+	font-size: 1.15em;
+	line-height: 1.4em;
+	color: #4C7875;
+	}
+	
 
 #text-box{
     padding: 5px;
@@ -338,7 +349,22 @@ a.logout {
     max-width: 500px;
 	border: 1px solid rgb(67, 103, 86);
 	font-size: 1.05em;
+	overflow: auto;
 }
+
+#text-box-text{
+	float: left;
+	width:400px;
+	}
+	
+#text-box-question{
+	float: right;
+	width:100px;
+	overflow: auto;
+	}
+
+	vertical-align: middle;
+	}
 
 #text-box-2{
     padding: 5px;
@@ -349,6 +375,23 @@ a.logout {
 
 #text-box-3{
     padding: 5px;
+}
+
+figure {
+    display: table;
+	width: 1px;
+	padding: 20px;
+	padding-bottom: 10px;
+	
+}
+img, figcaption {
+    display: table-row;
+    vertical-align: bottom;
+	font-size: 0.85em;
+	max-width: 340px;
+}
+figcaption {
+    padding-left: 4px;
 }
 
 .resize{
@@ -368,7 +411,7 @@ a.logout {
     background-color: #F9F9F9;
     border: 1px solid #CCCCCC; padding: 5px;
     font: 11px/1.4em Arial, sans-serif;
-    max-width: 340px;	
+   	max-width: 340px;
     margin-left:auto; 
     margin-right:auto;
 }
@@ -376,9 +419,8 @@ a.logout {
 .picture img { 
     border: 1px solid #CCCCCC;
     vertical-align:middle; margin-bottom: 3px; 
-    max-width:330px; 
+    
 }
-
 
 .right { 
     margin: 0.5em 0pt 0.5em 0.8em; float:right; clear:both; 
