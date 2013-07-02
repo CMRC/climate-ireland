@@ -394,6 +394,14 @@ figcaption {
     padding-left: 4px;
 }
 
+img.big {
+	max-width:500px
+}
+
+img.bigger{
+	max-width:650px;
+	}
+
 .resize{
     height: auto;
     width: auto;
