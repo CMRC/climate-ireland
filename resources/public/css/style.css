@@ -394,7 +394,7 @@ figcaption {
     padding-left: 4px;
 }
 
-img.big {
+img.big, #view-2-2-chart img {
 	max-width:500px
 }
 
