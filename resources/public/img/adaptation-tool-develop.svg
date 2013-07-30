@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="adaptation-tool.svg">
+   sodipodi:docname="adaptation-tool-assess.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.5316667"
-     inkscape:cx="198.5"
-     inkscape:cy="219.48014"
+     inkscape:zoom="2.9141134"
+     inkscape:cx="191.50053"
+     inkscape:cy="303.37457"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,11 +36,11 @@
      fit-margin-right="20"
      fit-margin-bottom="20"
      borderlayer="true"
-     inkscape:window-width="1920"
-     inkscape:window-height="1138"
-     inkscape:window-x="1672"
-     inkscape:window-y="-8"
-     inkscape:window-maximized="1" />
+     inkscape:window-width="944"
+     inkscape:window-height="1122"
+     inkscape:window-x="1680"
+     inkscape:window-y="0"
+     inkscape:window-maximized="0" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title />
+        <dc:title></dc:title>
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,8 +61,7 @@
     <a
        id="a3857"
        xlink:href="/ci/tools/getting-started"
-       target="_top"
-       transform="translate(-2.6115343,-103.1556)">
+       target="_top">
       <text
          sodipodi:linespacing="137%"
          id="text2987"
@@ -74,13 +73,12 @@
            x="207.04823"
            id="tspan2989"
            sodipodi:role="line"
-           style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Getting Started</tspan></text>
+           style="-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:22px;text-anchor:start;text-align:justify;writing-mode:lr;line-height:137%">Getting Started</tspan></text>
     </a>
     <a
        id="a2999"
        xlink:href="/ci/tools/structure"
-       target="_top"
-       transform="translate(-2.6115343,-103.1556)">
+       target="_top">
       <text
          sodipodi:linespacing="137%"
          id="text2991"
@@ -91,14 +89,12 @@
            y="233.90123"
            x="173.99452"
            id="tspan2993"
-           sodipodi:role="line"
-           style="font-weight:normal;-inkscape-font-specification:Arial">Structure the Problem</tspan></text>
+           sodipodi:role="line">Structure the Problem</tspan></text>
     </a>
     <a
        id="a3003"
        xlink:href="/ci/tools/assess"
-       target="_top"
-       transform="translate(-2.6115343,-103.1556)">
+       target="_top">
       <text
          sodipodi:linespacing="137%"
          id="text2995"
@@ -115,8 +111,7 @@
     <a
        id="a3007"
        xlink:href="/ci/tools/develop"
-       target="_top"
-       transform="translate(-2.6115343,-103.1556)">
+       target="_top">
       <text
          sodipodi:linespacing="137%"
          id="text2999"
@@ -128,13 +123,12 @@
            x="206.10292"
            id="tspan3001"
            sodipodi:role="line"
-           style="font-weight:normal;-inkscape-font-specification:Arial">Develop a Plan</tspan></text>
+           style="font-weight:bold;-inkscape-font-specification:Arial Bold">Develop a Plan</tspan></text>
     </a>
     <a
        id="a3011"
        xlink:href="/ci/tools/implement"
-       target="_top"
-       transform="translate(-2.6115343,-103.1556)">
+       target="_top">
       <text
          sodipodi:linespacing="137%"
          id="text3003"
@@ -145,110 +139,46 @@
            y="404.28067"
            x="177.96376"
            id="tspan3005"
-           sodipodi:role="line"
-           style="font-weight:normal;-inkscape-font-specification:Arial">Implement, evaluate, </tspan><tspan
+           sodipodi:role="line">Implement, evaluate, </tspan><tspan
            id="tspan3007"
            y="434.42068"
            x="177.96376"
-           sodipodi:role="line"
-           style="font-weight:normal;-inkscape-font-specification:Arial">monitor and review</tspan></text>
+           sodipodi:role="line">monitor and review</tspan></text>
     </a>
     <image
-       y="77.367973"
-       x="267.9136"
+       y="180.52357"
+       x="270.52515"
        id="image3042"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="139.68349"
-       x="267.91367"
+       y="242.8391"
+       x="270.52521"
        id="image3053"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="198.88327"
-       x="268.69257"
+       y="302.03888"
+       x="271.30411"
        id="image3064"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="254.96725"
-       x="269.4715"
+       y="358.12286"
+       x="272.08304"
        id="image3075"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="52.283405"
-       x="125.22469"
+       y="155.43901"
+       x="127.83623"
        id="image3086"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAEMCAIAAADFw0hkAAAAA3NCSVQICAjb4U/gAAABoUlEQVR4 nO3dsU7CQBjA8SuxUid5Am4g8hZ3TOokA4ENmNUEF3WiZRA28CHkMWShPEFxJwFegDppXM6hxIAo JpQmDv8vHdrel+/Xr/ftJ0zsKJUrQTDekiDiG0/9vp12HtrtBI3FIrTTjp12cif5oe9vJljGmDB8 Hb+MRYzodnvPg0F0r5XyPLeg9deqZYzxR6PTs/M4xmZopW4ajWLxQghhDX1/MplcXl3v14gim822 PNey004S1YUQtWq1Xq8VtD5YfauV2q3cbDabzeer1VueK6VcPkcjEV07j1buJB9VKJUr0+n02+oe jCAYbxlcY8zafny8v+3wo27v7sMwfOz1MpnjnzPi9/Hb5++zjz8jlURRDAwMDAwMDAwMDAwMDAwM DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyMf2isnf/R7nT2DkgpEzzHJAqtVMpzm57bTJSxjDFCiEPn KCFAK7Xcj+RakVJ+AkOeTlqG2zz/AAAAAElFTkSuQmCC "
        height="268"
        width="33" />
-    <text
-       xml:space="preserve"
-       style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       x="78.178024"
-       y="421.72568"
-       id="text3004"
-       sodipodi:linespacing="100%"><tspan
-         sodipodi:role="line"
-         id="tspan3020"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="421.72568">The Climate Ireland Adaptation Support Tool is </tspan><tspan
-         sodipodi:role="line"
-         id="tspan3022"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="437.72568">designed to facilitate users in:</tspan><tspan
-         sodipodi:role="line"
-         id="tspan3024"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="453.72568"> </tspan><tspan
-         sodipodi:role="line"
-         id="tspan3026"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="469.72568">- Articulating their motivations for adapting to climate</tspan><tspan
-         sodipodi:role="line"
-         id="tspan3028"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="485.72568">  change;</tspan><tspan
-         sodipodi:role="line"
-         id="tspan3030"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="501.72568">- Identifying their current and future vulnerabilities</tspan><tspan
-         sodipodi:role="line"
-         id="tspan3032"
-         style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-         x="78.178024"
-         y="517.72571">- Assessing adaptation options;</tspan><tspan
-         sodipodi:role="line"
-         id="tspan3034"
-         x="78.178024"
-         y="533.72571"><tspan
-           style="font-size:16px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:100%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial;fill:#000000"
-           id="tspan3036">- Developing and implementing an a</tspan><tspan
-           style="font-size:16px;fill:#000000"
-           id="tspan3054">daptation plan. </tspan></tspan></text>
-    <text
-       xml:space="preserve"
-       style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
-       x="109.68444"
-       y="482.48096"
-       id="text3042"
-       sodipodi:linespacing="137%"
-       transform="translate(65.773239,-1.9957932)"><tspan
-         sodipodi:role="line"
-         id="tspan3046"
-         x="109.68444"
-         y="482.48096" /></text>
   </g>
 </svg>
