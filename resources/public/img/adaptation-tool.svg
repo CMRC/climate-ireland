@@ -15,7 +15,7 @@
    id="svg2"
    version="1.1"
    inkscape:version="0.48.2 r9819"
-   sodipodi:docname="adaptation-tool-structure.svg">
+   sodipodi:docname="adaptation-tool.svg">
   <defs
      id="defs4" />
   <sodipodi:namedview
@@ -25,9 +25,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="2.9141134"
-     inkscape:cx="192.86489"
-     inkscape:cy="303.37457"
+     inkscape:zoom="1.5316667"
+     inkscape:cx="198.5"
+     inkscape:cy="300"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -36,11 +36,11 @@
      fit-margin-right="20"
      fit-margin-bottom="20"
      borderlayer="true"
-     inkscape:window-width="944"
-     inkscape:window-height="1122"
-     inkscape:window-x="1680"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0" />
+     inkscape:window-width="1920"
+     inkscape:window-height="1138"
+     inkscape:window-x="1672"
+     inkscape:window-y="-8"
+     inkscape:window-maximized="1" />
   <metadata
      id="metadata7">
     <rdf:RDF>
@@ -49,7 +49,7 @@
         <dc:format>image/svg+xml</dc:format>
         <dc:type
            rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
+        <dc:title />
       </cc:Work>
     </rdf:RDF>
   </metadata>
@@ -61,7 +61,8 @@
     <a
        id="a3857"
        xlink:href="/ci/tools/getting-started"
-       target="_top">
+       target="_top"
+       transform="translate(-2.6115343,-7.1556)">
       <text
          sodipodi:linespacing="137%"
          id="text2987"
@@ -73,12 +74,13 @@
            x="207.04823"
            id="tspan2989"
            sodipodi:role="line"
-           style="-inkscape-font-specification:Arial;font-family:Arial;font-weight:normal;font-style:normal;font-stretch:normal;font-variant:normal;font-size:22px;text-anchor:start;text-align:justify;writing-mode:lr;line-height:137%">Getting Started</tspan></text>
+           style="font-size:22px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;writing-mode:lr-tb;text-anchor:start;font-family:Arial;-inkscape-font-specification:Arial">Getting Started</tspan></text>
     </a>
     <a
        id="a2999"
        xlink:href="/ci/tools/structure"
-       target="_top">
+       target="_top"
+       transform="translate(-2.6115343,-7.1556)">
       <text
          sodipodi:linespacing="137%"
          id="text2991"
@@ -95,7 +97,8 @@
     <a
        id="a3003"
        xlink:href="/ci/tools/assess"
-       target="_top">
+       target="_top"
+       transform="translate(-2.6115343,-7.1556)">
       <text
          sodipodi:linespacing="137%"
          id="text2995"
@@ -112,7 +115,8 @@
     <a
        id="a3007"
        xlink:href="/ci/tools/develop"
-       target="_top">
+       target="_top"
+       transform="translate(-2.6115343,-7.1556)">
       <text
          sodipodi:linespacing="137%"
          id="text2999"
@@ -129,7 +133,8 @@
     <a
        id="a3011"
        xlink:href="/ci/tools/implement"
-       target="_top">
+       target="_top"
+       transform="translate(-2.6115343,-7.1556)">
       <text
          sodipodi:linespacing="137%"
          id="text3003"
@@ -149,39 +154,51 @@
            style="font-weight:normal;-inkscape-font-specification:Arial">monitor and review</tspan></text>
     </a>
     <image
-       y="180.52357"
-       x="270.52515"
+       y="173.36798"
+       x="267.9136"
        id="image3042"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="242.8391"
-       x="270.52521"
+       y="235.68349"
+       x="267.91367"
        id="image3053"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="302.03888"
-       x="271.30411"
+       y="294.88327"
+       x="268.69257"
        id="image3064"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="358.12286"
-       x="272.08304"
+       y="350.96725"
+       x="269.4715"
        id="image3075"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAwAAAAeCAIAAACXCWggAAAAA3NCSVQICAjb4U/gAAAAsklEQVQ4 jWP4DwMHDh5kZeeAIGcX1/9IgImBCDCqaFQR3RWxBIeGGejrxcXGokl8+PBx0+ZNGzdtjo+NZbhw 4aKImDgrO4e6phY8jcvIyUMEi4pL/v//z/D///+JkybDpZGRsakZJCMwQChnF1dMRQcOHkRRhJyf ICgpOQWepRjgrKTkFGRFDx48wKLowYMHWI1BUYRsGLIx6IogLkMzBl3R////jU3NLly4SEAR3NvI AABoNAb+Wws9/gAAAABJRU5ErkJggg== "
        height="30"
        width="12" />
     <image
-       y="155.43901"
-       x="127.83623"
+       y="148.2834"
+       x="125.22469"
        id="image3086"
        xlink:href="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACEAAAEMCAIAAADFw0hkAAAAA3NCSVQICAjb4U/gAAABoUlEQVR4 nO3dsU7CQBjA8SuxUid5Am4g8hZ3TOokA4ENmNUEF3WiZRA28CHkMWShPEFxJwFegDppXM6hxIAo JpQmDv8vHdrel+/Xr/ftJ0zsKJUrQTDekiDiG0/9vp12HtrtBI3FIrTTjp12cif5oe9vJljGmDB8 Hb+MRYzodnvPg0F0r5XyPLeg9deqZYzxR6PTs/M4xmZopW4ajWLxQghhDX1/MplcXl3v14gim822 PNey004S1YUQtWq1Xq8VtD5YfauV2q3cbDabzeer1VueK6VcPkcjEV07j1buJB9VKJUr0+n02+oe jCAYbxlcY8zafny8v+3wo27v7sMwfOz1MpnjnzPi9/Hb5++zjz8jlURRDAwMDAwMDAwMDAwMDAwM DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwMDAwM DAwMDAwMDAwMDAwMDAwMDAwMDAwMDAyMf2isnf/R7nT2DkgpEzzHJAqtVMpzm57bTJSxjDFCiEPn KCFAK7Xcj+RakVJ+AkOeTlqG2zz/AAAAAElFTkSuQmCC "
        height="268"
        width="33" />
+    <text
+       xml:space="preserve"
+       style="font-size:13.5px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;text-align:justify;line-height:137.00000048%;letter-spacing:0px;word-spacing:0px;writing-mode:lr-tb;text-anchor:start;fill:#000000;fill-opacity:1;stroke:none;font-family:Arial;-inkscape-font-specification:Arial"
+       x="109.68444"
+       y="482.48096"
+       id="text3042"
+       sodipodi:linespacing="137%"
+       transform="translate(65.773239,-1.9957932)"><tspan
+         sodipodi:role="line"
+         id="tspan3046"
+         x="109.68444"
+         y="482.48096" /></text>
   </g>
 </svg>
