@@ -394,6 +394,12 @@ a.logout {
     padding: 5px;
 }
 
+.center{
+margin-left:auto;
+margin-right:auto;
+width:70%;
+}
+
 figure {
     display: table;
 	width: 1px;
@@ -429,7 +435,6 @@ blockquote{
      background-repeat: no-repeat;
      background-position: bottom right;
    }
-
 
 
 img.big, #view-2-2-chart img {
