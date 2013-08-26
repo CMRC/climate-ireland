@@ -6,7 +6,7 @@
         [clojure.math.numeric-tower]))
 
 (def users-db "http://143.239.249.191:5984/climate_dev2")
-(def db "http://143.239.249.191:5984/climate_dev6")
+(def db "http://143.239.249.191:5984/climate_dev5")
 
 #_(clutch/with-db users-db
     (clutch/save-view "users"

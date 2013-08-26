@@ -415,6 +415,7 @@ img, figcaption {
 }
 figcaption {
     padding-left: 4px;
+	color: rgb(51, 102, 153);
 }
 
 blockquote{
@@ -564,3 +565,4 @@ img.bigger{
 input.submit {
     left: 40%;
 }
+
