@@ -134,9 +134,9 @@
      borderopacity="1.0"
      inkscape:pageopacity="0.0"
      inkscape:pageshadow="2"
-     inkscape:zoom="1.6944784"
-     inkscape:cx="198.5"
-     inkscape:cy="300"
+     inkscape:zoom="2.078726"
+     inkscape:cx="197.83281"
+     inkscape:cy="307.53018"
      inkscape:document-units="px"
      inkscape:current-layer="layer1"
      showgrid="false"
@@ -305,7 +305,7 @@
        sodipodi:nodetypes="cc" />
     <path
        style="fill:none;stroke:#000000;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none;marker-end:url(#Arrow1Mend)"
-       d="m 274.14481,217.40382 c 0,23.49547 0,28.14663 0,28.14663"
+       d="m 274.14481,232.3168 c 0,11.04683 0,13.23365 0,13.23365"
        id="path3033-4"
        inkscape:connector-curvature="0"
        sodipodi:nodetypes="cc" />
@@ -349,17 +349,22 @@
            id="tspan3006"
            x="-10.80329"
            y="59.377911"
-           style="text-align:center;text-anchor:middle">i. Assess Current Vulnerability</tspan><tspan
+           style="text-align:center;text-anchor:middle">i. Characterise Current Vulnerability</tspan><tspan
            sodipodi:role="line"
            x="-10.80329"
            y="77.87291"
            id="tspan3008"
-           style="text-align:center;text-anchor:middle">ii. Assess Potential Future Sensitivity</tspan><tspan
+           style="text-align:center;text-anchor:middle">ii. Assess Current Sensitivity</tspan><tspan
            sodipodi:role="line"
-           x="-10.80329"
+           x="-8.9312201"
            y="96.367912"
            style="text-align:center;text-anchor:middle"
-           id="tspan3030">iii. Prioritise Your Climatic Risk</tspan></text>
+           id="tspan3031">iii. Characterise Potential Future Sensitivity </tspan><tspan
+           sodipodi:role="line"
+           x="-10.80329"
+           y="114.86291"
+           style="text-align:center;text-anchor:middle"
+           id="tspan3030">iv. Prioritise Your Climatic Risk</tspan></text>
     </a>
   </g>
 </svg>
