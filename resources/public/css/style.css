@@ -451,6 +451,10 @@ img.big, #view-2-2-chart img {
 img.bigger{
 	max-width:650px;
 	}
+	
+img.cs{
+	max-width:400px;
+	}
 
 .resize{
     height: auto;
@@ -571,4 +575,50 @@ img.bigger{
 input.submit {
     left: 40%;
 }
+
+#status-top{
+width:100%;
+height: 25px;
+}
+
+#status-left{
+	width:50%;
+	height:100%;
+	float:left;
+	}
+	
+#status-right{
+	width:50%;
+	height:100%;
+	float:right;
+	}
+	
+#status-right-top{
+	width:100%;
+	height: 200px;
+	}
+	
+#status-right-top-left{
+	width:50%;
+	float:left;
+	display: table-cell;
+	vertical-align: middle;
+	}
+	
+#status-right-top-right{
+	width:50%;
+	float:right;
+	}
+	
+#status-menu-left{
+	width: 20%;
+	height:100%;
+	float:left;
+	}
+	
+#status-menu-right{
+	width: 80%;
+	height: 100%;
+	float:right;
+	}
 
