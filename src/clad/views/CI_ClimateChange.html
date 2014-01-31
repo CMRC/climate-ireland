@@ -845,13 +845,76 @@
  
 	<p>This study demonstrates that Ireland's climate is changing. These changes are consistent with regional and global trends, but local patterns of change are evident. It is essential that Ireland's climate observation system is maintained and enhanced in order to have the information required to understand these changes to enable planning for appropriate adaptation.</p>
 	
+	<div id="text-box-center" style="margin-top:20px; border:0px">
+	<h3>Select your Variable of Interest from the dopdown boxes below:</h3>
+	<h4>Atmospheric Observations</h4>
+	<select name="menu1" id="menu1" style="width:350px">
+	<option value="/ci/climate-change/temperature">Surface Air Temperature</option>
+	<option value="/ci/climate-change/rainfall">Rainfall</option>
+	<option value="/ci/climate-change/atmos-pressure">Atmospheric Pressure</option>
+	<option value="/ci/climate-change/surface-wind">Surface Wind</option>
+	<option value="/ci/climate-change/water-vapour">Water Vapour</option>
+	<option value="/ci/climate-change/surface-radiation">Surface Radiation Budget</option>
+	<option value="/ci/climate-change/upper-air">Upper Air Temperature and Wind</option>
+	<option value="/ci/climate-change/cloud-properties">Cloud Properties</option>
+	<option value="/ci/climate-change/carbon-dioxide">Carbon Dioxide</option>
+	<option value="/ci/climate-change/methane">Methane</option>
+	<option value="/ci/climate-change/other-ghgs">Other Greenhouse Gases</option>
+	<option value="/ci/climate-change/ozone">Ozone</option>
+	<option value="/ci/climate-change/aerosols">Aerosols</option>
+	</select>
+	 <script type="text/javascript">
+	var urlmenu = document.getElementById( 'menu1' );
+	urlmenu.onchange = function() {
+      window.open( this.options[ this.selectedIndex ].value );
+	};
+	</script>
 	
-	<h3><a href="atmospheric">Atmospheric Observations</a></h3>
-	<h3><a href="oceanic">Oceanic Observations</h3>
-	<h3><a href="terrestrial">Terrestrial Observations</h3>
+	<h4>Oceanic Obsertvations</h4>
+	<select name="menu2" id="menu2" style="width:350px">
+	<option value="/ci/climate-change/ocean-temp">Ocean Surface and Sub-surface Temperature</option>
+	<option value="/ci/climate-change/ocean-salinity">Ocean Surface and Sub-surface Salinity</option>
+	<option value="/ci/climate-change/ocean-acidity">Ocean Acidification and Carbon Dioxide Concentrations</option>
+	<option value="/ci/climate-change/ocean-state">Sea state</option>
+	<option value="/ci/climate-change/ocean-sea-level">Sea Level</option>
+	<option value="/ci/climate-change/ocean-currents">Surface and Sub-surface Currents</option>
+	<option value="/ci/climate-change/ocean-colour">Ocean Colour</option>
+	<option value="/ci/climate-change/ocean-phytoplankton">Phytoplankton</option>
+	<option value="/ci/climate-change/ocean-nutrients">Nutrients</option>
+	<option value="/ci/climate-change/ocean-do">Dissolved Oxygen</option>
+</select>
+	 <script type="text/javascript">
+	var urlmenu = document.getElementById( 'menu2' );
+	urlmenu.onchange = function() {
+      window.open( this.options[ this.selectedIndex ].value );
+	};
+	</script>
+	
+	<h4>Terrestrial Observations</h4>
+	<select name="menu3" id="menu3" style="width:350px">
+	<option value="/ci/climate-change/land-cover">Land Cover</option>
+	<option value="/ci/climate-change/albedo">Albedo</option>
+	<option value="/ci/climate-change/FAPAR">Fraction of Absorbed Photosynthetically Active Radiation (FAPAR)</option>
+	<option value="/ci/climate-change/leaf-area-index">Leaf Area Index</option>
+	<option value="/ci/climate-change/biomass">Above Ground Biomass</option>
+	<option value="/ci/climate-change/soil-carbon">Soil Carbon</option>
+	<option value="/ci/climate-change/soil-moisture">Soil Moisture</option>
+	<option value="/ci/climate-change/fire-disturbance">Fire Disturbance</option>
+	<option value="/ci/climate-change/river-discharge">River Discharge</option>
+	<option value="/ci/climate-change/lake-levels">Lake Levels and Areas</option>
+	<option value="/ci/climate-change/groundwater">Groundwater</option>
+	<option value="/ci/climate-change/irrigation">Water Use (Irrigation)</option>
+	</select>
+	 <script type="text/javascript">
+	var urlmenu = document.getElementById( 'menu3' );
+	urlmenu.onchange = function() {
+      window.open( this.options[ this.selectedIndex ].value );
+	};
+	</script>
+	
 	</div>
 	
-	
+	</div>
 	
 	<div id="atmospheric">
 	
@@ -880,21 +943,21 @@
 	<div id="temperature">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-temp.jpg" class="cs">
+	<img src="/img/cs-temperature-2.jpg" class="cs">
 	<figcaption>A time series graph of mean annual observed temperature for Ireland (1900-2011) (black dots) along with simple statistical fits to the data.  The left hand axis indicates anomalies (the difference between the mean annual temperature and the 1961-1990 normal or reference mean value) and the right-hand axis the mean annual temperature for the period.  The red line represents a simple linear trend which has been fitted to the annual anomaly values while the blue curve shows the 11-year moving average.</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-temp-station.jpg" style="max-height:200px">
-	<figcaption>Locations of surface air temperature observation stations</figcaption>
-	</figure>
+	<img src="/img/cs-temp-station.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Surface air temperature in Ireland is measured at 25 synoptic (red), numerous climatological weather stations (blue) and more recently at weather marine weather bouys (orange)</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -909,11 +972,7 @@
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Surface air temperature is an important and perhaps the most familiar of the climate variables. changes in temperature regimes are having severe impacts on the environment, biodiversity and human society.</p>
-
-	
-	<h3>Measurements</h3>
-	<p>Data of synoptic and climatological weather stations and more recently weather marine buoys.</p>
+	<p>Surface air temperature is an important and perhaps the most familiar of the climate variables. Changes in temperature regimes are having severe impacts on the environment, biodiversity and human society.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>The annual average surface air temperature has      increased by approximately 0.8&deg;C over the last 110 years. Winter and summer minimum temperatures have tended to be higher than the 1961-1990 average</p>
 	<h3>Climate Change Indicators</h3>
@@ -922,6 +981,10 @@
 	<p>The network of weather stations needs to be maintained and further developed to ensure the future of long-term representative temperature measurements. Difficulties arise because of inhomogeneities due to changes in instrumentation, observer, location and times of observation and new building and tree growth in the vicinity of a station.</p>
 
 	<p><a href="/status-rep/Surface-Air-Temperature.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+	<a href="/ci/climate-change/rainfall"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+	</div>
 
 	</div>
 	
@@ -930,7 +993,7 @@
 	<div id="rainfall">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a> </h3>
 	
 	</div>
 	
@@ -938,14 +1001,14 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-rainfall-2.jpg" class="cs">
-	<figcaption>The dark blue bars  show the annual average rainfall totals (right axis) and the annual anomalies, or differences from the 1961 to 1990 average (left axis). A moving average for periods of 11 years is also shown (red).Also shown is the  annual average rainfall for the period 1961 to 1990 (bold black line) and the period 1981 to 2010 (light blue dashed line).
+	<figcaption>The dark blue bars  show the annual average rainfall totals (right axis) and the annual anomalies, or differences from the 1961 to 1990 average (left axis). A moving average for periods of 11 years is also shown (red).  Also shown is the  annual average rainfall for the period 1961 to 1990 (bold black line) and the period 1981 to 2010 (light blue dashed line).
 </figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-rainfall-station.jpg" style="max-height:200px">
-	<figcaption>Locations of rainfall observation stations</figcaption>
-	</figure>
+	<img src="/img/cs-rainfall-station.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Rainfall is recorded at synopotic (red & yellow) and climatological (blue) weather stations and by voluntary rainfall observers (orange).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -961,18 +1024,19 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Rainfall  plays a vital role in the water cycle and water balance and is essential for the maintenance of life. </p>
-	<h3>Measurements</h3>
-	<p>Rainfall is recorded at synoptic (red & yellow) and climatological (blue) weather stations and by voluntary rainfall observers (orange).
-
-	</p>
 	<h3>Time-Series and Trends</h3>
 	<p>There has been an increase in average annual national rainfall of approximately 60mm (5%) in the period 1981-2010, compared to the period 1961-1990.</p>
 	<h3>Climate Change Indicators</h3>
-	<p>The trends for rainfall show greater regional variation  both wet (greater than 0.2mm) and heavy rain days (greater than 10mm) for the period 1961-2010.</p>
+	<p>The trends for both wet (greater than 0.2mm) and heavy rain days (greater than 10mm) for the period 1961-2010  show regional variation  with some conflicting trends from stations that are geographically relatively close.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>The rainfall network needs to be maintained and expanded in areas of poor coverage. Resources are required to produce homogenised data sets and to collate and digitise paper records including station metadata.</p>
 
 	<p><a href="/status-rep/Rainfall.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/temperature"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/atmos-pressure"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -981,21 +1045,21 @@
 	<div id="atmos-pressure">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-pressure.png" class="cs">
+	<img src="/img/cs-pressure.jpg" class="cs">
 	<figcaption>Monthly and annual minimum, average and maximum surface pressure at Valentia Observatory (1940-2010).</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-pressure-stations.jpg" style="max-height:200px">
-	<figcaption>Locations of atmospheric pressure observation stations</figcaption>
-	</figure>
+	<img src="/img/cs-pressure-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Atmospheric Pressure is measured at the synoptic weather stations (red)  and  on the marine weather buoys (orange).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1011,15 +1075,18 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Atmospheric pressure is an important parameter for monitoring the climate system, as the local and large scale atmospheric circulation patterns are driven by differences in air pressure. Changes in global air pressure patterns can affect local and regional weather </p>
-	<h3>Measurements</h3>
-	<p>Atmospheric Pressure is measured at the synoptic weather stations (red)  and  on the marine weather buoys (orange).</p>
 	<h3>Time-Series and Trends</h3>
-	<p>Annual minimum pressure values, which indicate the passage of min-latitude cyclones over Ireland, show large variability.</p>
+	<p>Annual minimum pressure values, which indicate the passage of mid-latitude cyclones over Ireland, show large variability.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Resources are required to digitise older pressure records and carry out comprehensive time-series analysis.
 </p>
 
 	<p><a href="/status-rep/Atmospheric-Pressure.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/rainfall"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/surface-wind"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1028,21 +1095,21 @@
 	<div id="surface-wind">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-surface-wind.png" class="cs">
+	<img src="/img/cs-wind-2.jpg" class="cs">
 	<figcaption>Annual mean wind speeds (top) and number of days per year with gale gusts (bottom) at Dublin Airport (1944-2010).</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-surface-wind-stations.jpg" style="max-height:200px">
-	<figcaption>Locations of wind-observation stations</figcaption>
-	</figure>
+	<img src="/img/cs-surface-wind-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Wind speed and direction are measured at the 25 observations stations (red) operated by Met &Eacute;ireann and on the marine weatehr bouys (orange)</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1058,23 +1125,25 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Measurements of wind include speed and direction and provide information on the strength and frequency of weather systems as they move across Ireland. Accurate information on wind is essential for planning in areas such as wind energy, forestry, and infrastructural development and is used in storm surge prediction.</p>
-	<h3>Measurements</h3>
-	<p>Annual mean wind speeds (top) and number of days per year with gale gusts (bottom) at Dublin Airport (1944-2010).</p>
 	<h3>Time-Series and Trends</h3>
 	<p>No long-term trend in wind speed can be determined with confidence based on the limited analysis carried out to date.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Resources are required to produce homogeneous wind time-series and to collate and digitise paper records.</p>
 
 	<p><a href="/status-rep/Surface-Wind.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
-
+<a href="/ci/climate-change/atmos-pressure"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/water-vapour"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
 	</div>
+	</div>
+ 
+</div>
 	
 	</div>
 	
 	<div id="water-vapour">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1086,9 +1155,8 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-water-vapour-stations.jpg" style="max-height:200px">
-	<figcaption>Location of humidity and water vapour observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-water-vapour-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Surface level water vapour and water vapour pressure are derived from humidity measurements taken at the synoptic weather stations (red and blue). Column integrated water vapour quantities are retrieved from a network of Global Positioning System (GPS) receivers (green).</p></div>
 	</div>
 	<div id="status-right">
 	
@@ -1099,19 +1167,23 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Water vapour is the dominant greenhouse gas, accounting for almost 60% of the natural greenhouse effect.  Globally, higher air temperatures and warmer oceans have led to an increase in atmospheric water vapour"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-clouds.jpg" style="max-width:240px; padding-bottom:50px">
 	</div>
 	</div>
+	
 	<h3>Why is it important?</h3>
 	<p>Water vapour  is the main greenhouse gas accounting for almost 60% of the natural greenhouse effect. Near the surface it affects cloud formation and development and hence is a key driver of precipitation.</p>
-	<h3>Measurements</h3>
-	<p>Surface level water vapour and water vapour pressure are derived from humidity measurements taken at the synoptic weather stations (red and blue). Column integrated water vapour quantities are retrieved from a network of Global Positioning System (GPS) receivers (green).</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Monthly average vapour pressure reaches a maximum in summer whilst the annual average vapour pressure can vary substantially from year to year. Due to the very limited analysis of these data to date it is not possible to identify any trend in water vapour measurements over Ireland.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Resources are required to digitise paper records and carry out systematic analysis of the long term historical ground and upper air water vapour records.</p>
 
 	<p><a href="/status-rep/Water-Vapour.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/surface-wind"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/surface-radiation"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1120,7 +1192,7 @@
 	<div id="surface-radiation">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1128,13 +1200,13 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-surface-radiation.png" class="cs">
-	<figcaption>Annual solar radiation at Valentia Observatory (1955-2011). Units are in per metre squared GigaJoules ( G<i>JM</i><sup>-2</sup>) per year.</figcaption>
+	<figcaption>Annual solar radiation at Valentia Observatory (1955-2011). Units are in GigaJoules ( G<i>JM</i><sup>-2</sup>) per meter squared per year.</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-surface-radiation-stations.jpg" style="max-height:200px">
-	<figcaption>Location of sunshine duration and solar radiation observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-surface-radiation-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Solar radiation and sunshine duration are observed at five synoptic stations (orange). Solar radiation is measured at an additional 17 Automatic Weather Stations (red). Sunshine duration only is measured at three other manned synoptic stations (blue).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1150,14 +1222,17 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Solar radiation generates heat at the Earth's surface and changes in the amount of solar radiation reaching the surface can have a significant influence on climate, hydrological cycles and crop productivity. </p>
-	<h3>Measurements</h3>
-	<p>Solar radiation and sunshine duration are observed at five synoptic stations (orange). Solar radiation is measured at an additional 17 Automatic Weather Stations (red). Sunshine duration only is measured at three other manned synoptic stations (blue).</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Annual average solar radiation declined approximately 19% over the period 1955-1984, with stabilisation and some evidence of an increase over subsequent years.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Further upgrades in the observation network are in progress. Regular analysis of national trends in the net surface radiation balance needs to be carried out given its role in plant growth, the hydrological cycle and the larger climate system.</p>
 
 	<p><a href="/status-rep/Surface-Radiation-Budget.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/water-vapour"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/upper-air"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1166,21 +1241,21 @@
 	<div id="upper-air">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-upper-air.png" class="cs">
+	<img src="/img/cs-upper-air.jpg" class="cs">
 	<figcaption>Example of annual mean temperature (top) and annual mean wind speed (bottom) at Valentia Observatory from one level in the atmosphere (1980-2010).</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-upper-air-stations.jpg" style="max-height:200px">
-	<figcaption>Location of upper air observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-upper-air-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Measurements are made at Valentia Observatory twice a day using a balloon with a radiosonde which measures temperature, humidity, wind speed and direction and pressure with a vertical resolution of up to 10 m.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1188,23 +1263,26 @@
 	<h6>Upper Air Temperature and Wind</h6>
 	<div id="status-right-top-left">
 
-	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"A slight decease in upper air temperature has been observed at Valentia Observatory in recent decades; however, the time-series is too short to determine a long-term trend."</h3>
+	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"A slight decease in upper air temperature has been observed at Valentia Observatory in recent decades; interannual variability is apparent in the upper air wind speed.  However, both time-series are too short to determinate a long-term trend"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-clouds.jpg" style="max-width:240px; padding-bottom:70px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Knowledge of the vertical  profiles of temperature and wind in the atmosphere is vital for a better understanding of the weather and climate system.</p>
-	<h3>Measurements</h3>
-	<p>Measurements are made at Valentia Observatory twice a day using a balloon with a radiosonde which measures temperature, humidity, wind speed and direction and pressure with a vertical resolution of up to 10 m.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>A slight decrease in upper air temperature has been observed at Valentia Observatory in recent decades; however, the time-series is too short to determinate a long-term trend.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>A slight decrease in upper air temperature has been observed at Valentia Observatory in recent decades; however, the time-series is too short to determinate a long-term trend.</p>
+	<p>Staff and resources need to be maintained at Valentia Observatory to ensure the continuation of upper air measurements.</p>
 
 	<p><a href="/status-rep/Upper-Air-Temperature-and-Wind.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	</div>
+ <a href="/ci/climate-change/surface-radiation"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/cloud-properties"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
+	
 	</div>
 	</div>
 	
@@ -1212,7 +1290,7 @@
 	<div id="cloud-properties">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1224,9 +1302,8 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-cloud-stations.jpg" style="max-height:200px">
-	<figcaption>Location of cloud-observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-cloud-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Cloud observations are made at a number of staffed (blue and green) and automated (red) synoptic stations. Additionally a range of cloud properties are observed at Mace Head (orange).</div>
 	</div>
 	<div id="status-right">
 	
@@ -1242,14 +1319,17 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Clouds play an important role in maintaining the radiation balance and hydrological cycle of the Earth. </p>
-	<h3>Measurements</h3>
-	<p>Cloud observations are made at a number of staffed (blue and green) and automated (red) synoptic stations. Additionally a range of cloud properties are observed at Mace Head (orange).</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Significant uncertainties remain in the details of the relationship between aerosols, cloud properties and solar radiation.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>The network of synoptic stations needs to be maintained and developed further. Additional resources are required to carry out analysis of cloud data.  The Mace Head cloud observation programmes are funded on an ad hoc basis.</p>
 
 	<p><a href="/status-rep/Cloud-Properties.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/upper-air"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/carbon-dioxide"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1258,7 +1338,7 @@
 	<div id="carbon-dioxide">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1270,9 +1350,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-carbon-dioxide-stations.jpg" style="max-height:200px">
-	<figcaption>Location of carbon dioxide observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-carbon-dioxide-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The Mace Head research station (orange) is of global importance as the CO<sub>2</sub>  observations are representative of the underlying concentration in the northeast Atlantic region. Observations are also made at Carnsore Point and Malin Head (blue).</p><//div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1280,24 +1360,25 @@
 	<h6>Carbon Dioxide</h6>
 	<div id="status-right-top-left">
 
-	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Current CO<sub>2</sub>concentrations of more than 390 ppm are higher than at any time over the at least the last 400 thousand years."</h3>
+	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Current CO<sub>2</sub> concentrations of more than 390 ppm are higher than at any time over the at least the last 400 thousand years."</h3>
 	</div>
 	<div id="status-right-top-right">
 	<img src="/img/cs-clouds.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Carbon Dioxide (CO<sub>2</sub>) is the most important human-emitted greenhouse gas in the atmosphere In Ireland major sources include fossil fuel burning due to energy generation and road transport.</p>
-	<h3>Measurements</h3>
-	<p>The Mace Head research station (orange) is of global importance as the CO<sub>2</sub>  observations are representative of the underlying concentration in the northeast Atlantic region. Observations are also made at Carinsore Point and Malin Head (blue).</p>
+	<p>Carbon Dioxide (CO<sub>2</sub>) is the most important human-emitted greenhouse gas in the atmosphere.  In Ireland major sources include fossil fuel burning due to energy generation and road transport.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Current CO<sub>2</sub> concentrations of more than 390 ppm are higher than at any time over at least 400 thousand years.</p>
-	<h3>Climate Change Indicators</h3>
-	<p></p>
 	<h3>Maintaining the Observations</h3>
 	<p>Funding for CO<sub>2</sub> observations at Mace Head  is from the Laboratoire des Sciences du Climat et de l'Environnement (France). Equipment is maintained by the National University of Ireland Galway. Funding for the other stations is from the EPA. </p>
 
 	<p><a href="/status-rep/Carbon-Dioxide.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/cloud-properties"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/methane"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1306,7 +1387,7 @@
 	<div id="methane">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1318,9 +1399,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-methane-stations.jpg" style="max-height:200px">
-	<figcaption>Location of methane-observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-methane-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The Mace Head research station (orange) is of global importance as the CH<sub>4</sub>  observations are representative of the underlying concentration in the northeast Atlantic region. Observations are also made at Carnsore Point and Malin Head (blue).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1336,14 +1417,17 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Methane (CH<sub>4</sub>) is the second most important greenhouse gas. In Ireland over 80% of reported CH<sub>4</sub> emissions are due to agricultural activities, with the remainder caused by waste disposal (e.g. landfill) and the energy sectors.</p>
-	<h3>Measurements</h3>
-	<p>The Mace Head research station (orange) is of global importance as the CH<sub>4</sub>  observations are representative of the underlying concentration in the northeast Atlantic region. Observations are also made at Carnsore Point and Malin Head (blue).</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Current average global CH<sub>4</sub> concentrations of more than 1800 ppb are 140% higher than pre-industrial concentrations.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Funding for CH<sub>4</sub> observations is from the Department of Energy and Climate Change (DECC), UK and  the US National Aeronautics and Space Administration (NASA). Equipment is maintained by the National University of Ireland Galway. Funding for the other stations is from the EPA.</p>
 
 	<p><a href="/status-rep/Methane.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/carbon-dioxide"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/other-ghgs"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1352,21 +1436,21 @@
 	<div id="other-ghgs">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-other-ghgs.png" class="cs">
-	<figcaption>Monthly mean nitrous oxide concentration observed at Adrigole and Mace Head Research station (1978-2011). There are some gaps in the data record [Top].  Monthly mean HFC-134a concentration observed at Mace Head Research station (1994-2011) [Bottom].</figcaption>
+	<img src="/img/cs-other-ghgs.jpg" class="cs">
+	<figcaption>Monthly mean nitrous oxide concentration observed at Adrigole and Mace Head Research station (1978-2011). There are some gaps in the data record [Top].</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-other-ghgs-stations.jpg" style="max-height:200px">
-	<figcaption>Location of other greenhouse gas observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-other-ghgs-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The Mace Head research station (red) is a key part of the global greenhouse gas observation network.  Some greenhouse gases were measured at Adrigole (blue) from 1978 to 1984</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1382,14 +1466,17 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>A number of other gases have been identified as contributing significantly to the enhanced greenhouse effect.  The most important is nitrous oxide (N<sub>2</sub>O) and in Ireland one of the main sources is the agricultural sector.</p>
-	<h3>Measurements</h3>
-	<p>The Mace Head research station (red) is a key part of the global greenhouse gas observation network.  Some greenhouse gases were measured at Adrigole (blue) from 1978 to 1984.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Nitrous Oxide concentrations have shown a steady increase with levels now above 320 ppb. Gases which replaced those which deplete ozone are increasing steadily and are contributing significantly to the enhanced  greenhouse effect.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Funding for the observations is from the Department of Energy and Climate Change (DECC), UK and  the US National Aeronautics and Space Administration (NASA). Equipment is maintained by the National University of Ireland Galway.</p>
 
 	<p><a href="/status-rep/Other-Greenhouse-Gases.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/methane"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ozone"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1398,7 +1485,7 @@
 	<div id="ozone">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1410,9 +1497,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-ozone-stations.jpg" style="max-height:200px">
-	<figcaption>Location of total column and ozone observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-ozone-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Vertical O<sub>3</sub> profiles and Total column O<sub>3</sub> is measured at Valentia Observatory (red) Ground level O<sub>3</sub> is measured at 11 locations (blue and red).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1428,14 +1515,17 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Ozone (O<sub>3</sub>) is the third most important greenhouse gas in terms of radiative forcing. The influence of O<sub>3</sub> on climate is complex with different impacts in the upper and lower atmosphere.</p>
-	<h3>Measurements</h3>
-	<p>Vertical O<sub>3</sub> profiles and Total column O<sub>3</sub> is measured at Valentia Observatory (red) Ground level O<sub>3</sub> is measured at 11 locations (blue and red).</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Measurements of total column O<sub>3</sub> vary throughout the year with a maximum reached in the spring and a minimum in late autumn. Levels in the upper atmosphere are observed to be slowly recovering since CFCs were banned in 1987.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Funding for O<sub>3</sub> observations at Valentia Observatory lacks long-term committed funding. The ground based network is  funded by the EPA</p>
 
 	<p><a href="/status-rep/Ozone.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/other-ghgs"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/aerosols"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1444,21 +1534,21 @@
 	<div id="aerosols">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/atmospheric">Atmospheric Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-aerosols.png" class="cs">
+	<img src="/img/cs-aerosols.jpg" class="cs">
 	<figcaption>Monthly geometric mean values of aerosol scattering coefficient observed at Mace Head (1999-2010). There are some gaps in the data record.</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-aerosol-stations.jpg" style="max-height:200px">
-	<figcaption>Location of aerosol observation stations.</figcaption>
-	</figure>
+	<img src="/img/cs-aerosol-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The suite of aerosols measurements at Mace Head is one of the most comprehensive in any remote location in the world. Measurements are also made at Valentia Observatory.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1474,21 +1564,23 @@
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Atmospheric aerosols are small particles in the air that may be formed by natural or human activities. They are relevant to climate in that they  cause scattering and absorption of radiation and also affect cloud reflectivity. </p>
-	<h3>Measurements</h3>
-	<p>The suite of aerosols measurements at Mace Head is one of the most comprehensive in any remote location in the world. Measurements are also made at Valentia Observatory. </p>
 	<h3>Time-Series and Trends</h3>
 	<p>The quantity, composition and location of aerosols in the atmosphere vary throughout the year. However, the  magnitude of the effects of aerosols on climate is a significant source of uncertainly.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>Funding for aerosol observations at Valentia Observatory are provided from Met Éireann’s operational budget. The Mace Head observations are funded on an ad-hoc basis by the National University of Ireland, Galway but lack long-term and sustainable operational support.</p>
+	<p>Funding for aerosol observations at Valentia Observatory are provided from Met &Eacute;ireann’s operational budget. The Mace Head observations are funded on an ad-hoc basis by the National University of Ireland, Galway but lack long-term and sustainable operational support.</p>
 
 	<p><a href="/status-rep/Aerosols.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	</div>
+ <a href="/ci/climate-change/ozone"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+</div>
+	
 	</div>
 	
 	</div>
 	
 	<div id="oceanic">
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	<div id="text-box-center">
 	<ul class="small-indent">
@@ -1509,7 +1601,7 @@
 	<div id="ocean-temp">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1517,15 +1609,13 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-ocean-temp.jpg" class="cs">
-	<figcaption>Deep-water temperature section for the Rockall Trough in January 2011 looking northward.
-</figcaption>
+	<figcaption>Mean annual sea surface temperature (SST) and anomalies measured at Malin Head (1961-2011).</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-sea-surface-stations.jpg" style="max-height:200px">
-	<figcaption>Location of sea surface observation stations
-</figcaption>
-	</figure>
+	<img src="/img/cs-sea-surface-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Sea surface temperature are made at several sites around the Irish coast by the Marine Institute (red).  Water temperature data have been collected at Malin Head Co. Donegal (blue) by Met &Eacute;ireann since 1858 and at the marine weather bouy netork since 2000.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1536,21 +1626,21 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Sea surface temperature in Irish waters has increased at a rate of approximately 0.6&deg;C per decade since 1994, which is unprecedented in the 150 year observational record"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Monitoring of ocean temperature is important as thermal expansion due to warming leads to sea level rise. Temperature also determines plant and animal species  and influences the weather patterns and climate experienced on land.</p>
-	<h3>Measurements</h3>
-	<p>Sea surface temperature are made at several sites around the Irish coast by the Marine Institute</p>
+	<p>Monitoring of ocean temperature is important as thermal expansion due to warming leads to sea level rise. Temperature also determines the distribution of plant and animal species and influences the weather patterns and climate experienced on land.</p>
 	<h3>Time-Series and Trends</h3>
-	<p>Sea surface temperature in Irish waters has increased at a rate of approximately 0.6&deg;C per decade since 1994, which is unprecedented in the 150-year observational record.
-</p>
+	<p>Sea surface temperature in Irish waters has increased at a rate of approximately 0.6&deg;C per decade since 1994, which is unprecedented in the 150-year observational record.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>It is vital that the temperature sensors at Malin Head and Ballycotton are resourced and maintained as long-term reference sites.
-</p>
+	<p>It is vital that the temperature sensors at Malin Head and Ballycotton are resourced and maintained as long-term reference sites.</p>
 
 	<p><a href="/status-rep/Ocean-Surface-and-Sub-Surface-Temperature.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+<a href="/ci/climate-change/ocean-salinity"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	</div>
@@ -1558,7 +1648,7 @@
 	<div id="ocean-salinity">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1566,13 +1656,13 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-salinity.jpg" class="cs">
-	<figcaption>Annual mean salinity anomalies on Irish shelf (1975-2007)</figcaption>
+	<figcaption>Annual mean salinity anomalies measured on the Irish shelf (1975-2007)</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-salinity-stations.jpg" style="max-height:200px">
-	<figcaption>Location of moored stations and cruise tracks for surface and sub-surface salinity observations.</figcaption>
-	</figure>
+	<img src="/img/cs-salinity-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Location of moored stations (orange) and cruise tracks (red) for surface and sub-surface salinity observations .</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1583,19 +1673,22 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Surface and sub-surface salinity measurements around Ireland exhibit multi-annual variability but no distinct trend exists"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Monitoring of ocean salinity changes is an indirect method of detecting changes in precipitation, evaporation, river runoff and ice melt and therefore helps in understanding changes in the Earth’s hydrological cycle.</p>
-	<h3>Measurements</h3>
-	<p>The Irish marine Weather Buoy Network collects sea surface and sub-surface salinity data from five offshore locations</p>
+	<p>Monitoring of ocean salinity changes is an indirect method of detecting changes in precipitation, evaporation, river runoff and ice melt and therefore helps in understanding changes in the Earth's hydrological cycle.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Surface and sub-surface salinity measurements around Ireland exhibit multi-annual variability but no distinct trend exists.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Annual measurements of deep-sea salinity need to be maintained to build on the existing time-series which is already revealing the complexity of sub-surface salinity.</p>
 
 	<p><a href="/status-rep/Ocean-Surface-and-Sub-surface-Salinity.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/ocean-temp"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-acidity"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1605,7 +1698,7 @@
 	<div id="ocean-acidity">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1613,15 +1706,14 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-acidity.jpg" class="cs">
-	<figcaption>Derived pH values from World Ocean Circulation Experiment (WOCE) (1990s) and more recent surveys in sub-surface waters (left) and at depth in the Rockall Trough (right).
+	<figcaption>Derived pH values from World Ocean Circulation Experiment (WOCE) (1990s) and more recent surveys in sub-surface waters.
 </figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-acidity-stations.jpg" style="max-height:200px">
-	<figcaption>Location of cruise tracks where observations of variables relating to the carbonate system have been carried out
-</figcaption>
-	</figure>
+	<img src="/img/cs-acidity-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Currently, there is no systematic ocean acidification monitoring programme in Irish waters. Some measurements have been taken between 2008-2010 as part of a joint project between the Marine institute and the National University of Ireland Galway (red) and in the 1990s by the World Ocean Circulation Experiment (WOCE) (blue).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1632,19 +1724,23 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Ocean acidity has increased significantly in sub-surface and deep offshore waters around Ireland between 1991 and 2010"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Acidification and Carbon Dioxide concentrations  have effects on many marine species and in particular on calcifying species such as corals, shellfish and crustaceans.</p>
-	<h3>Measurements</h3>
-	<p>Currently, there is no systematic ocean acidification monitoring programme in Irish waters. Some measurements between 2008-2010 as part of a joint project, between Marine institute and National university of Ireland Galway; and the data measured by WOCE in 1990s.</p>
+	<p>Acidification and Carbon Dioxide concentrations have a wide range of effects on many marine species and in particular on calcifying species such as corals, shellfish and crustaceans.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Ocean acidity has increased significantly in sub-surface and deep offshore waters around Ireland between 1991 and 2010.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>Integrated monitoring of the carbonate system is vital but due to funding and resource restrictions there are no plans for continued observations at present.</p>
+	<p>Currently, there is no systematic ocean acidification monitoring programme in Irish waters.  Integrated monitoring of the carbonate system is vital but due to funding and resource restrictions there are no plans for continued observations at present.</p>
 
 	<p><a href="/status-rep/Ocean-Acidification-and-Carbon-Dioxide-Concentrations.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/ocean-salinity"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-state"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
+
 
 	</div>
 	
@@ -1653,7 +1749,7 @@
 	<div id="ocean-state">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1661,15 +1757,13 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-ocean-state.jpg" class="cs">
-	<figcaption>Significant wave heights as determined from measurements by the altimeter on board the Jason-2 satellite for the period 14-19 November 2010.</figcaption>
+	<figcaption>Daily averaged significant wave height measured at Bouy M3 located to the southwest of Ireland.</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-ocean-state-stations.jpg" style="max-height:200px">
-	<figcaption>Location of sea state observation station.
-
-</figcaption>
-	</figure>
+	<img src="/img/cs-ocean-state-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Measurements of waves have been made at the Marine Institute-operated offshore national weather buoys since 2002 (orange).  In addition, radar altimeters on board a number of satellites are used to measure sea state.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1677,27 +1771,27 @@
 	<h6>Ocean State</h6>
 	<div id="status-right-top-left">
 
-	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Ocean acidity has increased significantly in sub-surface and deep offshore waters around Ireland between 1991 and 2010"</h3>
+	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Analysis of data from satellite altimetry for the period 1988 to 2002 shows that there has been a general increase in wave height in the northeast Atlantic"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Observations of sea state are relevant for monitoring changes in the marine environment, such as winds, storms and extreme events.
-</p>
-	<h3>Measurements</h3>
-	<p>Measurements of waves have been made at the Marine Institute-operated offshore national weather buoys since 2002.  And also radar altimeters, on board a number of satellites.
-</p>
+	<p>Observations of sea state are relevant for monitoring changes in the marine environment, such as winds, storms and extreme events.</p>
 	<h3>Time-Series and Trends</h3>
-	<p>Analysis of data from satellite altimetry for the period 1988 to 2002 shows that there has been a general increase in wave  height in the northeast Atlantic.
-</p>
+	<p>Analysis of data from satellite altimetry for the period 1988 to 2002 shows that there has been a general increase in wave  height in the northeast Atlantic.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>The National Weather Buoy Network is a fundamental infrastructure for observing sea state and must be maintained.
-</p>
+	<p>The National Weather Buoy Network is a fundamental infrastructure for observing sea state and must be maintained.</p>
 
 	<p><a href="/status-rep/Sea-State.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	</div>
+ <a href="/ci/climate-change/ocean-acidity"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-sea-level"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
+	
+	
 	</div>
 	
 	</div>
@@ -1705,7 +1799,7 @@
 	<div id="ocean-sea-level">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1713,15 +1807,13 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-sea-level.jpg" class="cs">
-	<figcaption>Global trends in sea level derived from satellite observations. ©CLS/CNES/Legos.   </figcaption>
+	<figcaption>Global trends in sea level derived from satellite observations. &#xA9;CLS/CNES/Legos.   </figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-sea-level-stations.jpg" style="max-height:200px">
-	<figcaption>Location of tide gauges for sea level observation.
-
-</figcaption>
-	</figure>
+	<img src="/img/cs-sea-level-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The longest and most reliable continuous records for ireland are from Malin Head Co. Donegal (orange) where a tide guage has been in operation since 1958.  A national tide guage network, co-ordinated by the Marine institute, is currently under development (red).  Guages are also operated by other organisations (blue) and include one deployed at the Marathon oil platform (yellow).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1732,19 +1824,22 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Satellite observations indicate that the sea level around Ireland has risen by approximately 4-6cm since the early 1990s"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>In Ireland, any significant rise in sea level could have major economic, social and environmental impacts.</p>
-	<h3>Measurements</h3>
-	<p>The longest and most reliable continuous records for Ireland are from Malin Head, Co. Donegal, where a tide gauge has been in operation since 1958.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Satellite observations indicate that the sea level around Ireland has risen by approximately 4-6 cm since the early 1990s.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Long-term support of the Malin Head and Castletownshend tide gauge measurement sites must be guaranteed.</p>
 
 	<p><a href="/status-rep/Sea-Level.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/ocean-state"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-currents"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1753,7 +1848,7 @@
 	<div id="ocean-currents">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1765,9 +1860,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-sea-level-stations.jpg" style="max-height:200px">
-	<figcaption>Location of current meters deployed in recent years.</figcaption>
-	</figure>
+	<img src="/img/cs-ocean-currents-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Location of current meters deployed by a number of organisations in recent years (red). Near Belmullet, Co. Mayo (blue) current measurements have been made by the Marine Institue since 2010.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1778,19 +1873,22 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Although multi-annual and decadal changes in the strength of the North Atlantic Current have been recorded, there is no coherent evidence for a long-term trend"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Ocean currents transport heat, freshwater and carbon from one part of the ocean to another and play a key role in determining climate conditions.</p>
-	<h3>Measurements</h3>
-	<p>There are no permanently maintained current meter arrays in the ocean area adjacent to Ireland.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Although multi-annual and decadal changes in the strength of North Atlantic Current have been recorded, there is no coherent evidence for a long-term trend.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>The lack of a long-term current monitoring system in Irish waters represents a significant gap in the Northeast Atlantic.</p>
 
 	<p><a href="/status-rep/Surface-and-Sub-surface-currents.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/ocean-sea-level"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-colour"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1799,7 +1897,7 @@
 	<div id="ocean-colour">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1812,9 +1910,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-ocean-colour-stations.jpg" style="max-height:200px">
-	<figcaption>Artist’s impression of Envisat. Source: ESA.</figcaption>
-	</figure>
+	<img src="/img/cs-ocean-colour-stations.jpg" style="max-height:200px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Artist's impression of Envisat (ESA).  Satellite radiometers are the primary means used to observe ocean colour</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1825,23 +1923,23 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"No long-term trend is observed in chlorophyll concentrations derived from ocean colour observations around Ireland since 1997"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Monitoring of ocean colour provides information on water quality and early warning of phytoplankton blooms and pollution events.
-</p>
-	<h3>Measurements</h3>
-	<p>Satellite radiometers are the primary means used to observe ocean colour</p>
+	<p>Monitoring of ocean colour provides information on water quality and early warning of phytoplankton blooms and pollution events.</p>
 	<h3>Time-Series and Trends</h3>
-	<p>No long-term trend is observed in chlorophyll concentrations derived from ocean colour observations around Ireland since 1997.
-</p>
+	<p>No long-term trend is observed in chlorophyll concentrations derived from ocean colour observations around Ireland since 1997.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>No systematic analysis of ocean colour observations for the Northeast Atlantic has been carried out in Ireland.
-</p>
+	<p>No systematic analysis of ocean colour observations for the Northeast Atlantic has been carried out in Ireland.</p>
 
 	<p><a href="/status-rep/Ocean-Colour.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	</div>
+ <a href="/ci/climate-change/ocean-currents"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-phytoplankton"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
+	
 	</div>
 	
 	</div>
@@ -1849,7 +1947,7 @@
 	<div id="ocean-phytoplankton">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1862,9 +1960,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-phytoplankton-stations.jpg" style="max-height:200px">
-	<figcaption>Location of phytoplankton observation stations</figcaption>
-	</figure>
+	<img src="/img/cs-phytoplankton-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The Marine Institute analyses seawater samples for the presence of a wide variety of harmful and toxic phytoplankton from aquaculture sites around the Irish coast (orange).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1875,19 +1973,22 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"The percentage occurrence of some potentially harmful species during the winter months has increased since 2000"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Phytoplankton is responsible for absorbing carbon dioxide from the atmosphere, the basis of the marine food chain and the key to the health of marine ecosystems.</p>
-	<h3>Measurements</h3>
-	<p>The Marine Institute analyses seawater samples for the presence of a wide variety of harmful and toxic phytoplankton from aquaculture sites around the Irish coast.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>The percentage occurrence of some potentially harmful species during the winter months has increased since 2000.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>There is no operational climate change programme in place to monitor changes in phytoplankton community assemblages in Irish waters.</p>
 
 	<p><a href="/status-rep/Phytoplankton.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/ocean-colour"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-nutrients"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -1896,7 +1997,7 @@
 	<div id="ocean-nutrients">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1908,9 +2009,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-ocean-nutrients-stations.jpg" style="max-height:200px">
-	<figcaption>Location of inshore points and offshore tracks where nutrient observations are made.</figcaption>
-	</figure>
+	<img src="/img/cs-ocean-nutrients-stations.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">The Marine Institute has undertaken annual winter-nutrient monitoring surveys in the Irish Sea since 1991.  This has been extended to the celtic sea and west coast in recent years and includes both inshore points and transects (blue) and offshore tracks (red).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -1921,13 +2022,11 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"As many of the factors determining nutrient concentrations in coastal waters are likely to change with a changing climate (e.g. altered rainfall pattern and the effect on riverine discharges), it is critical that nutrient observations are maintained"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px; padding-bottom:100px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Phosphates, nitrates, silicates and iron control the growth of phytoplankton at the base of the marine food chain and hence play an important role in structuring marine ecosystems.</p>
-	<h3>Measurements</h3>
-	<p>The Marine Institute has undertaken annual winter-nutrient monitoring surveys in the Irish Sea since 1991.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Observations between 1996 and 2010 indicate that there is a little change in sub-surface offshore nutrient concentration.</p>
 	<h3>Maintaining the Observations</h3>
@@ -1936,13 +2035,18 @@
 	<p><a href="/status-rep/Nutrients.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
 	</div>
+ <a href="/ci/climate-change/ocean-phytoplankton"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/ocean-do"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
+	
+	</div>
 	
 	</div>
 	
 	<div id="ocean-do">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/oceanic">Oceanic Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -1955,10 +2059,8 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-ocean-do-stations.jpg" style="max-height:200px">
-	<figcaption>Location of areas where dissolved oxygen observations are made
-</figcaption>
-	</figure>
+	<img src="/img/cs-ocean-do-stations.jpg" style="max-height:200px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Dissolved oxygen measurements have been made in 20 coastal locations (blue) during the summer months since 2001.</p></div>
 	</div>
 	<div id="status-right">
 	
@@ -1969,26 +2071,26 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Modelled dissolved oxygen saturation shows healthy levels for the seas around Ireland"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-oceans.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>There is an optimum range for dissolved oxygen concentration in oceanic water to avoid stress and potential death to ocean life.</p>
-	<h3>Measurements</h3>
-	<p>Dissolved oxygen measurements have been made in 20 coastal locations during the summer months since 2001.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Modelled  dissolved oxygen saturation shows healthy levels for the seas around Ireland.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Observations are vital to give early warning of oxygen-depleted areas and to track the impact of climate change.</p>
 
 	<p><a href="/status-rep/Dissolved-Oxygen.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
-
+</div>
+ <a href="/ci/climate-change/ocean-nutrients"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+</div>
 	</div>
 	
 	</div>
 	
 	<div id="terrestrial">
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	<div id="text-box-center">
 	<ul class="small-indent">
 	<li><a href="/ci/climate-change/land-cover">Land Cover</a></li>
@@ -2010,23 +2112,21 @@
 	<div id="land-cover">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-land-cover.jpg" class="cs">
-	<figcaption>Corine land cover map of Ireland (2006)
-</figcaption>
+	<img src="/img/cs-land-cover-2.jpg" class="cs">
+	<figcaption>Emissions (+) and removals (-) of carbon associated with management and use of land from 1990-2010. </figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption>
-</figcaption>
-	</figure>
+	<img src="/img/cs-land-cover.jpg" style="max-height:350px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify"> Since 1990 the regular and systematic land-cover mapping of Ireland, using satellite imagery, has taken place as part of the European Commission’s CORINE programme.  Corine land cover map of Ireland (2006).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -2037,19 +2137,21 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"In terms of land use there has been a significant net removal of carbon, in recent years, primarily due to an increase in forest area"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Land cover plays a key role in providing living space, food, water, energy and recreational opportunities.</p>
-	<h3>Measurements</h3>
-	<p>Land cover is derived from analysis of a variety of data sources such as aerial and satellite images.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>In terms of land use there has been a significant net removal of carbon, in recent years, primarily due to an increase in forest area.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>A consolidated land assessment capability needs to be put in place with a view to developing a coherent and consistent set of land cover and land-use products.</p>
 
 	<p><a href="/status-rep/Land-Cover.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+<a href="/ci/climate-change/albedo"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -2058,7 +2160,7 @@
 	<div id="albedo">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2070,9 +2172,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
-	</figure>
+	<img src="/img/cs-albedo-sat.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Ground-based measurements are made at local scales and for research studies. Regional measurements are generally made by satellite sensors (ESA).</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -2083,20 +2185,23 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"An analysis of global satellite data for the period 2000 to 2008 shows a slight increase in land surface albedo in the northern hemisphere and a slight decrease in the southern hemisphere"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Albedo is the proportion of the total radiation that is reflected by the Earth’s surface. It influences in energy balance and hence climate.</p>
-	<h3>Measurements</h3>
-	<p>Ground-based measurements are made at local scales and for research studies. Regional measurements are generally made by satellite sensors.</p>
+	<p>Albedo is the proportion of the total radiation that is reflected by the Earth's surface. It influences the Earth's energy balance and hence climate.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>An analysis of global satellite data for the period 2000 to 2008 shows a slight increase in land surface albedo in the northern hemisphere and a slight decrease in the southern hemisphere.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>Ireland’s requirements with regard to albedo analysis should be determined.</p>
+	<p>Ireland's requirements with regard to albedo analysis should be determined.</p>
 
 	<p><a href="/status-rep/Albedo.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	</div>
+ <a href="/ci/climate-change/land-cover"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/FAPAR"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
+	
 	</div>
 	
 	</div>
@@ -2104,7 +2209,7 @@
 	<div id="FAPAR">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2112,7 +2217,7 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-FAPAR.jpg" class="cs">
-	<figcaption>FAPAR derived from a series of ENVISAT MERIS images for four periods in 2010.</figcaption>
+	<figcaption>FAPAR is not directly measurable, but is inferred from models describing the transfer of solar radiation in plant canopies.  FAPAR derived from a series of ENVISAT MERIS images for four periods in 2010.</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
@@ -2126,22 +2231,25 @@
 	<h6>Fraction of absorbed Photosynthically Active Radiation (FAPAR)</h6>
 	<div id="status-right-top-left">
 
-	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"An analysis of FAPAR data for 2003 to 2009 have shown that it can be used to identify the start of spring in different landcover types"</h3>
+	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"An analysis of FAPAR data for 2003 to 2009 has shown that it can be used to identify the start of spring in different landcover types"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Variability of FAPAR is useful for early warning of droughts and provides information on the efficiency of plants to absorb  carbon dioxide.</p>
-	<h3>Measurements</h3>
-	<p>FAPAR is not directly measurable, but is inferred from models describing the transfer of solar radiation in plant canopies.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>An analysis of FAPAR data for 2003 to 2009 has shown that it can be used to identify the start of spring in different land cover types.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Work is required to analyse existing satellite datasets fully and explore the relationship of FAPAR with vegetation phenology and other climate parameters.</p>
 
 	<p><a href="/status-rep/FAPAR.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	</div>
+ <a href="/ci/climate-change/albedo"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/leaf-area-index"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> </div>
+</div>
 
 	</div>
 	
@@ -2150,44 +2258,48 @@
 	<div id="leaf-area-index">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
-
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-lai.jpg" class="cs">
-	<figcaption>Leaf Area Index (LAI) measurements made at a grassland, crop and forest respectively. </figcaption>
+	<img src="/img/cs-lai.jpg">
+	<figcaption>Leaf Area Index (LAI) measurements made at a grassland, crop and forest site in County Carlow.  Two sillage cuts were made each year followed by cattle grazing.</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
+	<img src="" class="cs">
+	<figcaption> </figcaption>
 	</figure>
+	
+	
 	</div>
 	<div id="status-right">
 	
 	<div id="status-right-top">
-	<h6>Leaf Area Index</h6>
+	<h6>Leaf Area Index (LAI)</h6>
 	<div id="status-right-top-left">
 
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"An observed increase in the annual average LAI over Europe may be linked to increased average annual temperatures"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>LAI plays a key role in interactions between the atmosphere and the vegetation in process such as water interception, evapotranspiration, photosynthesis, respiration, and leaf litter fall.</p>
-	<h3>Measurements</h3>
-	<p>LAI can be calculated directly by collecting leaf material over a certain area, or indirectly by measurements from hemispherical photography and other optical instruments.</p>
+	<p>LAI plays a key role in interactions between the atmosphere and the vegetation through processes such as water interception, evapotranspiration, photosynthesis, respiration, and leaf litter fall.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>An observed increase in the annual average LAI over Europe may be linked to increased average annual temperatures.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>Long-term ground-based measurements of LAI over a number of different vegetation types are required to improve understanding of ecosystem processes and for the validation of satellite-derived measurements.</p>
 
 	<p><a href="/status-rep/Leaf-Area-Index.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	<div>
+	<a href="/ci/climate-change/FAPAR"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/biomass"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
 
 	</div>
 	
@@ -2196,20 +2308,20 @@
 	<div id="biomass">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="/img/cs-biomass.jpg" class="cs">
-	<figcaption>Modelled annual total forest carbon stock (1990-2010).</figcaption>
+	<img src="/img/cs-biomass-2.jpg" class="cs">
+	<figcaption>Location of forest areas in Ireland, as derived from CORINE 2006</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
+	<img src="/img/cs-biomass.jpg">
+	<figcaption>Models are used to estimate forest biomass using robust forest area data.  This figure shows changes in modelled annual total forest carbon stock for Ireland (1990-2010).</figcaption>
 	</figure>
 	</div>
 	<div id="status-right">
@@ -2221,11 +2333,11 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Forest carbon stock has increased by over 40% since 1990"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Is a recognised store of terrestrial carbon. Vegetation biomass contains a similar amount of carbon as the atmosphere and is therefore of great importance in understanding climate.</p>
+	<p>It is a recognised store of terrestrial carbon. Vegetation biomass contains a similar amount of carbon as the atmosphere and is therefore of great importance in understanding climate.</p>
 	<h3>Measurements</h3>
 	<p>Models are used to estimate forest biomass using robust forest area data.</p>
 	<h3>Time-Series and Trends</h3>
@@ -2234,6 +2346,11 @@
 	<p>Estimates of above-ground forest carbon stock and above-ground biomass are made.</p>
 
 	<p><a href="/status-rep/Above-Ground-Biomass.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	<div>
+	<a href="/ci/climate-change/leaf-area-index"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/soil-carbon"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
 
 	</div>
 	
@@ -2242,7 +2359,7 @@
 	<div id="soil-carbon">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2250,7 +2367,7 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-soil-carbon.jpg" class="cs">
-	<figcaption>Estimated distribution of soil carbon density (1990). Reproduced from Tomlinsin, 2005.
+	<figcaption>Estimations of country-wide carbon stock are currently made based on knowledge of soil type, carbon density, soil depth and land cover.  This map shows estimated distribution of soil carbon density (1990). Reproduced from Tomlinsin, 2005.
 </figcaption>
 	</figure>
 	
@@ -2268,19 +2385,22 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"It is estimated that Ireland's soil carbon stock has decreased by 27 million tonnes between 1990 and 2000 due mainly to drainage and extraction of peat"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Changes in climate, in particular rainfall and temperature, impact on the carbon storage potential of soils.</p>
-	<h3>Measurements</h3>
-	<p>Estimations of country-wide carbon stock are currently made based on knowledge of soil type, carbon density, soil depth and land cover.</p>
 	<h3>Time-Series and Trends</h3>
-	<p>It is estimated that Ireland’s soil carbon stock has decreased by 27 million tonnes between 1990 and 2000 due mainly to drainage and extraction of peat.</p>
+	<p>It is estimated that Ireland's soil carbon stock has decreased by 27 million tonnes between 1990 and 2000 due mainly to drainage and extraction of peat.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>A network of permanent soil monitoring plots covering the main land uses for each soil type should be established.</p>
 
 	<p><a href="/status-rep/Soil-Carbon.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	<div>
+	<a href="/ci/climate-change/biomass"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/soil-moisture"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
 
 	</div>
 	
@@ -2289,7 +2409,7 @@
 	<div id="soil-moisture">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2301,9 +2421,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
-	</figure>
+	<img src="/img/cs-soil-moisture-station.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Met &Eacute;ireann has estimated soil moisture deficits at its synoptic stations (red) since 1980.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -2314,21 +2434,24 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Met &Eacute;ireann has estimated daily soil moisture deficits at its synoptic stations since 1980 but detailed analysis of trends needs to be carried out"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
-	<p>Soil moisture  has a key role in influencing the hydrological cycle and is a major driving force in regard to the soil’s ability to act as a carbon sink or source.</p>
-	<h3>Measurements</h3>
-	<p>Met &Eacute;ireann has estimated daily soil moisture deficits at its synoptic stations since 1980 but detailed analysis of trends needs to be carried out.</p>
+	<p>Soil moisture  has a key role in influencing the hydrological cycle and is a major driving force with regard to the soil's ability to act as a carbon sink or source.</p>
 	<h3>Time-Series and Trends</h3>
-	<p>Saturated soils generally occur on wet winter days, and greatest soils moisture deficits in summer and when sustained can be indicative of droughts.</p>
+	<p>Saturated soils generally occur on wet winter days while the greatest soils moisture deficits are generally recorded in summer and when sustained can be indicative of droughts.</p>
 	<h3>Maintaining the Observations</h3>
-	<p>A comprehensive needs analysis is required to secure and potentially enhance Ireland’s limited evapotranspiration measurement network.
+	<p>A comprehensive needs analysis is required to secure and potentially enhance Ireland's limited evapotranspiration measurement network.
 </p>
 
 	<p><a href="/status-rep/Soil-Moisture.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	<div>
+	<a href="/ci/climate-change/soil-carbon"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/fire-disturbance"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
+	
 	</div>
 	
 	</div>
@@ -2336,7 +2459,7 @@
 	<div id="fire-disturbance">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2348,8 +2471,8 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
+	<img src="/img/cs-fire-disturbance-2.jpg" class="cs">
+	<figcaption>Estimates of forest-burned area for reporting to the UNFCCC are based on re-plantation premiums provided to fire-affected landowners by the Forest Service.  This graph shows forest burned area estimates based on hectares of forest for which replantation grants were provided by the Fire Service (1990-2009).</figcaption>
 	</figure>
 	</div>
 	<div id="status-right">
@@ -2361,19 +2484,23 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Using information on re-plantation premiums provided by the Forest Service, it is estimated that since 1990 on average 340 Ha of forest burns in Ireland each year"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Along with fossil-fuel burning and agriculture, vegetation fires are one of the largest contributors globally to human-caused greenhouse gas emissions.</p>
-	<h3>Measurements</h3>
-	<p>Estimates of forest-burned area for reporting to the UNFCCC are based  on re-plantation premiums provided to fire-affected landowners by the Forest Service.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Using information on re-plantation premiums provided by the Forest Service, it is estimated that since 1990 on average 340Ha of forest burns in Ireland each year.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>It would be useful to record and collate the location and extent of forest fires and if possible other vegetation fires.</p>
 
 	<p><a href="/status-rep/Fire-Disturbance.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	<div>
+	<a href="/ci/climate-change/soil-moisture"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/river-discharge"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
+	
 
 	</div>
 	
@@ -2382,21 +2509,22 @@
 	<div id="river-discharge">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
 	<div id="status-left">
 
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" class="cs">
-	<figcaption></figcaption>
+	<img src="/img/cs-river.gif" class="cs">
+	<figcaption>Seasonal mean flows for winter (a) and summer (b) from river flow meters in the
+reference network (1954-2008). </figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
-	</figure>
+	<img src="/img/cs-river-stations.jpg" style="max-height:200px">	</figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Location of river flow monitoring stations employed by the EPA for monitoring and detecting climate change signals.</p></div>
+
 	</div>
 	<div id="status-right">
 	
@@ -2407,19 +2535,22 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"Summer mean river flows are dominated by increasing trends while there is a tendency for increases in winter mean flows for longer recorder stations"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Rivers are impacted by changes in climate, most notably changes in rainfall patterns but also temperature, and play  an important role in regional and local climate.</p>
-	<h3>Measurements</h3>
-	<p>River discharged is measured and data collected by a number of agencies, in over 900 stations since more less 40 years.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>Summer mean river flows are dominated by increasing trends while there is a tendency for increases in winter mean flows for longer record stations.</p>
 	<h3>Maintaining the Observations</h3>
 	<p>It is crucial that the maintenance of river flow stations and the collection and processing of data is ensured via continued investment in the reference sites.</p>
 
 	<p><a href="/status-rep/River-Discharge.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
+	
+	<div>
+	<a href="/ci/climate-change/fire-disturbance"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/lake-levels"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
 
 	</div>
 	
@@ -2428,7 +2559,7 @@
 	<div id="lake-levels">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2436,13 +2567,13 @@
 
 	<figure style="margin-left:auto; margin-right:auto">
 	<img src="/img/cs-lake-levels.jpg" class="cs">
-	<figcaption>Monthly mean levels on Lake Oughter, Co. Cavan (1977-2011)</figcaption>
+	<figcaption>Monthly mean lake levels on Lake Oughter, Co. Cavan (1977-2011)</figcaption>
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
-	</figure>
+	<img src="/img/cs-lake-map.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Locations of lake level monitoring stations operated by the EPA, OPW and ESB.</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -2453,13 +2584,11 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"No systematic analysis of lake levels has been carried out to date"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Lakes provide drinking water, supply to industry and agriculture, recreational opportunities and ecosystem maintenance. Their level, area and temperature are impacted by regional climate. </p>
-	<h3>Measurements</h3>
-	<p>Lake levels are currently measured at 73 locations by the EPA, the Office of Public Works and the ESB.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>No systematic analysis of lake levels has been carried out to date.</p>
 	<h3>Maintaining the Observations</h3>
@@ -2467,6 +2596,11 @@
 
 	<p><a href="/status-rep/Lake-Levels-and-Area.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	<div>
+	<a href="/ci/climate-change/river-discharge"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/groundwater"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
+	
 	</div>
 	
 	</div>
@@ -2474,7 +2608,7 @@
 	<div id="groundwater">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2486,9 +2620,9 @@
 	</figure>
 	
 	<figure style="margin-left:auto; margin-right:auto">
-	<img src="" style="max-height:200px">
-	<figcaption></figcaption>
-	</figure>
+	<img src="/img/cs-groundwater-station.jpg" style="max-height:250px"></figure>
+	<div align="center" style="width:420px; margin-left:auto;margin-right:auto"><p style="color: rgb(51, 102, 153); font-size:0.85em; text-align:justify">Groundwater level data have been collected in Ireland since the late 1960s. In 1990s the EPA took responsibility for its monitoring and maintains a groundwater level monitoring network of approximately 70 sites.  Sites measuring goundwater level (orange) and those measuring flow discharge from springs (blue)</p></div>
+	
 	</div>
 	<div id="status-right">
 	
@@ -2499,13 +2633,11 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"No systematic analysis of national groundwater levels has been carried out to date"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>It is a major source of drinking water (about 26%) and is also widely used in agriculture and industry.</p>
-	<h3>Measurements</h3>
-	<p>Groundwater level data have been collected in Ireland since the late 19060s. In 1990s the EPA took responsibility for its monitoring and maintains a groundwater level monitoring network of approximately 70 sites.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>No systematic analysis of national groundwater levels has been carried out to date.</p>
 	<h3>Maintaining the Observations</h3>
@@ -2513,6 +2645,10 @@
 
 	<p><a href="/status-rep/Groundwater.pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	<div>
+	<a href="/ci/climate-change/lake-levels"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+<a href="/ci/climate-change/irrigation"><img src="/img/next-step.JPG" height="50px" style="float:right; clear;right"></img></a> 
+</div>
 	</div>
 	
 	</div>
@@ -2520,7 +2656,7 @@
 	<div id="irrigation">
 	<div id="status-top">
 	
-	<h3><a href="/ci/climate-change/status-report">Climate Status</a> - <a href="/ci/climate-change/terrestrial">Terrestrial Observations</a></h3>
+	<h3><a href="/ci/climate-change/status-report">The Status of Ireland's Climate Report 2012</a></h3>
 	
 	</div>
 	
@@ -2545,13 +2681,11 @@
 	<h3 style="color: rgb(51, 102, 153); margin: 15px; margin-top:10px; text-align:center; font-style:italic">"It is estimated that less than 1% of the total cultivated area of the country is irrigated"</h3>
 	</div>
 	<div id="status-right-top-right">
-	<img src="/img/cs-clouds.jpg" style="max-width:240px">
+	<img src="/img/cs-terrestrial.jpg" style="max-width:240px">
 	</div>
 	</div>
 	<h3>Why is it important?</h3>
 	<p>Irrigation is the largest water-use sector, accounting for approximately 70% of all water withdrawn from rivers, lakes and the ground.</p>
-	<h3>Measurements</h3>
-	<p>No measurements of water use for irrigation are made in Ireland.</p>
 	<h3>Time-Series and Trends</h3>
 	<p>It is estimated that less than 1% of the total cultivated area of the country is irrigated.</p>
 	<h3>Maintaining the Observations</h3>
@@ -2559,6 +2693,10 @@
 
 	<p><a href="/status-rep/Water-Use-(Irrigation).pdf" target="blank">Click here to download a .pdf of the full chapter</a></p>
 
+	<div>
+	<a href="/ci/climate-change/groundwater"><img src="/img/previous-step.JPG" height="50px" style="float:left; clear;left"></img></a>
+</div>
+	
 	</div>
 	
 	</div>
