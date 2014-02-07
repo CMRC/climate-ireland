@@ -324,7 +324,7 @@
 
 (defpage "/ci/climate-information/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_Information.html" "climate-information" tab))
-
+  
 (defpage "/ci/csv/:year/:months/:model/:scenario/:variable"
   {:keys [year months model scenario variable]}
   (by-county year months  model scenario variable))
@@ -336,6 +336,7 @@
   (decadal-box county months variable abs model scenario))
 (defpage "/ci/questionnaire" {:as req}
   (questionnaire req))
+ 
 (defpage [:post "/ci/submit"] {:as req}
   (do (put-submit (assoc req :time (format/unparse (format/formatters :basic-date-time) (time/now))))
       (submit req)))
