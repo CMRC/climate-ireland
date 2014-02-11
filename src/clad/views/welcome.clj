@@ -310,6 +310,9 @@
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
   
+  (defpage "/ci/guidance/:tab" {:keys [tab]}
+  (one-pane "clad/views/guidance.html" "guidance" tab))
+  
 (defpage "/ci/adaptation/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_adaptation.html" "adaptation" tab))
 
