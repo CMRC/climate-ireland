@@ -85,6 +85,12 @@
                   [:p "Thank you"]
                   [:p [:a {:href "/"} "Home.."]]])))
 
+(deftemplate zero-pane "clad/views/View_3.html"
+  [text]
+  [:#content]
+  (content (html-resource text))
+) 
+				  
 (deftemplate one-pane "clad/views/View_3.html"
   [text page tab]
   [:#content]
@@ -310,9 +316,12 @@
 (defpage "/ci/climate-change/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_ClimateChange.html" "climate-change" tab))
   
-  (defpage "/ci/guidance/:tab" {:keys [tab]}
-  (one-pane "clad/views/guidance.html" "guidance" tab))
+(defpage "/ci/guidance" []
+  (zero-pane "clad/views/CI_guidance.html"))
   
+(defpage "/ci/news" []
+  (zero-pane "clad/views/CI_news.html"))
+   
 (defpage "/ci/adaptation/:tab" {:keys [tab]}
   (one-pane "clad/views/CI_adaptation.html" "adaptation" tab))
 
